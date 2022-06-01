@@ -1,5 +1,5 @@
 //wawawawa
-
+// aaaaa
 (()=>{
     var img = new Image();
     img.src ="/透過いちろ.png";
