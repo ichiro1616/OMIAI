@@ -1,17 +1,17 @@
 (() => {
     //コマの画像
     var img = new Image();
-  img.src ="/透過いちろ.png";
+  img.src ="/Picture/透過いちろ.png";
   var img1 = new Image();
-  img1.src ="/透過さとなか.png";
+  img1.src ="/Picture/透過さとなか.png";
   var img2 = new Image();
-  img2.src ="/透過けんと.png";
+  img2.src ="/Picture/透過けんと.png";
   var img3 = new Image();
-  img3.src ="/透過りく.png";
+  img3.src ="/Picture/透過りく.png";
   var img4 = new Image();
-  img4.src ="/透過ひろゆき.png";
+  img4.src ="/Picture/透過ひろゆき.png";
   var img5 = new Image();
-  img5.src ="/透過ながい.png";
+  img5.src ="/Picture/透過ながい.png";
   
   var paths = [
     context => {
