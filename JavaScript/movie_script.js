@@ -10,7 +10,7 @@ window.onload = function() {
     v.pause();
     //ロード
     v.load();
-  question.innerHTML = //動画のパスを書いたら表示されるのか？
+  question.innerHTML = wa //動画のパスを書いたら表示されるのか？
 };
 
 // クリック時の答え判定
