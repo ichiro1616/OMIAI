@@ -13,6 +13,7 @@
   var img5 = new Image();
   img5.src ="/Picture/透過ながい.png";
   
+  //1ローテ目の初期配置座標
   var paths = [
     context => {
       context.lineWidth = 12;
@@ -47,7 +48,44 @@
        context.drawImage(img4,340,440,120,120);
    },
   ];
-  
+
+  var paths = [
+    context2 => {
+      context2.lineWidth = 12;
+      context2.arc( 550,250,70,0,2 * Math.PI );
+      context2.drawImage(img5,490,190,120,120);
+  },
+  context2 => {
+      context2.lineWidth = 12;
+      context2.arc( 720,500,70,0,2 * Math.PI );
+      context2.lineWidth = 12;
+      context2.arc( 820,600,70,0,2 * Math.PI );
+      context2.drawImage(img2,660,440,120,120);
+  },
+  context2 => {
+      context2.lineWidth = 12;
+      context2.arc( 900,250,70,0,2 * Math.PI );
+      context2.drawImage(img1,840,190,120,120);
+  },
+  context2 => {
+      context2.lineWidth = 12;
+      context2.arc( 650,80,70,0,2 * Math.PI );
+      context2.drawImage(img,590,20,120,120);
+  },
+  context2 => {
+      context2.lineWidth = 12;
+      context2.arc( 250,250,70,0,2 * Math.PI );
+      context2.drawImage(img3,190,190,120,120);
+  },
+  context2 => {
+       context2.lineWidth = 12;
+       context2.arc( 400,500,70,0,2 * Math.PI );
+       context2.drawImage(img4,340,440,120,120);
+   },
+  ];
+
+  var context0 = [context, context2];
+
   //ボタンが押されたときの処理
   document.getElementById("button").onclick = function() {
     target = document.getElementById("rotation");
