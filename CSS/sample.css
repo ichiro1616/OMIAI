@@ -41,3 +41,29 @@
     right:100px;
     top:550px;
     }
+
+    #disp_count {
+      background-color: #093;
+      color: #FFF;
+      font-size: 72px;
+      border-radius: 10px;
+      padding: 20px;
+      display: table-cell;
+ }
+ 
+ #btn_count_up {
+      font-size: 36px;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+ }
+ 
+ #btn_reset {
+      font-size: 36px;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+ }
+ 
+ #btn_count_up:hover { background-color:#F30 }
+ #btn_reset:hover { background-color:#F30 }
