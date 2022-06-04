@@ -1,4 +1,4 @@
-var positionarray = [
+var imagearray = [
   [
     {
       x: 660,
@@ -17,8 +17,60 @@ var positionarray = [
       y: 20,
     },
     {
-      x: 150,
-      y: 80,
+      x: 190,
+      y: 190,
+    },
+    {
+      x: 340,
+      y: 440,
+    },
+  ],
+  [
+    {
+      x: 490,
+      y: 190,
+    },
+    {
+      x: 660,
+      y: 440,
+    },
+    {
+      x: 840,
+      y: 190,
+    },
+    {
+      x: 590,
+      y: 20,
+    },
+    {
+      x: 190,
+      y: 190,
+    },
+    {
+      x: 340,
+      y: 440,
+    },
+  ],
+  [
+    {
+      x: 340,
+      y: 440,
+    },
+    {
+      x: 660,
+      y: 440,
+    },
+    {
+      x: 840,
+      y: 190,
+    },
+    {
+      x: 940,
+      y: 20,
+    },
+    {
+      x: 490,
+      y: 190,
     },
     {
       x: 190,
@@ -27,138 +79,245 @@ var positionarray = [
   ],
   [
     {
-      x: 100,
-      y: 100,
+      x: 190,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 340,
+      y: 440,
     },
     {
-      x: 100,
-      y: 100,
+      x: 660,
+      y: 440,
     },
     {
-      x: 100,
-      y: 100,
+      x: 940,
+      y: 290,
     },
     {
-      x: 100,
-      y: 100,
+      x: 840,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
-    },
-  ],
-  [
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
+      x: 490,
+      y: 190,
     },
   ],
   [
     {
-      x: 100,
-      y: 100,
+      x: 490,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 190,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 340,
+      y: 440,
     },
     {
-      x: 100,
-      y: 100,
+      x: 390,
+      y: 290,
     },
     {
-      x: 100,
-      y: 100,
+      x: 660,
+      y: 440,
     },
     {
-      x: 100,
-      y: 100,
-    },
-  ],
-  [
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
+      x: 840,
+      y: 190,
     },
   ],
   [
     {
-      x: 100,
-      y: 100,
+      x: 840,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 490,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 190,
+      y: 190,
     },
     {
-      x: 100,
-      y: 100,
+      x: 90,
+      y: 290,
     },
     {
-      x: 100,
-      y: 100,
+      x: 340,
+      y: 440,
     },
     {
-      x: 100,
-      y: 100,
+      x: 660,
+      y: 440,
     },
   ],
 ];
-console.log("a", positionarray[2]);
-positionarray[2][0].x = 1000;
-console.log("a", positionarray);
+
+var arcarray = [
+  [
+    {
+      x: 720,
+      y: 500,
+    },
+    {
+      x: 900,
+      y: 250,
+    },
+    {
+      x: 550,
+      y: 250,
+    },
+    {
+      x: 150,
+      y: 80,
+    },
+    {
+      x: 250,
+      y: 250,
+    },
+    {
+      x: 400,
+      y: 500,
+    },
+  ],
+  [
+    {
+      x: 550,
+      y: 250,
+    },
+    {
+      x: 720,
+      y: 500,
+    },
+    {
+      x: 900,
+      y: 250,
+    },
+    {
+      x: 650,
+      y: 80,
+    },
+    {
+      x: 250,
+      y: 250,
+    },
+    {
+      x: 400,
+      y: 500,
+    },
+  ],
+  [
+    {
+      x: 400,
+      y: 500,
+    },
+    {
+      x: 720,
+      y: 500,
+    },
+    {
+      x: 900,
+      y: 250,
+    },
+    {
+      x: 1000,
+      y: 80,
+    },
+    {
+      x: 550,
+      y: 250,
+    },
+    {
+      x: 250,
+      y: 250,
+    },
+  ],
+  [
+    {
+      x: 250,
+      y: 250,
+    },
+    {
+      x: 400,
+      y: 500,
+    },
+    {
+      x: 720,
+      y: 500,
+    },
+    {
+      x: 1000,
+      y: 350,
+    },
+    {
+      x: 900,
+      y: 250,
+    },
+    {
+      x: 550,
+      y: 250,
+    },
+  ],
+  [
+    {
+      x: 550,
+      y: 250,
+    },
+    {
+      x: 250,
+      y: 250,
+    },
+    {
+      x: 400,
+      y: 500,
+    },
+    {
+      x: 450,
+      y: 350,
+    },
+    {
+      x: 720,
+      y: 500,
+    },
+    {
+      x: 900,
+      y: 250,
+    },
+  ],
+  [
+    {
+      x: 900,
+      y: 250,
+    },
+    {
+      x: 550,
+      y: 250,
+    },
+    {
+      x: 250,
+      y: 250,
+    },
+    {
+      x: 150,
+      y: 350,
+    },
+    {
+      x: 400,
+      y: 500,
+    },
+    {
+      x: 720,
+      y: 500,
+    },
+  ],
+];
+// console.log("a", imagearray[2]);
+// imagearray[2][0].x = 1000;
+// console.log("a", imagearray);
 //コマの画像
 var img = new Image();
 img.src = "../Picture/透過いちろ.png";
@@ -177,36 +336,37 @@ img5.src = "../Picture/透過ながい.png";
 var paths;
 
 function pathsfunction(index) {
-  const p = positionarray[index];
+  const p = imagearray[index];
+  const q = arcarray[index];
   return [
     (context) => {
       context.lineWidth = 12;
-      context.arc(720, 500, 70, 0, 2 * Math.PI); //(X,Y,コマの大きさ、円を描き始める角度、描き終わる終わる角度)
+      context.arc(q[0].x, q[0].y, 70, 0, 2 * Math.PI); //(X,Y,コマの大きさ、円を描き始める角度、描き終わる終わる角度)
       context.drawImage(img5, p[0].x, p[0].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
-      context.arc(900, 250, 70, 0, 2 * Math.PI);
+      context.arc(q[1].x, q[1].y, 70, 0, 2 * Math.PI);
       context.drawImage(img2, p[1].x, p[1].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
-      context.arc(550, 250, 70, 0, 2 * Math.PI);
+      context.arc(q[2].x, q[2].y, 70, 0, 2 * Math.PI);
       context.drawImage(img1, p[2].x, p[2].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
-      context.arc(150, 80, 70, 0, 2 * Math.PI);
+      context.arc(q[3].x, q[3].y, 70, 0, 2 * Math.PI);
       context.drawImage(img, p[3].x, p[3].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
-      context.arc(250, 250, 70, 0, 2 * Math.PI);
+      context.arc(q[4].x, q[4].y, 70, 0, 2 * Math.PI);
       context.drawImage(img3, p[4].x, p[4].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
-      context.arc(400, 500, 70, 0, 2 * Math.PI);
+      context.arc(q[5].x, q[5].y, 70, 0, 2 * Math.PI);
       context.drawImage(img4, p[5].x, p[5].y, 120, 120);
     },
   ];
