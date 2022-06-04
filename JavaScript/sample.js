@@ -199,36 +199,37 @@ img5.src = "../Picture/透過ながい.png";
 var paths;
 
 function pathsfunction(index) {
+  const p = positionarray[index];
   return [
     (context) => {
       context.lineWidth = 12;
       context.arc(720, 500, 70, 0, 2 * Math.PI); //(X,Y,コマの大きさ、円を描き始める角度、描き終わる終わる角度)
-      context.drawImage(img5, positionarray[index][0].x, positionarray[index][0].y, 120, 120);
+      context.drawImage(img5, p[0].x, p[0].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(900, 250, 70, 0, 2 * Math.PI);
-      context.drawImage(img2, positionarray[index][1].x, positionarray[index][1].y, 120, 120);
+      context.drawImage(img2, p[1].x, p[1].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(550, 250, 70, 0, 2 * Math.PI);
-      context.drawImage(img1, positionarray[index][2].x, positionarray[index][2].y, 120, 120);
+      context.drawImage(img1, p[2].x, p[2].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(150, 80, 70, 0, 2 * Math.PI);
-      context.drawImage(img, positionarray[index][3].x, positionarray[index][3].y, 120, 120);
+      context.drawImage(img, p[3].x, p[3].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(250, 250, 70, 0, 2 * Math.PI);
-      context.drawImage(img3, positionarray[index][4].x, positionarray[index][4].y, 120, 120);
+      context.drawImage(img3, p[4].x, p[4].y, 120, 120);
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(400, 500, 70, 0, 2 * Math.PI);
-      context.drawImage(img4, positionarray[index][5].x, positionarray[index][5].y, 120, 120);
+      context.drawImage(img4, p[5].x, p[5].y, 120, 120);
     },
   ];
 }
@@ -240,7 +241,7 @@ function pathsfunction(index) {
 //     context.drawImage(img5,490,190,120,120);
 // },
 // context => {
-//     context.lineWidth = 12;
+//     context.
 //     context.arc( 720,500,70,0,2 * Math.PI );
 //     context.lineWidth = 12;
 //     context.arc( 820,600,70,0,2 * Math.PI );
