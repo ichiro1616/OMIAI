@@ -24,46 +24,8 @@ var positionarray = [
       x: 190,
       y: 190,
     },
-    {
-      x: 340,
-      y: 440,
-    },
   ],
   [
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-    {
-      x: 100,
-      y: 100,
-    },
-  ],
-  [
-    {
-      x: 100,
-      y: 100,
-    },
     {
       x: 100,
       y: 100,
@@ -114,6 +76,28 @@ var positionarray = [
       x: 100,
       y: 100,
     },
+  ],
+  [
+    {
+      x: 100,
+      y: 100,
+    },
+    {
+      x: 100,
+      y: 100,
+    },
+    {
+      x: 100,
+      y: 100,
+    },
+    {
+      x: 100,
+      y: 100,
+    },
+    {
+      x: 100,
+      y: 100,
+    },
     {
       x: 100,
       y: 100,
@@ -144,16 +128,8 @@ var positionarray = [
       x: 100,
       y: 100,
     },
-    {
-      x: 100,
-      y: 100,
-    },
   ],
   [
-    {
-      x: 100,
-      y: 100,
-    },
     {
       x: 100,
       y: 100,
@@ -180,7 +156,9 @@ var positionarray = [
     },
   ],
 ];
-
+console.log("a", positionarray[2]);
+positionarray[2][0].x = 1000;
+console.log("a", positionarray);
 //コマの画像
 var img = new Image();
 img.src = "../Picture/透過いちろ.png";
@@ -477,10 +455,13 @@ window.addEventListener("DOMContentLoaded", () => {
   pathListObj.clickEvent();
 });
 
-let counter = 0;
+let counter = 1;
 function rotation() {
   console.log("a");
-  paths = pathsfunction(1);
+  if (counter == 6) {
+    counter = 0;
+  }
+  paths = pathsfunction(counter);
 
   var cvs = document.getElementById("canvas2");
   var cvs2 = document.getElementById("canvas3");
@@ -493,4 +474,5 @@ function rotation() {
   var img = new Image();
 
   pathListObj.clickEvent();
+  counter++;
 }
