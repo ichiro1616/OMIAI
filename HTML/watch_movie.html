@@ -5,14 +5,26 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <!-- <link rel="stylesheet" href="style.css">
-  <script src="/JavaScript/movie_script.js"></script> -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <script src="/JavaScript/movie_script.js"></script>
   <title>動画閲覧</title>
 </head>
-<body>
+<body onLoad="getDuration()">
   <div class="wrapper">
-    <h1>ボールを取るべきだった選手を選び<br>タップしてださい</h1>
-    <div id="movie"> </div>
+    <video id="video" width="400" height="300">
+      <source src="sample.mp4">
+      <source src="sample.ogv">
+      <source src="sample.webm">
+      </video>
+      <div style="width:400px; background-color:#333333; color:#ffffff;">
+      <input type="button" value="再生" onClick="playVideo()">
+      <input type="button" value="一時停止" onClick="pauseVideo()">
+      <input type="button" value="↑" onClick="upVolume()">
+      <input type="button" value="↓" onClick="downVolume()"><br>
+      現在（秒）：<span id="ichi">0</span><br>
+      全体（秒）：<span id="nagasa"></span><br>
+      <span id="kanryou"></span>
+      </div>
     <div id="buttons">
     <!-- JavaScript内のchoose関数に1(左選手)か2(右選手)の値を送信する。 -->
       <input type="button" class="button" value="左選手" onclick="choose(1)">
