@@ -37,10 +37,10 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # df = pd.DataFrame(data, columns=clms)
 # df = pd.DataFrame(iris.data, columns=clms)
-df = pd.read_csv("dummy_data_not_heikin.csv", encoding="utf_8")
+df = pd.read_csv("dummy_data.csv", encoding="utf_8")
 print("csv!", df)
 
-df1 = pd.read_csv("y_pred_data_not_heikin.csv", encoding="utf_8")
+df1 = pd.read_csv("y_pred_data.csv", encoding="utf_8")
 
 df2 = pd.read_csv("grid_data.csv", encoding="utf_8")
 
@@ -73,7 +73,7 @@ df1 = minmax_norm(df1)
 
 
 
-poly3d = PolynomialFeatures(degree=4, interaction_only=False, include_bias=True, order='C')
+poly3d = PolynomialFeatures(degree=3, interaction_only=True, include_bias=True, order='C')
 X_poly =  poly3d.fit_transform(X)
 df1_poly =  poly3d.fit_transform(df1)
 XXX = [[1, 2, 3, 4, 5, 6]]
@@ -181,7 +181,6 @@ df2['target'] = y_pred
 # pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
 print(df2)
-
 
 df2.plot.scatter(x='x', y='y', color=df2['target'])
 plt.show()
