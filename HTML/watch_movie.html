@@ -11,14 +11,14 @@
 </head>
 <body>
   <div class="wrapper">
-    <video controls="controls" width="700" height="350">
-      <source src="/Movie/sample1.mp4">
-    </video>
+    <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg">
+      <source src="" id="video" preload controls muted autoplay playinline loop>
+  </video>
       </div>
     <div id="buttons">
     <!-- JavaScript内のchoose関数に1(左選手)か2(右選手)の値を送信する。 -->
-      <input type="button" class="button" value="左選手" onclick="choose(1)">
-      <input type="button" class="button" value="右選手" onclick="choose(2)">
+      <input type="button" class="button" value="左選手" onclick="choose(0)">
+      <input type="button" class="button" value="右選手" onclick="choose(1)">
     </div>
   </div>
   <!-- <script type="text/javascript" src="/JavaScript/movie_script.js"></script> -->
