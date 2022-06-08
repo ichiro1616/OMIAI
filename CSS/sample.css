@@ -26,44 +26,18 @@
   #canvas3 {
     z-index: 1;
   }
-  
-  /* .btn_count_up{ */
-    /* border-radius: 10px; */
-    /* background-color: #7C00BA; */
-    /* padding-left:60px; */
-    /* padding-right:60px; */
-    /* padding-top:30px; */
-    /* padding-bottom:30px; */
-    /* text-decoration:none; */
-    /* color:white; */
-    /* font-size:40px; */
-    /* position:absolute; */
-    /* right:100px; */
-    /* top:550px; */
-    /* } */
 
-    /* #disp_count { */
-      /* background-color: #093; */
-      /* color: #FFF; */
-      /* font-size: 72px; */
-      /* border-radius: 10px; */
-      /* padding: 20px; */
-      /* display: table-cell; */
- /* } */
- /*  */
- /* #btn_count_up { */
-      /* font-size: 36px; */
-      /* border-radius: 10px; */
-      /* padding: 10px; */
-      /* margin-top: 10px; */
- /* } */
- /*  */
- /* #btn_reset { */
-      /* font-size: 36px; */
-      /* border-radius: 10px; */
-      /* padding: 10px; */
-      /* margin-top: 10px; */
- /* } */
- /*  */
- /* #btn_count_up:hover { background-color:#F30 } */
- /* #btn_reset:hover { background-color:#F30 } */
+  * {
+    box-sizing: border-box;
+  }
+#input-range {
+    -webkit-appearance: none; 
+    appearance: none;
+    cursor: pointer; 
+    outline: none; 
+    height: 14px; 
+    width: 100%; 
+    background: #7C00BA; 
+    border-radius: 10px; 
+    border: solid 3px #7C00BA; 
+  }
