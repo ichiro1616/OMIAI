@@ -334,7 +334,7 @@ img5.src = "../Picture/透過ながい.png";
 
 //1ローテ目の初期配置座標
 var paths;
-
+let comanumber;
 function pathsfunction(index) {
   const p = imagearray[index];
   const q = arcarray[index];
@@ -389,6 +389,13 @@ pathObj.prototype = {
   draw(effect = false, eX = 0, eY = 0) {
     var context = this.context(effect, eX, eY);
 
+    console.log(comanumber, "駒の番号");
+
+    imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX + eX;
+    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY + eY;
+
+    
+    console.log(imagearray[counter][comanumber])
     console.log(this.moveX + eX, this.moveY + eY);
 
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
@@ -400,6 +407,9 @@ pathObj.prototype = {
   setPos(eX, eY) {
     this.moveX += eX;
     this.moveY += eY;
+    console.log(this.moveX, this.moveY);
+    console.log(eX, eY);
+
   },
   isIn(x, y) {
     var context = this.context();
@@ -469,6 +479,8 @@ pathList.prototype = {
         var [x, y] = this.getPoint(e);
 
         let index = this.inStroke(x, y);
+        comanumber = index;
+
         if (index > -1) {
           this.currentPath = this.path[index];
           this.currentX = x;
@@ -494,7 +506,7 @@ pathList.prototype = {
       (e) => {
         if (!this.moveMode) return;
         this.moveMode = false;
-
+        console.log("a");
         var [x, y] = this.getPoint(e);
         this.clearEffect();
         this.currentPath.setPos(x - this.currentX, y - this.currentY);
@@ -536,9 +548,10 @@ window.addEventListener("DOMContentLoaded", () => {
   pathListObj.clickEvent();
 });
 
-let counter = 1;
+let counter = 0;
 function rotation() {
   console.log("a");
+  counter++;
   if (counter == 6) {
     counter = 0;
   }
