@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-06-07 07:39:00
+-- 生成日時: 2022-06-09 06:10:06
 -- サーバのバージョン： 10.4.24-MariaDB
 -- PHP のバージョン: 8.1.6
 
@@ -43,6 +43,7 @@ CREATE TABLE `answer` (
 
 CREATE TABLE `movie` (
   `movie_id` int(11) NOT NULL,
+  `movie_categorize` int(11) NOT NULL,
   `stop_time` int(11) NOT NULL,
   `movie_path` text COLLATE utf8_bin NOT NULL,
   `left_player_id` int(11) NOT NULL,

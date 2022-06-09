@@ -334,7 +334,7 @@ img5.src = "../Picture/透過ながい.png";
 
 //1ローテ目の初期配置座標
 var paths;
-
+let comanumber;
 function pathsfunction(index) {
   const p = imagearray[index];
   const q = arcarray[index];
@@ -370,86 +370,7 @@ function pathsfunction(index) {
       context.drawImage(img4, p[5].x, p[5].y, 120, 120);
     },
   ];
-}
-
-// var paths = [
-//   context => {
-//     context.lineWidth = 12;
-//     context.arc( 550,250,70,0,2 * Math.PI );
-//     context.drawImage(img5,490,190,120,120);
-// },
-// context => {
-//     context.
-//     context.arc( 720,500,70,0,2 * Math.PI );
-//     context.lineWidth = 12;
-//     context.arc( 820,600,70,0,2 * Math.PI );
-//     context.drawImage(img2,660,440,120,120);
-// },
-// context => {
-//     context.lineWidth = 12;
-//     context.arc( 900,250,70,0,2 * Math.PI );
-//     context.drawImage(img1,840,190,120,120);
-// },
-// context => {
-//     context.lineWidth = 12;
-//     context.arc( 650,80,70,0,2 * Math.PI );
-//     context.drawImage(img,590,20,120,120);
-// },
-// context => {
-//     context.lineWidth = 12;
-//     context.arc( 250,250,70,0,2 * Math.PI );
-//     context.drawImage(img3,190,190,120,120);
-// },
-// context => {
-//      context.lineWidth = 12;
-//      context.arc( 400,500,70,0,2 * Math.PI );
-//      context.drawImage(img4,340,440,120,120);
-//  },
-// ];
-
-// console.log(context)
-// var context0 = [context, context];
-
-//ボタンが押されたときの処理
-// document.getElementById("button").onclick = function() {
-//   target = document.getElementById("rotation");
-//    target.innerHTML = "ローテしました";
-// }
-
-// window.onload = function() {
-
-// // オブジェクトと変数の準備
-// var count_disp = document.getElementById("disp_count");
-//    var count_up_btn = document.getElementById("btn_count_up");
-//    var reset_btn = document.getElementById("btn_reset");
-//    var count_value = 0;
-
-//    // カウントアップボタンクリック処理
-//    count_up_btn.onclick = function (){
-//         count_value += 1;
-//         count_disp.innerHTML = count_value;
-//    };
-//    // カウントアップボタンのマウスダウン処理
-//    count_up_btn.onmousedown = function() {
-//         count_up_btn.style.backgroundColor = "#00FF00";
-//    }
-//    // カウントアップボタンのマウスアップ処理
-//    count_up_btn.onmouseup = function() {
-//         count_up_btn.style.backgroundColor = "";
-//    }
-//    // リセットボタンのクリック処理
-//    reset_btn.onclick = function (){
-//         count_value = 0; count_disp.innerHTML = count_value;
-//    }
-//    // リセットボタンのマウスダウン処理
-//    reset_btn.onmousedown = function() {
-//         reset_btn.style.backgroundColor = "#00FF00";
-//    }
-//    // リセットボタンのマウスアップ処理
-//    reset_btn.onmouseup = function() {
-//         reset_btn.style.backgroundColor = "";
-//    }
-//   };
+};
 
 // 線色
 var pathObjStrokeColor = "rgba( 0, 0, 255, .5)";
@@ -468,6 +389,13 @@ pathObj.prototype = {
   draw(effect = false, eX = 0, eY = 0) {
     var context = this.context(effect, eX, eY);
 
+    console.log(comanumber, "駒の番号");
+
+    imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX + eX;
+    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY + eY;
+
+    
+    console.log(imagearray[counter][comanumber])
     console.log(this.moveX + eX, this.moveY + eY);
 
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
@@ -479,6 +407,9 @@ pathObj.prototype = {
   setPos(eX, eY) {
     this.moveX += eX;
     this.moveY += eY;
+    console.log(this.moveX, this.moveY);
+    console.log(eX, eY);
+
   },
   isIn(x, y) {
     var context = this.context();
@@ -548,6 +479,8 @@ pathList.prototype = {
         var [x, y] = this.getPoint(e);
 
         let index = this.inStroke(x, y);
+        comanumber = index;
+
         if (index > -1) {
           this.currentPath = this.path[index];
           this.currentX = x;
@@ -573,7 +506,7 @@ pathList.prototype = {
       (e) => {
         if (!this.moveMode) return;
         this.moveMode = false;
-
+        console.log("a");
         var [x, y] = this.getPoint(e);
         this.clearEffect();
         this.currentPath.setPos(x - this.currentX, y - this.currentY);
@@ -615,9 +548,10 @@ window.addEventListener("DOMContentLoaded", () => {
   pathListObj.clickEvent();
 });
 
-let counter = 1;
+let counter = 0;
 function rotation() {
   console.log("a");
+  counter++;
   if (counter == 6) {
     counter = 0;
   }
