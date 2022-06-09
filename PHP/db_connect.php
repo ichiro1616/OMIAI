@@ -1,5 +1,5 @@
 <?php
-include ('/JavaScript/movie_script.js');
+date_default_timezone_set('Asia/Tokyo');
 
 //DBへの接続時に必要な情報
 $dsn = 'mysql:dbname=omiai_db;host=localhost';
@@ -10,27 +10,24 @@ $password = 'Pa22wadoh';
 try{
     $dbh = new PDO($dsn, $user, $password);
     print('接続に成功しました。<br>');
-}
-catch(PDOException $e){
+    $stmt = $dbh->query("SELECT `movie_id`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE `movie_categorize`= 1");
+    $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($_data as $d){
+        $tmp = array(
+            "movie_id" => $d['movie_id'],
+            "stop_time" => $d['stop_time'],
+            "movie_path" => $d['movie_path'],
+            "left_player_id" => $d['left_player_id'],
+            "right_player_id" => $d['right_player_id']
+        );
+        $data[]=$tmp;
+    }
+}catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
 }
 
-// //HTMLから値を取得
-// if (isset($_POST['add'])) {
-//     $answer = "登録しました";
-
-
-// }
-
-
-
-
-
-
-
-
-
-
+echo json_encode($data);
 $dbh = null; //DBとの接続を解除
 ?>
