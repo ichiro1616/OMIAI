@@ -1,51 +1,52 @@
-
-.font_size{
-font-family: "Arial Black";
-font-size:200px;
-color:#3300DA;
-padding-left:380px;
-padding-bottom:150px;
+.font_size {
+    font-family: "Arial Black";
+    font-size: 200px;
+    color: #3300DA;
+    padding-left: 380px;
+    padding-bottom: 150px;
 }
 
-
-.btn{
-border-radius: 10px;
-background-color: #7C00BA;
-padding:50px;
-text-decoration:none;
-color:white;
-font-size:40px;
-position:absolute;
-left:200px;
-top:550px;
+/* 動画を見る */
+.btn {
+    border-radius: 10px;
+    background: #7C00BA;
+    padding: 50px;
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    left: 200px;
+    top: 550px;
 }
 
-.btn2{
-border-radius: 10px;
-background-color: #7C00BA;
-padding-left:110px;
-padding-right:110px;
-padding-top:50px;
-padding-bottom:50px;
-text-decoration:none;
-color:white;
-font-size:40px;
-position:absolute;
-right:620px;
-top:550px;
+/* 登録 */
+.btn2 {
+    border-radius: 10px;
+    background-color: #7C00BA;
+    padding-left: 110px;
+    padding-right: 110px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    right: 620px;
+    top: 550px;
 }
 
-.btn3{
-border-radius: 10px;
-background-color: #7C00BA;
-padding-left:110px;
-padding-right:110px;
-padding-top:50px;
-padding-bottom:50px;
-text-decoration:none;
-color:white;
-font-size:40px;
-position:absolute;
-right:200px;
-top:550px;
+/* 閲覧 */
+.btn3 {
+    border-radius: 10px;
+    background-color: #7C00BA;
+    padding-left: 110px;
+    padding-right: 110px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    right: 200px;
+    top: 550px;
 }
