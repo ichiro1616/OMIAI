@@ -1,6 +1,6 @@
 //担当：上村
 //参考　https://qiita.com/iiishokoiii/items/3037d6d01248502aee68
-let video_path = "/Movie/sample1.mp4"; //動画のファイルパス
+let video_path = "/Movie/sample1.mov"; //動画のファイルパス
 let STOP = 0;
 let movie;
 window.onclick = movie_db();
@@ -13,17 +13,18 @@ function movie_db(){
   $.ajax({
     url: "/PHP/db_connect.php",
     dataType: "json",
-    contentType: 'application/json',
     }).done(function (data) {
-      movie = JSON.parse(data);
+      // movie = JSON.parse(data);
       console.log('通信に成功しました');
+      console.log(data);
+      console.log(data[0]["movie_path"]);
+      mv.setAttribute("src", data[0]["movie_path"]);
   }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
       console.log('通信に失敗しました');
       console.log("XMLHttpRequest : " + XMLHttpRequest.status);
       console.log("textStatus     : " + textStatus);
       console.log("errorThrown    : " + errorThrown.message);
   });
-  // mv.setAttribute("src", movie_path);
 }
 
 // 指定フレームで動画を停止させる
