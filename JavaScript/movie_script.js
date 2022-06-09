@@ -2,10 +2,7 @@
 //参考　https://qiita.com/iiishokoiii/items/3037d6d01248502aee68
 let video_path = "/Movie/sample1.mp4"; //動画のファイルパス
 let STOP = 0;
-let data = {
-  request: $('#movie').val(),
-};
-
+let movie;
 window.onclick = movie_db();
 
 //mv.setAttribute("src", video_path); //動画を選択・表示する
@@ -14,17 +11,19 @@ window.onclick = movie_db();
 function movie_db(){
   console.log("dbから動画を選択します。"); 
   $.ajax({
-    type: "GET",
     url: "/PHP/db_connect.php",
     dataType: "json",
+    contentType: 'application/json',
     }).done(function (data) {
       movie = JSON.parse(data);
-      console.log(movie);
       console.log('通信に成功しました');
-  }).fail(function () {
+  }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
       console.log('通信に失敗しました');
+      console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+      console.log("textStatus     : " + textStatus);
+      console.log("errorThrown    : " + errorThrown.message);
   });
-  mv.setAttribute("src", movie_path);
+  // mv.setAttribute("src", movie_path);
 }
 
 // 指定フレームで動画を停止させる

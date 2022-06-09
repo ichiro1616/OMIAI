@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('Asia/Tokyo');
+
 
 //DBへの接続時に必要な情報
 $dsn = 'mysql:dbname=omiai_db;host=localhost';
@@ -28,6 +28,6 @@ try{
     die();
 }
 
-echo json_encode($data);
 $dbh = null; //DBとの接続を解除
+echo json_encode($data);
 ?>
