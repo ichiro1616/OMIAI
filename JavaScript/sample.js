@@ -315,9 +315,7 @@ var arcarray = [
     },
   ],
 ];
-// console.log("a", imagearray[2]);
-// imagearray[2][0].x = 1000;
-// console.log("a", imagearray);
+
 //コマの画像
 var img = new Image();
 img.src = "../Picture/透過いちろ.png";
@@ -338,6 +336,7 @@ let comanumber;
 function pathsfunction(index) {
   const p = imagearray[index];
   const q = arcarray[index];
+  console.log(index);
   return [
     (context) => {
       context.lineWidth = 12;
@@ -389,14 +388,23 @@ pathObj.prototype = {
   draw(effect = false, eX = 0, eY = 0) {
     var context = this.context(effect, eX, eY);
 
-    console.log(comanumber, "駒の番号");
+    // console.log(comanumber, "駒の番号");
 
-    imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX + eX;
-    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY + eY;
+    if(comanumber){
+    arcarray[counter][comanumber].x = arcarray[counter][comanumber].x + this.moveX ;
+    arcarray[counter][comanumber].y = arcarray[counter][comanumber].y + this.moveY ;
+    imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX ;
+    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveX ;
 
+    console.log(imagearray[counter][comanumber]);
     
-    console.log(imagearray[counter][comanumber])
-    console.log(this.moveX + eX, this.moveY + eY);
+  }
+
+    // imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX + eX;
+
+    // console.log(imagearray[0][0].x);
+    // console.log(imagearray[counter][comanumber]);
+    // console.log("x=",this.moveX + eX, "y=",this.moveY + eY);
 
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
 
@@ -522,6 +530,7 @@ pathList.prototype = {
         let index = this.inStroke(x, y);
         var current = this.path[index];
 
+
         this.path = this.path.filter((e, i) => i !== index);
         this.path.push(current);
 
@@ -568,5 +577,4 @@ function rotation() {
   var img = new Image();
 
   pathListObj.clickEvent();
-  counter++;
 }
