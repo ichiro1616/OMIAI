@@ -388,15 +388,18 @@ pathObj.prototype = {
   draw(effect = false, eX = 0, eY = 0) {
     var context = this.context(effect, eX, eY);
 
+    console.log(eX, eY);
+    console.log(this.moveX, this.moveY);
+
     // console.log(comanumber, "駒の番号");
 
     if(comanumber){
     arcarray[counter][comanumber].x = arcarray[counter][comanumber].x + this.moveX ;
     arcarray[counter][comanumber].y = arcarray[counter][comanumber].y + this.moveY ;
     imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX ;
-    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveX ;
+    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY ;
 
-    console.log(imagearray[counter][comanumber]);
+    console.log(arcarray[counter][comanumber]);
     
   }
 
@@ -417,6 +420,7 @@ pathObj.prototype = {
     this.moveY += eY;
     console.log(this.moveX, this.moveY);
     console.log(eX, eY);
+
 
   },
   isIn(x, y) {
