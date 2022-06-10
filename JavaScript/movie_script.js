@@ -1,30 +1,30 @@
 //担当：上村
-//参考　https://qiita.com/iiishokoiii/items/3037d6d01248502aee68
-let video_path = "/Movie/sample1.mov"; //動画のファイルパス
 let STOP = 0;
 let movie;
 window.onclick = movie_db();
 
-//mv.setAttribute("src", video_path); //動画を選択・表示する
-
 // 動画をdbからランダムに1つ呼び出す
 function movie_db(){
   console.log("dbから動画を選択します。"); 
-  $.ajax({
-    url: "/PHP/db_connect.php",
-    dataType: "json",
-    }).done(function (data) {
-      // movie = JSON.parse(data);
-      console.log('通信に成功しました');
+  let formData = new FormData();
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "/PHP/movie_receive.php");
+  xhr.addEventListener("loadend", function (data) {
+    if (xhr.status === 200) {
+      let data = JSON.parse(xhr.response);
       console.log(data);
-      console.log(data[0]["movie_path"]);
-      mv.setAttribute("src", data[0]["movie_path"]);
-  }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-      console.log('通信に失敗しました');
-      console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-      console.log("textStatus     : " + textStatus);
-      console.log("errorThrown    : " + errorThrown.message);
+      if (xhr.response === "error") {
+        console.log("通信に失敗しました");
+      } else {
+        console.log(data);
+        console.log(data[0]["movie_path"]);
+        mv.setAttribute("src", data[0]["movie_path"]);
+        
+      }
+      
+    }
   });
+  xhr.send(formData);
 }
 
 // 指定フレームで動画を停止させる
@@ -37,23 +37,21 @@ function choose(btn) {
   if (STOP == 0) {
     button_id = btn.getAttribute("id"); // input要素のid属性の値を取得
     console.log(button_id);
-    $.ajax({
-    type: "GET",
-    url: "/PHP/db_connect.php",
-    dataType: "json",
-    data: {
-      "movie_id": movie_id,
-      "experience_years": experience_years,
-      "player_id": player_id,
-      "left_or_right": left_or_right,
-    },
-    })
-    .done(function (data) {
-      console.log('通信に成功しました', data);
-  }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-      console.log('通信に失敗しました');
-      console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-      console.log("textStatus     : " + textStatus);
-      console.log("errorThrown    : " + errorThrown.message);
-  });
+
+    let formData = new FormData();
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/PHP/db_connect.php");
+    xhr.addEventListener("loadend", function () {
+      if (xhr.status === 200) {
+        console.log(data);
+        if (xhr.response === "error") {
+          console.log("登録に失敗しました");
+        } else {
+          console.log(data);
+
+        }
+        
+      }
+    });
+    xhr.send(formData);
 }}
