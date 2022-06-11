@@ -1,8 +1,4 @@
 
-
-from sklearn.datasets import load_iris
-iris = load_iris()
-# print(iris)
 import pandas as pd
 import seaborn as sns
 # import csv
@@ -43,8 +39,9 @@ print("csv!", df)
 df1 = pd.read_csv("y_pred_data.csv", encoding="utf_8")
 
 df2 = pd.read_csv("grid_data.csv", encoding="utf_8")
+# df2 = df[['ball_x', 'ball_y']]
+# print(df2, "df2!!!!")
 
-print("ddddddsdaeifigefgaeigfigaig", df2)
 
 
 # df['target'] = iris.target
@@ -63,22 +60,25 @@ print("y", y)
 
 
 
+poly3d = PolynomialFeatures(degree=4, interaction_only=True, include_bias=True, order='C')
+X_poly =  poly3d.fit_transform(X)
+df1_poly =  poly3d.fit_transform(df1)
+
+
 def minmax_norm(df_input):       #正規化
     return (df_input / 9)
     # return (df_input - df_input.min()) / ( df_input.max() - df_input.min())
 
-X = minmax_norm(X)
-df1 = minmax_norm(df1)
+X_poly = minmax_norm(X_poly)
+df1_poly = minmax_norm(df1_poly)
 
 
 
 
-poly3d = PolynomialFeatures(degree=3, interaction_only=True, include_bias=True, order='C')
-X_poly =  poly3d.fit_transform(X)
-df1_poly =  poly3d.fit_transform(df1)
-XXX = [[1, 2, 3, 4, 5, 6]]
-XXX_poly =  poly3d.fit_transform(XXX)
-print("transform", X_poly)
+
+# XXX = [[1, 2, 3, 4, 5, 6]]
+# XXX_poly =  poly3d.fit_transform(XXX)
+# print("transform", X_poly)
 
 # print("transform", X_poly)
 
@@ -110,20 +110,27 @@ print("transform", X_poly)
 # print(result)
 
 # 訓練用と検証用に分割
-X_train, X_test, y_train, y_test = train_test_split(X_poly, y, random_state=0, test_size=0.3)
+# X_train, X_test, y_train, y_test = train_test_split(X_poly, y, random_state=0, test_size=0.1)
+X_train = X_poly
+y_train = y
+
+
 
 # ロジスティック回帰で学習
 lr = LogisticRegressionCV(cv=6, random_state=0, penalty='l1',solver='saga') #penalty='l1'使えない係数を0にする
 y_train=y_train.values.reshape(-1)
 lr.fit(X_train, y_train)
-print("lr_coef",lr.coef_) #式の係数表示
-print ("lr_intercept",lr.intercept_)
+# print("lr_coef",lr.coef_) #式の係数表示
+# print ("lr_intercept",lr.intercept_)
 
 
 # 検証
 print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-print('Test score: {:.3f}'.format(lr.score(X_test, y_test)))
-print('Confustion matrix:\n{}'.format(confusion_matrix(y_true=y_test, y_pred=lr.predict(X_test))))
+
+# y_pred = lr.predict_prob(df1_poly)
+# print(y_pred)
+# print('Test score: {:.3f}'.format(lr.score(X_test, y_test)))
+# print('Confustion matrix:\n{}'.format(confusion_matrix(y_true=y_test, y_pred=lr.predict(X_test))))
 
 # # 元の特徴量と同じ数で主成分分析
 pca = PCA(n_components=6)
@@ -157,7 +164,7 @@ plt.ylabel('Second principal component')
 pca_pipeline = Pipeline([
     ('scale', StandardScaler()),
     ('decomposition', PCA(n_components=2)),
-    ('model', LogisticRegressionCV(cv=6, random_state=0))
+    ('model', LogisticRegressionCV(cv=6, random_state=0, penalty='l1',solver='saga'))
 ])
 
 # 標準化・次元圧縮・学習
@@ -168,14 +175,15 @@ pca_pipeline.fit(X_train, y_train)
 
 # 検証
 print('Train score: {:.3f}'.format(pca_pipeline.score(X_train, y_train)))
-print('Test score: {:.3f}'.format(pca_pipeline.score(X_test, y_test)))
-print('Confustion matrix:\n{}'.format(confusion_matrix(y_true=y_test, y_pred=pca_pipeline.predict(X_test))))
-print("aaaaa", X_test)
+# print('Test score: {:.3f}'.format(pca_pipeline.score(X_test, y_test)))
+# print('Confustion matrix:\n{}'.format(confusion_matrix(y_true=y_test, y_pred=pca_pipeline.predict(X_test))))
+# print("aaaaa", X_test)
 
 print("ssssssd", df1_poly)
 
 
 y_pred = pca_pipeline.predict(df1_poly)
+# y_pred = pca_pipeline.predict_proba(df1_poly)
 print("sss", y_pred)
 df2['target'] = y_pred
 # pd.set_option('display.max_rows', None)
