@@ -1,6 +1,10 @@
 //担当：上村
 let STOP = 0;
-let movie;
+let movie_id = []; 
+let stop_time = []; //動画を一時停止するフレーム
+let left_player_id = []; //左の選手に割り振られたid
+let right_player_id = []; //右の選手に割り振られたid
+
 window.onclick = movie_db();
 
 // 動画をdbからランダムに1つ呼び出す
@@ -19,7 +23,11 @@ function movie_db(){
         console.log(data);
         console.log(data[0]["movie_path"]);
         mv.setAttribute("src", data[0]["movie_path"]);
-        
+        movie_id = data[0]["movie_id"];
+        stop_time = data[0]["stop_time"];
+        left_player_id = data[0]["left_player_id"];
+        right_player_id = data[0]["right_player_id"];
+        console.log(movie_id, stop_time, left_player_id, right_player_id);
       }
       
     }
@@ -40,7 +48,7 @@ function choose(btn) {
 
     let formData = new FormData();
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/PHP/db_connect.php");
+    // xhr.open("GET", "/PHP/button_send.php");
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
         console.log(data);
