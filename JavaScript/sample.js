@@ -403,12 +403,6 @@ pathObj.prototype = {
     
   }
 
-    // imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX + eX;
-
-    // console.log(imagearray[0][0].x);
-    // console.log(imagearray[counter][comanumber]);
-    // console.log("x=",this.moveX + eX, "y=",this.moveY + eY);
-
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
 
     context.stroke(); //図形の枠線の描画
@@ -527,21 +521,21 @@ pathList.prototype = {
       },
       false
     );
-    this.effectCanvas.addEventListener(
-      "dblclick",
-      (e) => {
-        var [x, y] = this.getPoint(e);
-        let index = this.inStroke(x, y);
-        var current = this.path[index];
+    // this.effectCanvas.addEventListener(
+      // "dblclick",
+      // (e) => {
+        // var [x, y] = this.getPoint(e);
+        // let index = this.inStroke(x, y);
+        // var current = this.path[index];
 
 
-        this.path = this.path.filter((e, i) => i !== index);
-        this.path.push(current);
+        // this.path = this.path.filter((e, i) => i !== index);
+        // this.path.push(current);
 
-        this.draw();
-      },
-      false
-    );
+        // this.draw();
+      // },
+      // false
+    // );
   },
 };
 
@@ -560,6 +554,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   pathListObj.clickEvent();
 });
+
 
 let counter = 0;
 function rotation() {
@@ -581,4 +576,26 @@ function rotation() {
   var img = new Image();
 
   pathListObj.clickEvent();
+}
+
+document.getElementById("register_btn").onclick = function() {
+  console.log(arcarray[0][0]);
+  register_x = arcarray[0][0].x;
+  register_y = arcarray[0][0].y;
+  console.log(register_x, register_y);
+
+  let formData = new FormData();
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "/PHP/sample.php",);
+  xhr.addEventListener("loadend", function () {
+    if (xhr.status === 200) {
+      formData.append("x_coordinate", register_x);
+      formData.append("y_coordinate", register_y);
+      if (xhr.response === "error") {
+        console.log("登録に失敗しました");
+      } else {
+        console.log("データを登録しました!");
+      }
+    }
+  });
 }
