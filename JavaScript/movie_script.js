@@ -10,6 +10,7 @@
 let counter = 0;
 let STOP = 0; //ボタン連打の防止
 let data; //dbから取得したデータ
+let sendData; //dbに送信する回答データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
@@ -33,8 +34,8 @@ function movie_db(){
   console.log("経験年数 = ", experience_years);
   video_button.style.display = "block";
   experience.style.display = "none";
-  let formData = new FormData();
-  let xhr = new XMLHttpRequest();
+  formData = new FormData();
+  xhr = new XMLHttpRequest();
   xhr.open("GET", "/PHP/movie_receive.php");
   xhr.addEventListener("loadend", function (data_keep) {
     if (xhr.status === 200) {
@@ -108,33 +109,37 @@ function control(num){
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
 function choose(btn) {
   if (STOP == 0) {
-    button_id = btn.getAttribute("id"); // input要素のid属性の値を取得
+    button = btn.getAttribute("id"); // input要素のid属性の値を取得
+    button_id = parseInt(button); //取得したIDをint形式に変換する
     console.log(button_id);
-    if(button_id == 0){
+    if(button_id == 0){ //選択された選手に割り振られたidをplayer_idに格納する
       player_id = data[counter]["left_player_id"];
     } else{
       player_id = data[counter]["right_player_id"];
     }
     console.log("player_id = ",player_id);
-    let formData = new FormData();
-    let xhr = new XMLHttpRequest();
+
+    xhr = new XMLHttpRequest();
     xhr.open("GET", "/PHP/button_send.php");
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
-        formData.append("movie_id", data[counter]["movie_id"]); //今再生している動画に割り振られたid
-        formData.append("experience_years", experience_years); //最初にきいた経験年数
-        formData.append("player_id", player_id); //選ばれた選手に割り振られたid
-        formData.append("left_or_right", button_id); //0なら左 1なら右
+        console.log("接続しました");
+        sendData = {
+          'movie_id': data[counter]["movie_id"],
+          'experience_years': experience_years,
+          'player_id': player_id,
+          'left_or_right': button_id,
+        };
+        console.log(sendData);
         counter = counter + 1;
         position = 0;
+        buttons.style.display = "none"; //ボタンを非表示にする
+
         if (xhr.response === "error") {
           console.log("登録に失敗しました");
-        } else {
-          console.log("データを登録しました!");
-          buttons.style.display = "none"; //ボタンを非表示にする
-        }
-        
+        }    
       }
     });
-    //xhr.send(formData);
+    xhr.send(sendData);
+    movie_play();
 }}
