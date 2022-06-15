@@ -331,6 +331,7 @@ var img5 = new Image();
 img5.src = "../Picture/透過ながい.png";
 
 //1ローテ目の初期配置座標
+var initial_position = 0;
 var paths;
 let comanumber;
 function pathsfunction(index) {
@@ -341,32 +342,75 @@ function pathsfunction(index) {
     (context) => {
       context.lineWidth = 12;
       context.arc(q[0].x, q[0].y, 70, 0, 2 * Math.PI); //(X,Y,コマの大きさ、円を描き始める角度、描き終わる終わる角度)
-      context.drawImage(img5, p[0].x, p[0].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img5.addEventListener('load', function () {
+          context.drawImage(img5, p[0].x, p[0].y, 120, 120);
+        }, false);
+      } else {
+        context.drawImage(img5, p[0].x, p[0].y, 120, 120);
+      }
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(q[1].x, q[1].y, 70, 0, 2 * Math.PI);
-      context.drawImage(img2, p[1].x, p[1].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img2.addEventListener('load', function () {
+          context.drawImage(img2, p[1].x, p[1].y, 120, 120);
+        }, false);
+      } else {
+        context.drawImage(img2, p[1].x, p[1].y, 120, 120);
+      }
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(q[2].x, q[2].y, 70, 0, 2 * Math.PI);
-      context.drawImage(img1, p[2].x, p[2].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img1.addEventListener('load', function () {
+          context.drawImage(img1, p[2].x, p[2].y, 120, 120);
+        }, false);
+      } else {
+        context.drawImage(img1, p[2].x, p[2].y, 120, 120);
+      }
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(q[3].x, q[3].y, 70, 0, 2 * Math.PI);
-      context.drawImage(img, p[3].x, p[3].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img.addEventListener('load', function () {
+          context.drawImage(img, p[3].x, p[3].y, 120, 120);
+        }, false);
+      } else {
+        context.drawImage(img, p[3].x, p[3].y, 120, 120);
+      }
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(q[4].x, q[4].y, 70, 0, 2 * Math.PI);
-      context.drawImage(img3, p[4].x, p[4].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img3.addEventListener('load', function () {
+          context.drawImage(img3, p[4].x, p[4].y, 120, 120);
+        }, false);
+      } else {
+        context.drawImage(img3, p[4].x, p[4].y, 120, 120);
+      }
     },
     (context) => {
       context.lineWidth = 12;
       context.arc(q[5].x, q[5].y, 70, 0, 2 * Math.PI);
-      context.drawImage(img4, p[5].x, p[5].y, 120, 120);
+      // 画像を読み込んでから表示する
+      if (initial_position == 0) {
+        img4.addEventListener('load', function () {
+          context.drawImage(img4, p[5].x, p[5].y, 120, 120);
+        }, false);
+        initial_position = 1;
+      } else {
+        context.drawImage(img4, p[5].x, p[5].y, 120, 120);
+      }
     },
   ];
 };
@@ -393,15 +437,15 @@ pathObj.prototype = {
 
     // console.log(comanumber, "駒の番号");
 
-    if(comanumber){
-    arcarray[counter][comanumber].x = arcarray[counter][comanumber].x + this.moveX ;
-    arcarray[counter][comanumber].y = arcarray[counter][comanumber].y + this.moveY ;
-    imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX ;
-    imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY ;
+    if (comanumber) {
+      arcarray[counter][comanumber].x = arcarray[counter][comanumber].x + this.moveX;
+      arcarray[counter][comanumber].y = arcarray[counter][comanumber].y + this.moveY;
+      imagearray[counter][comanumber].x = imagearray[counter][comanumber].x + this.moveX;
+      imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY;
 
-    console.log(arcarray[counter][comanumber]);
-    
-  }
+      console.log(arcarray[counter][comanumber]);
+
+    }
 
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
 
@@ -522,19 +566,19 @@ pathList.prototype = {
       false
     );
     // this.effectCanvas.addEventListener(
-      // "dblclick",
-      // (e) => {
-        // var [x, y] = this.getPoint(e);
-        // let index = this.inStroke(x, y);
-        // var current = this.path[index];
+    // "dblclick",
+    // (e) => {
+    // var [x, y] = this.getPoint(e);
+    // let index = this.inStroke(x, y);
+    // var current = this.path[index];
 
 
-        // this.path = this.path.filter((e, i) => i !== index);
-        // this.path.push(current);
+    // this.path = this.path.filter((e, i) => i !== index);
+    // this.path.push(current);
 
-        // this.draw();
-      // },
-      // false
+    // this.draw();
+    // },
+    // false
     // );
   },
 };
@@ -578,7 +622,7 @@ function rotation() {
   pathListObj.clickEvent();
 }
 
-document.getElementById("register_btn").onclick = function() {
+document.getElementById("register_btn").onclick = function () {
   console.log(arcarray[0][0]);
   register_x = arcarray[0][0].x;
   register_y = arcarray[0][0].y;
