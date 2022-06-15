@@ -12,19 +12,27 @@ let STOP = 0; //ボタン連打の防止
 let data; //dbから取得したデータ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
-let experience_years = 0; //バレーボールの経験年数
+let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
+buttons.style.display = "none";
 window.onclick = question();
 
 //バレーボールの経験年数をきく
 function question(){
-  console.log("question");
-  experience_years = 1;
-  movie_db();
+  video_button.style.display = "none";
+  experience.style.display = "block";
+
+  inputSlideBarElement = document.getElementById('input-range');
+  inputSlideBarElement.addEventListener('change', function(){
+    experience_years = inputSlideBarElement.value;
+  });
 }
 
 // dbのmovieテーブルからデータを取得する
 function movie_db(){
   console.log("dbから動画を選択します。"); 
+  console.log("経験年数 = ", experience_years);
+  video_button.style.display = "block";
+  experience.style.display = "none";
   let formData = new FormData();
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "/PHP/movie_receive.php");
@@ -75,7 +83,7 @@ function movie_time(){
   submit = videoElement.currentTime;
   console.log(submit);
   
-  if(stop_time - submit < 1 && position == 0){
+  if(stop_time - submit < 0.1 && position == 0){
     position = 1;
     control(1); //controlに1を送る(動画を停止する)
   }
@@ -91,9 +99,9 @@ function control(num){
       obj.play();
   }
   else {
-      obj.pause();
+      document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
+      obj.pause(); //動画を停止させる
       console.log("一時停止");
-      // buttondiv.style.display = "block";　ボタンを表示する
   }
   }
 
@@ -123,6 +131,7 @@ function choose(btn) {
           console.log("登録に失敗しました");
         } else {
           console.log("データを登録しました!");
+          buttons.style.display = "none"; //ボタンを非表示にする
         }
         
       }
