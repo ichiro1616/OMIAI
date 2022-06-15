@@ -4,18 +4,18 @@ $dsn = 'mysql:dbname=omiai_db;host=localhost';
 $user = 'root';
 $password = 'Pa22wadoh';
 $data = array();
-$random = mt_rand(1,2); //乱数を生成し、1~2のうちランダムに1つ選ぶ。
 
-//DBとの接続試行
+//dbとの接続試行・データ取得
 try{
     $dbh = new PDO($dsn, $user, $password);
     // print('接続に成功しました。<br>');
-    $stmt = $dbh->query("SELECT `movie_id`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE `movie_categorize`= $random");
+    $stmt = $dbh->query("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie`");
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach($_data as $d){
         $tmp = array(
             "movie_id" => $d['movie_id'],
+            "movie_categorize" => $d['movie_categorize'],
             "stop_time" => $d['stop_time'],
             "movie_path" => $d['movie_path'],
             "left_player_id" => $d['left_player_id'],
