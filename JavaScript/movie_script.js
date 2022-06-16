@@ -1,14 +1,3 @@
-function EncodeHTMLForm(data){
-  var params = [];
-  for(var name in data){
-    var value = data[name];
-    var param = encodeURIComponent(name).replace(/%20/g, '+')
-      + '=' + encodeURIComponent(value).replace(/%20/g, '+');
-    params.push(param);
-  }
-  return params.join('&');
-}
-
 //担当：上村
 //1.questionで経験年数を聞くdivを表示。選択されたらexperience_yearsに格納し、divを非表示にする。
 //2.movie_dbでdb内の全てのデータを取得してdataに格納する。
@@ -30,6 +19,7 @@ movie.controls = false;
 buttons.style.display = "none";
 window.onclick = question();
 
+
 //バレーボールの経験年数をきく
 function question(){
   video_button.style.display = "none";
@@ -40,6 +30,7 @@ function question(){
     experience_years = inputSlideBarElement.value;
   });
 }
+
 
 // dbのmovieテーブルからデータを取得する
 function movie_db(){
@@ -88,6 +79,7 @@ function movie_play(){
   }
 }
 
+
 //現在の動画の再生時間を取得する
 function movie_time(){
   stop_time = data[counter]["stop_time"];
@@ -106,6 +98,7 @@ function movie_time(){
 });
 }
 
+
 // 指定フレームで動画を停止させる
 function control(num){
   var obj = document.getElementById("mv");
@@ -119,6 +112,19 @@ function control(num){
       console.log("一時停止");
   }
   }
+
+
+function EncodeHTMLForm(data){ //データの送信時、phpで受け取れる形に変換する
+  var params = [];
+  for(var name in data){
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, '+')
+    + '=' + encodeURIComponent(value).replace(/%20/g, '+');
+    params.push(param);
+  }
+  return params.join('&');
+}
+
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
 function choose(btn) {
@@ -149,10 +155,10 @@ function choose(btn) {
         }    
       }
     });
-    console.log(EncodeHTMLForm(sendData));
+    console.log(sendData);
     xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
     xhr.send(EncodeHTMLForm(sendData));
-    
+
     console.log("登録しました");
     counter = counter + 1;
     position = 0;
