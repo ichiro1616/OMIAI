@@ -458,12 +458,18 @@ pathObj.prototype = {
     this.moveY += eY;
     console.log(this.moveX, this.moveY);
     console.log(eX, eY);
-
-
   },
-  isIn(x, y) {
+  // クリックした座標が図形の領域か
+  isIn(x, y, piece) {
     var context = this.context();
+    // 枠線の当たり判定
     var result = context.isPointInStroke(x - this.moveX, y - this.moveY);
+    // 枠線の内側の当たり判定(中心の座標-クリックした座標)
+    if ((arcarray[counter][piece].x + this.moveX - x) * (arcarray[counter][piece].x + this.moveX - x) + (arcarray[counter][piece].y + this.moveY - y) * (arcarray[counter][piece].y + this.moveY - y) <= 70 * 70) {
+      result = true;
+    } else {
+      false;
+    }
     context.restore();
     return result;
   },
@@ -512,7 +518,8 @@ pathList.prototype = {
   inStroke(x, y) {
     // 配列の最後＝上階層の図形
     for (let i = this.path.length - 1; i >= 0; i--) {
-      if (this.path[i].isIn(x, y)) return i;
+      // クリックした座標が図形の上か
+      if (this.path[i].isIn(x, y, i)) return i;
     }
     return -1;
   },
