@@ -1,3 +1,14 @@
+function EncodeHTMLForm(data){
+  var params = [];
+  for(var name in data){
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, '+')
+      + '=' + encodeURIComponent(value).replace(/%20/g, '+');
+    params.push(param);
+  }
+  return params.join('&');
+}
+
 //担当：上村
 //1.questionで経験年数を聞くdivを表示。選択されたらexperience_yearsに格納し、divを非表示にする。
 //2.movie_dbでdb内の全てのデータを取得してdataに格納する。
@@ -14,6 +25,8 @@ let sendData; //dbに送信する回答データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
+let movie = document.getElementById("mv");
+movie.controls = false;
 buttons.style.display = "none";
 window.onclick = question();
 
@@ -70,6 +83,7 @@ function movie_play(){
     console.log("categorize = ", categorize);
     movie_time();
   } else{
+    control(0);
     movie_time();
   }
 }
@@ -86,11 +100,11 @@ function movie_time(){
   
   if(stop_time - submit < 0.1 && position == 0){
     position = 1;
+    STOP = 0;
     control(1); //controlに1を送る(動画を停止する)
   }
 });
 }
-
 
 // 指定フレームで動画を停止させる
 function control(num){
@@ -118,28 +132,30 @@ function choose(btn) {
       player_id = data[counter]["right_player_id"];
     }
     console.log("player_id = ",player_id);
-
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", "/PHP/button_send.php");
-    xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-        console.log("接続しました");
-        counter = counter + 1;
-        position = 0;
-        buttons.style.display = "none"; //ボタンを非表示にする
-        if (xhr.response === "error") {
-          console.log("登録に失敗しました");
-        }    
-      }
-    });
     sendData = {
       'movie_id': data[counter]["movie_id"],
       'experience_years': experience_years,
       'player_id': player_id,
       'left_or_right': button_id,
     };
-    console.log(sendData);
-    xhr.send(sendData);
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "/PHP/button_send.php");
+    xhr.addEventListener("loadend", function () {
+    if (xhr.status === 200) {
+        console.log("接続しました");
+        buttons.style.display = "none"; //ボタンを非表示にする
+        if (xhr.response === "error") {
+          console.log("登録に失敗しました");
+        }    
+      }
+    });
+    console.log(EncodeHTMLForm(sendData));
+    xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+    xhr.send(EncodeHTMLForm(sendData));
+    
     console.log("登録しました");
+    counter = counter + 1;
+    position = 0;
+    STOP = 1;
     movie_play();
 }}
