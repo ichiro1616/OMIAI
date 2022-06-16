@@ -653,3 +653,19 @@ document.getElementById("register_btn").onclick = function () {
   });
   xhr.send(formData);
 }
+
+var canvasElem = document.getElementById('canvas2'),
+ctx = canvasElem.getContext('2d');
+
+ctx.fillStyle = '#ccc';
+ctx.strokeStyle = '#7C00BA';
+ctx.rect(25, 25, 100, 100);
+ctx.fill();
+ctx.stroke();
+
+// var canvas = document.querySelector('#canvas3');
+// var context = canvas.getContext('2d');
+// 
+// context.beginPath();
+// context.fillStyle = '#FFCC66';
+// context.fillRect(0, 0, canvas3.width, canvas3.height);
