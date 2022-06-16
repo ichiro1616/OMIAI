@@ -623,18 +623,20 @@ function rotation() {
 }
 
 document.getElementById("register_btn").onclick = function () {
+
   console.log(arcarray[0][0]);
   register_x = arcarray[0][0].x;
   register_y = arcarray[0][0].y;
   console.log(register_x, register_y);
-
+// 
   let formData = new FormData();
+  formData.append("player0_x", arcarray[0][0].x);
+  formData.append("player0_y", arcarray[0][0].y);
+
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", "/PHP/sample.php",);
+  xhr.open("POST", "/PHP/sample.php",);
   xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
-      formData.append("x_coordinate", register_x);
-      formData.append("y_coordinate", register_y);
       if (xhr.response === "error") {
         console.log("登録に失敗しました");
       } else {
@@ -642,4 +644,5 @@ document.getElementById("register_btn").onclick = function () {
       }
     }
   });
+  xhr.send(formData);
 }
