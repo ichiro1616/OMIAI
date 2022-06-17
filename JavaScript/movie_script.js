@@ -61,6 +61,7 @@ function movie_db(){
 
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
 function movie_play(){
+  buttons.style.display = "none"; //ボタンを非表示にする
   movie_id = data[counter]["movie_id"];
   movie_path = data[counter]["movie_path"];
   movie_categorize = data[counter]["movie_categorize"];
@@ -107,6 +108,8 @@ function control(num){
       obj.play();
   }
   else {
+      document.querySelector('[id="0"]').value = '左選手';
+      document.querySelector('[id="1"]').value = '右選手';
       document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
       obj.pause(); //動画を停止させる
       console.log("一時停止");
@@ -149,7 +152,6 @@ function choose(btn) {
     xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
         console.log("接続しました");
-        buttons.style.display = "none"; //ボタンを非表示にする
         if (xhr.response === "error") {
           console.log("登録に失敗しました");
         }    
@@ -163,5 +165,7 @@ function choose(btn) {
     counter = counter + 1;
     position = 0;
     STOP = 1;
-    movie_play();
+    document.querySelector('[id="0"]').value = '左%';
+    document.querySelector('[id="1"]').value = '右%';
+    setTimeout(movie_play, 4000);
 }}
