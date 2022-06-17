@@ -1,3 +1,137 @@
+// 1.ページが開いたらDOMを構築。
+//　　( draw()でcanvasをclearRectした後図形を描画。pathListObjのclickEvent()を呼び出す。)
+// 2.effectCanvasがクリックされたらgetPoint()でマウスカーソルの座標を取得
+// 3.isIn()に座標を渡して図形上だったらドラッグ出来るようにする
+// 4.マウスでクリックした場所からどれだけ動いたか座標(moveX、moveY)を取得
+// 5.動いた座標をコマの座標に足してコマの座標を更新
+//    (console.logで動いた座標、更新後の座標をそれぞれ表示)
+// 6.ローテボタンを押すたびにcounterを増やし、counterの値によって配列からコマ座標を選択
+//    (counterが6になったら0に戻して1ローテの配置にする)
+// 7.登録ボタン(register_btn)を押されたらdbに接続してコマの座標を送信
+
+
+
+
+// DOMが構築されるのを待つ
+window.addEventListener("DOMContentLoaded", () => {
+  var cvs = document.getElementById("canvas2");
+  var cvs2 = document.getElementById("canvas3");
+
+  var pathListObj = new pathList(cvs, cvs2);
+
+  paths = pathsfunction(0);
+  paths.forEach((e) => pathListObj.add(e));
+
+  pathListObj.draw();
+  pathListObj.clickEvent();
+});
+
+// 図形処理用オブジェクトのコンテナ
+var pathList = function (canvas, effectCanvas) {
+  this.canvas = canvas;
+  this.effectCanvas = effectCanvas;
+  this.path = [];
+  this.currentPath = null;
+  this.moveMode = false;
+  this.currentX = 0;
+  this.currentY = 0;
+};
+
+pathList.prototype = {
+  // 図形処理用オブジェクト追加
+  add(callBack) {
+    this.path.push(new pathObj(this.canvas, this.effectCanvas, callBack));
+  },
+  // 全図形の描画
+  draw() {
+    var context = this.canvas.getContext("2d");
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.path.forEach((e) => e.draw());
+  },
+  clearEffect() {
+    var context = this.effectCanvas.getContext("2d");
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+  drawEffect(x, y) {
+    this.clearEffect();
+    this.currentPath.draw(true, x - this.currentX, y - this.currentY);
+  },
+  inStroke(x, y) {
+    // 配列の最後＝上階層の図形
+    for (let i = this.path.length - 1; i >= 0; i--) {
+      // クリックした座標が図形の上か
+      if (this.path[i].isIn(x, y, i)) return i;
+    }
+    return -1;
+  },
+  getPoint(e) {
+    var rect = e.target.getBoundingClientRect();
+    var [w, h] = [this.canvas.width / this.canvas.clientWidth, this.canvas.height / this.canvas.clientHeight];
+    return [(e.clientX - rect.left) * w, (e.clientY - rect.top) * h];
+  },
+  
+  // キャンバス上でのクリックイベント処理
+  clickEvent() {
+    this.effectCanvas.addEventListener(
+      "mousedown",
+      (e) => {
+        var [x, y] = this.getPoint(e);
+
+        let index = this.inStroke(x, y);
+        comanumber = index;
+
+        if (index > -1) {
+          this.currentPath = this.path[index];
+          this.currentX = x;
+          this.currentY = y;
+          this.moveMode = true;
+        }
+      },
+      false
+    );
+    this.effectCanvas.addEventListener(
+      "mousemove",
+      (e) => {
+        if (!this.moveMode) return;
+
+        var [x, y] = this.getPoint(e);
+
+        this.drawEffect(x, y);
+      },
+      false
+    );
+    this.effectCanvas.addEventListener(
+      "mouseup",
+      (e) => {
+        if (!this.moveMode) return;
+        this.moveMode = false;
+        console.log("a");
+        var [x, y] = this.getPoint(e);
+        this.clearEffect();
+        this.currentPath.setPos(x - this.currentX, y - this.currentY);
+        this.currentPath = null;
+        this.draw();
+      },
+      false
+    );
+    // this.effectCanvas.addEventListener(
+    // "dblclick",
+    // (e) => {
+    // var [x, y] = this.getPoint(e);
+    // let index = this.inStroke(x, y);
+    // var current = this.path[index];
+
+
+    // this.path = this.path.filter((e, i) => i !== index);
+    // this.path.push(current);
+
+    // this.draw();
+    // },
+    // false
+    // );
+  },
+};
+
 var imagearray = [
   [
     {
@@ -330,8 +464,8 @@ img4.src = "../Picture/透過ひろゆき.png";
 var img5 = new Image();
 img5.src = "../Picture/透過ながい.png";
 
-//1ローテ目の初期配置座標
-var initial_position = 0;
+//初期配置座標
+var initial_position = 0; 
 var paths;
 let comanumber;
 function pathsfunction(index) {
@@ -408,7 +542,8 @@ function pathsfunction(index) {
           context.drawImage(img4, p[5].x, p[5].y, 120, 120);
         }, false);
         initial_position = 1;
-      } else {
+      } 
+      else {
         context.drawImage(img4, p[5].x, p[5].y, 120, 120);
       }
     },
@@ -486,125 +621,7 @@ pathObj.prototype = {
     return context;
   },
 };
-// 図形処理用オブジェクトのコンテナ
-var pathList = function (canvas, effectCanvas) {
-  this.canvas = canvas;
-  this.effectCanvas = effectCanvas;
-  this.path = [];
-  this.currentPath = null;
-  this.moveMode = false;
-  this.currentX = 0;
-  this.currentY = 0;
-};
-pathList.prototype = {
-  // 図形処理用オブジェクト追加
-  add(callBack) {
-    this.path.push(new pathObj(this.canvas, this.effectCanvas, callBack));
-  },
-  // 全図形の描画
-  draw() {
-    var context = this.canvas.getContext("2d");
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.path.forEach((e) => e.draw());
-  },
-  clearEffect() {
-    var context = this.effectCanvas.getContext("2d");
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  },
-  drawEffect(x, y) {
-    this.clearEffect();
-    this.currentPath.draw(true, x - this.currentX, y - this.currentY);
-  },
-  inStroke(x, y) {
-    // 配列の最後＝上階層の図形
-    for (let i = this.path.length - 1; i >= 0; i--) {
-      // クリックした座標が図形の上か
-      if (this.path[i].isIn(x, y, i)) return i;
-    }
-    return -1;
-  },
-  getPoint(e) {
-    var rect = e.target.getBoundingClientRect();
-    var [w, h] = [this.canvas.width / this.canvas.clientWidth, this.canvas.height / this.canvas.clientHeight];
-    return [(e.clientX - rect.left) * w, (e.clientY - rect.top) * h];
-  },
-  // キャンバス上でのクリックイベント処理
-  clickEvent() {
-    this.effectCanvas.addEventListener(
-      "mousedown",
-      (e) => {
-        var [x, y] = this.getPoint(e);
 
-        let index = this.inStroke(x, y);
-        comanumber = index;
-
-        if (index > -1) {
-          this.currentPath = this.path[index];
-          this.currentX = x;
-          this.currentY = y;
-          this.moveMode = true;
-        }
-      },
-      false
-    );
-    this.effectCanvas.addEventListener(
-      "mousemove",
-      (e) => {
-        if (!this.moveMode) return;
-
-        var [x, y] = this.getPoint(e);
-
-        this.drawEffect(x, y);
-      },
-      false
-    );
-    this.effectCanvas.addEventListener(
-      "mouseup",
-      (e) => {
-        if (!this.moveMode) return;
-        this.moveMode = false;
-        console.log("a");
-        var [x, y] = this.getPoint(e);
-        this.clearEffect();
-        this.currentPath.setPos(x - this.currentX, y - this.currentY);
-        this.currentPath = null;
-        this.draw();
-      },
-      false
-    );
-    // this.effectCanvas.addEventListener(
-    // "dblclick",
-    // (e) => {
-    // var [x, y] = this.getPoint(e);
-    // let index = this.inStroke(x, y);
-    // var current = this.path[index];
-
-
-    // this.path = this.path.filter((e, i) => i !== index);
-    // this.path.push(current);
-
-    // this.draw();
-    // },
-    // false
-    // );
-  },
-};
-
-// DOMが構築されるのを待つ
-window.addEventListener("DOMContentLoaded", () => {
-  var cvs = document.getElementById("canvas2");
-  var cvs2 = document.getElementById("canvas3");
-
-  var pathListObj = new pathList(cvs, cvs2);
-
-  paths = pathsfunction(0);
-  paths.forEach((e) => pathListObj.add(e));
-
-  pathListObj.draw();
-  var img = new Image();
-
-  pathListObj.clickEvent();
-});
 
 
 let counter = 0;
@@ -615,17 +632,9 @@ function rotation() {
     counter = 0;
   }
   paths = pathsfunction(counter);
-
-  var cvs = document.getElementById("canvas2");
-  var cvs2 = document.getElementById("canvas3");
-
-  var pathListObj = new pathList(cvs, cvs2);
-
   paths.forEach((e) => pathListObj.add(e));
 
   pathListObj.draw();
-  var img = new Image();
-
   pathListObj.clickEvent();
 }
 
