@@ -9,21 +9,22 @@
 
 let counter = 0;
 let STOP = 0; //ボタン連打の防止
-let data; //dbから取得したデータ
+let data; //dbから取得した動画関係のデータ
 let sendData; //dbに送信する回答データ
+let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ。
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
-let movie = document.getElementById("mv");
-movie.controls = false;
-buttons.style.display = "none";
-window.onclick = question();
+let movie = document.getElementById("mv"); //動画のデータを取得してくる
+movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
+buttons.style.display = "none"; //ボタンはデフォルトで非表示
+window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
 
 //バレーボールの経験年数をきく
 function question(){
-  video_button.style.display = "none";
-  experience.style.display = "block";
+  video_button.style.display = "none"; //動画を非表示
+  experience.style.display = "block"; //経験年数の質問を表示
 
   inputSlideBarElement = document.getElementById('input-range');
   inputSlideBarElement.addEventListener('change', function(){
@@ -43,7 +44,7 @@ function movie_db(){
   xhr.open("GET", "/PHP/movie_receive.php");
   xhr.addEventListener("loadend", function (data_keep) {
     if (xhr.status === 200) {
-      let data_keep = JSON.parse(xhr.response);
+      data_keep = JSON.parse(xhr.response);
       console.log(data_keep);
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
@@ -162,10 +163,36 @@ function choose(btn) {
     xhr.send(EncodeHTMLForm(sendData));
 
     console.log("登録しました");
-    counter = counter + 1;
-    position = 0;
-    STOP = 1;
-    document.querySelector('[id="0"]').value = '左%';
-    document.querySelector('[id="1"]').value = '右%';
-    setTimeout(movie_play, 4000);
+    percentage();
 }}
+
+//他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
+function percentage(){
+  formData = new FormData();
+  console.log(data[counter]['movie_id'])
+  formData.append('movie_id', data[counter]['movie_id']);
+  xhr = new XMLHttpRequest();
+  xhr.open("POST", "/PHP/percent_receive.php");
+  xhr.addEventListener("loadend", function (LR_temp) {
+    if (xhr.status === 200) {
+      LR_temp = JSON.parse(xhr.response);
+      if (xhr.response === "error") {
+        console.log("通信に失敗しました");
+      } else {
+        LR = LR_temp;
+        console.log(LR);
+        movie_play();
+      }
+      
+    }
+  });
+  xhr.send(formData);
+  //パーセンテージの計算
+  //パーセンテージの表示
+  document.querySelector('[id="0"]').value = '左%';
+  document.querySelector('[id="1"]').value = '右%';
+  counter = counter + 1;
+  position = 0;
+  STOP = 1;
+  setTimeout(movie_play, 5000);
+}

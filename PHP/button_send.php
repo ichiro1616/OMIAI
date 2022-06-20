@@ -1,6 +1,5 @@
 <?php
 //ajaxで取得した情報
-
 $movie_id = $_POST['movie_id'];
 $experience_years = $_POST['experience_years'];
 $player_id = $_POST['player_id'];
