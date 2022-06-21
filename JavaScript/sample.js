@@ -70,6 +70,8 @@ pathList.prototype = {
     return [(e.clientX - rect.left) * w, (e.clientY - rect.top) * h];
   },
   
+
+
   // キャンバス上でのクリックイベント処理
   clickEvent() {
     this.effectCanvas.addEventListener(
@@ -114,49 +116,49 @@ pathList.prototype = {
       },
       false
     );
-    // this.effectCanvas.addEventListener(
-    // "dblclick",
-    // (e) => {
-    // var [x, y] = this.getPoint(e);
-    // let index = this.inStroke(x, y);
-    // var current = this.path[index];
+    this.effectCanvas.addEventListener(
+    "dblclick",
+    (e) => {
+    var [x, y] = this.getPoint(e);
+    let index = this.inStroke(x, y);
+    var current = this.path[index];
 
 
-    // this.path = this.path.filter((e, i) => i !== index);
-    // this.path.push(current);
+    this.path = this.path.filter((e, i) => i !== index);
+    this.path.push(current);
 
-    // this.draw();
-    // },
-    // false
-    // );
+    this.draw();
+    },
+    false
+    );
   },
 };
 
 var imagearray = [
   [
     {
-      x: 660,
-      y: 440,
+      x: 670,
+      y: 640,
     },
     {
       x: 840,
-      y: 190,
+      y: 370,
     },
     {
-      x: 490,
-      y: 190,
+      x: 510,
+      y: 370,
     },
     {
-      x: 90,
-      y: 20,
+      x: 120,
+      y: 40,
     },
     {
       x: 190,
-      y: 190,
+      y: 370,
     },
     {
       x: 340,
-      y: 440,
+      y: 640,
     },
   ],
   [
@@ -294,28 +296,28 @@ var imagearray = [
 var arcarray = [
   [
     {
-      x: 720,
-      y: 500,
+      x: 730,
+      y: 700,
     },
     {
       x: 900,
-      y: 250,
+      y: 430,
     },
     {
-      x: 550,
-      y: 250,
+      x: 570,
+      y: 430,
     },
     {
-      x: 150,
-      y: 80,
+      x: 180,
+      y: 100,
     },
     {
       x: 250,
-      y: 250,
+      y: 430,
     },
     {
       x: 400,
-      y: 500,
+      y: 700,
     },
   ],
   [
@@ -623,7 +625,6 @@ pathObj.prototype = {
 };
 
 
-
 let counter = 0;
 function rotation() {
   console.log("a");
@@ -638,29 +639,65 @@ function rotation() {
   pathListObj.clickEvent();
 }
 
+
 document.getElementById("register_btn").onclick = function () {
 
-  console.log(arcarray[0][0]);
-  register_x = arcarray[0][0].x;
-  register_y = arcarray[0][0].y;
-  console.log(register_x, register_y);
-// 
-  let formData = new FormData();
-  formData.append("player0_x", arcarray[0][0].x);
-  formData.append("player0_y", arcarray[0][0].y);
+  console.log(counter);
 
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/PHP/sample.php",);
-  xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-      if (xhr.response === "error") {
-        console.log("登録に失敗しました");
-      } else {
-        console.log("データを登録しました!");
+  counter = 0;
+  comanumber = 0;
+  player_num = 1;
+  while(comanumber <= 5 && counter <= 5){
+    console.log(arcarray[counter][comanumber])
+
+    let formData = new FormData();
+    formData.append("rotation_counter", counter);
+    formData.append("player_number", player_num);
+    formData.append("player0_x", arcarray[comanumber][comanumber].x);
+    formData.append("player0_y", arcarray[comanumber][comanumber].y);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/PHP/sample.php",);
+    xhr.addEventListener("loadend", function () {
+      if (xhr.status === 200) {
+        if (xhr.response === "error") {
+          console.log("登録に失敗しました");
+        } else {
+          console.log("データを登録しました!");
+        }
       }
+    });
+    xhr.send(formData);
+
+    comanumber++;
+    if (comanumber == 6){
+      comanumber = 0;
+      counter++;
+      player_num++;
     }
-  });
-  xhr.send(formData);
+  }
+
+  // console.log(arcarray[0][0]);
+  // register_x = arcarray[0][0].x;
+  // register_y = arcarray[0][0].y;
+  // console.log(register_x, register_y);
+
+  // let formData = new FormData();
+  // formData.append("player0_x", arcarray[0][0].x);
+  // formData.append("player0_y", arcarray[0][0].y);
+
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("POST", "/PHP/sample.php",);
+  // xhr.addEventListener("loadend", function () {
+    // if (xhr.status === 200) {
+      // if (xhr.response === "error") {
+        // console.log("登録に失敗しました");
+      // } else {
+        // console.log("データを登録しました!");
+      // }
+    // }
+  // });
+  // xhr.send(formData);
 }
 
 var canvasElem = document.getElementById('canvas2'),

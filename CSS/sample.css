@@ -1,7 +1,8 @@
 #canvas_warp {
     position: relative;
     border: 1px solid #ccc;
-    width: 1000px;
+    width: 600px;
+    height: 500px;
     max-width: 100%;
   }
   #canvas_warp:before {
@@ -22,6 +23,8 @@
   }
   #canvas2 {
     z-index: 0;
+    background-image: url("../Picture/バレーコート（半面）.jpeg");
+    background-size: cover;
   }
   #canvas3 {
     z-index: 1;
@@ -30,6 +33,69 @@
   * {
     box-sizing: border-box;
   }
+
+  #under_canvas_warp {
+    position: relative;
+    border: 1px solid #ccc;
+    width: 120px;
+    height: 120px;
+    top: 20px;
+    max-width: 100%;
+  }
+  #under_canvas {
+    left: 0;
+    top: 700px;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+    background-image: url("../Picture/バレーコート（半面）.jpeg");
+    background-size: 100%;
+  }
+
+  /* #under_canvas_warp2 { */
+    /* position: relative; */
+    /* border: 1px solid #ccc; */
+    /* width: 120px; */
+    /* height: 120px; */
+    /* top: 20px; */
+    /* left: 140px; */
+    /* max-width: 100%; */
+  /* } */
+  #under_canvas2 {
+    left: 140px;
+    top: 700px;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+    background-image: url("../Picture/バレーコート（半面）.jpeg");
+    background-size: 100%;
+  }
+
+  /* #under_canvas_warp3 { */
+    /* position: relative; */
+    /* border: 1px solid #ccc; */
+    /* width: 120px; */
+    /* height: 120px; */
+    /* top: 20px; */
+    /* left: 280px; */
+    /* max-width: 100%; */
+  /* } */
+  #under_canvas3 {
+    left: 280px;
+    top: 700px;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+    background-image: url("../Picture/バレーコート（半面）.jpeg");
+    background-size: 100%;
+  }
+
 #input-range {
     -webkit-appearance: none; 
     appearance: none;
