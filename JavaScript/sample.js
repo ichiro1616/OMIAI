@@ -652,9 +652,9 @@ document.getElementById("register_btn").onclick = function () {
 
     let formData = new FormData();
     formData.append("rotation_counter", counter);
-    formData.append("player_number", player_num);
-    formData.append("player0_x", arcarray[comanumber][comanumber].x);
-    formData.append("player0_y", arcarray[comanumber][comanumber].y);
+    formData.append("player_number", comanumber+1);
+    formData.append("player0_x", arcarray[counter][comanumber].x);
+    formData.append("player0_y", arcarray[counter][comanumber].y);
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/PHP/sample.php",);
