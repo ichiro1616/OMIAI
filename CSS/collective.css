@@ -1,0 +1,26 @@
+.font_size {
+    font-family: "Arial Black";
+    font-size: 200px;
+    color: #3300DA;
+    padding-left: 380px;
+    padding-bottom: 150px;
+}
+
+h2 {
+    text-align: center;
+}
+
+canvas {
+    margin: 10px;
+    background-color: bisque;
+}
+
+.my {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.other {
+    margin-left: auto;
+    margin-right: auto;
+}

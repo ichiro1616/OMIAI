@@ -9,7 +9,7 @@
 
 let my_can1, my_can2, my_can3, my_can4, my_can5, my_can6; //自分の配置を表示するキャンバス
 let ot_can1, ot_can2, ot_can3, ot_can4, ot_can5, ot_can6; //選択した配置を表示するキャンバス
-let canvas_line = 300;
+let canvas_line = 350;
 let data; //registerテーブルから取得したデータを全て格納する
 window.onclick = canvas_draw();
 
