@@ -9,9 +9,6 @@
 //    (counterが6になったら0に戻して1ローテの配置にする)
 // 7.登録ボタン(register_btn)を押されたらdbに接続してコマの座標を送信
 
-
-
-
 // DOMが構築されるのを待つ
 window.addEventListener("DOMContentLoaded", () => {
   var cvs = document.getElementById("canvas2");
@@ -69,7 +66,7 @@ pathList.prototype = {
     var [w, h] = [this.canvas.width / this.canvas.clientWidth, this.canvas.height / this.canvas.clientHeight];
     return [(e.clientX - rect.left) * w, (e.clientY - rect.top) * h];
   },
-  
+
   // キャンバス上でのクリックイベント処理
   clickEvent() {
     this.effectCanvas.addEventListener(
@@ -114,49 +111,48 @@ pathList.prototype = {
       },
       false
     );
-    // this.effectCanvas.addEventListener(
-    // "dblclick",
-    // (e) => {
-    // var [x, y] = this.getPoint(e);
-    // let index = this.inStroke(x, y);
-    // var current = this.path[index];
+    this.effectCanvas.addEventListener(
+      "dblclick",
+      (e) => {
+        var [x, y] = this.getPoint(e);
+        let index = this.inStroke(x, y);
+        var current = this.path[index];
 
+        this.path = this.path.filter((e, i) => i !== index);
+        this.path.push(current);
 
-    // this.path = this.path.filter((e, i) => i !== index);
-    // this.path.push(current);
-
-    // this.draw();
-    // },
-    // false
-    // );
+        this.draw();
+      },
+      false
+    );
   },
 };
 
 var imagearray = [
   [
     {
-      x: 660,
-      y: 440,
+      x: 670,
+      y: 640,
     },
     {
       x: 840,
-      y: 190,
+      y: 370,
     },
     {
-      x: 490,
-      y: 190,
+      x: 510,
+      y: 370,
     },
     {
-      x: 90,
-      y: 20,
+      x: 120,
+      y: 40,
     },
     {
       x: 190,
-      y: 190,
+      y: 370,
     },
     {
       x: 340,
-      y: 440,
+      y: 640,
     },
   ],
   [
@@ -294,28 +290,28 @@ var imagearray = [
 var arcarray = [
   [
     {
-      x: 720,
-      y: 500,
+      x: 730,
+      y: 700,
     },
     {
       x: 900,
-      y: 250,
+      y: 430,
     },
     {
-      x: 550,
-      y: 250,
+      x: 570,
+      y: 430,
     },
     {
-      x: 150,
-      y: 80,
+      x: 180,
+      y: 100,
     },
     {
       x: 250,
-      y: 250,
+      y: 430,
     },
     {
       x: 400,
-      y: 500,
+      y: 700,
     },
   ],
   [
@@ -465,7 +461,7 @@ var img5 = new Image();
 img5.src = "../Picture/透過ながい.png";
 
 //初期配置座標
-var initial_position = 0; 
+var initial_position = 0;
 var paths;
 let comanumber;
 function pathsfunction(index) {
@@ -478,9 +474,13 @@ function pathsfunction(index) {
       context.arc(q[0].x, q[0].y, 70, 0, 2 * Math.PI); //(X,Y,コマの大きさ、円を描き始める角度、描き終わる終わる角度)
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img5.addEventListener('load', function () {
-          context.drawImage(img5, p[0].x, p[0].y, 120, 120);
-        }, false);
+        img5.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img5, p[0].x, p[0].y, 120, 120);
+          },
+          false
+        );
       } else {
         context.drawImage(img5, p[0].x, p[0].y, 120, 120);
       }
@@ -490,9 +490,13 @@ function pathsfunction(index) {
       context.arc(q[1].x, q[1].y, 70, 0, 2 * Math.PI);
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img2.addEventListener('load', function () {
-          context.drawImage(img2, p[1].x, p[1].y, 120, 120);
-        }, false);
+        img2.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img2, p[1].x, p[1].y, 120, 120);
+          },
+          false
+        );
       } else {
         context.drawImage(img2, p[1].x, p[1].y, 120, 120);
       }
@@ -502,9 +506,13 @@ function pathsfunction(index) {
       context.arc(q[2].x, q[2].y, 70, 0, 2 * Math.PI);
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img1.addEventListener('load', function () {
-          context.drawImage(img1, p[2].x, p[2].y, 120, 120);
-        }, false);
+        img1.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img1, p[2].x, p[2].y, 120, 120);
+          },
+          false
+        );
       } else {
         context.drawImage(img1, p[2].x, p[2].y, 120, 120);
       }
@@ -514,9 +522,13 @@ function pathsfunction(index) {
       context.arc(q[3].x, q[3].y, 70, 0, 2 * Math.PI);
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img.addEventListener('load', function () {
-          context.drawImage(img, p[3].x, p[3].y, 120, 120);
-        }, false);
+        img.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img, p[3].x, p[3].y, 120, 120);
+          },
+          false
+        );
       } else {
         context.drawImage(img, p[3].x, p[3].y, 120, 120);
       }
@@ -526,9 +538,13 @@ function pathsfunction(index) {
       context.arc(q[4].x, q[4].y, 70, 0, 2 * Math.PI);
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img3.addEventListener('load', function () {
-          context.drawImage(img3, p[4].x, p[4].y, 120, 120);
-        }, false);
+        img3.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img3, p[4].x, p[4].y, 120, 120);
+          },
+          false
+        );
       } else {
         context.drawImage(img3, p[4].x, p[4].y, 120, 120);
       }
@@ -538,17 +554,20 @@ function pathsfunction(index) {
       context.arc(q[5].x, q[5].y, 70, 0, 2 * Math.PI);
       // 画像を読み込んでから表示する
       if (initial_position == 0) {
-        img4.addEventListener('load', function () {
-          context.drawImage(img4, p[5].x, p[5].y, 120, 120);
-        }, false);
+        img4.addEventListener(
+          "load",
+          function () {
+            context.drawImage(img4, p[5].x, p[5].y, 120, 120);
+          },
+          false
+        );
         initial_position = 1;
-      } 
-      else {
+      } else {
         context.drawImage(img4, p[5].x, p[5].y, 120, 120);
       }
     },
   ];
-};
+}
 
 // 線色
 var pathObjStrokeColor = "rgba( 0, 0, 255, .5)";
@@ -579,7 +598,6 @@ pathObj.prototype = {
       imagearray[counter][comanumber].y = imagearray[counter][comanumber].y + this.moveY;
 
       console.log(arcarray[counter][comanumber]);
-
     }
 
     if (effect) context.strokeStyle = pathObjStrokeColor; //図形を移動するときの色を変えている
@@ -600,7 +618,10 @@ pathObj.prototype = {
     // 枠線の当たり判定
     var result = context.isPointInStroke(x - this.moveX, y - this.moveY);
     // 枠線の内側の当たり判定(中心の座標-クリックした座標)
-    if ((arcarray[counter][piece].x + this.moveX - x) * (arcarray[counter][piece].x + this.moveX - x) + (arcarray[counter][piece].y + this.moveY - y) * (arcarray[counter][piece].y + this.moveY - y) <= 70 * 70) {
+    if (
+      (arcarray[counter][piece].x + this.moveX - x) * (arcarray[counter][piece].x + this.moveX - x) + (arcarray[counter][piece].y + this.moveY - y) * (arcarray[counter][piece].y + this.moveY - y) <=
+      70 * 70
+    ) {
       result = true;
     } else {
       false;
@@ -622,8 +643,6 @@ pathObj.prototype = {
   },
 };
 
-
-
 let counter = 0;
 function rotation() {
   console.log("a");
@@ -639,42 +658,76 @@ function rotation() {
 }
 
 document.getElementById("register_btn").onclick = function () {
+  console.log(counter);
 
-  console.log(arcarray[0][0]);
-  register_x = arcarray[0][0].x;
-  register_y = arcarray[0][0].y;
-  console.log(register_x, register_y);
-// 
-  let formData = new FormData();
-  formData.append("player0_x", arcarray[0][0].x);
-  formData.append("player0_y", arcarray[0][0].y);
+  counter = 0;
+  comanumber = 0;
+  player_num = 1;
+  while (comanumber <= 5 && counter <= 5) {
+    console.log(arcarray[counter][comanumber]);
 
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/PHP/sample.php",);
-  xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-      if (xhr.response === "error") {
-        console.log("登録に失敗しました");
-      } else {
-        console.log("データを登録しました!");
+    let formData = new FormData();
+    formData.append("rotation_counter", counter);
+    formData.append("player_number", comanumber + 1);
+    formData.append("player0_x", arcarray[counter][comanumber].x);
+    formData.append("player0_y", arcarray[counter][comanumber].y);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/PHP/sample.php");
+    xhr.addEventListener("loadend", function () {
+      if (xhr.status === 200) {
+        if (xhr.response === "error") {
+          console.log("登録に失敗しました");
+        } else {
+          console.log("データを登録しました!");
+        }
       }
+    });
+    xhr.send(formData);
+
+    comanumber++;
+    if (comanumber == 6) {
+      comanumber = 0;
+      counter++;
+      player_num++;
     }
-  });
-  xhr.send(formData);
-}
+  }
 
-var canvasElem = document.getElementById('canvas2'),
-ctx = canvasElem.getContext('2d');
+  // console.log(arcarray[0][0]);
+  // register_x = arcarray[0][0].x;
+  // register_y = arcarray[0][0].y;
+  // console.log(register_x, register_y);
 
-ctx.fillStyle = '#ccc';
-ctx.strokeStyle = '#7C00BA';
+  // let formData = new FormData();
+  // formData.append("player0_x", arcarray[0][0].x);
+  // formData.append("player0_y", arcarray[0][0].y);
+
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("POST", "/PHP/sample.php",);
+  // xhr.addEventListener("loadend", function () {
+  // if (xhr.status === 200) {
+  // if (xhr.response === "error") {
+  // console.log("登録に失敗しました");
+  // } else {
+  // console.log("データを登録しました!");
+  // }
+  // }
+  // });
+  // xhr.send(formData);
+};
+
+var canvasElem = document.getElementById("canvas2"),
+  ctx = canvasElem.getContext("2d");
+
+ctx.fillStyle = "#ccc";
+ctx.strokeStyle = "#7C00BA";
 ctx.rect(25, 25, 100, 100);
 ctx.fill();
 ctx.stroke();
 
 // var canvas = document.querySelector('#canvas3');
 // var context = canvas.getContext('2d');
-// 
+//
 // context.beginPath();
 // context.fillStyle = '#FFCC66';
 // context.fillRect(0, 0, canvas3.width, canvas3.height);
