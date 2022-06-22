@@ -25,10 +25,10 @@ function a() {
           color_array[i][j] = Number(color_array[i][j]);
         }
       }
-      let player1_x = 3;
-      let player1_y = 4.5;
-      let player2_x = 6;
-      let player2_y = 4.5;
+      let player1_x = 2;
+      let player1_y = 2;
+      let player2_x = 7;
+      let player2_y = 7;
       // for (i = 0; i < 9.2; i += 0.2) {
       //   for (j = 0; j < 10; j++) {
       //     let data_tmp = {};
@@ -49,21 +49,19 @@ function a() {
 
       //   }
       // }
-      let ball_x_array = [0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 3.6, 9, 8.6, 8.2, 7.8, 7.4, 7.0, 6.6, 6.2, 5.8, 5.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6, 4.8, 5, 5.2, 5.4];
-      for (i = 0; i < ball_x_array.length; i++) {
-        for (j = 0; j < 10; j++) {
+      for (i = 0; i < 9.2; i += 0.2) {
+        for (j = 0; j < 9.2; j += 0.2) {
           let data_tmp = {};
-
           data_tmp.players_sabun_x = Math.abs(player1_x - player2_x);
           data_tmp.players_sabun_y = Math.abs(player1_y - player2_y);
-          data_tmp.player1_ball_sabun_x = Math.abs(player1_x - ball_x_array[i]);
+          data_tmp.player1_ball_sabun_x = Math.abs(player1_x - i);
           data_tmp.player1_ball_sabun_y = Math.abs(player1_y - j);
-          data_tmp.player2_ball_sabun_x = Math.abs(player2_x - ball_x_array[i]);
+          data_tmp.player2_ball_sabun_x = Math.abs(player2_x - i);
           data_tmp.player2_ball_sabun_y = Math.abs(player2_y - j);
           test_data.push(data_tmp);
 
           let data_view = {};
-          data_view.ball_x = ball_x_array[i];
+          data_view.ball_x = i;
           data_view.ball_y = j;
           data_view.judge = 100;
           judge_color.push(data_view);
@@ -92,17 +90,24 @@ function a() {
       console.log(answer);
 
       for (i = 0; i < answer.length; i++) {
+        // console.log(Math.min(...answer[i]));
+        // console.log(Math.max(...answer[i]));
         // console.log(i, "i");
 
         //lr.coef_の値とpolynomialの値をかける
         let b = 0;
         let r = 0;
         let g = 0;
+        max = Math.max(...answer[i]);
+        min = Math.min(...answer[i]);
+        console.log("min", min, "max", max);
+
         for (j = 0; j < answer[i].length; j++) {
+          answer[i][j] = (answer[i][j] - min) / (max - min);
+
           b = b + answer[i][j] * color_array[0][j];
           r = r + answer[i][j] * color_array[1][j];
           g = g + answer[i][j] * color_array[2][j];
-          // console.log(color_array[0][j], color_array[1][j], color_array[2][j]);
         }
         console.log(b, r, g);
 
@@ -112,8 +117,9 @@ function a() {
         blue.push(b);
         red.push(r);
         green.push(g);
-        console.log(b, r, g);
+        // console.log(b, r, g);
       }
+      console.log(answer);
 
       for (i = 0; i < blue.length; i++) {
         //どの色になるかの判断
@@ -152,10 +158,10 @@ function sum(x1, x2, x3, x4, x5, x6) {
           if (j == 0) {
             answer.push(array[k]);
           } else {
-            if (isNaN(j * array[k + counter_k])) {
+            if (isNaN(array[j - 1] * array[k + counter_k])) {
             } else {
-              box[j - 1].push(j * array[k + counter_k]);
-              answer.push(j * array[k + counter_k]);
+              box[j - 1].push(array[j - 1] * array[k + counter_k]);
+              answer.push(array[j - 1] * array[k + counter_k]);
             }
           }
         } else {
@@ -163,10 +169,10 @@ function sum(x1, x2, x3, x4, x5, x6) {
           } else {
             if (k < counter_j) {
               if (j > counter_i) {
-                if (isNaN(box[j - 1][k] * i)) {
+                if (isNaN(box[j - 1][k] * array[i - 1])) {
                 } else {
                   // console.log("k", k, "j", j, "i", i, "answer", box[j - 1][k] * i, "counter_j", counter_j, "box[j-1]", box[j - 1]);
-                  answer.push(box[j - 1][k] * i);
+                  answer.push(box[j - 1][k] * array[i - 1]);
                 }
               }
             }

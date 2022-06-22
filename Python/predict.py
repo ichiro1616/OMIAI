@@ -22,8 +22,8 @@ df_train['player1_ball_sabun_y'] = df_train['player1_y'] - df_train['ball_y']
 df_train['player2_ball_sabun_x'] = df_train['player2_x'] - df_train['ball_x']
 df_train['player2_ball_sabun_y'] = df_train['player2_y'] - df_train['ball_y']
 # df_train['your_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
-df_test = pd.read_csv("../Python/pattern_1.csv", encoding="utf_8")
-# df_test = pd.read_csv("test_data.csv", encoding="utf_8")
+# df_test = pd.read_csv("../Python/pattern_1.csv", encoding="utf_8")
+df_test = pd.read_csv("../Python/test_data.csv", encoding="utf_8")
 df_test['players_sabun_x'] = df_test['player1_x'] - df_test['player2_x']
 df_test['players_sabun_y'] = df_test['player1_y'] - df_test['player2_y']
 # df_test['my_your_degree'] = np.arctan2(df_test['player2_y'] - df_test['player1_y'], df_test['player2_x'] - df_test['player1_x'])
@@ -49,14 +49,13 @@ y = df_train['target']
 # print(train)
 test = df_test[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
 
-
 # test.to_csv('a.csv', index = False, columns=['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y'],encoding=encoding) #客観的データ用csv
 
 poly3d = PolynomialFeatures(degree=3, interaction_only=False, include_bias=True, order='C')
 train =  poly3d.fit_transform(train)
 test =  poly3d.fit_transform(test)
-
-
+# np.set_printoptions(threshold=np.inf)
+# print(test[:200])
 
 # def min_maxnorm(df_input):       #正規化
 #     return (df_input - df_input.min()) / ( df_input.max() - df_input.min())
@@ -70,8 +69,10 @@ train = min_maxnorm(train)
 test = min_maxnorm(test)
 X_train = train
 y_train = y
+# np.savetxt('out.csv',test,delimiter=',')
 # train.to_csv('a.csv', index = False, columns=['my_your_degree', 'my_ball_sabun_x', 'my_ball_sabun_y', 'your_ball_sabun_x', 'your_ball_sabun_y'],encoding=encoding) #客観的データ用csv
-
+# print("test", test)
+# test.to_csv('a.csv', index = False, columns=['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y'],encoding=encoding) #客観的データ用csv
 
 # X_poly = X_poly.reindex(labels=X.columns,axis=1)
 # ロジスティック回帰で学習
@@ -109,8 +110,12 @@ print(array_green)
 
 # #  検証
 # print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-# y_pred = lr.predict(test)
-# print("sss", y_pred)
+# y_pred = lr.predict_proba(test)
+# print("test " , test)
+# # print("coef " , np.shape(lr.coef_))
+# aaa = test @ (lr.coef_).T
+# np.set_printoptions(threshold=np.inf)
+# print("sss", aaa)
 # # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
 # df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
 # plt.show()

@@ -1,142 +1,142 @@
 #canvas_warp {
-    position: relative;
-    border: 1px solid #ccc;
-    width: 600px;
-    height: 500px;
-    max-width: 100%;
-  }
-  #canvas_warp:before {
-    content: "";
-    display: block;
-    padding-top: 58%;
-  }
-  #canvas2,
-  #canvas3 {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border: 0;
-    max-width: 100%;
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
-  }
-  #canvas2 {
-    z-index: 0;
-    background-image: url("../Picture/バレーコート（半面）.jpeg");
-    background-size: cover;
-  }
-  #canvas3 {
-    z-index: 1;
-  }
+  position: relative;
+  border: 1px solid #ccc;
+  width: 600px;
+  height: 500px;
+  max-width: 100%;
+}
+#canvas_warp:before {
+  content: "";
+  display: block;
+  padding-top: 58%;
+}
+#canvas2,
+#canvas3 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+}
+#canvas2 {
+  z-index: 0;
+  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-size: cover;
+}
+#canvas3 {
+  z-index: 1;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  #under_canvas_warp {
-    position: relative;
-    border: 1px solid #ccc;
-    width: 120px;
-    height: 120px;
-    top: 20px;
-    max-width: 100%;
-  }
-  #under_canvas {
-    left: 0;
-    top: 700px;
-    border: 0;
-    max-width: 100%;
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
-    background-image: url("../Picture/バレーコート（半面）.jpeg");
-    background-size: 100%;
-  }
+#under_canvas_warp {
+  position: relative;
+  border: 1px solid #ccc;
+  width: 120px;
+  height: 120px;
+  top: 20px;
+  max-width: 100%;
+}
+#under_canvas {
+  left: 0;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-size: 100%;
+}
 
-  /* #under_canvas_warp2 { */
-    /* position: relative; */
-    /* border: 1px solid #ccc; */
-    /* width: 120px; */
-    /* height: 120px; */
-    /* top: 20px; */
-    /* left: 140px; */
-    /* max-width: 100%; */
-  /* } */
-  #under_canvas2 {
-    left: 140px;
-    top: 700px;
-    border: 0;
-    max-width: 100%;
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
-    background-image: url("../Picture/バレーコート（半面）.jpeg");
-    background-size: 100%;
-  }
+/* #under_canvas_warp2 { */
+/* position: relative; */
+/* border: 1px solid #ccc; */
+/* width: 120px; */
+/* height: 120px; */
+/* top: 20px; */
+/* left: 140px; */
+/* max-width: 100%; */
+/* } */
+#under_canvas2 {
+  left: 140px;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-size: 100%;
+}
 
-  /* #under_canvas_warp3 { */
-    /* position: relative; */
-    /* border: 1px solid #ccc; */
-    /* width: 120px; */
-    /* height: 120px; */
-    /* top: 20px; */
-    /* left: 280px; */
-    /* max-width: 100%; */
-  /* } */
-  #under_canvas3 {
-    left: 280px;
-    top: 700px;
-    border: 0;
-    max-width: 100%;
-    box-sizing: content-box;
-    padding: 0;
-    margin: 0;
-    background-image: url("../Picture/バレーコート（半面）.jpeg");
-    background-size: 100%;
-  }
+/* #under_canvas_warp3 { */
+/* position: relative; */
+/* border: 1px solid #ccc; */
+/* width: 120px; */
+/* height: 120px; */
+/* top: 20px; */
+/* left: 280px; */
+/* max-width: 100%; */
+/* } */
+#under_canvas3 {
+  left: 280px;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-size: 100%;
+}
 
 #input-range {
-    -webkit-appearance: none; 
-    appearance: none;
-    cursor: pointer; 
-    outline: none; 
-    height: 14px; 
-    width: 20%; 
-    background: #7C00BA; 
-    border-radius: 10px; 
-    border: solid 3px #7C00BA; 
-    position: absolute;
-    right: 200px;
-    top: 150px;
-  }
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  height: 14px;
+  width: 20%;
+  background: #7c00ba;
+  border-radius: 10px;
+  border: solid 3px #7c00ba;
+  position: absolute;
+  right: 200px;
+  top: 150px;
+}
 
-  #rotation_button {
-    border-radius: 10px;
-    background-color: #7C00BA;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    right: 250px;
-    top: 250px;
-  }
+#rotation_button {
+  border-radius: 10px;
+  background-color: #7c00ba;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  right: 250px;
+  top: 250px;
+}
 
-  #register_btn {
-    border-radius: 10px;
-    background-color: #7C00BA;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    right: 100px;
-    top: 250px;
+#register_btn {
+  border-radius: 10px;
+  background-color: #7c00ba;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  right: 100px;
+  top: 250px;
 }

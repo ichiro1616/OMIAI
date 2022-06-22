@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset = "UTF-8">
+    <meta charset="UTF-8" />
     <title>OMIAI</title>
     <link href="../CSS/sample.css" rel="stylesheet" />
   </head>
 
   <body>
     <h1>選手を配置してください</h1>
-     <button type = "button" onclick="rotation()" id="rotation_button">ローテーションする</button>
-     <button type="button" onclick= "location.href = 'O-MIAI.html' " id="register_btn">登録</button>
-     <input type="range" id="input-range" min="0" max"100" step="20">
-     <div class = "bg_image"></div>
+    <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button>
+    <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button>
+    <input type="range" id="input-range" min="0" max"100" step="20">
+    <div class="bg_image"></div>
     <div id="canvas_warp">
       <canvas id="canvas2" height="1000" width="1200"></canvas>
       <canvas id="canvas3" height="1000" width="1200"></canvas>
     </div>
-    <div id = "under_canvas_warp">
-    <!-- <div id = "under_canvas_warp"> -->
+    <div id="under_canvas_warp">
+      <!-- <div id = "under_canvas_warp"> -->
       <canvas id="under_canvas" height="200" width="200"></canvas>
-    <!-- </div> -->
-    <!-- <div id = "under_canvas_warp2"> -->
+      <!-- </div> -->
+      <!-- <div id = "under_canvas_warp2"> -->
       <canvas id="under_canvas2" height="200" width="200"></canvas>
-    <!-- </div> -->
-    <!-- <div id = "under_canvas_warp3"> -->
+      <!-- </div> -->
+      <!-- <div id = "under_canvas_warp3"> -->
       <canvas id="under_canvas3" height="200" width="200"></canvas>
-    <!-- </div> -->
+      <!-- </div> -->
     </div>
     <script src="../JavaScript/sample.js"></script>
   </body>
