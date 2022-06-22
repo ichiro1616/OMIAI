@@ -5,13 +5,13 @@ date_default_timezone_set('Asia/Tokyo');
 $time_stamp = date("Y-m-d H:i:s");
 
 
-$command="python ../Python/predict.py ";
+$command="python ../Python/predict.py";
 
 exec($command,$output);
 
 $data = array($output[0], $output[1], $output[2]);
 // var_dump(intval($output[0][0]));
-// echo "aaaaaaaa", $output[0];
+// echo "aaaaaaa", $output[0];
 
 // $link = mysqli_connect('localhost', 'root', '');
 // if (!$link) {
@@ -32,4 +32,4 @@ $data = array($output[0], $output[1], $output[2]);
 
 //JSON形式で出力する
 header('Content-Type: application/json; charset=UTF-8');
-echo json_encode($output, JSON_UNESCAPED_UNICODE);
+echo json_encode($data, JSON_UNESCAPED_UNICODE);
