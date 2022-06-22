@@ -85,10 +85,6 @@ lr.fit(X_train, y_train)
 
 
 # print ("lr_intercept",lr.intercept_)
-# print ("lr_intercept",lr.intercept_)
-
-
-
 
 array_blue = []
 array_red = []

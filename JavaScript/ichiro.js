@@ -80,7 +80,7 @@ function a() {
         min = Math.min(...array);
         // console.log(array, "max", max, "min", min);
 
-        //NaNを0にしている
+        //NaNを0にしてる
         for (k = 0; k < answer.length; k++) {
           if (isNaN((answer[k][i] - min) / (max - min))) {
             answer[k][i] = 0;
