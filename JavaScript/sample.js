@@ -608,7 +608,8 @@ pathObj.prototype = {
   //図形の座標を移動後の座標に更新
   setPos(eX, eY) {
     this.moveX += eX;
-    this.moveY += eY;
+    this.mo
+    veY += eY;
     console.log(this.moveX, this.moveY);
     console.log(eX, eY);
   },

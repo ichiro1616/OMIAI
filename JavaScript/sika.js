@@ -1,334 +1,175 @@
 //コマの座標
-let imagearray_honto = [
+var imagearray = [
     [
         {
-            x: 660,
-            y: 440,
+            x: 620,
+            y: 600,
         },
         {
-            x: 840,
-            y: 190,
+            x: 760,
+            y: 370,
         },
         {
-            x: 490,
-            y: 190,
+            x: 460,
+            y: 370,
         },
         {
-            x: 90,
-            y: 20,
+            x: 50,
+            y: 10,
         },
         {
-            x: 190,
-            y: 190,
+            x: 160,
+            y: 370,
         },
         {
-            x: 340,
-            y: 440,
+            x: 310,
+            y: 600,
         },
     ],
     [
         {
-            x: 490,
-            y: 190,
+            x: 460,
+            y: 370,
         },
         {
-            x: 660,
-            y: 440,
+            x: 620,
+            y: 600,
         },
         {
-            x: 840,
-            y: 190,
+            x: 760,
+            y: 370,
         },
         {
-            x: 590,
-            y: 20,
+            x: 550,
+            y: 10,
         },
         {
-            x: 190,
-            y: 190,
+            x: 160,
+            y: 370,
         },
         {
-            x: 340,
-            y: 440,
-        },
-    ],
-    [
-        {
-            x: 340,
-            y: 440,
-        },
-        {
-            x: 660,
-            y: 440,
-        },
-        {
-            x: 840,
-            y: 190,
-        },
-        {
-            x: 940,
-            y: 20,
-        },
-        {
-            x: 490,
-            y: 190,
-        },
-        {
-            x: 190,
-            y: 190,
+            x: 310,
+            y: 600,
         },
     ],
     [
         {
-            x: 190,
-            y: 190,
+            x: 310,
+            y: 600,
         },
         {
-            x: 340,
-            y: 440,
+            x: 620,
+            y: 600,
         },
         {
-            x: 660,
-            y: 440,
-        },
-        {
-            x: 940,
-            y: 290,
+            x: 760,
+            y: 370,
         },
         {
             x: 840,
-            y: 190,
+            y: 10,
         },
         {
-            x: 490,
-            y: 190,
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 160,
+            y: 370,
         },
     ],
     [
         {
-            x: 490,
-            y: 190,
+            x: 160,
+            y: 370,
         },
         {
-            x: 190,
-            y: 190,
+            x: 310,
+            y: 600,
         },
         {
-            x: 340,
-            y: 440,
+            x: 620,
+            y: 600,
         },
         {
-            x: 390,
-            y: 290,
+            x: 870,
+            y: 460,
         },
         {
-            x: 660,
-            y: 440,
+            x: 760,
+            y: 370,
         },
         {
-            x: 840,
-            y: 190,
+            x: 460,
+            y: 370,
         },
     ],
     [
         {
-            x: 840,
-            y: 190,
+            x: 460,
+            y: 370,
         },
         {
-            x: 490,
-            y: 190,
+            x: 160,
+            y: 370,
         },
         {
-            x: 190,
-            y: 190,
+            x: 310,
+            y: 600,
         },
         {
-            x: 90,
-            y: 290,
+            x: 350,
+            y: 460,
         },
         {
-            x: 340,
-            y: 440,
+            x: 620,
+            y: 600,
         },
         {
-            x: 660,
-            y: 440,
+            x: 760,
+            y: 370,
+        },
+    ],
+    [
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+        {
+            x: 50,
+            y: 460,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 620,
+            y: 600,
         },
     ],
 ];
 
-var imagearray = [
-    [
-        {
-            x: 730,//730
-            y: 700,//700
-        },
-        {
-            x: 900,
-            y: 430,
-        },
-        {
-            x: 570,
-            y: 430,
-        },
-        {
-            x: 180,
-            y: 100,
-        },
-        {
-            x: 250,
-            y: 430,
-        },
-        {
-            x: 400,
-            y: 700,
-        },
-    ],
-    [
-        {
-            x: 550,
-            y: 250,
-        },
-        {
-            x: 720,
-            y: 500,
-        },
-        {
-            x: 900,
-            y: 250,
-        },
-        {
-            x: 650,
-            y: 80,
-        },
-        {
-            x: 250,
-            y: 250,
-        },
-        {
-            x: 400,
-            y: 500,
-        },
-    ],
-    [
-        {
-            x: 400,
-            y: 500,
-        },
-        {
-            x: 720,
-            y: 500,
-        },
-        {
-            x: 900,
-            y: 250,
-        },
-        {
-            x: 1000,
-            y: 80,
-        },
-        {
-            x: 550,
-            y: 250,
-        },
-        {
-            x: 250,
-            y: 250,
-        },
-    ],
-    [
-        {
-            x: 250,
-            y: 250,
-        },
-        {
-            x: 400,
-            y: 500,
-        },
-        {
-            x: 720,
-            y: 500,
-        },
-        {
-            x: 1000,
-            y: 350,
-        },
-        {
-            x: 900,
-            y: 250,
-        },
-        {
-            x: 550,
-            y: 250,
-        },
-    ],
-    [
-        {
-            x: 550,
-            y: 250,
-        },
-        {
-            x: 250,
-            y: 250,
-        },
-        {
-            x: 400,
-            y: 500,
-        },
-        {
-            x: 450,
-            y: 350,
-        },
-        {
-            x: 720,
-            y: 500,
-        },
-        {
-            x: 900,
-            y: 250,
-        },
-    ],
-    [
-        {
-            x: 900,
-            y: 250,
-        },
-        {
-            x: 550,
-            y: 250,
-        },
-        {
-            x: 250,
-            y: 250,
-        },
-        {
-            x: 150,
-            y: 350,
-        },
-        {
-            x: 400,
-            y: 500,
-        },
-        {
-            x: 720,
-            y: 500,
-        },
-    ],
-];//arcarray
-
 //canvasに描画する準備
-const canvas = document.getElementById('canvas1');
+const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 
 //画像パス
 const srcs = [
-    '../Picture/nagai.png',
-    '../Picture/nagai.png',
-    '../Picture/nagai.png',
-    '../Picture/nagai.png',
-    '../Picture/nagai.png',
-    '../Picture/nagai.png',
+    '../Picture/コマ_透過ながい.png',
+    '../Picture/コマ_透過ながい.png',
+    '../Picture/コマ_透過ながい.png',
+    '../Picture/コマ_透過ながい.png',
+    '../Picture/コマ_透過ながい.png',
+    '../Picture/コマ_透過ながい.png',
 ];
 
 //画像 ローテーションするなら多次元にした方がいいかも
@@ -340,8 +181,8 @@ for (var i in srcs) {
 
 let dragmode = true;//ドラッグモード
 let dragkoma = null;//ドラッグするコマの添え字
-let size = 1.5;//コマの大きさの倍率
-let koma_w = 100;//コマの横幅
+let size = 2.3;//コマの大きさの倍率
+let koma_w = 130;//コマの横幅
 let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
 
@@ -474,3 +315,42 @@ function rotation() {
     console.log("ローテーション", counter);
     draw(counter);
 }
+
+
+//登録ボタンを押したときの処理
+document.getElementById("register_btn").onclick = function () {
+    console.log(counter);
+  
+    counter = 0;
+    i = 0;
+    player_num = 1;
+    while (i <= 5 && counter <= 5) {
+      console.log(imagearray[counter][i]);
+  
+      let formData = new FormData();
+      formData.append("rotation_counter", counter);
+      formData.append("player_number", i + 1);
+      formData.append("player0_x", imagearray[counter][i].x);
+      formData.append("player0_y", imagearray[counter][i].y);
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "/PHP/sample.php");
+      xhr.addEventListener("loadend", function () {
+        if (xhr.status === 200) {
+          if (xhr.response === "error") {
+            console.log("登録に失敗しました");
+          } else {
+            console.log("データを登録しました!");
+          }
+        }
+      });
+      xhr.send(formData);
+  
+      i++;
+      if (i == 6) {
+        i = 0;
+        counter++;
+        player_num++;
+      }
+    }
+}
+

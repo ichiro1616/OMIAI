@@ -23,7 +23,7 @@
 }
 #canvas2 {
   z-index: 0;
-  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-image: url("../Picture/バレーコート（半面）.png");
   background-size: cover;
 }
 #canvas3 {
@@ -50,19 +50,10 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-image: url("../Picture/バレーコート（半面）.png");
   background-size: 100%;
 }
 
-/* #under_canvas_warp2 { */
-/* position: relative; */
-/* border: 1px solid #ccc; */
-/* width: 120px; */
-/* height: 120px; */
-/* top: 20px; */
-/* left: 140px; */
-/* max-width: 100%; */
-/* } */
 #under_canvas2 {
   left: 140px;
   top: 700px;
@@ -71,19 +62,10 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-image: url("../Picture/バレーコート（半面）.png");
   background-size: 100%;
 }
 
-/* #under_canvas_warp3 { */
-/* position: relative; */
-/* border: 1px solid #ccc; */
-/* width: 120px; */
-/* height: 120px; */
-/* top: 20px; */
-/* left: 280px; */
-/* max-width: 100%; */
-/* } */
 #under_canvas3 {
   left: 280px;
   top: 700px;
@@ -92,7 +74,43 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.jpeg");
+  background-image: url("../Picture/バレーコート（半面）.png");
+  background-size: 100%;
+}
+
+#under_canvas4 {
+  left: 280px;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.png");
+  background-size: 100%;
+}
+
+#under_canvas5 {
+  left: 280px;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.png");
+  background-size: 100%;
+}
+
+#under_canvas6 {
+  left: 280px;
+  top: 700px;
+  border: 0;
+  max-width: 100%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  background-image: url("../Picture/バレーコート（半面）.png");
   background-size: 100%;
 }
 
