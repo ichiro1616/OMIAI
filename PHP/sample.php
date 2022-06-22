@@ -1,4 +1,6 @@
 <?php
+$rotation_counter = $_POST['rotation_counter'];
+$player_number = $_POST['player_number'];
 $player0_x = $_POST['player0_x'];
 $player0_y = $_POST['player0_y'];
  
@@ -10,7 +12,7 @@ $password = 'Pa22wadoh';
 // dbとの接続試行・データ送信
 try{
     $dbh = new PDO($dsn, $user, $password);
-    $sql = "INSERT INTO `register`(`experience_years`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate`) VALUES (1, 1, 1, '$player0_x', '$player0_y')";
+    $sql = "INSERT INTO `register`(`experience_years`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate`) VALUES (1, '$rotation_counter', '$player_number', '$player0_x', '$player0_y')";
     $stmt = $dbh->query($sql);
 }
 catch(PDOException $e){

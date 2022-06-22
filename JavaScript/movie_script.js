@@ -8,16 +8,18 @@
 //6.動画の再開をしたらまたmovie_playに飛び3~6を繰り返す。
 
 let counter = 0;
+let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
 let STOP = 0; //ボタン連打の防止
 let data; //dbから取得した動画関係のデータ
 let sendData; //dbに送信する回答データ
-let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ。
+let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
 buttons.style.display = "none"; //ボタンはデフォルトで非表示
+end.style.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
 
@@ -63,12 +65,18 @@ function movie_db(){
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
 function movie_play(){
   buttons.style.display = "none"; //ボタンを非表示にする
-  movie_id = data[counter]["movie_id"];
-  movie_path = data[counter]["movie_path"];
-  movie_categorize = data[counter]["movie_categorize"];
-  stop_time = data[counter]["stop_time"];
-  left_player_id = data[counter]["left_player_id"];
-  right_player_id = data[counter]["right_player_id"];
+  console.log(Object.keys(data).length);
+  if(Object.keys(data).length <= counter){ //全ての動画を再生し終えたらmovie_end()を動かす。
+    flag = 1;
+    movie_end();
+  }
+  if(flag == 0){
+    movie_id = data[counter]["movie_id"];
+    movie_path = data[counter]["movie_path"];
+    movie_categorize = data[counter]["movie_categorize"];
+    stop_time = data[counter]["stop_time"];
+    left_player_id = data[counter]["left_player_id"];
+    right_player_id = data[counter]["right_player_id"];
 
   if(categorize != movie_categorize){
     mv.setAttribute("src", movie_path);
@@ -78,6 +86,7 @@ function movie_play(){
   } else{
     control(0);
     movie_time();
+  }
   }
 }
 
@@ -161,10 +170,10 @@ function choose(btn) {
     console.log(sendData);
     xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
     xhr.send(EncodeHTMLForm(sendData));
-
     console.log("登録しました");
     percentage();
 }}
+
 
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
 function percentage(){
@@ -181,18 +190,34 @@ function percentage(){
       } else {
         LR = LR_temp;
         console.log(LR);
-        movie_play();
+        //パーセンテージの計算
+        per = Object.keys(LR).length; //要素の数
+        left = 0; //左選手を選択した人の数
+        for(i=0; i<per; i++){ //左選手を選択した人の数を数える
+          if(LR[i]==0){
+            left++;}}
+        right = per - left; //右選手を選択した人の数
+        left_per = Math.round((left/per)*100);
+        right_per = Math.round((right/per)*100);
+        console.log(left_per);
+        console.log(right_per);
+        //パーセンテージの表示
+        document.querySelector('[id="0"]').value = left_per + '%';
+        document.querySelector('[id="1"]').value = right_per + '%';
       }
       
     }
   });
   xhr.send(formData);
-  //パーセンテージの計算
-  //パーセンテージの表示
-  document.querySelector('[id="0"]').value = '左%';
-  document.querySelector('[id="1"]').value = '右%';
+  
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 5000);
+  setTimeout(movie_play, 3000);
+}
+
+//全ての動画に回答し終えたら動く
+function movie_end(){
+  video_button.style.display = "none"; //動画を非表示
+  end.style.display = "block"; //終了画面を表示
 }
