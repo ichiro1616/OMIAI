@@ -1,5 +1,3 @@
-//グローバル変数にしないために全体を関数にしている
-// (function () {
 //コマの座標
 let imagearray_honto = [
     [
@@ -340,7 +338,6 @@ for (var i in srcs) {
     images[i].src = srcs[i];
 }
 
-// let loadkomas = 1;//画像のカウント
 let dragmode = true;//ドラッグモード
 let dragkoma = null;//ドラッグするコマの添え字
 let size = 1.5;//コマの大きさの倍率
@@ -400,8 +397,8 @@ let mousedown = function (e) {
 
     for (var i = images.length - 1; i >= 0; i--) {
         //コマの中心座標
-        var centerX = imagearray[0][i].x + koma_w / 2 * size;
-        var centerY = imagearray[0][i].y + koma_h / 2 * size;
+        var centerX = imagearray[counter][i].x + koma_w / 2 * size;
+        var centerY = imagearray[counter][i].y + koma_h / 2 * size;
 
         //コマの当たり判定処理
         if ((centerX - canvasX) * (centerX - canvasX) + (centerY - canvasY) * (centerY - canvasY) <= (koma_h / 2 * size) * (koma_h / 2 * size)) {
@@ -440,11 +437,11 @@ let mousemove = function (e) {
                 y = canvasY - koma_h / 2 * size;
 
                 // ドラッグが終了した時の情報を記憶
-                imagearray[0][i].x = x;
-                imagearray[0][i].y = y;
+                imagearray[counter][i].x = x;
+                imagearray[counter][i].y = y;
             } else {
-                x = imagearray[0][i].x;
-                y = imagearray[0][i].y;
+                x = imagearray[counter][i].x;
+                y = imagearray[counter][i].y;
             }
             // 画像を描画
             context.drawImage(images[i], x, y, w, h);
@@ -455,8 +452,6 @@ let mousemove = function (e) {
 //ドラッグ終了処理
 let mouseup = function (e) {
     dragmode = false;
-    // console.log("imagearray", imagearray[0][0].x);
-    // console.log("imagearray", imagearray[0][1].x);
 }
 
 //コマ以外を押したとき
@@ -471,11 +466,11 @@ canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
 
 //ローテーション
 function rotation() {
-    console.log("ローテーション");
     counter++;
     //6回目なら最初に戻す
     if (counter == 6) {
         counter = 0;
     }
+    console.log("ローテーション", counter);
     draw(counter);
 }
