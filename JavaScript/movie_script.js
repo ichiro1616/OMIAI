@@ -8,34 +8,34 @@
 //6.動画の再開をしたらまたmovie_playに飛び3~6を繰り返す。
 
 let counter = 0;
+let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
 let STOP = 0; //ボタン連打の防止
 let data; //dbから取得した動画関係のデータ
 let sendData; //dbに送信する回答データ
-let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ。
+let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
 buttons.style.display = "none"; //ボタンはデフォルトで非表示
+end.style.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
-
 //バレーボールの経験年数をきく
-function question(){
+function question() {
   video_button.style.display = "none"; //動画を非表示
   experience.style.display = "block"; //経験年数の質問を表示
 
-  inputSlideBarElement = document.getElementById('input-range');
-  inputSlideBarElement.addEventListener('change', function(){
+  inputSlideBarElement = document.getElementById("input-range");
+  inputSlideBarElement.addEventListener("change", function () {
     experience_years = inputSlideBarElement.value;
   });
 }
 
-
 // dbのmovieテーブルからデータを取得する
-function movie_db(){
-  console.log("dbから動画を選択します。"); 
+function movie_db() {
+  console.log("dbから動画を選択します。");
   console.log("経験年数 = ", experience_years);
   video_button.style.display = "block";
   experience.style.display = "none";
@@ -53,82 +53,83 @@ function movie_db(){
         console.log(data);
         movie_play();
       }
-      
     }
   });
   xhr.send(formData);
 }
 
-
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
-function movie_play(){
+function movie_play() {
   buttons.style.display = "none"; //ボタンを非表示にする
-  movie_id = data[counter]["movie_id"];
-  movie_path = data[counter]["movie_path"];
-  movie_categorize = data[counter]["movie_categorize"];
-  stop_time = data[counter]["stop_time"];
-  left_player_id = data[counter]["left_player_id"];
-  right_player_id = data[counter]["right_player_id"];
+  console.log(Object.keys(data).length);
+  if (Object.keys(data).length <= counter) {
+    //全ての動画を再生し終えたらmovie_end()を動かす。
+    flag = 1;
+    movie_end();
+  }
+  if (flag == 0) {
+    movie_id = data[counter]["movie_id"];
+    movie_path = data[counter]["movie_path"];
+    movie_categorize = data[counter]["movie_categorize"];
+    stop_time = data[counter]["stop_time"];
+    left_player_id = data[counter]["left_player_id"];
+    right_player_id = data[counter]["right_player_id"];
 
-  if(categorize != movie_categorize){
-    mv.setAttribute("src", movie_path);
-    categorize = movie_categorize;
-    console.log("categorize = ", categorize);
-    movie_time();
-  } else{
-    control(0);
-    movie_time();
+    if (categorize != movie_categorize) {
+      mv.setAttribute("src", movie_path);
+      categorize = movie_categorize;
+      console.log("categorize = ", categorize);
+      movie_time();
+    } else {
+      control(0);
+      movie_time();
+    }
   }
 }
 
-
 //現在の動画の再生時間を取得する
-function movie_time(){
+function movie_time() {
   stop_time = data[counter]["stop_time"];
   console.log(stop_time);
 
-  videoElement = document.getElementById('mv');
-  videoElement.addEventListener('timeupdate',function(){
-  submit = videoElement.currentTime;
-  console.log(submit);
-  
-  if(stop_time - submit < 0.1 && position == 0){
-    position = 1;
-    STOP = 0;
-    control(1); //controlに1を送る(動画を停止する)
-  }
-});
+  videoElement = document.getElementById("mv");
+  videoElement.addEventListener("timeupdate", function () {
+    submit = videoElement.currentTime;
+    console.log(submit);
+
+    if (stop_time - submit < 0.1 && position == 0) {
+      position = 1;
+      STOP = 0;
+      control(1); //controlに1を送る(動画を停止する)
+    }
+  });
 }
 
-
 // 指定フレームで動画を停止させる
-function control(num){
+function control(num) {
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
-      obj.play();
+    obj.play();
+  } else {
+    document.querySelector('[id="0"]').value = "左選手";
+    document.querySelector('[id="1"]').value = "右選手";
+    document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
+    obj.pause(); //動画を停止させる
+    console.log("一時停止");
   }
-  else {
-      document.querySelector('[id="0"]').value = '左選手';
-      document.querySelector('[id="1"]').value = '右選手';
-      document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
-      obj.pause(); //動画を停止させる
-      console.log("一時停止");
-  }
-  }
-
-
-function EncodeHTMLForm(data){ //データの送信時、phpで受け取れる形に変換する
-  var params = [];
-  for(var name in data){
-    var value = data[name];
-    var param = encodeURIComponent(name).replace(/%20/g, '+')
-    + '=' + encodeURIComponent(value).replace(/%20/g, '+');
-    params.push(param);
-  }
-  return params.join('&');
 }
 
+function EncodeHTMLForm(data) {
+  //データの送信時、phpで受け取れる形に変換する
+  var params = [];
+  for (var name in data) {
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, "+") + "=" + encodeURIComponent(value).replace(/%20/g, "+");
+    params.push(param);
+  }
+  return params.join("&");
+}
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
 function choose(btn) {
@@ -136,41 +137,42 @@ function choose(btn) {
     button = btn.getAttribute("id"); // input要素のid属性の値を取得
     button_id = parseInt(button); //取得したIDをint形式に変換する
     console.log(button_id);
-    if(button_id == 0){ //選択された選手に割り振られたidをplayer_idに格納する
+    if (button_id == 0) {
+      //選択された選手に割り振られたidをplayer_idに格納する
       player_id = data[counter]["left_player_id"];
-    } else{
+    } else {
       player_id = data[counter]["right_player_id"];
     }
-    console.log("player_id = ",player_id);
+    console.log("player_id = ", player_id);
     sendData = {
-      'movie_id': data[counter]["movie_id"],
-      'experience_years': experience_years,
-      'player_id': player_id,
-      'left_or_right': button_id,
+      movie_id: data[counter]["movie_id"],
+      experience_years: experience_years,
+      player_id: player_id,
+      left_or_right: button_id,
     };
     xhr = new XMLHttpRequest();
     xhr.open("POST", "/PHP/button_send.php");
     xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
+      if (xhr.status === 200) {
         console.log("接続しました");
         if (xhr.response === "error") {
           console.log("登録に失敗しました");
-        }    
+        }
       }
     });
     console.log(sendData);
-    xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
-
     console.log("登録しました");
     percentage();
-}}
+  }
+}
 
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
-function percentage(){
+function percentage() {
   formData = new FormData();
-  console.log(data[counter]['movie_id'])
-  formData.append('movie_id', data[counter]['movie_id']);
+  console.log(data[counter]["movie_id"]);
+  formData.append("movie_id", data[counter]["movie_id"]);
   xhr = new XMLHttpRequest();
   xhr.open("POST", "/PHP/percent_receive.php");
   xhr.addEventListener("loadend", function (LR_temp) {
@@ -181,18 +183,36 @@ function percentage(){
       } else {
         LR = LR_temp;
         console.log(LR);
-        movie_play();
+        //パーセンテージの計算
+        per = Object.keys(LR).length; //要素の数
+        left = 0; //左選手を選択した人の数
+        for (i = 0; i < per; i++) {
+          //左選手を選択した人の数を数える
+          if (LR[i] == 0) {
+            left++;
+          }
+        }
+        right = per - left; //右選手を選択した人の数
+        left_per = Math.round((left / per) * 100);
+        right_per = Math.round((right / per) * 100);
+        console.log(left_per);
+        console.log(right_per);
+        //パーセンテージの表示
+        document.querySelector('[id="0"]').value = left_per + "%";
+        document.querySelector('[id="1"]').value = right_per + "%";
       }
-      
     }
   });
   xhr.send(formData);
-  //パーセンテージの計算
-  //パーセンテージの表示
-  document.querySelector('[id="0"]').value = '左%';
-  document.querySelector('[id="1"]').value = '右%';
+
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 5000);
+  setTimeout(movie_play, 3000);
+}
+
+//全ての動画に回答し終えたら動く
+function movie_end() {
+  video_button.style.display = "none"; //動画を非表示
+  end.style.display = "block"; //終了画面を表示
 }

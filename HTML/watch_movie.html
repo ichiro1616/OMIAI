@@ -3,35 +3,37 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <!-- <link rel="stylesheet" href="/CSS/style.css"> -->
-  <title>動画閲覧</title>
-</head>
-<body>
-<!-- 経験年数の回答 -->
-  <div id = "experience">
-    <h1>あなたの経験年数を選んでください</h1>
-    経験年数選択バー<br>
-    <input type="range" id="input-range" min="0" max="4" step="1" list="exlist"><br>
-    <input type="button" class="button" value="決定" onclick="movie_db();">
-  </div>
-
-<div id = "video_button">
-<!-- ビデオの再生 -->
-  <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg">
-    <source src="" id="video" preload controls muted autoplay playinline loop>
-  </video>
-
-  <!--ボタンの設置  -->
-  <form>
-    <div id="buttons">
-      <input type="button" class="button" value="左選手" id="0" onclick="choose(this);">
-      <input type="button" class="button" value="右選手" id="1" onclick="choose(this);">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="/CSS/style.css"> -->
+    <title>動画閲覧</title>
+  </head>
+  <body>
+    <!-- 経験年数の回答 -->
+    <div id="experience">
+      <h1>あなたの経験年数を選んでください</h1>
+      経験年数選択バー<br />
+      <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" /><br />
+      <input type="button" class="button" value="決定" onclick="movie_db();" />
     </div>
-  </form>
-</div>
 
-  <script type="text/javascript" src="/JavaScript/movie_script.js"></script>
-</body>
+    <div id="video_button">
+      <!-- ビデオの再生 -->
+      <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg">
+        <source src="" id="video" preload controls muted autoplay playinline loop />
+      </video>
+
+      <!--ボタンの設置  -->
+      <form>
+        <div id="buttons">
+          <input type="button" class="button" value="左選手" id="0" onclick="choose(this);" />
+          <input type="button" class="button" value="右選手" id="1" onclick="choose(this);" />
+        </div>
+      </form>
+    </div>
+
+    <!-- すべての動画に回答し終えたら -->
+    <div id="end">全てに回答しました！</div>
+    <script type="text/javascript" src="/JavaScript/movie_script.js"></script>
+  </body>
 </html>

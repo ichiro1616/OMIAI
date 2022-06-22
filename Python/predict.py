@@ -54,14 +54,17 @@ test = df_test[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'p
 poly3d = PolynomialFeatures(degree=3, interaction_only=False, include_bias=True, order='C')
 train =  poly3d.fit_transform(train)
 test =  poly3d.fit_transform(test)
-# np.set_printoptions(threshold=np.inf)
+np.set_printoptions(threshold=np.inf)
 # print(test[:200])
 
 # def min_maxnorm(df_input):       #正規化
 #     return (df_input - df_input.min()) / ( df_input.max() - df_input.min())
 def min_maxnorm(x, axis=None): #正規化
-    min = x.min(axis=axis, keepdims=True)
-    max = x.max(axis=axis, keepdims=True)
+    min = x.min(axis=None, keepdims=True)
+    max = x.max(axis=None, keepdims=True)
+    # print("min", min)
+    # print("max", max)
+
     result = (x-min)/(max-min)
     result = np.nan_to_num(result)
     return result
@@ -108,15 +111,16 @@ print(array_blue)
 print(array_red)
 print(array_green)
 
-# #  検証
-# print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-# y_pred = lr.predict_proba(test)
+#  検証
+print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+y_pred = lr.predict(test)
 # print("test " , test)
-# # print("coef " , np.shape(lr.coef_))
-# aaa = test @ (lr.coef_).T
-# np.set_printoptions(threshold=np.inf)
+print("y_pred", y_pred)
+# print("coef " , np.shape(lr.coef_))
+aaa = test @ (lr.coef_).T
+np.set_printoptions(threshold=np.inf)
 # print("sss", aaa)
-# # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
-# df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
-# plt.show()
+# df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
+df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
+plt.show()
 
