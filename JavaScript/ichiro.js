@@ -87,7 +87,7 @@ function a() {
             test_data[o].player2_ball_sabun_y
           )
         );
-        console.log("aa");
+        console.log("aaa");
       }
       console.log(answer);
 
@@ -179,6 +179,7 @@ function sum(x1, x2, x3, x4, x5, x6) {
     counter_j--;
     counter_i++;
     counter_k = -1;
+
     // console.log("NOW", answer);
   }
   // console.log(answer);

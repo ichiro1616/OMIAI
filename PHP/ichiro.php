@@ -11,7 +11,7 @@ exec($command,$output);
 
 $data = array($output[0], $output[1], $output[2]);
 // var_dump(intval($output[0][0]));
-// echo "aaaaaaa", $output[0];
+// echo "aaaaaaaa", $output[0];
 
 // $link = mysqli_connect('localhost', 'root', '');
 // if (!$link) {
