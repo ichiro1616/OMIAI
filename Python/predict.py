@@ -38,9 +38,9 @@ df_train = df_train.abs()
 df_test = df_test.abs()
 
 
-df_train.loc[df_train['target'] == 0, 'target'] = "blue"
-df_train.loc[df_train['target'] == 1, 'target'] = "red"
-df_train.loc[df_train['target'] == 2, 'target'] = "green"
+# df_train.loc[df_train['target'] == 0, 'target'] = "blue"
+# df_train.loc[df_train['target'] == 1, 'target'] = "ced"
+# df_train.loc[df_train['target'] == 2, 'target'] = "green"
 
 train = df_train[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
 # train = df_train[['my_your_degree','my_ball_degree', 'your_ball_degree']]
@@ -59,9 +59,9 @@ np.set_printoptions(threshold=np.inf)
 
 # def min_maxnorm(df_input):       #正規化
 #     return (df_input - df_input.min()) / ( df_input.max() - df_input.min())
-def min_maxnorm(x, axis=None): #正規化
-    min = x.min(axis=None, keepdims=True)
-    max = x.max(axis=None, keepdims=True)
+def min_maxnorm(x, axis=0): #正規化
+    min = x.min(axis=axis, keepdims=True)
+    max = x.max(axis=axis, keepdims=True)
     # print("min", min)
     # print("max", max)
 
@@ -85,11 +85,15 @@ lr.fit(X_train, y_train)
 
 
 # print ("lr_intercept",lr.intercept_)
+# print ("lr_intercept",lr.intercept_)
+
+
 
 
 array_blue = []
 array_red = []
 array_green = []
+
 
 for b in lr.coef_[0]:
     array_blue.append(b)
@@ -99,6 +103,11 @@ for r in lr.coef_[1]:
 
 for g in lr.coef_[2]:
     array_green.append(g)
+
+
+array_blue.append(lr.intercept_[0])
+array_red.append(lr.intercept_[1])
+array_green.append(lr.intercept_[2])
 
 data = {
     "blue":array_blue,
@@ -111,16 +120,18 @@ print(array_blue)
 print(array_red)
 print(array_green)
 
-#  検証
-print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-y_pred = lr.predict(test)
-# print("test " , test)
-print("y_pred", y_pred)
-# print("coef " , np.shape(lr.coef_))
-aaa = test @ (lr.coef_).T
-np.set_printoptions(threshold=np.inf)
+# # #  検証
+# print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+# y_pred = lr.predict(test)
+# # print("test " , test)
+
+# print("y_pred", y_pred)
+
+# # print("coef " , np.shape(lr.coef_))
+# aaa = test @ (lr.coef_).T
+# np.set_printoptions(threshold=np.inf)
 # print("sss", aaa)
-# df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
-df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
-plt.show()
+# # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
+# df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
+# plt.show()
 

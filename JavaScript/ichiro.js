@@ -19,7 +19,7 @@ function a() {
         data[i] = data[i].slice(0, -1);
         color_array[i] = data[i].split(",");
       }
-      console.log(color_array);
+      // console.log(color_array);
       for (i = 0; i < color_array.length; i++) {
         for (j = 0; j < color_array[i].length; j++) {
           color_array[i][j] = Number(color_array[i][j]);
@@ -29,26 +29,7 @@ function a() {
       let player1_y = 2;
       let player2_x = 7;
       let player2_y = 7;
-      // for (i = 0; i < 9.2; i += 0.2) {
-      //   for (j = 0; j < 10; j++) {
-      //     let data_tmp = {};
 
-      //     data_tmp.players_sabun_x = Math.abs(player1_x - player2_x);
-      //     data_tmp.players_sabun_y = Math.abs(player1_y - player2_y);
-      //     data_tmp.player1_ball_sabun_x = Math.abs(player1_x - i);
-      //     data_tmp.player1_ball_sabun_y = Math.abs(player1_y - j);
-      //     data_tmp.player2_ball_sabun_x = Math.abs(player2_x - i);
-      //     data_tmp.player2_ball_sabun_y = Math.abs(player2_y - j);
-      //     test_data.push(data_tmp);
-
-      //     // let data_view = {};
-      //     // data_view.ball_x = i;
-      //     // data_view.ball_y = j;
-      //     // data_view.judge = 100;
-      //     // judge_color.push(data_view);
-
-      //   }
-      // }
       for (i = 0; i < 9.2; i += 0.2) {
         for (j = 0; j < 9.2; j += 0.2) {
           let data_tmp = {};
@@ -68,7 +49,7 @@ function a() {
         }
       }
 
-      console.log(test_data);
+      // console.log(test_data);
       let blue = [];
       let red = [];
       let green = [];
@@ -85,53 +66,76 @@ function a() {
             test_data[o].player2_ball_sabun_y
           )
         );
-        console.log("aa");
+        // console.log("aa");
       }
-      console.log(answer);
+      // console.log(answer);
 
+      array = [];
+      //列で正規化をしている
+      for (i = 0; i < answer[0].length; i++) {
+        for (j = 0; j < answer.length; j++) {
+          array.push(answer[j][i]);
+        }
+        max = Math.max(...array);
+        min = Math.min(...array);
+        // console.log(array, "max", max, "min", min);
+
+        //NaNを0にしている
+        for (k = 0; k < answer.length; k++) {
+          if (isNaN((answer[k][i] - min) / (max - min))) {
+            answer[k][i] = 0;
+          } else {
+            answer[k][i] = (answer[k][i] - min) / (max - min);
+          }
+        }
+
+        array.length = 0;
+      }
+      // console.log(answer);
       for (i = 0; i < answer.length; i++) {
-        // console.log(Math.min(...answer[i]));
-        // console.log(Math.max(...answer[i]));
-        // console.log(i, "i");
-
-        //lr.coef_の値とpolynomialの値をかける
+        //lr.intercept_の値を足している
         let b = 0;
         let r = 0;
         let g = 0;
-        max = Math.max(...answer[i]);
-        min = Math.min(...answer[i]);
-        console.log("min", min, "max", max);
 
-        for (j = 0; j < answer[i].length; j++) {
-          answer[i][j] = (answer[i][j] - min) / (max - min);
+        //lr.coef_の値とpolynomialの値をかける
+        for (j = 0; j < color_array[0].length - 1; j++) {
+          // answer[i][j] = (answer[i][j] - min) / (max - min);
+          // answer[i][j] = (answer[i][j] - min_array[i]) / (max_array[i] - min_array[i]);
 
           b = b + answer[i][j] * color_array[0][j];
           r = r + answer[i][j] * color_array[1][j];
           g = g + answer[i][j] * color_array[2][j];
+          // console.log(j, b);
         }
-        console.log(b, r, g);
-
-        b = 1 / (1 + Math.exp(-b));
-        r = 1 / (1 + Math.exp(-r));
-        g = 1 / (1 + Math.exp(-g));
-        blue.push(b);
-        red.push(r);
-        green.push(g);
+        b = b + color_array[0][color_array[0].length - 1];
+        r = r + color_array[1][color_array[0].length - 1];
+        g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
-      }
-      console.log(answer);
 
+        aa = 1 / (1 + Math.exp(-b));
+        bb = 1 / (1 + Math.exp(-r));
+        cc = 1 / (1 + Math.exp(-g));
+        blue.push(aa);
+        red.push(bb);
+        green.push(cc);
+        // console.log(i, b, r, g, aa, bb, cc);
+      }
+      // console.log(answer[0]);
+      // console.log(color_array[0]);
+      judge_array = [0, 0, 0];
       for (i = 0; i < blue.length; i++) {
         //どの色になるかの判断
         judge = [blue[i], red[i], green[i]];
         // console.log(judge);
-        console.log(blue[i], red[i], green[i]);
+        // console.log(blue[i], red[i], green[i]);
         judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
-        console.log(judge_color[i].judge);
-
+        // console.log(judge_color[i].judge);
+        judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
       }
       console.log(judge_color);
+      console.log(judge_array);
     }
   });
   xhr.send(formData);
