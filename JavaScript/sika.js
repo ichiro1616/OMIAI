@@ -248,6 +248,7 @@ let mousedown = function (e) {
             break;
         }
     }
+    console.log(counter, i, imagearray[counter][i]);
 }
 
 //ドラッグ中処理
@@ -284,11 +285,13 @@ let mousemove = function (e) {
                 x = imagearray[counter][i].x;
                 y = imagearray[counter][i].y;
             }
+            
             // 画像を描画
             context.drawImage(images[i], x, y, w, h);
         }
     }
 };
+
 
 //ドラッグ終了処理
 let mouseup = function (e) {

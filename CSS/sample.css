@@ -1,7 +1,7 @@
 #canvas_warp {
   position: relative;
   border: 1px solid #ccc;
-  width: 600px;
+  width: 500px;
   height: 500px;
   max-width: 100%;
 }
@@ -23,7 +23,7 @@
 }
 #canvas2 {
   z-index: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: cover;
 }
 #canvas3 {
@@ -50,7 +50,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
@@ -62,7 +62,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
@@ -74,7 +74,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
@@ -86,7 +86,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
@@ -98,7 +98,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
@@ -110,7 +110,7 @@
   box-sizing: content-box;
   padding: 0;
   margin: 0;
-  background-image: url("../Picture/バレーコート（半面）.png");
+  background-image: url("../Picture/コート\(半面\).png");
   background-size: 100%;
 }
 
