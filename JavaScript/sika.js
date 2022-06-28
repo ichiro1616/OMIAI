@@ -162,6 +162,7 @@ var imagearray = [
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 
+
 //画像パス
 const srcs = [
     '../Picture/コマ_透過ながい.png',
@@ -248,7 +249,6 @@ let mousedown = function (e) {
             break;
         }
     }
-    console.log(counter, i, imagearray[counter][i]);
 }
 
 //ドラッグ中処理
@@ -356,4 +356,3 @@ document.getElementById("register_btn").onclick = function () {
       }
     }
 }
-
