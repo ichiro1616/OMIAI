@@ -430,11 +430,23 @@ let mousedown = function (e) {
         }
     }
 
+    if (dragkoma == 0) {
+        document.getElementById("syoukai_bun").innerHTML = "安西";
+    }
     if (dragkoma == 1) {
-        document.getElementById("syoukai_bun").innerHTML = "永井さん";
+        document.getElementById("syoukai_bun").innerHTML = "けんと";
     }
     if (dragkoma == 2) {
-        document.getElementById("syoukai_bun").innerHTML = "けんと";
+        document.getElementById("syoukai_bun").innerHTML = "りく";
+    }
+    if (dragkoma == 3) {
+        document.getElementById("syoukai_bun").innerHTML = "いちろ";
+    }
+    if (dragkoma == 4) {
+        document.getElementById("syoukai_bun").innerHTML = "けいすけ";
+    }
+    if (dragkoma == 5) {
+        document.getElementById("syoukai_bun").innerHTML = "ひなた";
     }
 }
 
