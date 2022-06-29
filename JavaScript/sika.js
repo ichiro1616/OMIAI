@@ -163,7 +163,7 @@ const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 
 //canvasに描画する準備
-const under_canvas = document.getElementById('under_canvas');
+const under_canvas = document.getElementById('under_canvas1');
 const under_context = under_canvas.getContext('2d');
 
 
@@ -209,7 +209,7 @@ function initial_draw(rota) {
             var h = koma_h * size;
 
             context.drawImage(images[i], x, y, w, h);
-            under_context.drawImage(images[i], x, y, w, h);
+            under_context.drawImage(images[i], 0, 0, 50, 50);
         }, false);
     }
 }
@@ -227,10 +227,9 @@ function draw(rota) {
         var h = koma_h * size;
 
         context.drawImage(images[i], x, y, w, h);
-        under_context.drawImage(images[i], x, y, w, h);
+        under_context.drawImage(images[i], 0, 0, 50, 50);
     }
 }
-
 //ドラッグ開始処理
 let mousedown = function (e) {
 
@@ -259,11 +258,23 @@ let mousedown = function (e) {
         }
     }
 
+    if (dragkoma==0){
+        document.getElementById("syoukai_bun").innerHTML = "安西";
+    }
     if (dragkoma==1){
-        document.getElementById("syoukai_bun").innerHTML = "永井さん";
+        document.getElementById("syoukai_bun").innerHTML = "けんと";
     }
     if (dragkoma==2){
-        document.getElementById("syoukai_bun").innerHTML = "けんと";
+        document.getElementById("syoukai_bun").innerHTML = "りく";
+    }
+    if (dragkoma==3){
+        document.getElementById("syoukai_bun").innerHTML = "いちろ";
+    }
+    if (dragkoma==4){
+        document.getElementById("syoukai_bun").innerHTML = "けいすけ";
+    }
+    if (dragkoma==5){
+        document.getElementById("syoukai_bun").innerHTML = "ひなた";
     }
 }
 

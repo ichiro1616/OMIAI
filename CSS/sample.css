@@ -42,78 +42,88 @@
   top: 20px;
   max-width: 100%;
 }
-#under_canvas {
+#under_canvas,
+#under_canvas1 {
+  position: absolute;
   left: 0;
-  top: 700px;
+  top: 0;
   border: 0;
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
+}
+
+#under_canvas{
+  z-index: 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
 
-#under_canvas2 {
-  left: 140px;
-  top: 700px;
-  border: 0;
-  max-width: 100%;
-  box-sizing: content-box;
-  padding: 0;
-  margin: 0;
-  background-image: url("../Picture/バレーコート背景.png");
-  background-size: 100%;
+#under_canvas{
+  z-index: 1;
 }
 
-#under_canvas3 {
-  left: 280px;
-  top: 700px;
-  border: 0;
-  max-width: 100%;
-  box-sizing: content-box;
-  padding: 0;
-  margin: 0;
-  background-image: url("../Picture/バレーコート背景.png");
-  background-size: 100%;
-}
-
-#under_canvas4 {
-  left: 280px;
-  top: 700px;
-  border: 0;
-  max-width: 100%;
-  box-sizing: content-box;
-  padding: 0;
-  margin: 0;
-  background-image: url("../Picture/バレーコート背景.png");
-  background-size: 100%;
-}
-
-#under_canvas5 {
-  left: 280px;
-  top: 700px;
-  border: 0;
-  max-width: 100%;
-  box-sizing: content-box;
-  padding: 0;
-  margin: 0;
-  background-image: url("../Picture/バレーコート背景.png");
-  background-size: 100%;
-}
-
-#under_canvas6 {
-  left: 280px;
-  top: 700px;
-  border: 0;
-  max-width: 100%;
-  box-sizing: content-box;
-  padding: 0;
-  margin: 0;
-  background-image: url("../Picture/バレーコート背景.png");
-  background-size: 100%;
-}
-
+/* #under_canvas2 { */
+  /* left: 140px; */
+  /* top: 1000px; */
+  /* border: 0; */
+  /* max-width: 100%; */
+  /* box-sizing: content-box; */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* background-image: url("../Picture/バレーコート背景.png"); */
+  /* background-size: 100%; */
+/* } */
+/*  */
+/* #under_canvas3 { */
+  /* left: 280px; */
+  /* top: 700px; */
+  /* border: 0; */
+  /* max-width: 100%; */
+  /* box-sizing: content-box; */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* background-image: url("../Picture/バレーコート背景.png"); */
+  /* background-size: 100%; */
+/* } */
+/*  */
+/* #under_canvas4 { */
+  /* left: 280px; */
+  /* top: 700px; */
+  /* border: 0; */
+  /* max-width: 100%; */
+  /* box-sizing: content-box; */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* background-image: url("../Picture/バレーコート背景.png"); */
+  /* background-size: 100%; */
+/* } */
+/*  */
+/* #under_canvas5 { */
+  /* left: 280px; */
+  /* top: 700px; */
+  /* border: 0; */
+  /* max-width: 100%; */
+  /* box-sizing: content-box; */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* background-image: url("../Picture/バレーコート背景.png"); */
+  /* background-size: 100%; */
+/* } */
+/*  */
+/* #under_canvas6 { */
+  /* left: 280px; */
+  /* top: 700px; */
+  /* border: 0; */
+  /* max-width: 100%; */
+  /* box-sizing: content-box; */
+  /* padding: 0; */
+  /* margin: 0; */
+  /* background-image: url("../Picture/バレーコート背景.png"); */
+  /* background-size: 100%; */
+/* } */
+/*  */
 #input-range {
   -webkit-appearance: none;
   appearance: none;
