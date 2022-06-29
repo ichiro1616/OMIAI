@@ -162,6 +162,10 @@ var imagearray = [
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 
+//canvasに描画する準備
+const under_canvas = document.getElementById('under_canvas');
+const under_context = under_canvas.getContext('2d');
+
 
 //画像パス
 const srcs = [
@@ -182,7 +186,7 @@ for (var i in srcs) {
 
 let dragmode = true;//ドラッグモード
 let dragkoma = null;//ドラッグするコマの添え字
-let size = 2.3;//コマの大きさの倍率
+let size = 2.5;//コマの大きさの倍率
 let koma_w = 130;//コマの横幅
 let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
@@ -195,6 +199,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function initial_draw(rota) {
     // canvas内を一旦クリア
     context.clearRect(0, 0, canvas.width, canvas.height);
+    under_context.clearRect(0, 0, under_canvas.width, under_canvas.height);
     //画像を読み込み終わってから
     for (var i in images) {
         images[i].addEventListener('load', function () {
@@ -204,6 +209,7 @@ function initial_draw(rota) {
             var h = koma_h * size;
 
             context.drawImage(images[i], x, y, w, h);
+            under_context.drawImage(images[i], x, y, w, h);
         }, false);
     }
 }
@@ -212,6 +218,7 @@ function initial_draw(rota) {
 function draw(rota) {
     // canvas内を一旦クリア
     context.clearRect(0, 0, canvas.width, canvas.height);
+    under_context.clearRect(0, 0, under_canvas.width, under_canvas.height);
 
     for (var i in images) {
         var x = imagearray[rota][i].x;
@@ -220,11 +227,13 @@ function draw(rota) {
         var h = koma_h * size;
 
         context.drawImage(images[i], x, y, w, h);
+        under_context.drawImage(images[i], x, y, w, h);
     }
 }
 
 //ドラッグ開始処理
 let mousedown = function (e) {
+
     //ドラッグ開始時のウェブサイト上のマウスの座標
     var posX = parseInt(e.clientX) - 17 / 2;
     var posY = parseInt(e.clientY) - 181 / 2;
@@ -248,6 +257,13 @@ let mousedown = function (e) {
             dragmode = true;
             break;
         }
+    }
+
+    if (dragkoma==1){
+        document.getElementById("syoukai_bun").innerHTML = "永井さん";
+    }
+    if (dragkoma==2){
+        document.getElementById("syoukai_bun").innerHTML = "けんと";
     }
 }
 
@@ -287,7 +303,7 @@ let mousemove = function (e) {
             }
             
             // 画像を描画
-            context.drawImage(images[i], x, y, w, h);
+            context.drawImage(images[i], x, y, w, h)
         }
     }
 };
@@ -296,6 +312,7 @@ let mousemove = function (e) {
 //ドラッグ終了処理
 let mouseup = function (e) {
     dragmode = false;
+    document.getElementById("syoukai_bun").innerHTML = "";
 }
 
 //コマ以外を押したとき
