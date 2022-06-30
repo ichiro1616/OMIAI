@@ -146,6 +146,7 @@ function choose(btn) {
     console.log("player_id = ", player_id);
     sendData = {
       movie_id: data[counter]["movie_id"],
+      movie_categorize: data[counter]["movie_categorize"],
       experience_years: experience_years,
       player_id: player_id,
       left_or_right: button_id,
