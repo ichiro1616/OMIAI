@@ -353,7 +353,31 @@ let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
 
 window.addEventListener('DOMContentLoaded', () => {
-    initial_draw(0);
+    //初期座標にコマを表示させる
+    images[0].addEventListener('load', () => {
+        context.drawImage(images[0], imagearray[0][0].x, imagearray[0][0].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる');
+    })
+    images[1].addEventListener('load', () => {
+        context.drawImage(images[1], imagearray[0][1].x, imagearray[0][1].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる1');
+    })
+    images[2].addEventListener('load', () => {
+        context.drawImage(images[2], imagearray[0][2].x, imagearray[0][2].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる2');
+    })
+    images[3].addEventListener('load', () => {
+        context.drawImage(images[3], imagearray[0][3].x, imagearray[0][3].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる3');
+    })
+    images[4].addEventListener('load', () => {
+        context.drawImage(images[4], imagearray[0][4].x, imagearray[0][4].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる4');
+    })
+    images[5].addEventListener('load', () => {
+        context.drawImage(images[5], imagearray[0][5].x, imagearray[0][5].y, koma_w * size, koma_h * size);
+        console.log('画像読み込んでる5');
+    })
 });
 
 //コマの中心の座標を用意
@@ -361,25 +385,6 @@ for (var i in imagearray) {
     for (var j in imagearray[i]) {
         imagearray_center[i][j].x += koma_w / 2 * size;
         imagearray_center[i][j].y += koma_h / 2 * size;
-    }
-}
-
-//初期座標に画像を表示する
-function initial_draw(rota) {
-    // canvas内を一旦クリア
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    under_context.clearRect(0, 0, under_canvas.width, under_canvas.height);
-    //画像を読み込み終わってから
-    for (var i in images) {
-        images[i].addEventListener('load', function () {
-            let x = imagearray[rota][i].x;
-            let y = imagearray[rota][i].y;
-            let w = koma_w * size;
-            let h = koma_h * size;
-
-            context.drawImage(images[i], x, y, w, h);
-            under_context.drawImage(images[i], x, y, w, h);
-        }, false);
     }
 }
 
