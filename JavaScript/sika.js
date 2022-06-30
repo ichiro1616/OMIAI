@@ -356,27 +356,21 @@ window.addEventListener('DOMContentLoaded', () => {
     //初期座標にコマを表示させる
     images[0].addEventListener('load', () => {
         context.drawImage(images[0], imagearray[0][0].x, imagearray[0][0].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる');
     })
     images[1].addEventListener('load', () => {
         context.drawImage(images[1], imagearray[0][1].x, imagearray[0][1].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる1');
     })
     images[2].addEventListener('load', () => {
         context.drawImage(images[2], imagearray[0][2].x, imagearray[0][2].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる2');
     })
     images[3].addEventListener('load', () => {
         context.drawImage(images[3], imagearray[0][3].x, imagearray[0][3].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる3');
     })
     images[4].addEventListener('load', () => {
         context.drawImage(images[4], imagearray[0][4].x, imagearray[0][4].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる4');
     })
     images[5].addEventListener('load', () => {
         context.drawImage(images[5], imagearray[0][5].x, imagearray[0][5].y, koma_w * size, koma_h * size);
-        console.log('画像読み込んでる5');
     })
 });
 
