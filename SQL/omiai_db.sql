@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-06-28 03:54:38
+-- 生成日時: 2022-06-30 09:51:01
 -- サーバのバージョン： 10.4.24-MariaDB
 -- PHP のバージョン: 8.1.6
 
@@ -131,6 +131,22 @@ INSERT INTO `answer` (`answer_id`, `movie_id`, `experience_years`, `player_id`, 
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `lr.coef_`
+--
+
+CREATE TABLE `lr.coef_` (
+  `lr.coef_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `color` varchar(11) NOT NULL,
+  `left_player` int(11) NOT NULL,
+  `right_player` int(11) NOT NULL,
+  `data` double NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `movie`
 --
 
@@ -152,12 +168,12 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id`, `left_player_x`, `left_player_y`, `right_player_x`, `right_player_y`) VALUES
-(1, 1, 3, '/Movie/sample1.mp4', 1, 3, 5, 5, 6, 6),
-(2, 1, 5, '/Movie/sample1.mp4', 1, 3, 5, 5, 6, 6),
-(3, 2, 3, '/Movie/sample2.mp4', 2, 4, 6, 6, 7, 7),
-(4, 2, 5, '/Movie/sample2.mp4', 2, 4, 6, 6, 7, 7),
-(5, 3, 3, '/Movie/sample3.mp4', 3, 5, 2, 2, 4, 4),
-(6, 3, 6, '/Movie/sample3.mp4', 3, 5, 2, 2, 4, 4);
+(1, 1, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 1, 3, 5, 5, 6, 6),
+(2, 1, 5, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 1, 3, 5, 5, 6, 6),
+(3, 2, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 4, 6, 6, 7, 7),
+(4, 2, 5, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 4, 6, 6, 7, 7),
+(5, 3, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 3, 5, 2, 2, 4, 4),
+(6, 3, 6, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 3, 5, 2, 2, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -175,12 +191,12 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`player_id`, `name`) VALUES
-(1, '中川一路'),
-(2, '大塚博幸'),
-(3, '永井颯人'),
-(4, '安西琉偉'),
-(5, '辻井健斗'),
-(6, '岡野琉空');
+(1, 'ichiro'),
+(2, 'anzai'),
+(3, 'hinata'),
+(4, 'kento'),
+(5, 'riku'),
+(6, 'keisuke');
 
 -- --------------------------------------------------------
 
@@ -791,6 +807,12 @@ ALTER TABLE `answer`
   ADD PRIMARY KEY (`answer_id`);
 
 --
+-- テーブルのインデックス `lr.coef_`
+--
+ALTER TABLE `lr.coef_`
+  ADD PRIMARY KEY (`lr.coef_id`);
+
+--
 -- テーブルのインデックス `movie`
 --
 ALTER TABLE `movie`
@@ -817,6 +839,12 @@ ALTER TABLE `register`
 --
 ALTER TABLE `answer`
   MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- テーブルの AUTO_INCREMENT `lr.coef_`
+--
+ALTER TABLE `lr.coef_`
+  MODIFY `lr.coef_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- テーブルの AUTO_INCREMENT `movie`
