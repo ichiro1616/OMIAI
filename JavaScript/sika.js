@@ -341,7 +341,6 @@ const srcs = [
 let images = [];
 for (var i in srcs) {
     images[i] = new Image();
-    images[i].src = srcs[i];
 }
 
 
@@ -372,6 +371,11 @@ window.addEventListener('DOMContentLoaded', () => {
     images[5].addEventListener('load', () => {
         context.drawImage(images[5], imagearray[0][5].x, imagearray[0][5].y, koma_w * size, koma_h * size);
     })
+
+    //画像読み込み終わってからソース取得する
+    for (var i in srcs) {
+        images[i].src = srcs[i];
+    }
 });
 
 //コマの中心の座標を用意
