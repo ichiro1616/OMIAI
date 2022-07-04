@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-07-04 09:00:19
+-- 生成日時: 2022-07-04 12:01:16
 -- サーバのバージョン： 10.4.24-MariaDB
 -- PHP のバージョン: 8.1.6
 
@@ -2726,12 +2726,26 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id`, `left_player_x`, `left_player_y`, `right_player_x`, `right_player_y`) VALUES
-(1, 1, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 1, 3, 5, 5, 6, 6),
-(2, 1, 5, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 1, 3, 5, 5, 6, 6),
-(3, 2, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 4, 6, 6, 7, 7),
-(4, 2, 5, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 4, 6, 6, 7, 7),
-(5, 3, 3, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 3, 5, 2, 2, 4, 4),
-(6, 3, 6, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 3, 5, 2, 2, 4, 4);
+(7, 1, 153, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(8, 1, 437, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(9, 1, 725, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(10, 1, 998, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(11, 1, 1312, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(12, 1, 1609, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(13, 1, 1910, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(14, 1, 2208, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(15, 1, 2577, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(16, 1, 2894, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(17, 1, 3229, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(18, 1, 3523, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(19, 1, 3832, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(20, 1, 4145, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(21, 1, 4459, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(22, 1, 4763, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(23, 1, 5069, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(24, 1, 5385, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(25, 1, 5681, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0),
+(26, 1, 5987, '\"C:\\Desktop\\OMIAI\\movie\\anzai_hinata\\usiro\\補正後\\220614_01.MP4\"', 2, 3, 3.5, 5, 5.5, 0);
 
 -- --------------------------------------------------------
 
@@ -3408,7 +3422,7 @@ ALTER TABLE `lr.coef_`
 -- テーブルの AUTO_INCREMENT `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- テーブルの AUTO_INCREMENT `register`
