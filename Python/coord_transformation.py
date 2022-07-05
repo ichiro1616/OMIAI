@@ -4,18 +4,21 @@ import pandas as pd
 
 def main():
     # データベースの情報
-    #csvname = ['cor.csv']
-    csvname = ['x,y.csv'] #ここに複数のcsvファイルを書く
+    csvname = ['anzai_hinata/anzai_hinata_220614_01.csv'] #ここに複数のcsvファイルを書く
+    # csvname = ['anzai_kento/anzai_kento_220614_01.csv','anzai_keisuke/anzai_keisuke_220614_01.csv','anzai_riku/anzai_riku_220614_01.csv','hinata_keisuke/hinata_keisuke_220614_01.csv', 'hinata_kento/hinata_kento_220614_01.csv', 'hinata_riku/hinata_riku_220614_01.csv', 'riku_kento/riku_kento_220614_01.csv', 'riku_keisuke/riku_keisuke_220614_01.csv'] #ここに複数のcsvファイルを書く
 
 
     for i,filename in enumerate(csvname):
-        c = pd.read_csv(filename) #,encoding='utf_8_sig'
-        #c.dropna(inplace=True)
-        transformation(c, filename)
+        c = pd.read_csv(filename,encoding='shift_jis') #,encoding='utf_8_sig'
+        c.dropna(inplace=True)
+        path = filename.split('/')[0]
+        filename = filename.split('/')[1]
+        print(path, filename)
+        transformation(c, filename, path)
 
 
 
-def transformation(csv, filename):
+def transformation(csv, filename, path):
     # csv['mae_x'] = csv['mae_x'] * 1920
     # csv['mae_y'] = csv['mae_y'] * 1080
     # csv['usiro_x'] = csv['usiro_x'] 
@@ -103,7 +106,7 @@ def transformation(csv, filename):
     # csv['usiro_y'] = csv['usiro_y']
     # csv['yoko_x'] = csv['yoko_x']
     # csv['yoko_y'] = csv['yoko_y'] 
-    csv.to_csv('trans_' + filename, index=False) #,encoding='utf_8_sig'
+    csv.to_csv(path +'\\trans_' + filename, index=False) #,encoding='utf_8_sig'
 
 
 if __name__ == '__main__':

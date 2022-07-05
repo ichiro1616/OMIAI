@@ -47,7 +47,7 @@ cur.execute(sql)
 
 # 実行結果を取得する
 answer_array = cur.fetchall()
-
+print(type(answer_array))
 for i,csvname in enumerate(pattern):
     print(csvname, i)
     
@@ -76,18 +76,27 @@ for i,csvname in enumerate(pattern):
 
 
     target_array = []
-    # for j,filename in enumerate(csvname):
-    #     print(filename, j)
+
+    gain_array = []
+    for row in answer_array:
+        for i in range(row[2]):   ##経験年数に応じてデータ数を増やしている
+            gain_array.append(row)
+    # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
+    for row in answer_array:
+        gain_array.append(row)
+    # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
+
 
     for i in movie_id_array:  #targetを決めている。経験年数を加味して決めないといけない。
         judge_array = []
-        for row in answer_array:
+        for row in gain_array:
+            # print("row",row)
             if row[1] == i:
                 judge_array.append(row[4])
         zero_count = judge_array.count(0)
         one_count = judge_array.count(1)
-        print(zero_count, one_count, row[1])
-        if zero_count / (len(judge_array)) > 0.6:
+        print(zero_count, one_count)
+        if zero_count / (len(judge_array)) > 0.6:  ##answerテーブルに値がないとエラーが起きてしまうので、あらかじめ、動画閲覧ページでanswerテーブルに全動画の値を入れておく
             target_array.append(0)
         elif one_count /  (len(judge_array)) > 0.6:
             target_array.append(1)
