@@ -71,7 +71,7 @@ function movie_play() {
     movie_id = data[counter]["movie_id"];
     movie_path = data[counter]["movie_path"];
     movie_categorize = data[counter]["movie_categorize"];
-    stop_time = data[counter]["stop_time"];
+    stop_time = (data[counter]["stop_time"]/60); //dbにはフレーム数で登録されている。60fpsのため60で割る。
     left_player_id = data[counter]["left_player_id"];
     right_player_id = data[counter]["right_player_id"];
 
@@ -89,7 +89,7 @@ function movie_play() {
 
 //現在の動画の再生時間を取得する
 function movie_time() {
-  stop_time = data[counter]["stop_time"];
+  stop_time = (data[counter]["stop_time"]/60);
   console.log(stop_time);
 
   videoElement = document.getElementById("mv");
