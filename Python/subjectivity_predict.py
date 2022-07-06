@@ -49,68 +49,68 @@ cur.execute(sql)
 answer_array = cur.fetchall()
 print(type(answer_array))
 for i,csvname in enumerate(pattern):
-    print(csvname, i)
-    
-
-# for i,filename in enumerate(csvname):
-
-
-    value1 = csvname[i].split('_')[2] + '_' + csvname[i].split('_')[3]
-    value2 = csvname[i].split('_')[3] + '_' + csvname[i].split('_')[2] 
-    value3 = (csvname[i].split('_')[4] + '_' + csvname[i].split('_')[5]).split('.')[0]
-
-    print(value1)
-    print(value2)
-    print(value3)
-    
-    movie_id_array = [] #動画のパスから特定の20個のmovie_idをとってくる処理をかく
-
-    sql = "SELECT `movie_id` FROM movie WHERE (movie_path LIKE %s OR movie_path LIKE %s) AND movie_path LIKE %s"
-    cur.execute(sql, ('%'+ value1 +'%', '%' + value2 + '%', '%' + value3 +'%'))
-    rows = cur.fetchall()
-    for row in rows:
-        movie_id_array.append(row[0])
-        # print("a",row[0])
-
-    print(movie_id_array)
-
-
+    # print(csvname, i)
     target_array = []
-
-    gain_array = []
-    for row in answer_array:
-        for i in range(row[2]):   ##経験年数に応じてデータ数を増やしている
-            gain_array.append(row)
-    # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
-    for row in answer_array:
-        gain_array.append(row)
-    # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
-
-
-    for i in movie_id_array:  #targetを決めている。経験年数を加味して決めないといけない。
-        judge_array = []
-        for row in gain_array:
-            # print("row",row)
-            if row[1] == i:
-                judge_array.append(row[4])
-        zero_count = judge_array.count(0)
-        one_count = judge_array.count(1)
-        print(zero_count, one_count)
-        if zero_count / (len(judge_array)) > 0.6:  ##answerテーブルに値がないとエラーが起きてしまうので、あらかじめ、動画閲覧ページでanswerテーブルに全動画の値を入れておく
-            target_array.append(0)
-        elif one_count /  (len(judge_array)) > 0.6:
-            target_array.append(1)
-        else:
-            target_array.append(2)
-
-    print("target", target_array)
-            
-
-
     for j,filename in enumerate(csvname):
-        print(filename, j)
+        print(filename)
+        # print(j)
 
-            # print("aaaa")
+
+        value1 = filename.split('_')[2] + '_' + filename.split('_')[3]
+        value2 = filename.split('_')[3] + '_' + filename.split('_')[2] 
+        value3 = (filename.split('_')[4] + '_' + filename.split('_')[5]).split('.')[0]
+
+        print(value1)
+        print(value2)
+        print(value3)
+        
+        movie_id_array = [] #動画のパスから特定の20個のmovie_idをとってくる処理をかく
+
+        sql = "SELECT `movie_id` FROM movie WHERE (movie_path LIKE %s OR movie_path LIKE %s) AND movie_path LIKE %s"
+        cur.execute(sql, ('%'+ value1 +'%', '%' + value2 + '%', '%' + value3 +'%'))
+        rows = cur.fetchall()
+        for row in rows:
+            movie_id_array.append(row[0])
+            # print("a",row[0])
+
+        print(movie_id_array)
+
+
+
+        gain_array = []
+        for row in answer_array:
+            for i in range(row[2]):   ##経験年数に応じてデータ数を増やしている
+                gain_array.append(row)
+        # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
+        for row in answer_array:
+            gain_array.append(row)
+        # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
+
+
+        for i in movie_id_array:  #targetを決めている。経験年数を加味して決めないといけない。
+            judge_array = []
+            for row in gain_array:
+                # print("row",row)
+                if row[1] == i:
+                    judge_array.append(row[4])
+            zero_count = judge_array.count(0)
+            one_count = judge_array.count(1)
+            print(zero_count, one_count)
+            if zero_count / (len(judge_array)) > 0.6:  ##answerテーブルに値がないとエラーが起きてしまうので、あらかじめ、動画閲覧ページでanswerテーブルに全動画の値を入れておく
+                target_array.append(0)
+            elif one_count /  (len(judge_array)) > 0.6:
+                target_array.append(1)
+            else:
+                target_array.append(2)
+
+        print("target", target_array)
+                
+
+
+        # for j,filename in enumerate(csvname):
+        #     print(filename, j)
+
+                    # print("aaaa")
         if(j != 0):
             a = pd.read_csv(filename, encoding="utf_8")
             if(a["judge"][0] == 1):
@@ -133,7 +133,7 @@ for i,csvname in enumerate(pattern):
                 c = df_train["player1_y"]
                 df_train["player1_y"] = df_train["player2_y"]
                 df_train["player2_y"] = c
-    
+
 
 
     # df_train = pd.read_csv(filename, encoding="utf_8")
