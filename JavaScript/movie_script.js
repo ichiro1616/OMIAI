@@ -95,7 +95,7 @@ function movie_time() {
   videoElement = document.getElementById("mv");
   videoElement.addEventListener("timeupdate", function () {
     submit = videoElement.currentTime;
-    console.log(submit);
+    // console.log(submit);
 
     if (stop_time - submit < 0.1 && position == 0) {
       position = 1;
@@ -143,7 +143,7 @@ function choose(btn) {
     } else {
       player_id = data[counter]["right_player_id"];
     }
-    console.log("player_id = ", player_id);
+    // console.log("player_id = ", player_id);
     sendData = {
       movie_id: data[counter]["movie_id"],
       movie_categorize: data[counter]["movie_categorize"],
@@ -156,6 +156,8 @@ function choose(btn) {
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
         console.log("接続しました");
+        percentage();
+
         if (xhr.response === "error") {
           console.log("登録に失敗しました");
         }
@@ -165,12 +167,12 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    percentage();
   }
 }
 
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
 function percentage() {
+  console.log("percentage1gayobifaafgorjofocj");
   formData = new FormData();
   console.log(data[counter]["movie_id"]);
   formData.append("movie_id", data[counter]["movie_id"]);
@@ -194,6 +196,8 @@ function percentage() {
           }
         }
         right = per - left; //右選手を選択した人の数
+        console.log(per);
+        console.log(left,right);
         left_per = Math.round((left / per) * 100);
         right_per = Math.round((right / per) * 100);
         console.log(left_per);

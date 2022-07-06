@@ -15,7 +15,8 @@ try{
     $dbh = new PDO($dsn, $user, $password);
 
     //回答数が少ない順にidとcategorizeを取り出す
-    $STMT = $dbh->query("SELECT movie_id ,movie_categorize, COUNT(movie_categorize) FROM answer GROUP BY movie_categorize ORDER BY COUNT(movie_categorize) ASC;");
+    // $STMT = $dbh->query("SELECT movie_id ,movie_categorize, COUNT(movie_categorize) FROM answer GROUP BY movie_categorize ORDER BY COUNT(movie_categorize) ASC;");
+    $STMT = $dbh->query("SELECT movie_id ,movie_categorize, COUNT(movie_categorize) FROM answer GROUP BY movie_categorize ORDER BY movie_categorize ASC;");
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
     foreach($_DATA as $D){
         $TMP = array(
@@ -24,26 +25,40 @@ try{
             "m_count" => $D['COUNT(movie_categorize)']
         );
         $DATA[]=$TMP;}
-
+    // var_dump($DATA);
     //registerテーブルが空だったときでも正常に動くようにする処理(回答数がnullの場所に0を入れる)
     for($i = 0; $i < $cate_num; $i++){
         //データが$i番目の時にm_cateがfalseであれば、回答データは存在しないのでcountに0を入れる
         if(isset($DATA[$i]["m_cate"]) == false){
-            $count[$i] = 0;
-        }
+                $count[$i] =  0;
+            }
         //データが$i番目の時にm_cateがtrueであれば、回答データをcountに入れる
         if(isset($DATA[$i]["m_cate"]) == true){
             $count[$i] = $DATA[$i]["m_count"];
         }
     }
+    // var_dump($count);
 
-    //回答数が最も少ない動画の配列keyを取り出す。
-    $COUNT = array_keys($count,min($count));
-    //うち5つを上から抽出する。
-    for($j=0; $j<5; $j++){
-        $c[$j] = $COUNT[$j]+1;
+// var_dump(array_keys($count,min($count)));
+    while(count($c)<5){
+        $ppp = count(array_keys($count,min($count)));
+        // echo $ppp;
+        for($i = 0; $i <$ppp; $i++){
+        array_push($c,array_keys($count,min($count))[$i]+1);
     }
-    
+
+    for($i = 0; $i < count($c); $i++){
+        $count[$c[$i]] = 100000;
+    }
+
+}
+        var_dump($c);
+    // var_dump($count);
+    //m_countが小さいものから順に5つを抽出する。
+    // for($j=0; $j<5; $j++){
+    //     $c[$j] = $count[$j];
+    // }
+    // var_dump($c);
     //回答がある場合は回答が特に少ない5つの動画を取り出す
     $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s';", $c[0],$c[1],$c[2],$c[3],$c[4]);
     $stmt = $dbh->query($sql);
