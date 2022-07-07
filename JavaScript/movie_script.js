@@ -172,7 +172,6 @@ function choose(btn) {
 
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
 function percentage() {
-  console.log("percentage1gayobifaafgorjofocj");
   formData = new FormData();
   console.log(data[counter]["movie_id"]);
   formData.append("movie_id", data[counter]["movie_id"]);

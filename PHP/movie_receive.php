@@ -37,29 +37,20 @@ try{
             $count[$i] = $DATA[$i]["m_count"];
         }
     }
-    // var_dump($count);
 
-// var_dump(array_keys($count,min($count)));
-    while(count($c)<5){
-        $ppp = count(array_keys($count,min($count)));
-        // echo $ppp;
-        for($i = 0; $i <$ppp; $i++){
-        array_push($c,array_keys($count,min($count))[$i]+1);
+while(count($c)<5){
+    $ppp = count(array_keys($count,min($count)));
+    for($i = 0; $i <$ppp; $i++){
+        array_push($c,array_keys($count,min($count))[$i]);
     }
-
     for($i = 0; $i < count($c); $i++){
         $count[$c[$i]] = 100000;
     }
-
 }
-    // var_dump($count);
-    //m_countが小さいものから順に5つを抽出する。
-    // for($j=0; $j<5; $j++){
-    //     $c[$j] = $count[$j];
-    // }
-    // var_dump($c);
-    //回答がある場合は回答が特に少ない5つの動画を取り出す
-    $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s' OR movie_categorize = '%s';", $c[0],$c[1],$c[2],$c[3],$c[4]);
+
+//回答がある場合は回答が特に少ない順に5つの動画を取り出す
+for($i=0;$i<5;$i++){
+    $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s';", $c[$i]+1);
     $stmt = $dbh->query($sql);
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -74,6 +65,8 @@ try{
         );
         $data[]=$tmp;
     }
+}
+
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
