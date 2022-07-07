@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-07-06 13:14:26
+-- 生成日時: 2022-07-07 05:08:33
 -- サーバのバージョン： 10.4.24-MariaDB
 -- PHP のバージョン: 8.1.6
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `collective` (
   `collective_id` int(11) NOT NULL,
+  `generation` int(11) NOT NULL,
   `rotation` int(11) NOT NULL,
   `experience_years` int(11) NOT NULL,
   `Sub_Ob` int(11) NOT NULL,

@@ -52,7 +52,6 @@ try{
     }
 
 }
-        var_dump($c);
     // var_dump($count);
     //m_countが小さいものから順に5つを抽出する。
     // for($j=0; $j<5; $j++){
