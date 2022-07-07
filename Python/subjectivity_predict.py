@@ -114,12 +114,9 @@ for i,csvname in enumerate(pattern):
         if(j != 0):
             a = pd.read_csv(filename, encoding="utf_8")
             if(a["judge"][0] == 1):
-                b = a["player1_x"]
-                a["player1_x"] = a["player2_x"]
-                a["player2_x"] = b
-                c = a["player1_y"]
-                a["player1_y"] = a["player2_y"]
-                a["player2_y"] = c
+                    a["player1_x"] = 9 - a["player1_x"]
+                    a["player2_x"] = 9 - a["player2_x"]
+                    a["court_x"] = 9 - a["court_x"]
             df_train = pd.merge(df_train, a, how="outer")
 
 
@@ -127,12 +124,10 @@ for i,csvname in enumerate(pattern):
             a = pd.read_csv(filename, encoding="utf_8")
             df_train = a
             if(df_train["judge"][0] == 1):
-                b = df_train["player1_x"]
-                df_train["player1_x"] = df_train["player2_x"]
-                df_train["player2_x"] = b
-                c = df_train["player1_y"]
-                df_train["player1_y"] = df_train["player2_y"]
-                df_train["player2_y"] = c
+                    df_train["player1_x"] = 9 - df_train["player1_x"]
+                    df_train["player2_x"] = 9 - df_train["player2_x"]
+                    df_train["court_x"] = 9 - df_train["court_x"]
+                    
 
 
 
