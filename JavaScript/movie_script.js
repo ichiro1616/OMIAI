@@ -71,7 +71,7 @@ function movie_play() {
     movie_id = data[counter]["movie_id"];
     movie_path = data[counter]["movie_path"];
     movie_categorize = data[counter]["movie_categorize"];
-    stop_time = (data[counter]["stop_time"]/60); //dbにはフレーム数で登録されている。60fpsのため60で割る。
+    stop_time = data[counter]["stop_time"] / 60; //dbにはフレーム数で登録されている。60fpsのため60で割る。
     left_player_id = data[counter]["left_player_id"];
     right_player_id = data[counter]["right_player_id"];
 
@@ -89,7 +89,7 @@ function movie_play() {
 
 //現在の動画の再生時間を取得する
 function movie_time() {
-  stop_time = (data[counter]["stop_time"]/60);
+  stop_time = data[counter]["stop_time"] / 60;
   console.log(stop_time);
 
   videoElement = document.getElementById("mv");
@@ -196,7 +196,7 @@ function percentage() {
         }
         right = per - left; //右選手を選択した人の数
         console.log(per);
-        console.log(left,right);
+        console.log(left, right);
         left_per = Math.round((left / per) * 100);
         right_per = Math.round((right / per) * 100);
         console.log(left_per);
@@ -219,4 +219,16 @@ function percentage() {
 function movie_end() {
   video_button.style.display = "none"; //動画を非表示
   end.style.display = "block"; //終了画面を表示
+
+  let formData = new FormData();
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
+  xhr.addEventListener("loadend", function () {
+    if (xhr.status === 200) {
+      let data = JSON.parse(xhr.response);
+      console.log(data);
+    }
+  });
+  xhr.send(formData);
 }

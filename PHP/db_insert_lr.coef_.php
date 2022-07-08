@@ -15,6 +15,8 @@ if (!$mysqli) {
 }
 
 $command="python ../Python/objectivity_predict.py"; //基本はpython ../Python/subjectivity_predict.py　にしといて、手動で主観的データを入れるときだけ、python ../Python/objectivity_predict.pyと書く。
+// $command="python ../Python/subjectivity_predict.py"; 
+
 
 exec($command,$output);
 // $data = json_decode($output,true);
