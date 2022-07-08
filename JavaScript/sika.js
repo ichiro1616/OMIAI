@@ -336,6 +336,9 @@ const under_context5 = under_canvas5.getContext('2d');
 const under_canvas6 = document.getElementById('under_canvas6');//6ローテーション目
 const under_context6 = under_canvas6.getContext('2d');
 
+//スライダーバー
+const SlideBar_experience = document.getElementById('input-range');//経験年数
+const SlideBar_subject_object = document.getElementById('subject_object');//主観的・客観的
 
 //画像パス
 const srcs = [
@@ -416,6 +419,8 @@ let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
 let startX;//ドラッグ開始時のx座標
 let startY;//ドラッグ開始時のy座標
+let experience_years = 0;//バレーボールの経験年数　初期値0
+let subject_object_level = 2;//主観的・客観的レベル　初期値2(中央)
 
 //コマの中心の座標を用意
 for (var i in imagearray) {
@@ -441,8 +446,20 @@ imagearray_center[5][0].y = imagearray_center[5][1].y + koma_h / 2 * size * Math
 imagearray[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 
-
 window.addEventListener('DOMContentLoaded', () => {
+    simulation_area.style.display = 'none';//配置シミュレーションを非表示
+    experience.style.display = "block";//経験年数の質問を表示
+
+    SlideBar_experience.addEventListener('change', () => {
+        experience_years = SlideBar_experience.value;
+        console.log('経験年数', experience_years);
+    })
+
+    SlideBar_subject_object.addEventListener('change', () => {
+        subject_object_level = SlideBar_subject_object.value;
+        console.log('主観的か客観的か', subject_object_level);
+    })
+
     //初期座標にコマを表示させる
     for (let i = 0; i < 6; i++) {
         images[0][i].addEventListener('load', () => {
@@ -503,6 +520,11 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+function simulation() {
+    simulation_area.style.display = "block";
+    experience.style.display = "none";
+}
 
 
 //画像を表示する
@@ -1310,15 +1332,17 @@ function rotation() {
     }
     console.log("ローテーション", counter);
     draw(counter);
+    console.log('経験年数確定', experience_years);
+    console.log('客観的云々', subject_object_level);
 }
 
 
 //登録ボタンを押したときの処理
 document.getElementById("register_btn").onclick = function () {
-    console.log(counter);
+    console.log('counter', counter);
 
-    counter = 0;
-    i = 0;
+    counter = 0;//0にする必要ある？
+    i = 0;//これいらん
     player_num = 1;
     while (i <= 5 && counter <= 5) {
         console.log(imagearray[counter][i]);
@@ -1329,7 +1353,7 @@ document.getElementById("register_btn").onclick = function () {
         formData.append("player0_x", imagearray[counter][i].x);
         formData.append("player0_y", imagearray[counter][i].y);
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/PHP/sample.php");
+        xhr.open("POST", "../PHP/sample.php");
         xhr.addEventListener("loadend", function () {
             if (xhr.status === 200) {
                 if (xhr.response === "error") {
