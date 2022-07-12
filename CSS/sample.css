@@ -38,7 +38,10 @@
   box-sizing: border-box;
 }
 
-#under_canvas_warp {
+.under_canvas_warp {
+  /* 横に並べる */
+  display: flex;
+  /* margin-top: %; */
   position: relative;
   border: 1px solid #ccc;
   width: 120px;
@@ -54,7 +57,8 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  /* 上　右　下　左 */
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -89,7 +93,7 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -101,7 +105,7 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -113,7 +117,7 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -125,7 +129,7 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -137,7 +141,7 @@
   max-width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0;
+  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }

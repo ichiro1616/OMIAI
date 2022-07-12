@@ -524,6 +524,12 @@ window.addEventListener('DOMContentLoaded', () => {
 function simulation() {
     simulation_area.style.display = "block";
     experience.style.display = "none";
+    kensuke.style.display = "block";//けんすけ
+    rui.style.display = "none";//るい
+    hinata.style.display = "none";//ひなた
+    kento.style.display = "none";//けんと
+    riku.style.display = "none";//りく
+    keisuke.style.display = "none";//けいすけ
 }
 
 
@@ -572,6 +578,56 @@ let mousedown = function (e) {
             startX = centerX;//ドラッグ開始時のコマのx座標
             startY = centerY;//ドラッグ開始時のコマのy座標
             dragmode = true;//ドラッグモードにする
+            switch (dragkoma) {
+                case 0://けんすけ
+                    kensuke.style.display = "block";//けんすけ
+                    rui.style.display = "none";//るい
+                    hinata.style.display = "none";//ひなた
+                    kento.style.display = "none";//けんと
+                    riku.style.display = "none";//りく
+                    keisuke.style.display = "none";//けいすけ
+                    break;
+                case 1://るい
+                    kensuke.style.display = "none";//けんすけ
+                    rui.style.display = "block";//るい
+                    hinata.style.display = "none";//ひなた
+                    kento.style.display = "none";//けんと
+                    riku.style.display = "none";//りく
+                    keisuke.style.display = "none";//けいすけ
+                    break;
+                case 2://ひなた
+                    kensuke.style.display = "none";//けんすけ
+                    rui.style.display = "none";//るい
+                    hinata.style.display = "block";//ひなた
+                    kento.style.display = "none";//けんと
+                    riku.style.display = "none";//りく
+                    keisuke.style.display = "none";//けいすけ
+                    break;
+                case 3://けんと
+                    kensuke.style.display = "none";//けんすけ
+                    rui.style.display = "none";//るい
+                    hinata.style.display = "none";//ひなた
+                    kento.style.display = "block";//けんと
+                    riku.style.display = "none";//りく
+                    keisuke.style.display = "none";//けいすけ
+                    break;
+                case 4://りく
+                    kensuke.style.display = "none";//けんすけ
+                    rui.style.display = "none";//るい
+                    hinata.style.display = "none";//ひなた
+                    kento.style.display = "none";//けんと
+                    riku.style.display = "block";//りく
+                    keisuke.style.display = "none";//けいすけ
+                    break;
+                case 5://けいすけ
+                    kensuke.style.display = "none";//けんすけ
+                    rui.style.display = "none";//るい
+                    hinata.style.display = "none";//ひなた
+                    kento.style.display = "none";//けんと
+                    riku.style.display = "none";//りく
+                    keisuke.style.display = "block";//けいすけ
+                    break;
+            }
             break;
         }
     }
