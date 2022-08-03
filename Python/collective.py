@@ -11,7 +11,7 @@ import time
 #ループ制御用変数
 ex_years = 5 
 Sub_Ob = 5 
-player = 6 
+player = 6
 
 #dbとの接続・ローテーション別にテーブルから情報を抽出する
 #ダミーデータでの経験年数が1~6表記なのでりくと揃えるときにここを書き換える必要がある
@@ -21,17 +21,17 @@ conn = MySQLdb.connect(
     passwd='Pa22wadoh',
     db='omiai_db')
 cur = conn.cursor()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 1;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 1;")
 data0_db = cur.fetchall()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 2;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 2;")
 data1_db = cur.fetchall()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 3;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 3;")
 data2_db = cur.fetchall()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 4;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 4;")
 data3_db = cur.fetchall()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 5;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 5;")
 data4_db = cur.fetchall()
-cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`,`player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 6;")
+cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 6;")
 data5_db = cur.fetchall()
 conn.commit() #結果を保存・確定する
 
@@ -92,95 +92,103 @@ data4 = pd.DataFrame(data_4,columns=columns)
 data5 = pd.DataFrame(data_5,columns=columns)
 time.sleep(0.2)
 
-
-
 #集合知の計算----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if(length_old == 0): #length_oldがゼロの場合は、まだ1度も集合知の計算を行っていないので、全ての計算を行う
     #rotation 0
-    gene = 0
-    clip = 4
-    counter = 0
-    for h in range(ex_years):
-        for i in range(Sub_Ob):
-            for j in range(player):
-                while(counter == 0):
-                    if((len(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
-                        print("clip=", clip, "len_0=", length_db)
-                        x = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'].mean(),4)
-                        y = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['y'].mean(),4)
-                        counter = 1
-                    else: #現在取得したデータを5つずつ区切って平均を出す
-                        print("clip =", clip)
-                        x = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'][0:clip].mean(),4)
-                        y = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['y'][0:clip].mean(),4)
-                        clip += 5
-                    #insertエラー防止の為の処理！データがnanの場合は0を入れておく-----------------------------------------------------------------
-                    if(np.isnan(x)==True):
-                        x = 0
-                    if(np.isnan(y)==True):
-                        y = 0
-                    #-------------------------------------------------------------------------------------------------------------------------
-                    print(x, y)
-                    cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`, `Sub_Ob`, `player_id`, `x_coordinate`, `y_coordinate`) VALUES (0,%s,%s,%s,%s,%s,%s);',(gene,h,i,j+1,x,y))
+    gene = 0 #世代の数
+    clip = 5  #5人ずつに区切るとき使う変数
+    counter = 0 #while文から抜ける用の条件変数
+    datalist = [] #今回の世代のデータを一時的に格納する
+    x_tmp = [] #今回の世代のx座標を一時的に格納する
+    y_tmp = [] #今回の世代のy座標を一時的に格納する
+    sb_count = [] #0~clipまでの範囲で同じSub_Obを選択した人数をカウント
+    weight = [] #datalistの加重平均を求めるのに使うデータの重み
+
+    for h in range(ex_years): #キー：experience_years
+        for i in range(player): #キー：player_id
+            while(counter == 0):
+                if((len(data0[(data0['ex_years']==h) & (data0['player_id']==i)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
+                    counter = 1
+                else: #現在取得したデータを5つずつ区切ってその中で平均を出す
+                    print("clip =", clip)
+                    print("h=",h, "i=",i)
+                    datalist = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['Sub_Ob'][0:clip]).values.tolist()) #0~clip(初期値は5でその後5ずつ増加)までのex_years = h, player_id = iのときのSub_Ob
+                    print("----------------------------------------------------")
+                    for j in range(clip): #同じSub_Obが選択されている人数をカウント
+                        sb_count.append(datalist.count(datalist[j]))
+                    for k in range(clip): #同じSub_Obを選択した人 ÷ 範囲内全体の人数で重みを算出
+                        weight.append(round(sb_count[k]/clip,4))
+                    x_tmp = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['x'][0:clip]).values.tolist())
+                    y_tmp = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['y'][0:clip]).values.tolist())
+                    x = round((np.average(np.array(x_tmp), weights=np.array(weight))),4)
+                    y = round((np.average(np.array(y_tmp), weights=np.array(weight))),4)
+                    clip += 5
+                    print("datalist = ",datalist)
+                    print("weight = ",weight)
+                    print("x_tmp = ",x_tmp)
+                    print("y_tmp = ", y_tmp)
+                    print("x_mean = ", x)
+                    print("y_mean = ", y)
+                    cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (0,%s,%s,%s,%s,%s);',(gene,h,i,x,y))
                     conn.commit() #結果を保存・確定する
-                    print("rotation=0", "experience_years=",h , "Sub_Ob=",i, "player_id=",j+1, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
+                    print("rotation=0", "experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
+                    datalist = [] #データリストの初期化
+                    sb_count = [] #同じSub_Obを選択した人数の初期化
+                    weight = [] #重みの初期化
                     gene += 1
-                    time.sleep(0.2)
-                counter = 0
-                gene = 0
-                clip = 4
+                    time.sleep(0.5)
+            counter = 0
+            gene = 0
+            clip = 5
+        time.sleep(0.5)
 
-
-
+###-------以下途中----------------------------------------------------------------------------------------------
 if(length_old < length_db): #length_dbよりlength_oldが小さい場合は、前回計算した時からデータ数が増えているので増えた部分についてのみ計算を行う
-    #rotation 0
-    gene = (length_old - 1)
-    clip = ((length_old * 5) - 1)
-    counter = 0
-    for h in range(ex_years):
-        for i in range(Sub_Ob):
-            for j in range(player):
-                while(counter == 0):
-                    if(clip == ((length_old * 5) - 1)): #初回に動く。前回追加したデータの最後の部分は5区切りになっていないので、新しいデータでupdateを行う
-                        print("clip =", clip, "update!!!")
-                        x = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'][0:clip].mean(),4)
-                        y = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['y'][0:clip].mean(),4)
-                        if(np.isnan(x)==True):
-                            x = 0
-                        if(np.isnan(y)==True):
-                            y = 0
-                        cur.execute('UPDATE `collective` SET `x_coordinate`,`y_coordinate` VALUES (%s,%s) WHERE `rotation` = 0 AND `experience_years` = %s AND `Sub_Ob` = %s AND `player_id` =  %s` AND generation` = %s;',(x,y,h,i,j+1,gene))
-                        conn.commit() #結果を保存・確定する
-                        clip += 5
-                    elif((len(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
-                        print("clip=", clip, "len_0=", length_db)
-                        x = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'].mean(),4)
-                        y = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['y'].mean(),4)
-                        if(np.isnan(x)==True):
-                            x = 0
-                        if(np.isnan(y)==True):
-                            y = 0
-                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`, `Sub_Ob`, `player_id`, `x_coordinate`, `y_coordinate`) VALUES (0,%s,%s,%s,%s,%s,%s);',(gene,h,i,j+1,x,y))
-                        conn.commit() #結果を保存・確定する
-                        counter = 1
-                    else: #現在取得したデータを5つずつ区切って平均を出す
-                        print("clip =", clip)
-                        x = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['x'][0:clip].mean(),4)
-                        y = round(data0[(data0['ex_years']==h) & (data0['Sub_Ob']==i) & (data0['player_id']==j)]['y'][0:clip].mean(),4)
-                        if(np.isnan(x)==True):
-                            x = 0
-                        if(np.isnan(y)==True):
-                            y = 0
-                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`, `Sub_Ob`, `player_id`, `x_coordinate`, `y_coordinate`) VALUES (0,%s,%s,%s,%s,%s,%s);',(gene,h,i,j+1,x,y))
-                        conn.commit() #結果を保存・確定する
-                        clip += 5
-                    print(x, y)
-                    print("rotation=0", "experience_years=",h , "Sub_Ob=",i, "player_id=",j+1, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
-                    gene += 1
-                    time.sleep(0.2)
-                counter = 0
-                gene = (length_old - 1)
-                clip = ((length_old * 5) - 1)
+    gene = (length_old + 1) #世代の数
+    clip = ((length_old * 5) + 5)  #5人ずつに区切るとき使う変数
+    counter = 0 #while文から抜ける用の条件変数
+    datalist = [] #今回の世代のデータを一時的に格納する
+    x_tmp = [] #今回の世代のx座標を一時的に格納する
+    y_tmp = [] #今回の世代のy座標を一時的に格納する
+    sb_count = [] #0~clipまでの範囲で同じSub_Obを選択した人数をカウント
+    weight = [] #datalistの加重平均を求めるのに使うデータの重み
 
+    for h in range(ex_years): #キー：experience_years
+        for i in range(player): #キー：player_id
+            while(counter == 0):
+                if((len(data0[(data0['ex_years']==h) & (data0['player_id']==i)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
+                    counter = 1
+                else: #現在取得したデータを5つずつ区切ってその中で平均を出す
+                    print("clip =", clip)
+                    print("h=",h, "i=",i)
+                    datalist = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['Sub_Ob'][0:clip]).values.tolist()) #0~clip(初期値は5でその後5ずつ増加)までのex_years = h, player_id = iのときのSub_Ob
+                    print("----------------------------------------------------")
+                    for j in range(clip): #同じSub_Obが選択されている人数をカウント
+                        sb_count.append(datalist.count(datalist[j]))
+                    for k in range(clip): #同じSub_Obを選択した人 ÷ 範囲内全体の人数で重みを算出
+                        weight.append(round(sb_count[k]/clip,4))
+                    x_tmp = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['x'][0:clip]).values.tolist())
+                    y_tmp = ((data0[(data0['ex_years']==h) & (data0['player_id']==i)]['y'][0:clip]).values.tolist())
+                    x = round((np.average(np.array(x_tmp), weights=np.array(weight))),4)
+                    y = round((np.average(np.array(y_tmp), weights=np.array(weight))),4)
+                    clip += 5
+                    print("datalist = ",datalist)
+                    print("weight = ",weight)
+                    print("x_tmp = ",x_tmp)
+                    print("y_tmp = ", y_tmp)
+                    print("x_mean = ", x)
+                    print("y_mean = ", y)
+                    cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (0,%s,%s,%s,%s,%s);',(gene,h,i,x,y))
+                    conn.commit() #結果を保存・確定する
+                    print("rotation=0", "experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
+                    datalist = [] #データリストの初期化
+                    sb_count = [] #同じSub_Obを選択した人数の初期化
+                    weight = [] #重みの初期化
+                    gene += 1
+                    time.sleep(0.5)
+            counter = 0
+            gene = 0
+            clip = 5
+        time.sleep(0.5)
 
 conn.close() #dbとの接続を閉じる
