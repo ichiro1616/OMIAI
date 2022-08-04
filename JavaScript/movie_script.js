@@ -98,20 +98,23 @@ function movie_time() {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 2 && position == 0) {
-      videoElement.playbackRate = 0.5;
+    if ((stop_time - submit) <= 0.1 && position == 0) {
+      Velement.playbackRate = 0.5;
+      if((stop_time - submit) <= 0.001){
       position = 1;
       STOP = 0;
-      control(1); //controlに1を送る(動画を停止する)
+      control(1,Velement); //controlに1を送る(動画を停止する)
+      }
     }
   });
 }
 
 // 指定フレームで動画を停止させる
-function control(num) {
+function control(num,Velement) {
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
+    Velement.playbackRate = 1.0;
     obj.play();
   } else {
     document.querySelector('[id="0"]').value = "左選手";
