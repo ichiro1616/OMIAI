@@ -94,7 +94,7 @@ function movie_time() {
 
   videoElement = document.getElementById("mv");
   videoElement.addEventListener("timeupdate", function () {
-    submit = videoElement.currentTime;
+    submit = videoElement.currentTime_format6;
     console.log(submit);
 
     if ((stop_time - submit) <= 0.03 && position == 0) {
