@@ -101,14 +101,22 @@ function movie_time() {
     console.log(submit);
 
     if ((stop_time - submit) <= 0.3 && position == 0) {
-      Velement.playbackRate = 0.1;
-      submit = videoElement.currentTime;
-      console.log(submit);
-      if((stop_time - submit) <= 0.001){
-      position = 1;
-      STOP = 0;
-      control(1); //controlに1を送る(動画を停止する)
-      }
+      movie_time_slow(stop_time);
+    }
+  });
+}
+
+function movie_time_slow(stop_time) {
+  videoElement = document.getElementById("mv");
+  Velement = document.querySelector("video");
+  Velement.playbackRate = 0.3;
+  videoElement.addEventListener("timeupdate", function () {
+  submit = videoElement.currentTime;
+  console.log(submit);
+  if((stop_time - submit) <= 0.001){
+    position = 1;
+    STOP = 0;
+    control(1); //controlに1を送る(動画を停止する)
     }
   });
 }
