@@ -100,8 +100,8 @@ function movie_time() {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 0.5 && position == 0) {
-      Velement.playbackRate = 0.2;
+    if ((stop_time - submit) <= 0.3 && position == 0) {
+      Velement.playbackRate = 0.1;
       submit = videoElement.currentTime;
       console.log(submit);
       if((stop_time - submit) <= 0.001){
