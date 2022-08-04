@@ -97,7 +97,7 @@ function movie_time() {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 0.01 && position == 0) {
+    if ((stop_time - submit) <= 0.03 && position == 0) {
       position = 1;
       STOP = 0;
       control(1); //controlに1を送る(動画を停止する)
