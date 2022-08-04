@@ -93,11 +93,13 @@ function movie_time() {
   console.log(stop_time);
 
   videoElement = document.getElementById("mv");
+  Velement = document.querySelector("video");
   videoElement.addEventListener("timeupdate", function () {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 0.05 && position == 0) {
+    if ((stop_time - submit) <= 2 && position == 0) {
+      videoElement.playbackRate = 0.5;
       position = 1;
       STOP = 0;
       control(1); //controlに1を送る(動画を停止する)
