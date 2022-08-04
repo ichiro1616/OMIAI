@@ -82,6 +82,7 @@ function movie_play() {
       movie_time();
     } else {
       Velement = document.querySelector("video");
+      console.log("play");
       Velement.playbackRate = 1.0;
       control(0);
       movie_time();
@@ -99,7 +100,8 @@ function movie_time() {
     if(position == 0){
     submit = videoElement.currentTime;
     console.log(submit);
-    if((stop_time - submit) <= 0.2){
+    if((stop_time - submit) <= 0.25){
+      console.log("slow");
       position = 2;
     }}
     if (position == 2) {
