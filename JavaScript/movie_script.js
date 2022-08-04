@@ -81,6 +81,8 @@ function movie_play() {
       console.log("categorize = ", categorize);
       movie_time();
     } else {
+      Velement = document.querySelector("video");
+      Velement.playbackRate = 1.0;
       control(0);
       movie_time();
     }
@@ -98,7 +100,7 @@ function movie_time() {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 0.1 && position == 0) {
+    if ((stop_time - submit) <= 0.2 && position == 0) {
       Velement.playbackRate = 0.5;
       if((stop_time - submit) <= 0.001){
       position = 1;
@@ -115,7 +117,6 @@ function control(num) {
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
-    Velement.playbackRate = 1.0;
     obj.play();
   } else {
     document.querySelector('[id="0"]').value = "左選手";
