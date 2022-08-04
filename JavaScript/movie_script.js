@@ -103,14 +103,15 @@ function movie_time() {
       if((stop_time - submit) <= 0.001){
       position = 1;
       STOP = 0;
-      control(1,Velement); //controlに1を送る(動画を停止する)
+      control(1); //controlに1を送る(動画を停止する)
       }
     }
   });
 }
 
 // 指定フレームで動画を停止させる
-function control(num,Velement) {
+function control(num) {
+  Velement = document.querySelector("video");
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
