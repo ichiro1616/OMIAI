@@ -100,7 +100,7 @@ function movie_time() {
     if(position == 0){
     submit = videoElement.currentTime;
     console.log(submit);
-    if((stop_time - submit) <= 0.25){
+    if((stop_time - submit) <= 0.28){
       console.log("slow");
       position = 2;
     }}
