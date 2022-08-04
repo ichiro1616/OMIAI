@@ -89,7 +89,7 @@ function movie_play() {
 
 //現在の動画の再生時間を取得する
 function movie_time() {
-  stop_time = data[counter]["stop_time"] / 60;
+  stop_time = data[counter]["stop_time"] / 59;
   console.log(stop_time);
 
   videoElement = document.getElementById("mv");
@@ -97,7 +97,7 @@ function movie_time() {
     submit = videoElement.currentTime;
     console.log(submit);
 
-    if ((stop_time - submit) <= 0.01 && position == 0) {
+    if ((stop_time - submit) <= 0.1 && position == 0) {
       position = 1;
       STOP = 0;
       control(1); //controlに1を送る(動画を停止する)
