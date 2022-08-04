@@ -93,6 +93,7 @@ function movie_time() {
   console.log(stop_time);
 
   videoElement = document.getElementById("mv");
+  console.log(videoElement);
   videoElement.addEventListener("timeupdate", function () {
     submit = videoElement.currentTime;
     // console.log(submit);
