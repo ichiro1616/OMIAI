@@ -2,7 +2,7 @@
 // $id = $_POST['player_id'];
 $dsn = 'mysql:dbname=omiai_db;host=localhost';
 $user = 'root';
-$password = 'naramie';
+$password = 'Pa22wadoh';
 $result = array();
 // $result2 = array();
 
@@ -10,7 +10,7 @@ try {
 $dbh = new PDO($dsn, $user, $password);
 
 // 最新の2550個のレコードを取得
-$sql = "SELECT * FROM `lr.coef_` ORDER BY `lr.coef_id` ASC LIMIT 255";
+$sql = "SELECT * FROM `lr.coef_` ORDER BY `lr.coef_id` DESC LIMIT 255";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
