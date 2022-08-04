@@ -93,30 +93,24 @@ function movie_play() {
 function movie_time() {
   stop_time = data[counter]["stop_time"] / 60;
   console.log(stop_time);
-
   videoElement = document.getElementById("mv");
   Velement = document.querySelector("video");
   videoElement.addEventListener("timeupdate", function () {
+    if(position == 0){
     submit = videoElement.currentTime;
     console.log(submit);
-
-    if ((stop_time - submit) <= 0.3 && position == 0) {
-      movie_time_slow(stop_time);
-    }
-  });
-}
-
-function movie_time_slow(stop_time) {
-  videoElement = document.getElementById("mv");
-  Velement = document.querySelector("video");
-  Velement.playbackRate = 0.3;
-  videoElement.addEventListener("timeupdate", function () {
-  submit = videoElement.currentTime;
-  console.log(submit);
-  if((stop_time - submit) <= 0.001){
-    position = 1;
-    STOP = 0;
-    control(1); //controlに1を送る(動画を停止する)
+    if((stop_time - submit) <= 0.4){
+      position = 2;
+    }}
+    if (position == 2) {
+      Velement.playbackRate = 0.4;
+      submit = videoElement.currentTime;
+      console.log(submit);
+      if((stop_time - submit) <= 0.001){
+      position = 1;
+      STOP = 0;
+      control(1); //controlに1を送る(動画を停止する)
+      }
     }
   });
 }
