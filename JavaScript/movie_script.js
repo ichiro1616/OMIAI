@@ -26,10 +26,26 @@ window.onclick = question(); //ページが開かれたら自動でquestionを�
 function question() {
   video_button.style.display = "none"; //動画を非表示
   experience.style.display = "block"; //経験年数の質問を表示
-
+  output.innerHTML = "3～5年"; //初期値は2
+  
   inputSlideBarElement = document.getElementById("input-range");
   inputSlideBarElement.addEventListener("change", function () {
     experience_years = inputSlideBarElement.value;
+    if(experience_years == 0){
+      output.innerHTML = "未経験";
+    }
+    if(experience_years == 1){
+      output.innerHTML = "1～2年";
+    }
+    if(experience_years == 2){
+      output.innerHTML = "3～5年";
+    }
+    if(experience_years == 3){
+      output.innerHTML = "6～9年";
+    }
+    if(experience_years == 4){
+      output.innerHTML = "10年以上";
+    }
   });
 }
 
