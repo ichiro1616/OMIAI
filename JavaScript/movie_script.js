@@ -100,7 +100,7 @@ function movie_time() {
     if(position == 0){
     submit = videoElement.currentTime;
     console.log(submit);
-    if((stop_time - submit) <= 0.3){
+    if((stop_time - submit) <= 0.35){
       console.log("slow");
       position = 2;
     }}
@@ -225,7 +225,7 @@ function percentage() {
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 2000);
+  setTimeout(movie_play, 1500);
 }
 
 //全ての動画に回答し終えたら動く
