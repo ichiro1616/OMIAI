@@ -68,15 +68,15 @@ data5_db = list(data5_db)
 for counter5 in range (len(data5_db)):
     data_5.append(list(data5_db[counter5]))
 
-#registerテーブルに入っているデータの個数を取得する(どの条件でも同じ個数になるはずなので、代表としてrotation=0,experience_years=0,Sub_Ob=0,player_id=1のものを取り出す)
-cur.execute("SELECT * FROM `register` WHERE `rotation` = 1 AND `experience_years` = 3 AND `Sub_Ob` = 3 AND `player_id` = 1;")
+#registerテーブルに入っているデータの個数を取得する
+cur.execute("SELECT * FROM `register` WHERE `player_id` = 1;")
 length = cur.fetchall()
 conn.commit() #結果を保存・確定する
 length = len(length) #データの個数を取得
 length_db = length//5 #5人につき1世代なので、何世代分のデータがあるのかを計算する
 print("length_db=", length_db)
-#collectiveテーブルに既に入っているデータの個数を取得する(どの条件でも同じ個数になるはずなので、代表としてrotation=0,experience_years=0,Aub_Ob=0,player_id=1のものを取り出す)
-cur.execute("SELECT * FROM `collective` WHERE `rotation` = 0 AND `experience_years` = 0 AND `Sub_Ob` = 0 AND `player_id` = 1;")
+#collectiveテーブルに既に入っているデータの個数を取得する
+cur.execute("SELECT * FROM `collective` WHERE `player_id` = 1;")
 length_old = cur.fetchall()
 conn.commit() #結果を保存・確定する
 length_old = len(length_old) #データの個数を取得
@@ -144,18 +144,24 @@ if(length_old == 0): #length_oldがゼロの場合は、まだ1度も集合知�
 
 ###-------以下途中----------------------------------------------------------------------------------------------
 if(length_old < length_db): #length_dbよりlength_oldが小さい場合は、前回計算した時からデータ数が増えているので増えた部分についてのみ計算を行う
-    gene = (length_old + 1) #世代の数
-    clip = ((length_old * 5) + 5)  #5人ずつに区切るとき使う変数
     counter = 0 #while文から抜ける用の条件変数
     datalist = [] #今回の世代のデータを一時的に格納する
     x_tmp = [] #今回の世代のx座標を一時的に格納する
     y_tmp = [] #今回の世代のy座標を一時的に格納する
     sb_count = [] #0~clipまでの範囲で同じSub_Obを選択した人数をカウント
     weight = [] #datalistの加重平均を求めるのに使うデータの重み
+    flug = 0 #世代計算用のフラグ
 
     for h in range(ex_years): #キー：experience_years
         for i in range(player): #キー：player_id
             while(counter == 0):
+                if(flug == 0):
+                    cur.execute("SELECT `generation` FROM `collective` WHERE `rotation` = %s AND `experience_years` = %s AND `player_id` = %s;",(0,h,i))
+                    gene = cur.fetchall()
+                    print(gene)
+                    gene += 1
+                    clip = (gene*5)
+                    flug = 1
                 if((len(data0[(data0['ex_years']==h) & (data0['player_id']==i)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
                     counter = 1
                 else: #現在取得したデータを5つずつ区切ってその中で平均を出す
@@ -187,7 +193,7 @@ if(length_old < length_db): #length_dbよりlength_oldが小さい場合は、�
                     gene += 1
                     time.sleep(0.5)
             counter = 0
-            gene = 0
+            flug = 0
             clip = 5
         time.sleep(0.5)
 
