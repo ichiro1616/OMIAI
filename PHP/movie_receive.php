@@ -4,7 +4,7 @@ $dsn = 'mysql:dbname=omiai_db;host=localhost';
 $user = 'root';
 $password = 'Pa22wadoh';
 
-$cate_num = 7; //動画の総数
+$cate_num = 27; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ
 $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
@@ -38,7 +38,7 @@ try{
         }
     }
 
-while(count($c)<5){
+while(count($c)<3){
     $ppp = count(array_keys($count,min($count)));
     for($i = 0; $i <$ppp; $i++){
         array_push($c,array_keys($count,min($count))[$i]);
@@ -48,8 +48,8 @@ while(count($c)<5){
     }
 }
 
-//回答がある場合は回答が特に少ない順に5つの動画を取り出す
-for($i=0;$i<5;$i++){
+//回答がある場合は回答が特に少ない順に3つの動画を取り出す
+for($i=0;$i<3;$i++){
     $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s';", $c[$i]+1);
     $stmt = $dbh->query($sql);
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
