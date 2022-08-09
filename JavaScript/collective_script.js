@@ -1,3 +1,60 @@
+// コマの座標（中心基準）:１ローテ目だけ
+let imagearray_center = 
+[
+  {
+    x: 50,
+    y: 10,
+  },
+  {
+    x: 460,
+    y: 370,
+  },
+  {
+    x: 760,
+    y: 370,
+  },
+  {
+    x: 620,
+    y: 600,
+  },
+  {
+    x: 310,
+    y: 600,
+  },
+  {
+    x: 160,
+    y: 370,
+  }
+]
+// コマの座標（左上基準）:１ローテ目だけ
+let imagearray = [
+  {
+    x: 50,
+    y: 10,
+  },
+  {
+    x: 460,
+    y: 370,
+  },
+  {
+    x: 760,
+    y: 370,
+  },
+  {
+    x: 620,
+    y: 600,
+  },
+  {
+    x: 310,
+    y: 600,
+  },
+  {
+    x: 160,
+    y: 370,
+  },
+]
+
+
 //経験年数選択バーの実装
 //dbから配置データを抽出
 //集合知計算functionを作成
@@ -60,6 +117,56 @@ function canvas_draw(){
     ot_ctx5.strokeRect(0,0,canvas_line,canvas_line);
     ot_ctx6.strokeRect(0,0,canvas_line,canvas_line);
 }
+
+const srcs = [
+  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
+  '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
+  '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
+  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
+  '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
+  '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
+];
+
+let images = new Array(6); //要素数6の配列imagesを作成
+for(var i = 0; i < 6; i++){
+  images[i] = new Image();
+}
+let size = 2.0; //メイン画面のコマの大きさの倍率
+let koma_w = 100; //コマの横幅
+let koma_h = 100; //コマの高さ
+
+// コマの中心の座標を用意
+for(var i in imagearray){
+  imagearray_center[i].x += koma_w / 2 * size;
+  imagearray_center[i].y += koma_h / 2 * size;
+}
+
+window.addEventListener('DOMContentLoaded',() => {
+  for(let i = 0; i < 6; i++){
+      my_ctx1.drawImage(images[i],imagearray[i].x,imagearray[i].y, koma_w * size, koma_h * size)
+  }
+
+  // 画像を読み込み終わってからソースを取得する
+  for(var i = 0; i < 6; i++){
+    images[i].src = srcs[i];
+  }
+});
+
+// 画像を表示する
+function draw(){
+  my_ctx1.clearRect(0,0,my_can1.width,my_can1.height);
+
+  for(var i in images){
+    let x = imagearray[i].x;
+    let y = imagearray[i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+
+    my_ctx1.drawImage(images[i],x,y,w,h)
+  }
+}
+
+
 
 //経験年数
 inputSliderEle = document.getElementById('experience_years');
