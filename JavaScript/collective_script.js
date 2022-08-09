@@ -1,5 +1,6 @@
 // コマの座標（左上基準）:１ローテ目だけ
 let imagearray = [
+  [
   {
     x: 10,
     y: 10,
@@ -24,8 +25,138 @@ let imagearray = [
     x: 45,
     y: 100,
   },
+  ],
+  [
+    {
+      x: 10,
+      y: 10,
+    },
+    {
+      x: 145,
+      y: 100,
+    },
+    {
+      x: 245,
+      y: 100,
+    },
+    {
+      x: 195,
+      y: 180,
+    },
+    {
+      x: 95,
+      y: 180,
+    },
+    {
+      x: 45,
+      y: 100,
+    },
+  ],
+  [
+    {
+      x: 10,
+      y: 10,
+    },
+    {
+      x: 145,
+      y: 100,
+    },
+    {
+      x: 245,
+      y: 100,
+    },
+    {
+      x: 195,
+      y: 180,
+    },
+    {
+      x: 95,
+      y: 180,
+    },
+    {
+      x: 45,
+      y: 100,
+    },
+  ],
+  [
+    {
+      x: 10,
+      y: 10,
+    },
+    {
+      x: 145,
+      y: 100,
+    },
+    {
+      x: 245,
+      y: 100,
+    },
+    {
+      x: 195,
+      y: 180,
+    },
+    {
+      x: 95,
+      y: 180,
+    },
+    {
+      x: 45,
+      y: 100,
+    },
+  ],
+  [
+    {
+      x: 10,
+      y: 10,
+    },
+    {
+      x: 145,
+      y: 100,
+    },
+    {
+      x: 245,
+      y: 100,
+    },
+    {
+      x: 195,
+      y: 180,
+    },
+    {
+      x: 95,
+      y: 180,
+    },
+    {
+      x: 45,
+      y: 100,
+    },
+  ],
+  [
+    {
+      x: 10,
+      y: 10,
+    },
+    {
+      x: 145,
+      y: 100,
+    },
+    {
+      x: 245,
+      y: 100,
+    },
+    {
+      x: 195,
+      y: 180,
+    },
+    {
+      x: 95,
+      y: 180,
+    },
+    {
+      x: 45,
+      y: 100,
+    },
+  ],
 ]
-
 
 //経験年数選択バーの実装
 //dbから配置データを抽出
@@ -91,50 +222,163 @@ function canvas_draw(){
 }
 
 const srcs = [
+ [
   '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
   '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
   '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
   '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
   '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
   '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
+ ], // 
+ [
+  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
+  '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
+  '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
+  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
+  '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
+  '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
+ ],
+//ローテーション2
+ [
+  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
+  '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
+  '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
+  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
+  '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
+  '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
+ ],
+  //ローテーション3
+ [
+    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
+    '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
+    '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
+    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
+    '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
+    '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
+ ],
+  //ローテーション4
+ [
+    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
+    '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
+    '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
+    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
+    '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
+    '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
+ ],
+ //ローテーション5
+ [
+    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
+    '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
+    '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
+    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
+    '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
+    '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
+ ],
 ];
 
 let images = new Array(6); //要素数6の配列imagesを作成
 for(var i = 0; i < 6; i++){
-  images[i] = new Image();
+  images[i] = new Array(6).fill(0);
 }
+for(var i = 0; i< 6; i++){ //ローテーション
+  for(var j = 0; j < 6; j++){ //コマ番号
+      images[i][j] = new Image();
+  }
+}
+
 let size = 2.0; //メイン画面のコマの大きさの倍率
 let koma_w = 32; //コマの横幅
 let koma_h = 32; //コマの高さ
 
 window.addEventListener('DOMContentLoaded',() => {
   for(let i = 0; i < 6; i++){
-    images[i].addEventListener('load',() =>{
-      my_ctx1.drawImage(images[i],imagearray[i].x,imagearray[i].y, koma_w * size, koma_h * size)
+    images[0][i].addEventListener('load',() =>{
+      my_ctx1.drawImage(images[0][i],imagearray[0][i].x,imagearray[0][i].y, koma_w * size, koma_h * size)
   })
+  }
+  for (let i = 0; i < 6; i++) {
+    images[1][i].addEventListener('load', () => {
+      my_ctx2.drawImage(images[1][i], imagearray[1][i].x, imagearray[1][i].y, koma_w * size, koma_h * size)
+    })
+  }
+  for (let i = 0; i < 6; i++) {
+    images[2][i].addEventListener('load', () => {
+      my_ctx3.drawImage(images[2][i], imagearray[2][i].x, imagearray[2][i].y, koma_w * size, koma_h * size)
+    })
+  }
+  for (let i = 0; i < 6; i++) {
+    images[3][i].addEventListener('load', () => {
+      my_ctx4.drawImage(images[3][i], imagearray[3][i].x, imagearray[3][i].y, koma_w * size, koma_h * size)
+    })
+  }
+  for (let i = 0; i < 6; i++) {
+    images[4][i].addEventListener('load', () => {
+      my_ctx5.drawImage(images[4][i], imagearray[4][i].x, imagearray[4][i].y, koma_w * size, koma_h * size)
+    })
+  }
+  for (let i = 0; i < 6; i++) {
+    images[5][i].addEventListener('load', () => {
+      my_ctx6.drawImage(images[5][i], imagearray[5][i].x, imagearray[5][i].y, koma_w * size, koma_h * size)
+    })
   }
   // 画像を読み込み終わってからソースを取得する
   for(var i = 0; i < 6; i++){
-    images[i].src = srcs[i];
+    for(var j = 0; j < 6; j++)
+    images[i][j].src = srcs[i][j];
   }
 });
 
 // 画像を表示する
 function draw(){
   my_ctx1.clearRect(0,0,my_can1.width,my_can1.height);
-
   for(var i in images){
-    let x = imagearray[i].x;
-    let y = imagearray[i].y;
+    let x = imagearray[0][i].x;
+    let y = imagearray[0][i].y;
     let w = koma_w * size;
     let h = koma_h * size;
-
-    my_ctx1.drawImage(images[i],x,y,w,h)
+    my_ctx1.drawImage(images[0][i],x,y,w,h);
+  }
+  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
+  for (var i in images) {
+    let x = imagearray[1][i].x;
+    let y = imagearray[1][i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+    my_ctx2.drawImage(images[1][i], x, y, w, h);
+  }
+  my_ctx3.clearRect(0, 0, my_can3.width, my_can3.height);
+  for (var i in images) {
+    let x = imagearray[2][i].x;
+    let y = imagearray[2][i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+    my_ctx3.drawImage(images[2][i], x, y, w, h);
+  }
+  my_ctx4.clearRect(0, 0, my_can4.width, my_can4.height);
+  for (var i in images) {
+    let x = imagearray[3][i].x;
+    let y = imagearray[3][i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+    my_ctx4.drawImage(images[3][i], x, y, w, h);
+  }
+  my_ctx5.clearRect(0, 0, my_can5.width, my_can5.height);
+  for (var i in images) {
+    let x = imagearray[4][i].x;
+    let y = imagearray[4][i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+    my_ctx5.drawImage(images[4][i], x, y, w, h);
+  }
+  my_ctx6.clearRect(0, 0, my_can6.width, my_can6.height);
+  for (var i in images) {
+    let x = imagearray[5][i].x;
+    let y = imagearray[5][i].y;
+    let w = koma_w * size;
+    let h = koma_h * size;
+    my_ctx6.drawImage(images[5][i], x, y, w, h);
   }
 }
-
-
-
 //経験年数
 inputSliderEle = document.getElementById('experience_years');
 inputSliderEle.addEventListener('change', function(){
