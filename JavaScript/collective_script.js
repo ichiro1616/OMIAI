@@ -1,56 +1,28 @@
-// コマの座標（中心基準）:１ローテ目だけ
-let imagearray_center = 
-[
-  {
-    x: 50,
-    y: 10,
-  },
-  {
-    x: 460,
-    y: 370,
-  },
-  {
-    x: 760,
-    y: 370,
-  },
-  {
-    x: 620,
-    y: 600,
-  },
-  {
-    x: 310,
-    y: 600,
-  },
-  {
-    x: 160,
-    y: 370,
-  }
-]
 // コマの座標（左上基準）:１ローテ目だけ
 let imagearray = [
   {
-    x: 50,
+    x: 10,
     y: 10,
   },
   {
-    x: 460,
-    y: 370,
+    x: 145,
+    y:100,
   },
   {
-    x: 760,
-    y: 370,
+    x: 245,
+    y: 100,
   },
   {
-    x: 620,
-    y: 600,
+    x: 195,
+    y: 180,
   },
   {
-    x: 310,
-    y: 600,
+    x: 95,
+    y: 180,
   },
   {
-    x: 160,
-    y: 370,
+    x: 45,
+    y: 100,
   },
 ]
 
@@ -132,20 +104,15 @@ for(var i = 0; i < 6; i++){
   images[i] = new Image();
 }
 let size = 2.0; //メイン画面のコマの大きさの倍率
-let koma_w = 100; //コマの横幅
-let koma_h = 100; //コマの高さ
-
-// コマの中心の座標を用意
-for(var i in imagearray){
-  imagearray_center[i].x += koma_w / 2 * size;
-  imagearray_center[i].y += koma_h / 2 * size;
-}
+let koma_w = 32; //コマの横幅
+let koma_h = 32; //コマの高さ
 
 window.addEventListener('DOMContentLoaded',() => {
   for(let i = 0; i < 6; i++){
+    images[i].addEventListener('load',() =>{
       my_ctx1.drawImage(images[i],imagearray[i].x,imagearray[i].y, koma_w * size, koma_h * size)
+  })
   }
-
   // 画像を読み込み終わってからソースを取得する
   for(var i = 0; i < 6; i++){
     images[i].src = srcs[i];
