@@ -1,4 +1,4 @@
-// コマの座標（左上基準）:１ローテ目だけ
+// コマの座標（左上基準）
 let imagearray = [
   [
   {
@@ -379,6 +379,7 @@ function draw(){
     my_ctx6.drawImage(images[5][i], x, y, w, h);
   }
 }
+
 //経験年数
 inputSliderEle = document.getElementById('experience_years');
 inputSliderEle.addEventListener('change', function(){
@@ -393,8 +394,8 @@ inputSlideBarElement.addEventListener('change', function(){
     console.log(generation);
 });
 
-// dbのmovieテーブルからデータを取得する
-function register_db(){
+// dbのregisterテーブルからデータを取得する
+// function register_db(){
     console.log("db内の情報を参照します。"); 
     formData = new FormData();
     xhr = new XMLHttpRequest();
@@ -408,10 +409,9 @@ function register_db(){
         } else {
           data = data_keep;
           console.log(data);
-          movie_play();
         }        
       }
     });
     xhr.send(formData);
-  }
+  // }
   output.innerHTML = '未経験の' + "集合知";
