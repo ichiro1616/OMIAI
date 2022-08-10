@@ -31,10 +31,10 @@ function question() {
   video_button.style.display = "none"; //動画を非表示
   //experience.style.display = "block"; //経験年数の質問を表示
   document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
-  
   inputSlideBarElement = document.getElementById("input-range");
   inputSlideBarElement.addEventListener("change", function () {
     experience_years = inputSlideBarElement.value;
+    console.log(experience_years);
   });
 }
 
@@ -132,8 +132,8 @@ function control(num) {
   if (n == 0) {
     obj.play();
   } else {
-    document.querySelector('[id="0"]').value = "左選手";
-    document.querySelector('[id="1"]').value = "右選手";
+    document.querySelector('[id="0"]').value = "⇦";
+    document.querySelector('[id="1"]').value = "⇨";
     document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
     obj.pause(); //動画を停止させる
     console.log("一時停止");
