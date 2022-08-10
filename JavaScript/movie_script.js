@@ -15,6 +15,17 @@ buttons.style.display = "none"; //ボタンはデフォルトで非表示
 end.style.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
+//データの送信時、phpで受け取れる形に変換する
+function EncodeHTMLForm(data) {
+  var params = [];
+  for (var name in data) {
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, "+") + "=" + encodeURIComponent(value).replace(/%20/g, "+");
+    params.push(param);
+  }
+  return params.join("&");
+}
+
 //バレーボールの経験年数をきく
 function question() {
   video_button.style.display = "none"; //動画を非表示
@@ -33,10 +44,11 @@ function movie_db() {
   console.log("経験年数 = ", experience_years);
   video_button.style.display = "block";
   experience.style.display = "none";
-  formData = new FormData();
+  form = new FormData();
+  form.append("experience_years", experience_years);
   xhr = new XMLHttpRequest();
-  xhr.open("GET", "/PHP/movie_receive.php");
-  xhr.addEventListener("loadend", function (data_keep) {
+  xhr.open("POST", "/PHP/movie_receive.php");
+  xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
       data_keep = JSON.parse(xhr.response);
       console.log(data_keep);
@@ -49,7 +61,8 @@ function movie_db() {
       }
     }
   });
-  xhr.send(formData);
+  console.log("form=",form);
+  xhr.send(form);
 }
 
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
@@ -125,17 +138,6 @@ function control(num) {
     obj.pause(); //動画を停止させる
     console.log("一時停止");
   }
-}
-
-function EncodeHTMLForm(data) {
-  //データの送信時、phpで受け取れる形に変換する
-  var params = [];
-  for (var name in data) {
-    var value = data[name];
-    var param = encodeURIComponent(name).replace(/%20/g, "+") + "=" + encodeURIComponent(value).replace(/%20/g, "+");
-    params.push(param);
-  }
-  return params.join("&");
 }
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
