@@ -26,7 +26,6 @@ try{
     //選択された経験年数のうちで、回答数が少ない順にidとcategorizeを取り出す
     $STMT = $dbh->query($sql);
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($_DATA);
     foreach($_DATA as $D){
         $TMP = array(
             "m_id" => $D['movie_id'],
@@ -34,7 +33,6 @@ try{
             "m_count" => $D['COUNT(movie_categorize)']
         );
         $DATA[]=$TMP;}
-    var_dump($DATA);
     //registerテーブルが空だったときでも正常に動くようにする処理(回答数がnullの場所に0を入れる)
     for($i = 0; $i < $cate_num; $i++){
         //データが$i番目の時にm_cateがfalseであれば、回答データは存在しないのでcountに0を入れる
@@ -56,7 +54,6 @@ while(count($c)<3){
         $count[$c[$i]] = 100000;
     }
 }
-var_dump($count);
 
 //回答がある場合は回答が特に少ない順に3つの動画を取り出す
 for($i=0;$i<3;$i++){
