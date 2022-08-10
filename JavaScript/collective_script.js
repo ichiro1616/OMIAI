@@ -286,11 +286,53 @@ for(var i = 0; i< 6; i++){ //ローテーション
   }
 }
 
+let imagearray_data_x = new Array(6);
+let imagearray_data_y = new Array(6);
 let size = 2.0; //メイン画面のコマの大きさの倍率
 let koma_w = 32; //コマの横幅
 let koma_h = 32; //コマの高さ
 
-window.addEventListener('DOMContentLoaded',() => {
+//経験年数
+inputSliderEle = document.getElementById('experience_years');
+inputSliderEle.addEventListener('change', function(){
+    experience_years = inputSliderEle.value;
+    console.log(experience_years);
+});
+
+//世代別表示
+inputSlideBarElement = document.getElementById('generation');
+inputSlideBarElement.addEventListener('change', function(){
+    generation = inputSlideBarElement.value;
+    console.log(generation);
+});
+
+// dbのregisterテーブルからデータを取得する
+// function register_db(){
+    console.log("db内の情報を参照します。"); 
+    formData = new FormData();
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", "/PHP/register_receive.php");
+    xhr.addEventListener("loadend", function (data_keep) {
+      if (xhr.status === 200) {
+        data_keep = JSON.parse(xhr.response);
+        console.log(data_keep);
+        for(var i = 0; i < 6; i++){
+        imagearray_data_x[i] = data_keep[i].x_coordinate
+        imagearray_data_y[i] = data_keep[i].y_coordinate
+        }
+        if (xhr.response === "error") {
+          console.log("通信に失敗しました");
+        } else {
+          data = data_keep;
+          console.log(data);
+        }        
+      }
+    });
+    xhr.send(formData);
+  // }
+  output.innerHTML = '未経験の' + "集合知";
+
+  window.addEventListener('DOMContentLoaded',() => {
   for(let i = 0; i < 6; i++){
     images[0][i].addEventListener('load',() =>{
       my_ctx1.drawImage(images[0][i],imagearray[0][i].x,imagearray[0][i].y, koma_w * size, koma_h * size)
@@ -379,39 +421,3 @@ function draw(){
     my_ctx6.drawImage(images[5][i], x, y, w, h);
   }
 }
-
-//経験年数
-inputSliderEle = document.getElementById('experience_years');
-inputSliderEle.addEventListener('change', function(){
-    experience_years = inputSliderEle.value;
-    console.log(experience_years);
-});
-
-//世代別表示
-inputSlideBarElement = document.getElementById('generation');
-inputSlideBarElement.addEventListener('change', function(){
-    generation = inputSlideBarElement.value;
-    console.log(generation);
-});
-
-// dbのregisterテーブルからデータを取得する
-// function register_db(){
-    console.log("db内の情報を参照します。"); 
-    formData = new FormData();
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", "/PHP/register_receive.php");
-    xhr.addEventListener("loadend", function (data_keep) {
-      if (xhr.status === 200) {
-        data_keep = JSON.parse(xhr.response);
-        console.log(data_keep);
-        if (xhr.response === "error") {
-          console.log("通信に失敗しました");
-        } else {
-          data = data_keep;
-          console.log(data);
-        }        
-      }
-    });
-    xhr.send(formData);
-  // }
-  output.innerHTML = '未経験の' + "集合知";
