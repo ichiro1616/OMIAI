@@ -1,11 +1,4 @@
 //担当：上村
-//1.questionで経験年数を聞くdivを表示。選択されたらexperience_yearsに格納し、divを非表示にする。
-//2.movie_dbでdb内の全てのデータを取得してdataに格納する。
-//3.movie_playで取り出してきたmovieの再生を行う。
-//  (今まで再生していた動画とmovie_categorizeが異なる場合は新しい動画を読み込み、同じ場合はmovie_timeに飛ぶ。)
-//4.movie_timeで動画の現在の再生時間を取得し続ける。stop_timeの位置になったらcontrolに飛んで動画の停止をし、ボタンを表示させる。
-//5.ボタンが押されたら結果・情報をdbに送信し、controlに飛んで動画の再開をする。
-//6.動画の再開をしたらまたmovie_playに飛び3~6を繰り返す。
 
 let counter = 0;
 let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
@@ -25,27 +18,12 @@ window.onclick = question(); //ページが開かれたら自動でquestionを�
 //バレーボールの経験年数をきく
 function question() {
   video_button.style.display = "none"; //動画を非表示
-  experience.style.display = "block"; //経験年数の質問を表示
-  output.innerHTML = "3～5年"; //初期値は2
+  //experience.style.display = "block"; //経験年数の質問を表示
+  document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
   
   inputSlideBarElement = document.getElementById("input-range");
   inputSlideBarElement.addEventListener("change", function () {
     experience_years = inputSlideBarElement.value;
-    if(experience_years == 0){
-      output.innerHTML = "未経験";
-    }
-    if(experience_years == 1){
-      output.innerHTML = "1～2年";
-    }
-    if(experience_years == 2){
-      output.innerHTML = "3～5年";
-    }
-    if(experience_years == 3){
-      output.innerHTML = "6～9年";
-    }
-    if(experience_years == 4){
-      output.innerHTML = "10年以上";
-    }
   });
 }
 
