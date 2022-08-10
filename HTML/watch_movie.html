@@ -32,7 +32,7 @@
     </div>
 
     <div id="video_button">
-      <div class="video-window">
+      <div id="video-window">
       <!-- ビデオの再生 -->
       <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg">
         <source src="" id="video" preload controls muted autoplay playinline loop />
@@ -41,17 +41,20 @@
       <!--ボタンの設置  -->
       <form>
         <div id="buttons">
-          <input type="button" class="button-1" value="左選手" id="0" onclick="choose(this);" />
-          <input type="button" class="button-2" value="右選手" id="1" onclick="choose(this);" />
+          <input type="button" class="button-1" value="←" id="0" onclick="choose(this);" />
+          <input type="button" class="button-2" value="→" id="1" onclick="choose(this);" />
         </div>
       </form>
     </div>
     </div>
 
     <!-- すべての動画に回答し終えたら -->
-    <div id="end">全てに回答しました！</br>
+    <div id="end">
+    <div id="end-content">
+    <p>全てに回答しました！</p>
     <button type="button" onclick="location.href = '/HTML/O-MIAI.html' " class="rtn">メインページへ戻る</button></div>
     <script type="text/javascript" src="/JavaScript/movie_script.js"></script>
+    </div>
     </div>
   </body>
 </html>
