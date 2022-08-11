@@ -14,18 +14,24 @@ import MySQLdb
 # df2 = df[['ball_x', 'ball_y']]
 
 encoding = locale.getpreferredencoding()
-# csvname = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/anzai_riku/trans_anzai_riku_220614_01.csv'] #ここに全部のcsvファイルを書く
-riku_kento = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/anzai_riku/trans_anzai_riku_220614_01.csv'] 
-riku_keisuke = ['../Python/riku_kento/trans_riku_kento_220614_01.csv', '../Python/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220614_01.csv']
-kento_keisuke = []
-hinata_riku = []
-hinata_kento = []
-hinata_keisuke = []
-anzai_riku = []
-anzai_kento = []
-anzai_keisuke = []
-anzai_hinata = []
-pattern = [riku_kento, riku_keisuke, kento_keisuke, hinata_riku, hinata_kento, hinata_keisuke, anzai_riku, anzai_kento, anzai_keisuke, anzai_hinata]
+anzai_hinata = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
+anzai_keisuke = ['../Python/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220617_03.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220620_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03.csv']#安西-けいすけ
+anzai_kento = ['../Python/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/anzai_kento/trans_anzai_kento_220617_03.csv', '../Python/anzai_kento/trans_anzai_kento_220620_02.csv', '../Python/anzai_kento/trans_anzai_kento_220627_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_01(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_01.csv', '../Python/anzai_kento/trans_anzai_kento_220628_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_03(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_03.csv']#安西-けんと
+anzai_riku = ['../Python/anzai_riku/trans_anzai_riku_220614_01.csv ', '../Python/anzai_riku/trans_anzai_riku_220617_03.csv', '../Python/anzai_riku/trans_anzai_riku_220620_02.csv', '../Python/anzai_riku/trans_anzai_riku_220627_01(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_01.csv', '../Python/anzai_riku/trans_anzai_riku_220627_02(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_02.csv', '../Python/anzai_riku/trans_anzai_riku_220628_03(2).csv', '../Python/anzai_riku/trans_anzai_riku_220628_03.csv']#安西-りく
+hinata_keisuke = ['../Python/hinata_keisuke/trans_hinata_keisuke_220614_01.csv ', '../Python/hinata_keisuke/trans_hinata_keisuke_220617_03.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220620_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220628_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03.csv']#ひなた-けいすけ
+hinata_kento = ['../Python/hianta_kento/trans_hianta_kento_220614_01.csv ', '../Python/hianta_kento/trans_hianta_kento_220617_03.csv', '../Python/hianta_kento/trans_hianta_kento_220628_01.csv', '../Python/hianta_kento/trans_hianta_kento_220705_01.csv', '../Python/hianta_kento/trans_hianta_kento_220705_02(2).csv', '../Python/hianta_kento/trans_hianta_kento_220705_02.csv', '../Python/hianta_kento/trans_hianta_kento_220705_03(2).csv', '../Python/hianta_kento/trans_hianta_kento_220705_03.csv', '../Python/hianta_kento/trans_hianta_kento_220729_02.csv']#ひなた-けいすけ
+hinata_riku = ['../Python/hianta_riku/trans_hianta_riku_220614_01.csv ', '../Python/hianta_riku/trans_hianta_riku_220617_03.csv', '../Python/hianta_riku/trans_hianta_riku_220620_02.csv', '../Python/hianta_riku/trans_hianta_riku_220627_01.csv', '../Python/hianta_riku/trans_hianta_riku_220705_01.csv', '../Python/hianta_riku/trans_hianta_riku_220705_02(2).csv', '../Python/hianta_riku/trans_hianta_riku_220705_02.csv', '../Python/hianta_riku/trans_hianta_riku_220705_03(2).csv', '../Python/hianta_riku/trans_hianta_riku_220705_03.csv']#ひなた-りく
+keisuke_kento = ['../Python/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
+keisuke_riku = ['../Python/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
+kento_riku = ['../Python/kento_riku/trans_kento_riku_220614_01.csv ', '../Python/kento_riku/trans_kento_riku_220617_03.csv', '../Python/kento_riku/trans_kento_riku_220628_01.csv', '../Python/kento_riku/trans_kento_riku_220705_01.csv', '../Python/kento_riku/trans_kento_riku_220705_02(2).csv', '../Python/kento_riku/trans_kento_riku_220705_02.csv', '../Python/kento_riku/trans_kento_riku_220705_03(2).csv', '../Python/kento_riku/trans_kento_riku_220705_03.csv', '../Python/kento_riku/trans_kento_riku_220729_02.csv']#けんと-りく
+
+pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, kento_riku]
+# csvname = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #ここに複数のcsvファイルを書く
+
+
+
+
+
 
 
 #配列に選手2人の組み合わせ10通りを記入し、それごとにcsvnameからdfで集めて、for文で機械学習させる
@@ -84,18 +90,18 @@ for i,csvname in enumerate(pattern):
         # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
         for row in answer_array:
             gain_array.append(row)
-        # print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
+        print("gain_arrayyyyyyyyyy",gain_array, len(gain_array), len(answer_array))
 
 
-        for i in movie_id_array:  #targetを決めている。経験年数を加味して決めないといけない。
+        for i in movie_id_array:  #targetを決めている。
             judge_array = []
             for row in gain_array:
                 # print("row",row)
                 if row[1] == i:
-                    judge_array.append(row[4])
+                    judge_array.append(row[5])
             zero_count = judge_array.count(0)
             one_count = judge_array.count(1)
-            print(zero_count, one_count)
+            print(zero_count, one_count, "movie_id", i)
             if zero_count / (len(judge_array)) > 0.6:  ##answerテーブルに値がないとエラーが起きてしまうので、あらかじめ、動画閲覧ページでanswerテーブルに全動画の値を入れておく
                 target_array.append(0)
             elif one_count /  (len(judge_array)) > 0.6:

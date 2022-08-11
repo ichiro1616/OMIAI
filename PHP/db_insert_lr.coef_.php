@@ -7,7 +7,7 @@ $time_stamp = date("Y-m-d H:i:s");
 
 $mysqli = new mysqli("localhost", "root", "", "omiai_db");
           
-
+ini_set("max_execution_time",600);
 
 
 if (!$mysqli) {
