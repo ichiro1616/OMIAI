@@ -307,15 +307,17 @@ inputSlideBarElement.addEventListener('change', function(){
 });
 
 // dbのregisterテーブルからデータを取得する
-// function register_db(){
+function register_db(){
     console.log("db内の情報を参照します。"); 
     formData = new FormData();
     xhr = new XMLHttpRequest();
     xhr.open("GET", "/PHP/register_receive.php");
     xhr.addEventListener("loadend", function (data_keep) {
       if (xhr.status === 200) {
+
         data_keep = JSON.parse(xhr.response);
         console.log(data_keep);
+
         for(var i = 0; i < 6; i++){
         imagearray_data_x[i] = data_keep[i].x_coordinate
         imagearray_data_y[i] = data_keep[i].y_coordinate
@@ -325,11 +327,13 @@ inputSlideBarElement.addEventListener('change', function(){
         } else {
           data = data_keep;
           console.log(data);
-        }        
+        }       
+        console.log(imagearray_data_x,imagearray_data_y)
       }
     });
     xhr.send(formData);
-  // }
+  }
+
   output.innerHTML = '未経験の' + "集合知";
 
   window.addEventListener('DOMContentLoaded',() => {

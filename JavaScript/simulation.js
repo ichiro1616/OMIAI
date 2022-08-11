@@ -1504,8 +1504,9 @@ function rotation() {
 
 //登録ボタンを押したときの処理
 document.getElementById("register_btn").onclick = function () {
-    for (var i = 0; i < 6; i++) {//ローテーション0~5
-        for (var j = 0; j < 6; j++) {//コマ番号1~6
+  
+    for (var i = 0; i <= 5; i++) {//ローテーション0~5
+        for (var j = 0; j <= 5; j++) {//コマ番号1~6
             let formData = new FormData();
             formData.append("experience_years", experience_years);
             formData.append("subject_object_level", subject_object_level);
@@ -1513,6 +1514,7 @@ document.getElementById("register_btn").onclick = function () {
             formData.append("player_number", j + 1);
             formData.append("player0_x", imagearray[i][j].x);
             formData.append("player0_y", imagearray[i][j].y);
+            console.log(j)
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "../PHP/sample.php");
             xhr.addEventListener("loadend", function () {
@@ -1520,6 +1522,7 @@ document.getElementById("register_btn").onclick = function () {
                     if (xhr.response === "error") {
                         console.log("登録に失敗しました");
                     } else {
+                        
                         console.log("データを登録しました!");
                     }
                 }
