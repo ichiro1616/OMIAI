@@ -5,8 +5,18 @@ date_default_timezone_set('Asia/Tokyo');
 $time_stamp = date("Y-m-d H:i:s");
 
 
-$mysqli = new mysqli("localhost", "root", "", "omiai_db");
+include 'db_config.php';
+// $mysqli = new mysqli("localhost", "root", "", "omiai_db");
+$sprit_host = explode("=", $dsn)[2];
+$host = explode("'", $sprit_host)[0];
+$sprit_dbname = explode("=", $dsn)[1];
+$dbname = explode(";", $sprit_dbname)[0];
+// print $host;
+// print $dbname;
+
+$mysqli = new mysqli($host, $user, $password, $dbname);
           
+
 ini_set("max_execution_time",600);
 
 

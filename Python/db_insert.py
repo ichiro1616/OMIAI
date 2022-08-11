@@ -1,15 +1,15 @@
-#mysqlclientパッケージを利用する
 import MySQLdb
+import db_config as dbc
 # -*- using:utf-8 -*-
 import numpy as np
 import pandas as pd
 
 # 接続する
 conn = MySQLdb.connect(
-user='root',
-passwd='',
-host='localhost',
-db='omiai_db')
+    dbc.host,
+    dbc.user,
+    dbc.passwd,
+    dbc.db)
 
 # カーソルを取得する
 cur = conn.cursor()

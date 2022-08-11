@@ -1,3 +1,4 @@
+import db_config as dbc
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -39,11 +40,17 @@ pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke,
 
 
 conn = MySQLdb.connect(
- unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock',
- user='root',
- passwd='',
- host='localhost',
- db='omiai_db')
+#  unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock',
+#  user='root',
+#  passwd='Pa22wadoh',
+#  host='localhost',
+#  db='omiai_db')
+    dbc.host,
+    dbc.user,
+    dbc.passwd,
+    dbc.db)
+
+
 # カーソルを取得する
 cur = conn.cursor()
 
