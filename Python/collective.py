@@ -3,6 +3,7 @@
 #その中から世代分けをして計算してdbにお気に入り度と共に予め入れておく。
 
 #ライブラリのインポート
+import db_config as dbc
 import MySQLdb
 import pandas as pd
 import numpy as np
@@ -16,10 +17,10 @@ player = 6
 #dbとの接続・ローテーション別にテーブルから情報を抽出する
 #ダミーデータでの経験年数が1~6表記なのでりくと揃えるときにここを書き換える必要がある
 conn = MySQLdb.connect(
-    host='localhost',
-    user='root',
-    passwd='Pa22wadoh',
-    db='omiai_db')
+    dbc.host,
+    dbc.user,
+    dbc.passwd,
+    dbc.db)
 cur = conn.cursor()
 cur.execute("SELECT `experience_years`, `Sub_Ob`, `rotation`, `player_id`, `x_coordinate`, `y_coordinate` FROM `register` WHERE `rotation` = 1;")
 data0_db = cur.fetchall()
