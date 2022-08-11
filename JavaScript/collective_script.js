@@ -1,162 +1,162 @@
 // コマの座標（左上基準）
 let imagearray = [
   [
-  {
-    x: 10,
-    y: 10,
-  },
-  {
-    x: 145,
-    y:100,
-  },
-  {
-    x: 245,
-    y: 100,
-  },
-  {
-    x: 195,
-    y: 180,
-  },
-  {
-    x: 95,
-    y: 180,
-  },
-  {
-    x: 45,
-    y: 100,
-  },
-  ],
-  [
     {
-      x: 170,
+      x: 50,
       y: 10,
     },
     {
-      x: 145,
-      y: 100,
+      x: 460,
+      y: 370,
     },
     {
-      x: 245,
-      y: 100,
+      x: 760,
+      y: 370,
     },
     {
-      x: 195,
-      y: 180,
+      x: 620,
+      y: 600,
     },
     {
-      x: 95,
-      y: 180,
+      x: 310,
+      y: 600,
     },
     {
-      x: 45,
-      y: 100,
+      x: 160,
+      y: 370,
     },
   ],
   [
     {
-      x: 270,
+      x: 550,
       y: 10,
     },
     {
-      x: 145,
-      y: 100,
+      x: 760,
+      y: 370,
     },
     {
-      x: 245,
-      y: 100,
+      x: 620,
+      y: 600,
     },
     {
-      x: 195,
-      y: 180,
+      x: 460,
+      y: 370,
     },
     {
-      x: 95,
-      y: 180,
+      x: 310,
+      y: 600,
     },
     {
-      x: 45,
-      y: 100,
+      x: 160,
+      y: 370,
     },
   ],
   [
     {
-      x: 270,
-      y: 150,
+      x: 840,
+      y: 10,
     },
     {
-      x: 145,
-      y: 100,
+      x: 760,
+      y: 370,
     },
     {
-      x: 245,
-      y: 100,
+      x: 620,
+      y: 600,
     },
     {
-      x: 195,
-      y: 180,
+      x: 310,
+      y: 600,
     },
     {
-      x: 95,
-      y: 180,
+      x: 160,
+      y: 370,
     },
     {
-      x: 45,
-      y: 100,
+      x: 460,
+      y: 370,
     },
   ],
   [
     {
-      x: 110,
-      y: 140,
+      x: 870,
+      y: 460,
     },
     {
-      x: 145,
-      y: 100,
+      x: 620,
+      y: 600,
     },
     {
-      x: 245,
-      y: 100,
+      x: 310,
+      y: 600,
     },
     {
-      x: 195,
-      y: 180,
+      x: 160,
+      y: 370,
     },
     {
-      x: 95,
-      y: 180,
+      x: 460,
+      y: 370,
     },
     {
-      x: 45,
-      y: 100,
+      x: 760,
+      y: 370,
     },
   ],
   [
     {
-      x: 7,
-      y: 140,
+      x: 350,
+      y: 460,
     },
     {
-      x: 145,
-      y: 100,
+      x: 310,
+      y: 600,
     },
     {
-      x: 245,
-      y: 100,
+      x: 160,
+      y: 370,
     },
     {
-      x: 195,
-      y: 180,
+      x: 460,
+      y: 370,
     },
     {
-      x: 95,
-      y: 180,
+      x: 760,
+      y: 370,
     },
     {
-      x: 45,
-      y: 100,
+      x: 620,
+      y: 600,
     },
   ],
-]
+  [
+    {
+      x: 50,
+      y: 460,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+  ],
+];
 
 //経験年数選択バーの実装
 //dbから配置データを抽出
@@ -286,9 +286,9 @@ for(var i = 0; i< 6; i++){ //ローテーション
       images[i][j] = new Image();
   }
 }
-let size = 2.0; //メイン画面のコマの大きさの倍率
-let koma_w = 32; //コマの横幅
-let koma_h = 32; //コマの高さ
+let size = 2; //メイン画面のコマの大きさの倍率
+let koma_w = 35; //コマの横幅
+let koma_h = 35; //コマの高さ
 let scale = my_can1.width / 1200; //my_can1とcanvasの比
 
 
@@ -310,6 +310,7 @@ inputSlideBarElement.addEventListener('change', function(){
 function register_db(){
 let imagearray_data_x = [];
 let imagearray_data_y = [];
+let player = [];
     console.log("db内の情報を参照します。"); 
     formData = new FormData();
     xhr = new XMLHttpRequest();
@@ -321,6 +322,7 @@ let imagearray_data_y = [];
         for(i = 0; i < data_keep.length; i++){
           imagearray_data_x.push(data_keep[i].x_coordinate)
           imagearray_data_y.push(data_keep[i].y_coordinate)
+          player.push(data_keep[i].player_id)
         }
         if (xhr.response === "error") {
           console.log("通信に失敗しました");
@@ -332,44 +334,44 @@ let imagearray_data_y = [];
     });
     xhr.send(formData);
     return{
-      imagearray_data_x,imagearray_data_y,
+      imagearray_data_x,imagearray_data_y,player,
     };
   }
-  
-  let data_x = register_db().imagearray_data_x;
-  let data_y = register_db().imagearray_data_y;
+  let player_x = register_db().imagearray_data_x;
+  let player_y = register_db().imagearray_data_y;
+  let player_id = register_db().player;
 
   output.innerHTML = '未経験の' + "集合知";
 
   window.addEventListener('DOMContentLoaded',() => {
   for(let i = 0; i < 6; i++){
     images[0][i].addEventListener('load',() =>{
-      my_ctx1.drawImage(images[0][i],data_x[i]*scale,data_y[i]*scale, koma_w * size, koma_h * size)
+      my_ctx1.drawImage(images[0][i],player_x[i]*scale,player_y[i]*scale, koma_w * size, koma_h * size)
   })
   }
   for (let i = 0; i < 6; i++) {
     images[1][i].addEventListener('load', () => {
-      my_ctx2.drawImage(images[1][i], imagearray[1][i].x, imagearray[1][i].y, koma_w * size, koma_h * size)
+      my_ctx2.drawImage(images[1][i], imagearray[1][i].x*scale, imagearray[1][i].y*scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[2][i].addEventListener('load', () => {
-      my_ctx3.drawImage(images[2][i], imagearray[2][i].x, imagearray[2][i].y, koma_w * size, koma_h * size)
+      my_ctx3.drawImage(images[2][i], imagearray[2][i].x*scale, imagearray[2][i].y*scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[3][i].addEventListener('load', () => {
-      my_ctx4.drawImage(images[3][i], imagearray[3][i].x, imagearray[3][i].y, koma_w * size, koma_h * size)
+      my_ctx4.drawImage(images[3][i], imagearray[3][i].x*scale, imagearray[3][i].y*scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[4][i].addEventListener('load', () => {
-      my_ctx5.drawImage(images[4][i], imagearray[4][i].x, imagearray[4][i].y, koma_w * size, koma_h * size)
+      my_ctx5.drawImage(images[4][i], imagearray[4][i].x*scale, imagearray[4][i].y*scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[5][i].addEventListener('load', () => {
-      my_ctx6.drawImage(images[5][i], imagearray[5][i].x, imagearray[5][i].y, koma_w * size, koma_h * size)
+      my_ctx6.drawImage(images[5][i], imagearray[5][i].x*scale, imagearray[5][i].y*scale, koma_w * size, koma_h * size)
     })
   }
   // 画像を読み込み終わってからソースを取得する
@@ -383,48 +385,48 @@ let imagearray_data_y = [];
 function draw(){
   my_ctx1.clearRect(0,0,my_can1.width,my_can1.height);
   for(var i in images){
-    let x = data_x[i]*scale;
-    let y = data_y[i]*scale;
+    let x = player_x[i]*scale;
+    let y = player_y[i]*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx1.drawImage(images[0][i],x,y,w,h);
   }
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   for (var i in images) {
-    let x = imagearray[1][i].x;
-    let y = imagearray[1][i].y;
+    let x = imagearray[1][i].x*scale;
+    let y = imagearray[1][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx2.drawImage(images[1][i], x, y, w, h);
   }
   my_ctx3.clearRect(0, 0, my_can3.width, my_can3.height);
   for (var i in images) {
-    let x = imagearray[2][i].x;
-    let y = imagearray[2][i].y;
+    let x = imagearray[2][i].x*scale;
+    let y = imagearray[2][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx3.drawImage(images[2][i], x, y, w, h);
   }
   my_ctx4.clearRect(0, 0, my_can4.width, my_can4.height);
   for (var i in images) {
-    let x = imagearray[3][i].x;
-    let y = imagearray[3][i].y;
+    let x = imagearray[3][i].x*scale;
+    let y = imagearray[3][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx4.drawImage(images[3][i], x, y, w, h);
   }
   my_ctx5.clearRect(0, 0, my_can5.width, my_can5.height);
   for (var i in images) {
-    let x = imagearray[4][i].x;
-    let y = imagearray[4][i].y;
+    let x = imagearray[4][i].x*scale;
+    let y = imagearray[4][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx5.drawImage(images[4][i], x, y, w, h);
   }
   my_ctx6.clearRect(0, 0, my_can6.width, my_can6.height);
   for (var i in images) {
-    let x = imagearray[5][i].x;
-    let y = imagearray[5][i].y;
+    let x = imagearray[5][i].x*scale;
+    let y = imagearray[5][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx6.drawImage(images[5][i], x, y, w, h);
