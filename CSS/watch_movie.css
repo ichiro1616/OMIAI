@@ -161,61 +161,97 @@ input[type=range].slider::-webkit-slider-thumb {
 /* ======================================================================================= */
  /* =====================================動画閲覧========================================= */
 /* ======================================================================================= */
-#video_button{
-  /* モーダルウインドウを中心に表示 */
-  position      : absolute;
-  top           : 50%;
-  left          : 50%;
-  transform     : translate(-50%, -50%);
-  z-index       : 11;
-           /* ↓モーダルウインドウの見た目*/
-  background    : #fff;
-  /* border        : 3px solid #35557f; */
-  border-radius : 1rem;
-  font-size     : 1.2rem;
-  text-align    : center;
+#video_button {
+  margin: 0 auto;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+#video-window {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  /* background: url(img/video.jpg) no-repeat center center/cover; */
+}
+video {
+  min-width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+}
+
+/*画面サイズが変わっても常に動画の中央が表示されるようにする*/
+/*動画よりも画面が横に長くなるとき用*/
+@media (aspect-ratio: 16/9), (min-aspect-ratio: 16/9) {
+  video {
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/*動画よりも画面が縦に長くなるとき用*/
+@media (max-aspect-ratio: 16/9) {
+  video {
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
   /* === 左右選択ボタン ==================================== */
 #buttons{
   position:relative;
-  left:18rem;
-  top:-1rem;
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 30;
 }
 .button-1{
   border: none;
   border-radius : 0.5rem;          /* 角丸       */
-  font-size     : 4rem;        /* 文字サイズ */
+  font-size     : 4.5rem;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 1.5% 1.8%;   /* 余白       */
-  background    : rgba(55, 0, 255, 0.90);     /* 背景色     */
+  background    : rgba(55, 0, 255, 0.92);     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
-  line-height   : 1.5em;         /* 1行の高さ  */
+  line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing : 0.4rem;
   width:25rem;
   position:absolute;
-  left:-0.5rem;
-  top:-15rem;
+  left:40rem;
+  top:65rem;
+  z-index: 30;
 }
 .button-2{
   border: none;
   border-radius : 0.5rem;          /* 角丸       */
-  font-size     : 4rem;        /* 文字サイズ */
+  font-size     : 4.5rem;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 1.5% 1.8%;   /* 余白       */
-  background    : rgba(55, 0, 255, 0.90);     /* 背景色     */
+  background    : rgba(55, 0, 255, 0.92);     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
-  line-height   : 1.5em;         /* 1行の高さ  */
+  line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing : 0.4rem;
   width:25rem;
   position:absolute;
-  top:-15rem;
+  left: 93rem;
+  top:65rem;
+  z-index: 30;
 }
 
 /* ======================================================================================= */
