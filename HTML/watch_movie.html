@@ -15,7 +15,6 @@
       <div class="modalWindow"> 
       <h1>あなたの経験年数を選んでください</h1>
       <p class="ex_question">経験年数選択バー</p>
-      <h3 id = "output"></h3></br>
       <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;"  class="slider">
       <!-- 目盛り -->
       <div id="wrap">
@@ -24,7 +23,6 @@
       <div id="wrapping">
       <p>未経験</p><p>1~2年</p><p>3~5年</p><p>6~9年</p><p>10年以上</p>
       </div>
-
       <br />
       <i class="icon-check"></i>
       <p><input type="button" class="button" id="button-check" value="　　決定" onclick="movie_db();" /></p>
@@ -41,8 +39,10 @@
       <!--ボタンの設置  -->
       <form>
         <div id="buttons">
+          <div class="button-wrap">
           <input type="button" class="button-1" value="←" id="0" onclick="choose(this);" />
           <input type="button" class="button-2" value="→" id="1" onclick="choose(this);" />
+          </div>
         </div>
       </form>
     </div>
