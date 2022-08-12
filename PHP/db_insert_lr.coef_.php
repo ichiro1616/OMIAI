@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Tokyo');
 $time_stamp = date("Y-m-d H:i:s");
 
 
-include '../PHP/db_config.php';
+include 'db_config.php';
 // $mysqli = new mysqli("localhost", "root", "", "omiai_db");
 $sprit_host = explode("=", $dsn)[2];
 $host = explode("'", $sprit_host)[0];

@@ -6,7 +6,7 @@ $experience_years = $_POST['experience_years'];
 $player_id = $_POST['player_id'];
 $left_or_right = $_POST['left_or_right'];
 
-include '../PHP/db_config.php';
+include 'db_config.php';
 
 //dbとの接続試行・データ送信
 try{

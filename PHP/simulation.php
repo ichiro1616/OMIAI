@@ -3,7 +3,7 @@
 // $dsn = 'mysql:dbname=omiai_db;host=localhost';
 // $user = 'root';
 // $password = 'Pa22wadoh';
-include '../PHP/db_config.php';
+include 'db_config.php';
 
 $result = array();
 // $result2 = array();
