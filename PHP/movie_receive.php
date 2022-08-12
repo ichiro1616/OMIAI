@@ -1,7 +1,7 @@
 <?php
 //DBへの接続時に必要な情報
 $experience_years = $_POST["experience_years"];
-include 'db_config.php';
+include '../PHP/db_config.php';
 
 $cate_num = 7; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ

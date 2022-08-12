@@ -1,7 +1,7 @@
 <?php
 $movie_id = $_POST['movie_id'];
 $data = array();
-include 'db_config.php';
+include '../PHP/db_config.php';
 
 //dbとの接続試行・データ取得
 try{
