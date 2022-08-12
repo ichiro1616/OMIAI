@@ -1504,7 +1504,7 @@ function rotation() {
 
 //登録ボタンを押したときの処理
 document.getElementById("register_btn").onclick = function () {
-  
+
     for (var i = 0; i <= 5; i++) {//ローテーション0~5
         for (var j = 0; j <= 5; j++) {//コマ番号1~6
             let formData = new FormData();
@@ -1522,7 +1522,7 @@ document.getElementById("register_btn").onclick = function () {
                     if (xhr.response === "error") {
                         console.log("登録に失敗しました");
                     } else {
-                        
+
                         console.log("データを登録しました!");
                     }
                 }
@@ -1533,15 +1533,15 @@ document.getElementById("register_btn").onclick = function () {
 }
 
 
+//----------------------------------------------------------------
+//お見合い範囲表示
+// const canvas_omiai_width = canvas_omiai.width;//canvas1の横幅
+// const canvas_omiai_height = canvas_omiai.height;//canvas1の縦幅
 
 
 const canvas_omiai = document.getElementById('canvas1');//お見合い範囲用
 const context_omiai = canvas_omiai.getContext('2d');
 
-//----------------------------------------------------------------
-//お見合い範囲表示
-const canvas_omiai_width = canvas_omiai.width;//canvas1の横幅
-const canvas_omiai_height = canvas_omiai.height;//canvas1の縦幅
 
 //(36,0)   (563,0)
 //(36,480) (563,480)
@@ -1551,7 +1551,18 @@ const blue = '';
 context_omiai.fillStyle = omiai_color;//色
 context_omiai.globalAlpha = 0.4;//不透明度 0.7
 
-let set = canvas_omiai.getBoundingClientRect();
+
+// under_canvas
+// const canvas_under = document.getElementById('under_area');//お見合い範囲用
+// const context_under = canvas_under.getContext('2d');
+
+
+
+// context_under.fillStyle = omiai_color;//色
+// context_under.globalAlpha = 0.4;//不透明度 0.7
+
+
+// let set = canvas_omiai.getBoundingClientRect();
 
 let originX = 60;//コート原点左下）x
 let originY = 1135;//コート原点（左下）y
@@ -1571,15 +1582,53 @@ endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 //     tcanvasY = Math.floor(posY / tscaleHeight);
 
 
-console.log('左', set.left);
-console.log('右', set.right);
-console.log('x', (originX + 0 * pixel_sizeX) / 0.41);
+// console.log('左', set.left);
+// console.log('右', set.right);
+// console.log('x', (originX + 0 * pixel_sizeX) / 0.41);
 
-function omiai(judge_area) {
+function omiai(judge_area, rota) {
     // canvas4内を一旦クリア
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     let k = 0;
     let percentage = 0;
+
+    // let ad = canvas_under.width / canvas_omiai.width;
+    // let oriX = 60 * ad;
+    // let oriY = 1135 * ad;
+    // let enY = 0;
+    // let enX = 1140 * ad;
+    // let pisiX = (enX - oriX) / 46;
+    // let pisiY = (oriY - enY) / 46;
+    // oriY = oriY - pisiY;
+    // enX = enX - pisiX;
+
+    // switch (rota) {
+    //     case 0:
+    //         let tem = 0;
+    //         context_under.clearRect(0, 0, canvas_under.width, canvas_under.height);
+    //         for (i = 0; i < 46; i++) {
+    //             for (j = 0; j < 46; j++) {
+    //                 if (judge_area[tem].judge == 0) {
+    //                     context_under.fillRect(oriX + i * pisiX, oriY - j * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //                 }
+    //                 tem++;
+    //             }
+    //         }
+
+
+    //         break;
+    //     case 1:
+    //         break;
+    //     case 2:
+    //         break;
+    //     case 3:
+    //         break;
+    //     case 4:
+    //         break;
+    //     case 5:
+    //         break;
+    // }
+
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
             if (judge_area[k].judge == 0) {//後で2に
@@ -1591,9 +1640,7 @@ function omiai(judge_area) {
             //後で消す　お見合い範囲デバッグ用
             if (omiaiarea[k].judge == 0) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage++;
             }
-
 
 
             k++;
@@ -1722,7 +1769,7 @@ function area(rota) {
             let judge_color_merge = merge(judge_color_sub, subject_object_level);
 
             //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-            let area_percentage = omiai(judge_color_merge);
+            let area_percentage = omiai(judge_color_merge, counter);
             area_percentage = area_percentage / 2116 * 100;
             area_percentage = String(area_percentage);
             area_percentage = parseInt(area_percentage, 10);
