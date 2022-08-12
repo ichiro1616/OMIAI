@@ -1,19 +1,21 @@
 <?php
 // $id = $_POST['player_id'];
-$dsn = 'mysql:dbname=omiai_db;host=localhost';
-$user = 'root';
-$password = 'Pa22wadoh';
+// $dsn = 'mysql:dbname=omiai_db;host=localhost';
+// $user = 'root';
+// $password = 'Pa22wadoh';
+include 'db_config.php';
+
 $result = array();
 // $result2 = array();
 
 try {
-$dbh = new PDO($dsn, $user, $password);
+    $dbh = new PDO($dsn, $user, $password);
 
-// 最新の2550個のレコードを取得
-$sql = "SELECT * FROM `lr.coef_` ORDER BY `lr.coef_id` DESC LIMIT 255";
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetchAll();
+    // 最新の2550個のレコードを取得
+    $sql = "SELECT * FROM `lr.coef_` ORDER BY `lr.coef_id` DESC LIMIT 255";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
 
 
 // 指定したid以外で、指定したball_idと同じball_idのid、名前などの値をランダムで取得
@@ -23,8 +25,8 @@ $result = $stmt->fetchAll();
 // $result2 = $stmt2->fetchAll();
 // $result_arr = array($result, $result2);
 } catch (Exception$e) {
-echo$e->getMessage();
-exit();
+    echo$e->getMessage();
+    exit();
 }
 
 header('Content-type: application/json');
