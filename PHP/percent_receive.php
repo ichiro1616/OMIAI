@@ -1,11 +1,7 @@
 <?php
 $movie_id = $_POST['movie_id'];
-
-//DBへの接続時に必要な情報
-$dsn = 'mysql:dbname=omiai_db;host=localhost';
-$user = 'root';
-$password = 'Pa22wadoh';
 $data = array();
+include '../PHP/db_config.php';
 
 //dbとの接続試行・データ取得
 try{

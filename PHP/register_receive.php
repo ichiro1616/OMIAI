@@ -1,8 +1,10 @@
 <?php
 //DBへの接続時に必要な情報
-$dsn = 'mysql:dbname=omiai_db;host=localhost';
-$user = 'root';
-$password = 'Pa22wadoh';
+// $dsn = 'mysql:dbname=omiai_db;host=localhost';
+// $user = 'root';
+// $password = 'Pa22wadoh';
+include '../PHP/db_config.php';
+
 $data = array();
 
 //dbとの接続試行・データ取得

@@ -1,11 +1,9 @@
 <?php
 //DBへの接続時に必要な情報
 $experience_years = $_POST["experience_years"];
-$dsn = 'mysql:dbname=omiai_db;host=localhost';
-$user = 'root';
-$password = 'Pa22wadoh';
+include '../PHP/db_config.php';
 
-$cate_num = 27; //動画の総数
+$cate_num = 7; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ
 $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
