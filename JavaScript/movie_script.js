@@ -61,7 +61,7 @@ function movie_db() {
       }
     }
   });
-  console.log("form=",form);
+  console.log("form=", form);
   xhr.send(form);
 }
 
@@ -104,21 +104,22 @@ function movie_time() {
   videoElement = document.getElementById("mv");
   Velement = document.querySelector("video");
   videoElement.addEventListener("timeupdate", function () {
-    if(position == 0){
-    submit = videoElement.currentTime;
-    console.log(submit);
-    if((stop_time - submit) <= 0.33){
-      console.log("slow");
-      position = 2;
-    }}
+    if (position == 0) {
+      submit = videoElement.currentTime;
+      console.log(submit);
+      if (stop_time - submit <= 0.33) {
+        console.log("slow");
+        position = 2;
+      }
+    }
     if (position == 2) {
       Velement.playbackRate = 0.2;
       submit = videoElement.currentTime;
       console.log(submit);
-      if((stop_time - submit) <= 0.001){
-      position = 1;
-      STOP = 0;
-      control(1); //controlに1を送る(動画を停止する)
+      if (stop_time - submit <= 0.001) {
+        position = 1;
+        STOP = 0;
+        control(1); //controlに1を送る(動画を停止する)
       }
     }
   });
@@ -229,15 +230,15 @@ function movie_end() {
   video_button.style.display = "none"; //動画を非表示
   end.style.display = "block"; //終了画面を表示
 
-  let formData = new FormData();
+  // let formData = new FormData();
 
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
-  xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-      let data = JSON.parse(xhr.response);
-      console.log(data);
-    }
-  });
-  xhr.send(formData);
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
+  // xhr.addEventListener("loadend", function () {
+  //   if (xhr.status === 200) {
+  //     let data = JSON.parse(xhr.response);
+  //     console.log(data);
+  //   }
+  // });
+  // xhr.send(formData);
 }
