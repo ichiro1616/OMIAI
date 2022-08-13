@@ -164,7 +164,7 @@ input[type=range].slider::-webkit-slider-thumb {
   top   : 0;
   bottom: 0;
 }
-#video-window {
+#video_window {
   position: relative;
   overflow: hidden;
   width   : 100%;

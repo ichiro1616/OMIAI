@@ -13,6 +13,7 @@ let movie = document.getElementById("mv"); //動画のデータを取得して�
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
 buttons.style.display = "none"; //ボタンはデフォルトで非表示
 end.style.display = "none"; //終了画面はデフォルトで非表示
+end_content.tyle.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
 //データの送信時、phpで受け取れる形に変換する
@@ -47,7 +48,7 @@ function movie_db() {
   form = new FormData();
   form.append("experience_years", experience_years);
   xhr = new XMLHttpRequest();
-  xhr.open("POST", "/PHP/movie_receive.php");
+  xhr.open("POST", "../PHP/movie_receive.php");
   xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
       data_keep = JSON.parse(xhr.response);
@@ -162,7 +163,7 @@ function choose(btn) {
       left_or_right: button_id,
     };
     xhr = new XMLHttpRequest();
-    xhr.open("POST", "/PHP/button_send.php");
+    xhr.open("POST", "../PHP/button_send.php");
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
         console.log("接続しました");
@@ -186,7 +187,7 @@ function percentage() {
   console.log(data[counter]["movie_id"]);
   formData.append("movie_id", data[counter]["movie_id"]);
   xhr = new XMLHttpRequest();
-  xhr.open("POST", "/PHP/percent_receive.php");
+  xhr.open("POST", "../PHP/percent_receive.php");
   xhr.addEventListener("loadend", function (LR_temp) {
     if (xhr.status === 200) {
       LR_temp = JSON.parse(xhr.response);
@@ -229,6 +230,7 @@ function percentage() {
 function movie_end() {
   video_button.style.display = "none"; //動画を非表示
   end.style.display = "block"; //終了画面を表示
+  end_content.tyle.display = "block";
 
   // let formData = new FormData();
 
