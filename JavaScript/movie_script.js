@@ -27,6 +27,8 @@ function EncodeHTMLForm(data) {
 
 //バレーボールの経験年数をきく
 function question() {
+  buttons.style.display = "none"; //ボタンはデフォルトで非表示
+  end.style.display = "none"; //終了画面はデフォルトで非表示
   video_button.style.display = "none"; //動画を非表示
   document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
   inputSlideBarElement = document.getElementById("input-range");
