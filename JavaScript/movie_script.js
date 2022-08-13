@@ -1,5 +1,4 @@
 //担当：上村
-
 let counter = 0;
 let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
 let STOP = 0; //ボタン連打の防止
@@ -8,12 +7,11 @@ let sendData; //dbに送信する回答データ
 let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
-let experience_years = 2; //バレーボールの経験年数。3はスライドバーの初期値
+let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
 buttons.style.display = "none"; //ボタンはデフォルトで非表示
 end.style.display = "none"; //終了画面はデフォルトで非表示
-end_content.tyle.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
 //データの送信時、phpで受け取れる形に変換する
@@ -30,7 +28,6 @@ function EncodeHTMLForm(data) {
 //バレーボールの経験年数をきく
 function question() {
   video_button.style.display = "none"; //動画を非表示
-  //experience.style.display = "block"; //経験年数の質問を表示
   document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
   inputSlideBarElement = document.getElementById("input-range");
   inputSlideBarElement.addEventListener("change", function () {
@@ -230,7 +227,6 @@ function percentage() {
 function movie_end() {
   video_button.style.display = "none"; //動画を非表示
   end.style.display = "block"; //終了画面を表示
-  end_content.tyle.display = "block";
 
   // let formData = new FormData();
 
