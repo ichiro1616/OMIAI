@@ -10,8 +10,8 @@ let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
-buttons.style.display = "none"; //ボタンはデフォルトで非表示
-end.style.display = "none"; //終了画面はデフォルトで非表示
+//buttons.style.display = "none"; //ボタンはデフォルトで非表示
+//end.style.display = "none"; //終了画面はデフォルトで非表示
 window.onclick = question(); //ページが開かれたら自動でquestionを動かす
 
 //データの送信時、phpで受け取れる形に変換する
@@ -27,6 +27,8 @@ function EncodeHTMLForm(data) {
 
 //バレーボールの経験年数をきく
 function question() {
+  buttons.style.display = "none"; //ボタンはデフォルトで非表示
+  end.style.display = "none"; //終了画面はデフォルトで非表示
   video_button.style.display = "none"; //動画を非表示
   document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
   inputSlideBarElement = document.getElementById("input-range");
