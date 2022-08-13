@@ -3,7 +3,7 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$cate_num = 7; //動画の総数
+$cate_num = 90; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ
 $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
@@ -43,7 +43,7 @@ try{
         }
     }
 
-while(count($c)<3){
+while(count($c)<5){
     $ppp = count(array_keys($count,min($count)));
     for($i = 0; $i <$ppp; $i++){
         array_push($c,array_keys($count,min($count))[$i]);
@@ -54,7 +54,7 @@ while(count($c)<3){
 }
 
 //回答がある場合は回答が特に少ない順に3つの動画を取り出す
-for($i=0;$i<3;$i++){
+for($i=0;$i<5;$i++){
     $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s';", $c[$i]+1);
     $stmt = $dbh->query($sql);
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
