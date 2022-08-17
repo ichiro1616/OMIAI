@@ -448,7 +448,9 @@ imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
-    experience.style.display = "block";//経験年数の質問を表示
+    document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
+    experience_years = 2; //経験年数の初期値は2
+    console.log('経験年数', experience_years);
 
     SlideBar_experience.addEventListener('change', () => {
         experience_years = SlideBar_experience.value;

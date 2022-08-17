@@ -20,7 +20,7 @@
     color            : rgb(255, 255, 255);
     position         : absolute;
     margin-left      : -3.5rem;
-    margin-top       : 1.8rem;
+    margin-top       : 2.1rem;
     width            : 1.7rem;
     height           : 0.7rem;
     border-bottom    : solid 0.3rem currentColor;
@@ -154,8 +154,9 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 
 
-
-
+/* ======================================================================================= */
+ /* ======================================キャンバス====================================== */
+/* ======================================================================================= */
 #canvas_warp {
   position: relative;
   border: 1px solid #ccc;
@@ -316,12 +317,19 @@ input[type=range].slider::-webkit-slider-thumb {
   outline: none;
   height: 14px;
   width: 20%;
-  background: #7c00ba;
+  background: #a6a6aa;
   border-radius: 10px;
-  border: solid 3px #7c00ba;
+  border: solid 0.08rem black;
   position: absolute;
   right: 200px;
   top: 150px;
+}
+::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: rgb(55, 0, 255);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
 }
 
 #rotation_button {
