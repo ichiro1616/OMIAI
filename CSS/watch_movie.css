@@ -8,9 +8,13 @@
  /* =================================経験年数選択画面===================================== */
 /* ======================================================================================= */
 /* === 文字「経験年数選択バー」 ==================================== */
-.ex_question{
+h1{
   position    : relative;
   top         : 3rem;
+}
+.ex_question{
+  position    : relative;
+  top         : 5.5rem;
   font-size   : 1.2rem;
   font-weight : bold;
 }
@@ -19,14 +23,15 @@
 .icon-check{
     color            : rgb(255, 255, 255);
     position         : absolute;
-    margin-left      : -3.5rem;
-    margin-top       : 1.8rem;
+    margin-left      : -3rem;
+    margin-top       : 4.85rem;
     width            : 1.7rem;
-    height           : 0.7rem;
+    height           : 0.9rem;
     border-bottom    : solid 0.3rem currentColor;
     border-left      : solid 0.3rem currentColor;
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
+    z-index          : 30;
 }
 
 /* === 経験年数：決定ボタン ==================================== */
@@ -44,6 +49,8 @@
     transition    : .3s;         /* なめらか変化 */ 
     font-weight   : bold;
     width         : 20%;
+    position      : relative;
+    top           : 4rem;
 }
 
 /* === バックグランド ============================== */
@@ -105,7 +112,7 @@ input[type=range].slider::-webkit-slider-runnable-track {
   background    : #a6a6aa;
   border-radius : 2rem;
   position      : relative;
-  top           : 1.5rem;
+  top           : 5.5rem;
   left          : -0.3rem;
   border        : 0.1rem solid;
 }
@@ -130,12 +137,12 @@ input[type=range].slider::-webkit-slider-thumb {
   float          : none;
   height         : 1rem;
   width          : 100%;
-  color          : rgb(250, 250, 250);
-  top            : -1.05rem;
+  color          : rgb(255, 255, 255);
+  top            : 3.98rem;
   left           : 3.2rem;
   letter-spacing : 7rem;
   box-sizing     : border-box;
-  font-size      : 0.9rem;
+  font-size      : 0.8rem;
   font-weight    : bold;
   z-index        : 20;
 }
@@ -144,7 +151,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #wrapping p{
   float       : none;
   position    : relative;
-  top         : -2.2rem;
+  top         : 3rem;
   left        : 2rem;
   width       : 8rem;
   display     : inline-flex;

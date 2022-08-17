@@ -1,32 +1,40 @@
 #container{
-  margin  : 0 auto;
-  width   : 100%;
-  height  : 20rem;
-  display : relative;
+  width       : 100%;
+  height      : 100%;
+  max-width   : 2000px;
+  max-height  : 1500px;
+  margin      : 0 auto;
+  margin-top  : 0.5rem;
 }
+
 /* ======================================================================================= */
  /* =================================経験年数選択画面===================================== */
 /* ======================================================================================= */
 /* === 文字「経験年数選択バー」 ==================================== */
-#ex_question{
+#ex{
   position    : relative;
   top         : 3rem;
+}
+.ex_question{
+  position    : relative;
+  top         : 5.5rem;
   font-size   : 1.2rem;
   font-weight : bold;
 }
 
 /* === 経験年数：決定ボタンに表示されるチェックマーク ==================================== */
-#icon-check{
+.icon-check{
     color            : rgb(255, 255, 255);
     position         : absolute;
-    margin-left      : -3.5rem;
-    margin-top       : 2.1rem;
+    margin-left      : -3rem;
+    margin-top       : 4.85rem;
     width            : 1.7rem;
-    height           : 0.7rem;
+    height           : 0.9rem;
     border-bottom    : solid 0.3rem currentColor;
     border-left      : solid 0.3rem currentColor;
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
+    z-index          : 30;
 }
 
 /* === 経験年数：決定ボタン ==================================== */
@@ -44,6 +52,8 @@
     transition    : .3s;         /* なめらか変化 */ 
     font-weight   : bold;
     width         : 20%;
+    position      : relative;
+    top           : 4rem;
 }
 
 /* === バックグランド ============================== */
@@ -105,7 +115,7 @@ input[type=range].slider::-webkit-slider-runnable-track {
   background    : #a6a6aa;
   border-radius : 2rem;
   position      : relative;
-  top           : 1.5rem;
+  top           : 5.5rem;
   left          : -0.3rem;
   border        : 0.1rem solid;
 }
@@ -130,12 +140,12 @@ input[type=range].slider::-webkit-slider-thumb {
   float          : none;
   height         : 1rem;
   width          : 100%;
-  color          : rgb(250, 250, 250);
-  top            : -1.05rem;
+  color          : rgb(255, 255, 255);
+  top            : 3.98rem;
   left           : 3.2rem;
   letter-spacing : 7rem;
   box-sizing     : border-box;
-  font-size      : 0.9rem;
+  font-size      : 0.8rem;
   font-weight    : bold;
   z-index        : 20;
 }
@@ -144,7 +154,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #wrapping p{
   float       : none;
   position    : relative;
-  top         : -2.2rem;
+  top         : 3rem;
   left        : 2rem;
   width       : 8rem;
   display     : inline-flex;
@@ -159,16 +169,18 @@ input[type=range].slider::-webkit-slider-thumb {
 /* ======================================================================================= */
 #canvas_warp {
   position: relative;
-  border: 1px solid #ccc;
-  width: 500px;
-  height: 500px;
+  border: 0.1rem solid #ccc;
+  width: 41rem;
+  height: 41rem;
   max-width: 100%;
+  top:-0.5rem;
+  margin:auto;
 }
 
 #canvas_warp:before {
   content: "";
   display: block;
-  padding-top: 58%;
+  /* padding-top: 58%; */
 }
 
 #canvas2,
@@ -202,29 +214,34 @@ input[type=range].slider::-webkit-slider-thumb {
   box-sizing: border-box;
 }
 
-.under_canvas_warp {
+
+#inst{
+  text-align: center;
+}
+
   /* 横に並べる */
+.under_canvas_warp {
   display: flex;
-  /* margin-top: %; */
   position: relative;
-  border: 1px solid #ccc;
-  width: 120px;
-  height: 120px;
-  top: 20px;
+  justify-content:space-between;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
+  margin-top:0.5rem;
 }
 
 #under_canvas {
-  left: 0;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  /* 上　右　下　左 */
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
+}
+
+.col-10{
+  border: 0.1rem solid;
+  border-color: #cbcee4;
 }
 
 
@@ -251,61 +268,46 @@ input[type=range].slider::-webkit-slider-thumb {
 } */
 
 #under_canvas2 {
-  left: 140px;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
 
 #under_canvas3 {
-  left: 280px;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
 
 #under_canvas4 {
-  left: 280px;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
 
 #under_canvas5 {
-  left: 280px;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
 
 #under_canvas6 {
-  left: 280px;
-  top: 700px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
   box-sizing: content-box;
   padding: 0;
-  margin: 0 20px 0 0;
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
@@ -333,31 +335,43 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 
 #rotation_button {
-  border-radius: 10px;
-  background-color: #7c00ba;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  right: 250px;
-  top: 250px;
+  border        : none;
+  border-radius : 0.5rem;          /* 角丸       */
+  font-size     : 1.5rem;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 1.5% 1.8%;   /* 余白       */
+  background    : rgba(55, 0, 255);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 100%;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  font-weight   : bold;
+  letter-spacing: 0.4rem;
+  width         : 30%;
+  position      : relative;
+  z-index       : 30;
+  left          : 4rem;
+  padding       : 3rem;
+  top:18rem;
 }
 
 #register_btn {
-  border-radius: 10px;
-  background-color: #7c00ba;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  right: 100px;
-  top: 250px;
+  border        : none;
+  border-radius : 0.5rem;          /* 角丸       */
+  font-size     : 1.5rem;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 1.5% 1.8%;   /* 余白       */
+  background    : rgba(55, 0, 255);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 100%;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  font-weight   : bold;
+  letter-spacing: 0.4rem;
+  width         : 30%;
+  position      : relative;
+  z-index       : 30;
+  left          : 11rem;
+  padding       : 3rem;
+  top:18rem;
 }
