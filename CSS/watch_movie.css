@@ -196,7 +196,7 @@ video {
 }
 
 /* === 左右選択ボタン ==================================== */
-#buttons{
+/* #buttons{
   position      : absolute;
   top           : 50%;
   left          : 50%;
@@ -204,50 +204,52 @@ video {
   z-index       : 11;
   width         : 130rem;
   min-height    : 80rem;
-  background    : rgba(228, 228, 228, 0);
+  background    : rgba(228, 228, 228, 0.5);
   font-size     : 1.2rem;
   text-align    : center;
-}
+} */
 .button-wrap{
   position      : absolute;
 }
 .button-1{
   border        : none;
   border-radius : 0.5rem;          /* 角丸       */
-  font-size     : 4.5rem;        /* 文字サイズ */
+  font-size     : 5rem;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 1.5% 1.8%;   /* 余白       */
   background    : rgba(55, 0, 255, 0.92);     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
-  line-height   : 2em;         /* 1行の高さ  */
+  line-height   : 100%;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing: 0.4rem;
-  width         : 25rem;
-  position      : absolute;
+  width         : 16%;
+  position      : fixed;
   z-index       : 30;
-  top           : 65rem;
-  left          : 20rem;
+  bottom        : 8%;
+  left          : 25%;
+
 }
 .button-2{
   border        : none;
   border-radius : 0.5rem;          /* 角丸       */
-  font-size     : 4.5rem;        /* 文字サイズ */
+  font-size     : 5rem;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 1.5% 1.8%;   /* 余白       */
   background    : rgba(55, 0, 255, 0.92);     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
-  line-height   : 2em;         /* 1行の高さ  */
+  line-height   : 100%;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing: 0.4rem;
-  width         : 25rem;
-  position      : absolute;
+  width         : 16%;
+  position      : fixed;
   z-index       : 30;
-  top           : 65rem;
-  left          : 85rem;
+  bottom        : 8%;
+  right         : 25%;
+
 }
 
 /* ======================================================================================= */

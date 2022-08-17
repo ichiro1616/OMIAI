@@ -166,8 +166,6 @@ function choose(btn) {
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
         console.log("接続しました");
-        percentage();
-
         if (xhr.response === "error") {
           console.log("登録に失敗しました");
         }
@@ -177,6 +175,7 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
+    percentage();
   }
 }
 
