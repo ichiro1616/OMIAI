@@ -3,7 +3,7 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$cate_num = 7; //動画の総数
+$cate_num = 90; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ
 $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
