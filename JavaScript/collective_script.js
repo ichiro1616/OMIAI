@@ -291,7 +291,52 @@ let koma_w = 35; //コマの横幅
 let koma_h = 35; //コマの高さ
 let scale = my_can1.width / 1200; //my_can1とcanvasの比
 
-let imagearray = register_db().imagearray_data
+//経験年数
+inputSliderEle = document.getElementById('experience_years');
+inputSliderEle.addEventListener('change', function(){
+    experience_years = inputSliderEle.value;
+    console.log(experience_years);
+});
+
+//世代別表示
+inputSlideBarElement = document.getElementById('generation');
+inputSlideBarElement.addEventListener('change', function(){
+    generation = inputSlideBarElement.value;
+    console.log(generation);
+});
+
+// dbのregisterテーブルからデータを取得する
+function register_db(){
+    imagearray_data = new Array(6);
+    for(var i = 0; i < 6; i++){
+         imagearray_data[i]= new Array(2);
+      }
+    console.log("db内の情報を参照します。"); 
+    formData = new FormData();
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", "/PHP/register_receive.php");
+    xhr.addEventListener("loadend", function () {
+      if (xhr.status === 200) {
+        let data_keep = JSON.parse(xhr.response);
+        console.log('data_keep',data_keep);
+        for(var i = 0; i < 6; i++){
+          imagearray_data[i][0] = data_keep[i].x_coordinate;
+          imagearray_data[i][1] = data_keep[i].y_coordinate;
+        }
+        if (xhr.response === "error") {
+          console.log("通信に失敗しました");
+        } else {
+          data = data_keep;
+        }       
+      }
+    });
+    xhr.send(formData);
+    return{
+      imagearray_data
+    };
+  }
+
+  let imagearray = register_db().imagearray_data
 console.log(imagearray);
 
 // あなたの配置
@@ -363,49 +408,3 @@ for (let i = 0; i < 6; i++) {
     ot_ctx6.drawImage(images[5][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
   })
 }
-
-
-//経験年数
-inputSliderEle = document.getElementById('experience_years');
-inputSliderEle.addEventListener('change', function(){
-    experience_years = inputSliderEle.value;
-    console.log(experience_years);
-});
-
-//世代別表示
-inputSlideBarElement = document.getElementById('generation');
-inputSlideBarElement.addEventListener('change', function(){
-    generation = inputSlideBarElement.value;
-    console.log(generation);
-});
-
-// dbのregisterテーブルからデータを取得する
-function register_db(){
-    imagearray_data = new Array(6);
-    for(var i = 0; i < 6; i++){
-         imagearray_data[i]= new Array(2);
-      }
-    console.log("db内の情報を参照します。"); 
-    formData = new FormData();
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", "/PHP/register_receive.php");
-    xhr.addEventListener("loadend", function () {
-      if (xhr.status === 200) {
-        let data_keep = JSON.parse(xhr.response);
-        console.log('data_keep',data_keep);
-        for(var i = 0; i < 6; i++){
-          imagearray_data[i][0] = data_keep[i].x_coordinate;
-          imagearray_data[i][1] = data_keep[i].y_coordinate;
-        }
-        if (xhr.response === "error") {
-          console.log("通信に失敗しました");
-        } else {
-          data = data_keep;
-        }       
-      }
-    });
-    xhr.send(formData);
-    return{
-      imagearray_data
-    };
-  }
