@@ -383,7 +383,6 @@ inputSlideBarElement.addEventListener('change', function(){
 function register_db(){
     imagearray_data = new Array(6);
     for(var i = 0; i < 6; i++){
-      imagearray_data[i] = new Array(6);
          imagearray_data[i]= new Array(2);
       }
     console.log("db内の情報を参照します。"); 
@@ -393,7 +392,7 @@ function register_db(){
     xhr.addEventListener("loadend", function () {
       if (xhr.status === 200) {
         let data_keep = JSON.parse(xhr.response);
-        console.log('data_keep',data_keep[0]);
+        console.log('data_keep',data_keep);
         for(var i = 0; i < 6; i++){
           imagearray_data[i][0] = data_keep[i].x_coordinate;
           imagearray_data[i][1] = data_keep[i].y_coordinate;
@@ -402,7 +401,6 @@ function register_db(){
           console.log("通信に失敗しました");
         } else {
           data = data_keep;
-          console.log(data);
         }       
       }
     });
