@@ -231,12 +231,11 @@ video {
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing: 0.4rem;
-  width         : 16%;
+  width         : 18%;
   position      : fixed;
   z-index       : 30;
   bottom        : 8%;
-  left          : 25%;
-
+  left          : 20%;
 }
 .button-2{
   border        : none;
@@ -251,12 +250,11 @@ video {
   transition    : .3s;         /* なめらか変化 */
   font-weight   : bold;
   letter-spacing: 0.4rem;
-  width         : 16%;
+  width         : 18%;
   position      : fixed;
   z-index       : 30;
   bottom        : 8%;
-  right         : 25%;
-
+  right         : 20%;
 }
 
 /* ======================================================================================= */
