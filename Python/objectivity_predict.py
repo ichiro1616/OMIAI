@@ -136,7 +136,7 @@ for j,csvname in enumerate(pattern):
 
     for row in range(len(df_train_add_omiai.index)):
         if(row != 0):
-                for n in range(2):
+                # for n in range(2):
                     df_train = df_train.append(df_train_add_omiai.iloc[row])
     ### print(df_train)
     for row in range(len(df_train_add_player.index)):
@@ -181,7 +181,6 @@ for j,csvname in enumerate(pattern):
     df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_5.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv", "../Python/pattern/pattern_10.csv", "../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv", "../Python/pattern/pattern_15.csv"]
     for k,link in enumerate(df_test_pattern):
         print(k + 1, "回目", link)
-        df_test = []
         df_test = pd.read_csv(link, encoding="utf_8")
 
         # df_test = pd.read_csv("../Python/pattern/pattern_1.csv", encoding="utf_8")
