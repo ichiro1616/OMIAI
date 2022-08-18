@@ -294,37 +294,35 @@ let scale = my_can1.width / 1200; //my_can1とcanvasの比
 let imagearray = register_db().imagearray_data
 console.log(imagearray);
 
-output.innerHTML = '未経験の' + "集合知";
-
-// window.addEventListener('DOMContentLoaded', () => {
+// あなたの配置
   for (let i = 0; i < 6; i++) {
     images[0][i].addEventListener('load', () => {
-      my_ctx1.drawImage(images[0][i], imagearray[0][j][0] * scale, imagearray[0][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx1.drawImage(images[0][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[1][i].addEventListener('load', () => {
-      my_ctx2.drawImage(images[1][i], imagearray[1][j][0] * scale, imagearray[1][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx2.drawImage(images[1][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[2][i].addEventListener('load', () => {
-      my_ctx3.drawImage(images[2][i], imagearray[2][j][0] * scale, imagearray[2][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx3.drawImage(images[2][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[3][i].addEventListener('load', () => {
-      my_ctx4.drawImage(images[3][i], imagearray[3][j][0] * scale, imagearray[3][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx4.drawImage(images[3][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[4][i].addEventListener('load', () => {
-      my_ctx5.drawImage(images[4][i], imagearray[4][j][0] * scale, imagearray[4][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx5.drawImage(images[4][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   for (let i = 0; i < 6; i++) {
     images[5][i].addEventListener('load', () => {
-      my_ctx6.drawImage(images[5][i], imagearray[5][j][0] * scale, imagearray[5][j][1] * scale, koma_w * size, koma_h * size)
+      my_ctx6.drawImage(images[5][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
     })
   }
   // 画像を読み込み終わってからソースを取得する
@@ -332,7 +330,40 @@ output.innerHTML = '未経験の' + "集合知";
     for (var j = 0; j < 6; j++)
       images[i][j].src = srcs[i][j];
   }
-// });
+
+  // 集合知
+output.innerHTML = '未経験の' + "集合知";
+for (let i = 0; i < 6; i++) {
+  images[0][i].addEventListener('load', () => {
+    ot_ctx1.drawImage(images[0][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+for (let i = 0; i < 6; i++) {
+  images[1][i].addEventListener('load', () => {
+    ot_ctx2.drawImage(images[1][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+for (let i = 0; i < 6; i++) {
+  images[2][i].addEventListener('load', () => {
+    ot_ctx3.drawImage(images[2][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+for (let i = 0; i < 6; i++) {
+  images[3][i].addEventListener('load', () => {
+    ot_ctx4.drawImage(images[3][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+for (let i = 0; i < 6; i++) {
+  images[4][i].addEventListener('load', () => {
+    ot_ctx5.drawImage(images[4][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+for (let i = 0; i < 6; i++) {
+  images[5][i].addEventListener('load', () => {
+    ot_ctx6.drawImage(images[5][i], imagearray[i][0] * scale, imagearray[i][1] * scale, koma_w * size, koma_h * size)
+  })
+}
+
 
 //経験年数
 inputSliderEle = document.getElementById('experience_years');
@@ -353,10 +384,8 @@ function register_db(){
     imagearray_data = new Array(6);
     for(var i = 0; i < 6; i++){
       imagearray_data[i] = new Array(6);
-        for(var j = 0; j < 6; j++){
-         imagearray_data[i][j] = new Array(2);
+         imagearray_data[i]= new Array(2);
       }
-    }
     console.log("db内の情報を参照します。"); 
     formData = new FormData();
     xhr = new XMLHttpRequest();
@@ -366,10 +395,8 @@ function register_db(){
         let data_keep = JSON.parse(xhr.response);
         console.log('data_keep',data_keep[0]);
         for(var i = 0; i < 6; i++){
-        for(var j = 0; j < 6 ; j++){
-          imagearray_data[i][j][0] = data_keep[j].x_coordinate;
-          imagearray_data[i][j][1] = data_keep[j].y_coordinate;
-          }
+          imagearray_data[i][0] = data_keep[i].x_coordinate;
+          imagearray_data[i][1] = data_keep[i].y_coordinate;
         }
         if (xhr.response === "error") {
           console.log("通信に失敗しました");
