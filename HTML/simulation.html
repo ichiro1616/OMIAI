@@ -32,8 +32,8 @@
         <h1 id="inst">選手を配置してください</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
+    <div class="row justify-content-center">
+      <div class="col-5">
       <p id="syoukai_bun"></p>
       <div class="bg_image"></div>
       <div id="canvas_warp">
@@ -43,7 +43,7 @@
       </div>
       <div id="area_percentage"></div>
       </div>
-      <div class="col">
+      <div class="col-5">
     <div id="message">
       <div id="kensuke">
         <p>けんすけ</p>
@@ -78,7 +78,15 @@
     </div>
     <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button>
     <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button>
+    <h2 id="change_bar">お見合い割合変化バー</h2>
     <input type="range" id="subject_object" min="0" max="4" step="1" value="2">
+        <!-- 目盛り -->
+        <div id="wrap2">
+          <p>●●●</p>
+          </div>
+          <div id="wrapping2">
+          <p>主観的</p><p>少し主観的</p><p>　普通</p><p>少し客観的</p><p>　客観的</p>
+          </div>
       </div>
   </div>
   </div>
