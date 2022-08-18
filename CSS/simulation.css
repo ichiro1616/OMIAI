@@ -382,7 +382,7 @@ input[type=range].slider::-webkit-slider-thumb {
   z-index       : 30;
   left          : 1rem;
   padding       : 3rem;
-  top           : 25rem;
+  top           : 22rem;
 }
 
 #register_btn {
@@ -403,5 +403,5 @@ input[type=range].slider::-webkit-slider-thumb {
   z-index       : 30;
   left          : 3.5rem;
   padding       : 3rem;
-  top           : 25rem;
+  top           : 22rem;
 }
