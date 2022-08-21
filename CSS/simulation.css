@@ -141,11 +141,11 @@ input[type=range].slider::-webkit-slider-thumb {
   height         : 1rem;
   width          : 100%;
   color          : rgb(255, 255, 255);
-  top            : 3.98rem;
-  left           : 3.2rem;
-  letter-spacing : 7rem;
+  top            : 4.04rem;
+  left           : 3.3rem;
+  letter-spacing : 7.3rem;
   box-sizing     : border-box;
-  font-size      : 0.8rem;
+  font-size      : 0.7rem;
   font-weight    : bold;
   z-index        : 20;
 }
@@ -318,13 +318,12 @@ input[type=range].slider::-webkit-slider-thumb {
   cursor: pointer;
   outline: none;
   height: 14px;
-  width: 30%;
   background: #a6a6aa;
   border-radius: 10px;
   border: solid 0.08rem black;
-  position: absolute;
-  right: 16.5rem;
-  top: 23rem;
+  position: relative;
+  top: 3rem;
+  left:5.5rem;
   z-index:10;
 }
 ::-webkit-slider-thumb {
@@ -355,9 +354,9 @@ input[type=range].slider::-webkit-slider-thumb {
 #wrapping2 p{
   float       : none;
   position    : relative;
-  top         : 0.7rem;
-  left        : 5.7rem;
-  width       : 8.5rem;
+  top         : 1rem;
+  left        : 4.9rem;
+  width       : 9rem;
   display     : inline-flex;
   font-size   : 0.9rem;
   font-weight : bold;

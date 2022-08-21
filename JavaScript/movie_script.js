@@ -1,4 +1,7 @@
-//担当：上村
+//question() → movie_db() → movie_play() → movie_time() → control() → choose(btn)
+// → EncodeHTMLForm(data) → percentage() → control() → movie_time() → //// → movie_end()
+
+
 let counter = 0;
 let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
 let STOP = 0; //ボタン連打の防止
@@ -10,18 +13,6 @@ let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
-window.onclick = question(); //ページが開かれたら自動でquestionを動かす
-
-//データの送信時、phpで受け取れる形に変換する
-function EncodeHTMLForm(data) {
-  var params = [];
-  for (var name in data) {
-    var value = data[name];
-    var param = encodeURIComponent(name).replace(/%20/g, "+") + "=" + encodeURIComponent(value).replace(/%20/g, "+");
-    params.push(param);
-  }
-  return params.join("&");
-}
 
 //バレーボールの経験年数をきく
 function question() {
@@ -36,31 +27,112 @@ function question() {
   });
 }
 
-// dbのmovieテーブルからデータを取得する
-function movie_db() {
-  console.log("dbから動画を選択します。");
-  console.log("経験年数 = ", experience_years);
-  video_button.style.display = "block";
-  experience.style.display = "none";
-  form = new FormData();
-  form.append("experience_years", experience_years);
-  xhr = new XMLHttpRequest();
-  xhr.open("POST", "../PHP/movie_receive.php");
-  xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-      data_keep = JSON.parse(xhr.response);
-      console.log(data_keep);
-      if (xhr.response === "error") {
-        console.log("通信に失敗しました");
-      } else {
-        data = data_keep;
-        console.log(data);
-        movie_play();
+//ページが開かれたら自動でquestionを動かす
+document.addEventListener("DOMContentLoaded", function () {
+  question();
+ });
+
+// function isSmartPhone() {
+//   // UserAgentからのスマホ判定
+//   if (navigator.userAgent.match(/iPhone|Android/)) {
+//     // Chrome & Firefox v64以降
+//     if( document.body.requestFullscreen ) {
+//       document.body.requestFullscreen();
+      
+//     // Firefox v63以前
+//     } else if( document.body.mozRequestFullScreen ) {
+//       document.body.mozRequestFullScreen();
+
+//     // Safari & Edge & Chrome v68以前
+//     } else if( document.body.webkitRequestFullscreen ) {
+//       document.body.webkitRequestFullscreen();
+      
+//     // IE11
+//     } else if( document.body.msRequestFullscreen ) {
+//       document.body.msRequestFullscreen();
+//     }
+//     question();
+//   } else {
+//     question();
+//   }
+// }
+
+//ページが開かれたら自動でquestionを動かす
+// document.addEventListener("DOMContentLoaded", function () {
+//   isSmartPhone();
+//  });
+
+//データの送信時、phpで受け取れる形に変換する
+function EncodeHTMLForm(data) {
+  var params = [];
+  for (var name in data) {
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, "+") + "=" + encodeURIComponent(value).replace(/%20/g, "+");
+    params.push(param);
+  }
+  return params.join("&");
+}
+
+//全ての動画に回答し終えたら動く
+function movie_end() {
+  video_button.style.display = "none"; //動画を非表示
+  end.style.display = "block"; //終了画面を表示
+
+  // let formData = new FormData();
+
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
+  // xhr.addEventListener("loadend", function () {
+  //   if (xhr.status === 200) {
+  //     let data = JSON.parse(xhr.response);
+  //     console.log(data);
+  //   }
+  // });
+  // xhr.send(formData);
+}
+
+// 指定フレームで動画を停止させる
+function control(num) {
+  Velement = document.querySelector("video");
+  var obj = document.getElementById("mv");
+  var n = parseInt(num);
+  if (n == 0) {
+    obj.play();
+  } else {
+    document.querySelector('[id="0"]').value = "⇦";
+    document.querySelector('[id="1"]').value = "⇨";
+    document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
+    obj.pause(); //動画を停止させる
+    console.log("一時停止");
+  }
+}
+
+//現在の動画の再生時間を取得する
+function movie_time() {
+  stop_time = data[counter]["stop_time"] / 60;
+  console.log(stop_time);
+  videoElement = document.getElementById("mv");
+  Velement = document.querySelector("video");
+  videoElement.addEventListener("timeupdate", function () {
+    if (position == 0) {
+      submit = videoElement.currentTime;
+      console.log(submit);
+      if (stop_time - submit <= 0.33) {
+        console.log("slow");
+        position = 2;
+      }
+    }
+    if (position == 2) {
+      Velement.playbackRate = 0.2;
+      submit = videoElement.currentTime;
+      console.log(submit);
+      if (stop_time - submit <= 0.001) {
+        position = 1;
+        STOP = 0;
+        control(1); //controlに1を送る(動画を停止する)
       }
     }
   });
-  console.log("form=", form);
-  xhr.send(form);
 }
 
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
@@ -95,86 +167,31 @@ function movie_play() {
   }
 }
 
-//現在の動画の再生時間を取得する
-function movie_time() {
-  stop_time = data[counter]["stop_time"] / 60;
-  console.log(stop_time);
-  videoElement = document.getElementById("mv");
-  Velement = document.querySelector("video");
-  videoElement.addEventListener("timeupdate", function () {
-    if (position == 0) {
-      submit = videoElement.currentTime;
-      console.log(submit);
-      if (stop_time - submit <= 0.33) {
-        console.log("slow");
-        position = 2;
-      }
-    }
-    if (position == 2) {
-      Velement.playbackRate = 0.2;
-      submit = videoElement.currentTime;
-      console.log(submit);
-      if (stop_time - submit <= 0.001) {
-        position = 1;
-        STOP = 0;
-        control(1); //controlに1を送る(動画を停止する)
+// dbのmovieテーブルからデータを取得する
+function movie_db() {
+  console.log("dbから動画を選択します。");
+  console.log("経験年数 = ", experience_years);
+  video_button.style.display = "block";
+  experience.style.display = "none";
+  form = new FormData();
+  form.append("experience_years", experience_years);
+  xhr = new XMLHttpRequest();
+  xhr.open("POST", "../PHP/movie_receive.php");
+  xhr.addEventListener("loadend", function () {
+    if (xhr.status === 200) {
+      data_keep = JSON.parse(xhr.response);
+      console.log(data_keep);
+      if (xhr.response === "error") {
+        console.log("通信に失敗しました");
+      } else {
+        data = data_keep;
+        console.log(data);
+        movie_play();
       }
     }
   });
-}
-
-// 指定フレームで動画を停止させる
-function control(num) {
-  Velement = document.querySelector("video");
-  var obj = document.getElementById("mv");
-  var n = parseInt(num);
-  if (n == 0) {
-    obj.play();
-  } else {
-    document.querySelector('[id="0"]').value = "⇦";
-    document.querySelector('[id="1"]').value = "⇨";
-    document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
-    obj.pause(); //動画を停止させる
-    console.log("一時停止");
-  }
-}
-
-// 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
-function choose(btn) {
-  if (STOP == 0) {
-    button = btn.getAttribute("id"); // input要素のid属性の値を取得
-    button_id = parseInt(button); //取得したIDをint形式に変換する
-    console.log(button_id);
-    if (button_id == 0) {
-      //選択された選手に割り振られたidをplayer_idに格納する
-      player_id = data[counter]["left_player_id"];
-    } else {
-      player_id = data[counter]["right_player_id"];
-    }
-    // console.log("player_id = ", player_id);
-    sendData = {
-      movie_id: data[counter]["movie_id"],
-      movie_categorize: data[counter]["movie_categorize"],
-      experience_years: experience_years,
-      player_id: player_id,
-      left_or_right: button_id,
-    };
-    xhr = new XMLHttpRequest();
-    xhr.open("POST", "../PHP/button_send.php");
-    xhr.addEventListener("loadend", function () {
-      if (xhr.status === 200) {
-        console.log("接続しました");
-        if (xhr.response === "error") {
-          console.log("登録に失敗しました");
-        }
-      }
-    });
-    console.log(sendData);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(EncodeHTMLForm(sendData));
-    console.log("登録しました");
-    percentage();
-  }
+  console.log("form=", form);
+  xhr.send(form);
 }
 
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
@@ -222,20 +239,40 @@ function percentage() {
   setTimeout(movie_play, 1500);
 }
 
-//全ての動画に回答し終えたら動く
-function movie_end() {
-  video_button.style.display = "none"; //動画を非表示
-  end.style.display = "block"; //終了画面を表示
-
-  // let formData = new FormData();
-
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
-  // xhr.addEventListener("loadend", function () {
-  //   if (xhr.status === 200) {
-  //     let data = JSON.parse(xhr.response);
-  //     console.log(data);
-  //   }
-  // });
-  // xhr.send(formData);
+// 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
+function choose(btn) {
+  if (STOP == 0) {
+    button = btn.getAttribute("id"); // input要素のid属性の値を取得
+    button_id = parseInt(button); //取得したIDをint形式に変換する
+    console.log(button_id);
+    if (button_id == 0) {
+      //選択された選手に割り振られたidをplayer_idに格納する
+      player_id = data[counter]["left_player_id"];
+    } else {
+      player_id = data[counter]["right_player_id"];
+    }
+    // console.log("player_id = ", player_id);
+    sendData = {
+      movie_id: data[counter]["movie_id"],
+      movie_categorize: data[counter]["movie_categorize"],
+      experience_years: experience_years,
+      player_id: player_id,
+      left_or_right: button_id,
+    };
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "../PHP/button_send.php");
+    xhr.addEventListener("loadend", function () {
+      if (xhr.status === 200) {
+        console.log("接続しました");
+        if (xhr.response === "error") {
+          console.log("登録に失敗しました");
+        }
+      }
+    });
+    console.log(sendData);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(EncodeHTMLForm(sendData));
+    console.log("登録しました");
+    percentage();
+  }
 }

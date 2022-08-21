@@ -21,7 +21,7 @@
     <p>未経験</p><p>1~2年</p><p>3~5年</p><p>6~9年</p><p>10年以上</p>
     </div>
     <br />
-    <i class="icon-check"></i>
+    <i class="icon-check" onclick="simulation();"></i>
     <p><input type="button" class="button" id="button-check" value="　　決定" onclick="simulation();" /></p>
   </div>
   </div>
@@ -79,7 +79,7 @@
     <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button>
     <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button>
     <h2 id="change_bar">お見合い割合変化バー</h2>
-    <input type="range" id="subject_object" min="0" max="4" step="1" value="2">
+    <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 75%;">
         <!-- 目盛り -->
         <div id="wrap2">
           <p>●●●</p>
