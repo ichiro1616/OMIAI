@@ -448,6 +448,7 @@ imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
+    row_justify_content_center.style.display = 'none';
     document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
     experience_years = 2; //経験年数の初期値は2
     console.log('経験年数', experience_years);
@@ -460,6 +461,7 @@ window.addEventListener('DOMContentLoaded', () => {
     SlideBar_subject_object.addEventListener('change', () => {
         subject_object_level = SlideBar_subject_object.value;
         console.log('主観的か客観的か', subject_object_level);
+        area(counter);
     })
 
     //初期座標にコマを表示させる
@@ -525,6 +527,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function simulation() {
     simulation_area.style.display = "block";
+    row_justify_content_center.style.display = "block";
     experience.style.display = "none";
     kensuke.style.display = "block";//けんすけ
     rui.style.display = "none";//るい
@@ -1594,6 +1597,8 @@ function omiai(judge_area, rota) {
     let k = 0;
     let percentage = 0;
 
+    //後で　ローテーションごとのいる
+
     // let ad = canvas_under.width / canvas_omiai.width;
     // let oriX = 60 * ad;
     // let oriY = 1135 * ad;
@@ -1640,9 +1645,9 @@ function omiai(judge_area, rota) {
 
 
             //後で消す　お見合い範囲デバッグ用
-            if (omiaiarea[k].judge == 0) {
-                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-            }
+            // if (omiaiarea[k].judge == 0) {
+            //     context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+            // }
 
 
             k++;
@@ -1760,7 +1765,7 @@ function area(rota) {
             // let judge_color_sub_7 = calculation(counter, data_array_sub_7);
             // let judge_color_sub_8 = calculation(counter, data_array_sub_8);
             // let judge_color_sub_9 = calculation(counter, data_array_sub_9);
-            console.log('judge', judge_color_sub_1);
+            // console.log('judge', judge_color_sub_1);
 
             //10パターンの重なってるところ 10+結果用の+1
             //judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0
@@ -1768,10 +1773,10 @@ function area(rota) {
             // let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
 
             //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
-            let judge_color_merge = merge(judge_color_sub, subject_object_level);
+            let judge_color_merge = merge(judge_color_sub, omiaiarea, subject_object_level);
 
             //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-            let area_percentage = omiai(judge_color_merge, counter);
+            let area_percentage = omiai(judge_color_merge, rota);
             area_percentage = area_percentage / 2116 * 100;
             area_percentage = String(area_percentage);
             area_percentage = parseInt(area_percentage, 10);
@@ -1832,8 +1837,55 @@ function color_sub(j1) {
 }
 
 //お見合い範囲割合変化 sub, ob, level
-function merge(sub, level) {
-    return sub;
+function merge(sub, ob, level) {
+    console.log('level', level);
+    let sum_judge = sub;
+    if (level == 0) {//主観的
+        sum_judge = sub;
+        console.log('level0');
+    } else if (level == 1) {
+
+    } else if (level == 2) {
+        console.log('level2');
+        for (i = 0; i < sub.length; i++) {
+            if (sub[i].judge == ob[i].judge) {
+                sum_judge[i].judge = sub[i].judge;
+            } else {
+                sum_judge[i].judge = 1;//後で直す
+            }
+        }
+    } else if (level == 3) {
+
+    } else if (level == 4) {//客観的
+        sum_judge = ob;
+    }
+    // switch (level) {
+    //     case 0://主観的
+    //         console.log('level0');
+    //         sum_judge = sub;
+    //         break;
+    //     case 1:
+    //         break;
+    //     case 2:
+    //         console.log('level2');
+    //         for (i = 0; i < sub.length; i++) {
+    //             if (sub[i].judge == ob[i].judge) {
+    //                 sum_judge[i].judge = sub[i].judge;
+    //             } else {
+    //                 sum_judge[i].judge = 1;
+    //             }
+    //         }
+    //         break;
+    //     case 3:
+    //         break;
+    //     case 4://客観的
+    //         console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    //         sum_judge = ob;
+    //         console.log('ob');
+    //         break;
+    // }
+    // console.log('sum', sum_judge);
+    return sum_judge;
 }
 
 
