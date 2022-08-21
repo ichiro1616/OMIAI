@@ -138,11 +138,11 @@ input[type=range].slider::-webkit-slider-thumb {
   height         : 1rem;
   width          : 100%;
   color          : rgb(255, 255, 255);
-  top            : 3.98rem;
-  left           : 3.2rem;
-  letter-spacing : 7rem;
+  top            : 4.04rem;
+  left           : 3.3rem;
+  letter-spacing : 7.3rem;
   box-sizing     : border-box;
-  font-size      : 0.8rem;
+  font-size      : 0.7rem;
   font-weight    : bold;
   z-index        : 20;
 }
