@@ -1844,6 +1844,8 @@ function merge(sub, ob, level) {
         sum_judge = sub;
         console.log('level0');
     } else if (level == 1) {
+        console.log('level1');
+
 
     } else if (level == 2) {
         console.log('level2');
@@ -1857,6 +1859,7 @@ function merge(sub, ob, level) {
     } else if (level == 3) {
 
     } else if (level == 4) {//客観的
+        console.log('level4')
         sum_judge = ob;
     }
     // switch (level) {
