@@ -29,3 +29,24 @@ canvas {
     margin-left: auto;
     margin-right: auto;
 }
+
+#rotation_button {
+  border        : none;
+  border-radius : 0.5rem;          /* 角丸       */
+  font-size     : 1.2rem;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 1.5% 1.8%;   /* 余白       */
+  background    : rgba(55, 0, 255);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 100%;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  font-weight   : bold;
+  letter-spacing: 0.4rem;
+  width         : 45%;
+  position      : relative;
+  z-index       : 30;
+  left          : 30rem;
+  padding       : 3rem;
+  top           : 5rem;
+}
