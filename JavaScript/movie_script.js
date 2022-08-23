@@ -172,30 +172,28 @@ function percentage() {
   xhr.addEventListener("loadend", function (LR_temp) {
     if (xhr.status === 200) {
       LR_temp = JSON.parse(xhr.response);
+      LR = LR_temp;
+      console.log(LR);
+      //パーセンテージの計算
+      per = Object.keys(LR).length; //要素の数
+      left = 0; //左選手を選択した人の数
+      for (i = 0; i < per; i++) {
+        //左選手を選択した人の数を数える
+        if (LR[i] == 0) {
+          left++;
+        }}
+      right = per - left; //右選手を選択した人の数
+      console.log(per);
+      console.log(left, right);
+      left_per = Math.round((left / per) * 100);
+      right_per = Math.round((right / per) * 100);
+      console.log(left_per);
+      console.log(right_per);
+      //パーセンテージの表示
+      document.querySelector('[id="0"]').value = left_per + "%";
+      document.querySelector('[id="1"]').value = right_per + "%";
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
-      } else {
-        LR = LR_temp;
-        console.log(LR);
-        //パーセンテージの計算
-        per = Object.keys(LR).length; //要素の数
-        left = 0; //左選手を選択した人の数
-        for (i = 0; i < per; i++) {
-          //左選手を選択した人の数を数える
-          if (LR[i] == 0) {
-            left++;
-          }
-        }
-        right = per - left; //右選手を選択した人の数
-        console.log(per);
-        console.log(left, right);
-        left_per = Math.round((left / per) * 100);
-        right_per = Math.round((right / per) * 100);
-        console.log(left_per);
-        console.log(right_per);
-        //パーセンテージの表示
-        document.querySelector('[id="0"]').value = left_per + "%";
-        document.querySelector('[id="1"]').value = right_per + "%";
       }
     }
   });
@@ -204,7 +202,7 @@ function percentage() {
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 1500);
+  setTimeout(movie_play, 1000);
 }
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
@@ -241,6 +239,6 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    percentage();
+    setTimeout(percentage,100);
   }
 }
