@@ -1,7 +1,5 @@
 //question() → movie_db() → movie_play() → movie_time() → control() → choose(btn)
 // → EncodeHTMLForm(data) → percentage() → control() → movie_time() → //// → movie_end()
-
-
 let counter = 0;
 let flag = 0; //couterの値がデータ数を超えたかを判定するフラグ
 let STOP = 0; //ボタン連打の防止
@@ -31,36 +29,6 @@ function question() {
 document.addEventListener("DOMContentLoaded", function () {
   question();
  });
-
-// function isSmartPhone() {
-//   // UserAgentからのスマホ判定
-//   if (navigator.userAgent.match(/iPhone|Android/)) {
-//     // Chrome & Firefox v64以降
-//     if( document.body.requestFullscreen ) {
-//       document.body.requestFullscreen();
-      
-//     // Firefox v63以前
-//     } else if( document.body.mozRequestFullScreen ) {
-//       document.body.mozRequestFullScreen();
-
-//     // Safari & Edge & Chrome v68以前
-//     } else if( document.body.webkitRequestFullscreen ) {
-//       document.body.webkitRequestFullscreen();
-      
-//     // IE11
-//     } else if( document.body.msRequestFullscreen ) {
-//       document.body.msRequestFullscreen();
-//     }
-//     question();
-//   } else {
-//     question();
-//   }
-// }
-
-//ページが開かれたら自動でquestionを動かす
-// document.addEventListener("DOMContentLoaded", function () {
-//   isSmartPhone();
-//  });
 
 //データの送信時、phpで受け取れる形に変換する
 function EncodeHTMLForm(data) {
