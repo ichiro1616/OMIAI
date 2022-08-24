@@ -14,31 +14,50 @@ function a() {
     if (xhr.status === 200) {
       let data = JSON.parse(xhr.response);
       console.log(data);
-      for (i = 0; i < data.length; i++) {
-        data[i] = data[i].slice(1);
-        data[i] = data[i].slice(0, -1);
-        color_array[i] = data[i].split(",");
+
+      let color = ["blue", "red", "green"];
+      for (i = 0; i < 3; i++) {
+        color_array_data = [];
+        for (j = 0; j < data.length; j++) {
+          if (data[j]["color"] == color[i]) {
+            color_array_data.push(data[j]["data"]);
+          }
+        }
+        color_array.push(color_array_data);
       }
-      // console.log(color_array);
+      console.log(color_array);
       for (i = 0; i < color_array.length; i++) {
         for (j = 0; j < color_array[i].length; j++) {
           color_array[i][j] = Number(color_array[i][j]);
         }
       }
-      let player1_x = 2;
-      let player1_y = 2;
-      let player2_x = 7;
-      let player2_y = 7;
+      //player1 = 安西、player2 = 西根
+      let player1_x = 3;
+      let player1_y = 4.5;
+      let player2_x = 6;
+      let player2_y = 4.5;
 
+      // let player1_x = 6;
+      // let player1_y = 4.5;
+      // let player2_x = 3;
+      // let player2_y = 4.5;
+      let reverce = 0;
+      if (player1_x > player2_x) {
+        // idでの条件を描く
+        player1_x = 9 - player1_x;
+        player2_x = 9 - player2_x;
+        reverce = 1;
+      }
+      console.log("judge");
       for (i = 0; i < 9.2; i += 0.2) {
         for (j = 0; j < 9.2; j += 0.2) {
           let data_tmp = {};
-          data_tmp.players_sabun_x = Math.abs(player1_x - player2_x);
-          data_tmp.players_sabun_y = Math.abs(player1_y - player2_y);
-          data_tmp.player1_ball_sabun_x = Math.abs(player1_x - i);
-          data_tmp.player1_ball_sabun_y = Math.abs(player1_y - j);
-          data_tmp.player2_ball_sabun_x = Math.abs(player2_x - i);
-          data_tmp.player2_ball_sabun_y = Math.abs(player2_y - j);
+          data_tmp.players_sabun_x = player1_x - player2_x;
+          data_tmp.players_sabun_y = player1_y - player2_y;
+          data_tmp.player1_ball_sabun_x = player1_x - i;
+          data_tmp.player1_ball_sabun_y = player1_y - j;
+          data_tmp.player2_ball_sabun_x = player2_x - i;
+          data_tmp.player2_ball_sabun_y = player2_y - j;
           test_data.push(data_tmp);
 
           let data_view = {};
@@ -49,7 +68,36 @@ function a() {
         }
       }
 
-      // console.log(test_data);
+      // 標準化 meanとstdに代入するdataのindex番号はdataに入っている量によって変えないといけない
+      let mean = [
+        data[0]["mean_players_sabun_x"],
+        data[0]["mean_players_sabun_y"],
+        data[0]["mean_player1_ball_sabun_x"],
+        data[0]["mean_player1_ball_sabun_y"],
+        data[0]["mean_player2_ball_sabun_x"],
+        data[0]["mean_player2_ball_sabun_y"],
+      ];
+      let std = [
+        data[0]["std_players_sabun_x"],
+        data[0]["std_players_sabun_y"],
+        data[0]["std_player1_ball_sabun_x"],
+        data[0]["std_player1_ball_sabun_y"],
+        data[0]["std_player2_ball_sabun_x"],
+        data[0]["std_player2_ball_sabun_y"],
+      ];
+      console.log(mean, std);
+
+      for (i = 0; i < test_data.length; i++) {
+        test_data[i].players_sabun_x = (test_data[i].players_sabun_x - mean[0]) / std[0];
+        test_data[i].players_sabun_y = (test_data[i].players_sabun_y - mean[1]) / std[1];
+        test_data[i].player1_ball_sabun_x = (test_data[i].player1_ball_sabun_x - mean[2]) / std[2];
+        test_data[i].player1_ball_sabun_y = (test_data[i].player1_ball_sabun_y - mean[3]) / std[3];
+        test_data[i].player2_ball_sabun_x = (test_data[i].player2_ball_sabun_x - mean[4]) / std[4];
+        test_data[i].player2_ball_sabun_y = (test_data[i].player2_ball_sabun_y - mean[5]) / std[5];
+      }
+
+      console.log(test_data);
+
       let blue = [];
       let red = [];
       let green = [];
@@ -70,28 +118,29 @@ function a() {
       }
       // console.log(answer);
 
-      array = [];
+      // array = [];
       //列で正規化をしている
-      for (i = 0; i < answer[0].length; i++) {
-        for (j = 0; j < answer.length; j++) {
-          array.push(answer[j][i]);
-        }
-        max = Math.max(...array);
-        min = Math.min(...array);
-        // console.log(array, "max", max, "min", min);
+      // for (i = 0; i < answer[0].length; i++) {
+      //   for (j = 0; j < answer.length; j++) {
+      //     array.push(answer[j][i]);
+      //   }
+      //   max = Math.max(...array);
+      //   min = Math.min(...array);
+      //   // console.log(array, "max", max, "min", min);
 
-        //NaNを0にしてる
-        for (k = 0; k < answer.length; k++) {
-          if (isNaN((answer[k][i] - min) / (max - min))) {
-            answer[k][i] = 0;
-          } else {
-            answer[k][i] = (answer[k][i] - min) / (max - min);
-          }
-        }
+      //   //NaNを0にしてる
+      //   for (k = 0; k < answer.length; k++) {
+      //     if (isNaN((answer[k][i] - min) / (max - min))) {
+      //       answer[k][i] = 0;
+      //     } else {
+      //       answer[k][i] = (answer[k][i] - min) / (max - min);
+      //     }
+      //   }
 
-        array.length = 0;
-      }
-      // console.log(answer);
+      //   array.length = 0;
+      // }
+
+      console.log(answer);
       for (i = 0; i < answer.length; i++) {
         //lr.intercept_の値を足している
         let b = 0;
@@ -136,6 +185,16 @@ function a() {
       }
       console.log(judge_color);
       console.log(judge_array);
+      let counter = 1;
+      if (reverce == 1) {
+        for (i = 0; i < judge_color.length / 2; i++) {
+          let keep = judge_color[i]["judge"];
+          judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
+          judge_color[judge_color.length - counter]["judge"] = keep;
+          counter++;
+        }
+        console.log(judge_color);
+      }
     }
   });
   xhr.send(formData);
