@@ -321,7 +321,6 @@ let imagearray = [
 //canvasに描画する準備
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
-
 //under_canvasに描画する準備
 const under_canvas1 = document.getElementById('under_canvas1');//1ローテーション目
 const under_context1 = under_canvas1.getContext('2d');
@@ -409,7 +408,7 @@ for (var i = 0; i < 6; i++) {//ローテーション
     }
 }
 
-let scale = under_canvas.width / canvas.width;//canvasとunder_canvasの比
+let scale = under_canvas1.width / canvas.width;//canvasとunder_canvasの比
 let dragmode = false;//ドラッグモード
 let dragkoma = null;//ドラッグするコマの添え字
 let size = 2.0;//メイン画面のコマの大きさの倍率
