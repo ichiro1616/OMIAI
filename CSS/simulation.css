@@ -230,7 +230,7 @@ input[type=range].slider::-webkit-slider-thumb {
   margin-top:0.5rem;
 }
 
-#under_canvas {
+#under_canvas1 {
   border: 0;
   width: 100%;
   box-sizing: content-box;
