@@ -1535,8 +1535,8 @@ document.getElementById("register_btn").onclick = function () {
         }
     }
 
-    var json_str = JSON.stringify(imagearray);
-    localStorage.setItem('key',json_str);
+    var json_str1 = JSON.stringify(imagearray);
+    localStorage.setItem('key',json_str1);
     
 }
 
@@ -1599,7 +1599,8 @@ function omiai(judge_area, rota) {
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     let k = 0;
     let percentage = 0;
-
+    var json_str2 = JSON.stringify(judge_area);
+    localStorage.setItem('key2',json_str2);
     //後で　ローテーションごとのいる
 
     // let ad = canvas_under.width / canvas_omiai.width;
@@ -1657,7 +1658,6 @@ function omiai(judge_area, rota) {
         }
     }
     return percentage;
-    // console.log(k);
 }
 
 
