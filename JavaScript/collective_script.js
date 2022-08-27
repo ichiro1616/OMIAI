@@ -180,6 +180,7 @@ function canvas_draw(){
 
 const srcs = [
  [
+  // ローテーション1
   '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
   '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
   '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
@@ -187,7 +188,7 @@ const srcs = [
   '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
   '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
  ], 
- // ローテーション1
+ // ローテーション2
  [
   '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
   '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
@@ -196,7 +197,7 @@ const srcs = [
   '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
   '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
  ],
-//ローテーション2
+//ローテーション3
  [
   '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
   '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
@@ -205,7 +206,7 @@ const srcs = [
   '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
   '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
  ],
-  //ローテーション3
+  //ローテーション4
  [
     '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
     '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
@@ -214,7 +215,7 @@ const srcs = [
     '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
     '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
  ],
-  //ローテーション4
+  //ローテーション5
  [
     '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
     '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
@@ -223,7 +224,7 @@ const srcs = [
     '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
     '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
  ],
- //ローテーション5
+ //ローテーション6
  [
     '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
     '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
@@ -265,10 +266,6 @@ inputSlideBarElement.addEventListener('change', function(){
 
 // dbのregisterテーブルからデータを取得する
 function register_db(){
-    imagearray_data = new Array(6);
-    for(var i = 0; i < 6; i++){
-         imagearray_data[i]= new Array(2);
-      }
     console.log("db内の情報を参照します。"); 
     formData = new FormData();
     xhr = new XMLHttpRequest();
@@ -277,10 +274,6 @@ function register_db(){
       if (xhr.status === 200) {
         let data_keep = JSON.parse(xhr.response);
         console.log('data_keep',data_keep);
-        // for(var i = 0; i < 6; i++){
-        //   imagearray_data[i][0] = data_keep[i].x_coordinate;
-        //   imagearray_data[i][1] = data_keep[i].y_coordinate;
-        // }
         if (xhr.response === "error") {
           console.log("通信に失敗しました");
         } else {
@@ -289,9 +282,6 @@ function register_db(){
       }
     });
     xhr.send(formData);
-    return{
-      // imagearray_data
-    };
   }
 // あなたの配置
   for (let i = 0; i < 6; i++) {
@@ -308,8 +298,9 @@ for (let i = 0; i < 6; i++) {
 }
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
-  images[5][i].addEventListener('load', () => {
-    com_ctx.drawImage(images[5][i], array[5][i].x * scale, array[5][i].y * scale, koma_w * size, koma_h * size)
+  images[0][i].addEventListener('load', () => {
+    com_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(images[0][i],imagearray[0][i].x*scale,imagearray[0][i].y*scale,koma_w*size,koma_h*size)
 });
 }
 // 画像を読み込み終わってからソースを取得する
@@ -337,6 +328,12 @@ function draw(rota) {
     let w = koma_w * size;
     let h = koma_h * size;
     ot_ctx.drawImage(images[rota][i],x*scale,y*scale,w,h);
+  }
+
+  com_ctx.clearRect(0,0,com_can.width,ot_can.height);
+  for(var i in images){
+    com_ctx.drawImage(images[rota][i],imagearray[rota][i].x*scale,imagearray[rota][i].y*scale,koma_w*size,koma_h*size);
+    com_ctx.drawImage(images[rota][i],array[rota][i].x * scale,array[rota][i].y * scale, koma_w * size, koma_h * size);
   }
 }
 //ローテーションボタンを押されたら
