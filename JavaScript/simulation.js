@@ -1534,6 +1534,10 @@ document.getElementById("register_btn").onclick = function () {
             xhr.send(formData);
         }
     }
+
+    var json_str = JSON.stringify(imagearray);
+    localStorage.setItem('key',json_str);
+    
 }
 
 

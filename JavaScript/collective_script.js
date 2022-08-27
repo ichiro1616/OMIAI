@@ -1,3 +1,6 @@
+let str = localStorage.getItem('key');
+let imagearray = JSON.parse(str)
+console.log(imagearray);
 let array = [
   [
     {
@@ -160,64 +163,19 @@ let array = [
 let my_can; //自分の配置を表示するキャンバス
 let ot_can; //選択した配置を表示するキャンバス
 let com_can; //コマを重ねて表示するキャンバス
-let canvas_line = 650;
 let data; //registerテーブルから取得したデータを全て格納する
 window.onclick = canvas_draw();
 
 function canvas_draw(){
 //自分の配置
-    //キャンバスのidを取得
-    my_can = document.getElementById('my');
-    // my_can2 = document.getElementById('my2');
-    // my_can3 = document.getElementById('my3');
-    // my_can4 = document.getElementById('my4');
-    // my_can5 = document.getElementById('my5');
-    // my_can6 = document.getElementById('my6');
-
-    //キャンバスの2Dコンテキストを取得
-    my_ctx = my_can.getContext('2d');
-    // my_ctx2 = my_can2.getContext('2d');
-    // my_ctx3 = my_can3.getContext('2d');
-    // my_ctx4 = my_can4.getContext('2d');
-    // my_ctx5 = my_can5.getContext('2d');
-    // my_ctx6 = my_can6.getContext('2d');
-
-    //キャンバスの縁を描画
-    my_ctx.strokeRect(0,0,canvas_line,canvas_line);
-    // my_ctx2.strokeRect(0,0,canvas_line,canvas_line);
-    // my_ctx3.strokeRect(0,0,canvas_line,canvas_line);
-    // my_ctx4.strokeRect(0,0,canvas_line,canvas_line);
-    // my_ctx5.strokeRect(0,0,canvas_line,canvas_line);
-    // my_ctx6.strokeRect(0,0,canvas_line,canvas_line);
-
+    my_can = document.getElementById('my'); //キャンバスのidを取得
+    my_ctx = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
 //他の配置・集合知
-    //キャンバスのidを取得
-    ot_can = document.getElementById('other');
-    // ot_can2 = document.getElementById('other2');
-    // ot_can3 = document.getElementById('other3');
-    // ot_can4 = document.getElementById('other4');
-    // ot_can5 = document.getElementById('other5');
-    // ot_can6 = document.getElementById('other6');
-
-    //キャンバスの2Dコンテキストを取得
-    ot_ctx = ot_can.getContext('2d');
-    // ot_ctx2 = ot_can2.getContext('2d');
-    // ot_ctx3 = ot_can3.getContext('2d');
-    // ot_ctx4 = ot_can4.getContext('2d');
-    // ot_ctx5 = ot_can5.getContext('2d');
-    // ot_ctx6 = ot_can6.getContext('2d');
-
-    //キャンバスの縁を描画
-    ot_ctx.strokeRect(0,0,canvas_line,canvas_line);
-    // ot_ctx2.strokeRect(0,0,canvas_line,canvas_line);
-    // ot_ctx3.strokeRect(0,0,canvas_line,canvas_line);
-    // ot_ctx4.strokeRect(0,0,canvas_line,canvas_line);
-    // ot_ctx5.strokeRect(0,0,canvas_line,canvas_line);
-    // ot_ctx6.strokeRect(0,0,canvas_line,canvas_line);
-
+    ot_can = document.getElementById('other'); 
+    ot_ctx = ot_can.getContext('2d'); 
+//自分と他の重ねた配置
     com_can = document.getElementById('comparison');
     com_ctx = com_can.getContext('2d');
-    com_ctx.strokeRect(0,0,canvas_line,canvas_line)
 }
 
 const srcs = [
@@ -288,7 +246,7 @@ for(var i = 0; i< 6; i++){ //ローテーション
 let size = 1.8; //メイン画面のコマの大きさの倍率
 let koma_w = 70; //コマの横幅
 let koma_h = 70; //コマの高さ
-let scale = 700 / 1200; //my_canとcanvasの比
+let scale = 650 / 1200; //my_canとcanvasの比
 let counter = 0;
 
 //経験年数
@@ -335,26 +293,19 @@ function register_db(){
       // imagearray_data
     };
   }
-
-//   let imagearray = register_db().imagearray_data
-// console.log(imagearray);
-
 // あなたの配置
   for (let i = 0; i < 6; i++) {
     images[0][i].addEventListener('load', () => {
-      my_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
+      my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
     })
     }
 
   // 集合知
-// output.innerHTML = '未経験の' + "集合知";
-
 for (let i = 0; i < 6; i++) {
   images[0][i].addEventListener('load', () => {
     ot_ctx.drawImage(images[0][i], array[0][i].x * scale,array[0][i].y * scale, koma_w * size, koma_h * size)
   })
 }
-
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
   images[5][i].addEventListener('load', () => {
@@ -372,11 +323,11 @@ function draw(rota) {
   // canvas内を一旦クリア
   my_ctx.clearRect(0, 0, my_can.width, my_can.height);
   for (var i in images) {
-    let x = array[rota][i].x ;
-    let y = array[rota][i].y;
+    let x = imagearray[rota][i].x*scale;
+    let y = imagearray[rota][i].y*scale;
     let w = koma_w * size;
     let h = koma_h * size;
-    my_ctx.drawImage(images[rota][i], x*scale, y*scale, w, h);
+    my_ctx.drawImage(images[rota][i], x, y, w, h);
   }
 
   ot_ctx.clearRect(0,0,ot_can.width,ot_can.height);
@@ -388,8 +339,7 @@ function draw(rota) {
     ot_ctx.drawImage(images[rota][i],x*scale,y*scale,w,h);
   }
 }
-
-//ローテーション
+//ローテーションボタンを押されたら
 function rotation() {
   counter++;
   //6回目なら最初に戻す

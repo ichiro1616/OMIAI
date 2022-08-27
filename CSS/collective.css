@@ -12,7 +12,8 @@ h2 {
 
 canvas {
     margin: 10px;
-    background-color: bisque;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: 100%;
 }
 
 .my {
