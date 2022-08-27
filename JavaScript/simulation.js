@@ -323,8 +323,8 @@ const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 
 //under_canvasに描画する準備
-const under_canvas = document.getElementById('under_canvas');//1ローテーション目
-const under_context = under_canvas.getContext('2d');
+const under_canvas1 = document.getElementById('under_canvas1');//1ローテーション目
+const under_context1 = under_canvas1.getContext('2d');
 const under_canvas2 = document.getElementById('under_canvas2');//2ローテーション目
 const under_context2 = under_canvas2.getContext('2d');
 const under_canvas3 = document.getElementById('under_canvas3');//3ローテーション目
@@ -473,7 +473,7 @@ window.addEventListener('DOMContentLoaded', () => {
             case 0://1ローテーション目
                 for (let j = 0; j < 6; j++) {
                     images[i][j].addEventListener('load', () => {
-                        under_context.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
+                        under_context1.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
                     })
                 }
                 break;
@@ -1429,9 +1429,9 @@ let mousemove = function (e) {
             context.drawImage(images[counter][i], x, y, w, h);
             switch (counter) {
                 case 0://1ローテーション目
-                    under_context.clearRect(0, 0, under_canvas.width, under_canvas.height);
+                    under_context1.clearRect(0, 0, under_canvas1.width, under_canvas1.height);
                     for (let j = 5; j >= 0; j--) {
-                        under_context.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
+                        under_context1.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
                     }
                     break;
                 case 1://2ローテーション目
@@ -1468,9 +1468,9 @@ let mousemove = function (e) {
                     break;
             }
             if (counter == 0) {
-                under_context.clearRect(0, 0, under_canvas.width, under_canvas.height);
+                under_context1.clearRect(0, 0, under_canvas1.width, under_canvas1.height);
                 for (let j = 5; j >= 0; j--) {
-                    under_context.drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
+                    under_context1.drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
                 }
             }
         }
