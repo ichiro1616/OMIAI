@@ -348,27 +348,27 @@ function rotation() {
 }
 
 
-const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-// const red = '';
-// const blue = '';
-my_ctx.fillStyle = omiai_color;//色
-my_ctx.globalAlpha = 0.4;//不透明度 0.7
-let originX = 42;
-let originY = 610;
-let endX = 610;
-let endY = 42;
-let k= 0;
-let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
-let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
-originY = originY - pixel_sizeY;//1ドットの大きさ分引く
-endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-let str2 = localStorage.getItem('key2');
-let judge_area = JSON.parse(str2)
-for (let i = 0; i < 46; i++) {//x
-  for (let j = 0; j < 46; j++) {//y
-    if (judge_area[k].judge == 0) {//後で2に
-      my_ctx.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-    }
-    k++;
-  }
-}
+// const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
+// // const red = '';
+// // const blue = '';
+// my_ctx.fillStyle = omiai_color;//色
+// my_ctx.globalAlpha = 0.4;//不透明度 0.7
+// let originX = 42;
+// let originY = 610;
+// let endX = 610;
+// let endY = 42;
+// let k= 0;
+// let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
+// let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
+// originY = originY - pixel_sizeY;//1ドットの大きさ分引く
+// endX = endX - pixel_sizeX;//1ドットの大きさ分引く
+// let str2 = localStorage.getItem('key2');
+// let judge_area = JSON.parse(str2)
+// for (let i = 0; i < 46; i++) {//x
+//   for (let j = 0; j < 46; j++) {//y
+//     if (judge_area[k].judge == 0) {//後で2に
+//       my_ctx.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+//     }
+//     k++;
+//   }
+// }
