@@ -322,19 +322,13 @@ let imagearray = [
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 //under_canvasに描画する準備
-const under_canvas1 = document.getElementById('under_canvas1');//1ローテーション目
-const under_context1 = under_canvas1.getContext('2d');
-const under_canvas2 = document.getElementById('under_canvas2');//2ローテーション目
-const under_context2 = under_canvas2.getContext('2d');
-const under_canvas3 = document.getElementById('under_canvas3');//3ローテーション目
-const under_context3 = under_canvas3.getContext('2d');
-const under_canvas4 = document.getElementById('under_canvas4');//4ローテーション目
-const under_context4 = under_canvas4.getContext('2d');
-const under_canvas5 = document.getElementById('under_canvas5');//5ローテーション目
-const under_context5 = under_canvas5.getContext('2d');
-const under_canvas6 = document.getElementById('under_canvas6');//6ローテーション目
-const under_context6 = under_canvas6.getContext('2d');
-
+let canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5","under_canvas6"];
+const under_canvas = [];
+const under_context = [];
+for (let i = 0; i < 6; i++) {
+    under_canvas[i] = document.getElementById(canvas_id[i]);
+    under_context[i] = under_canvas[i].getContext('2d');
+}
 //スライダーバー
 const SlideBar_experience = document.getElementById('input-range');//経験年数
 const SlideBar_subject_object = document.getElementById('subject_object');//主観的・客観的
@@ -408,7 +402,7 @@ for (var i = 0; i < 6; i++) {//ローテーション
     }
 }
 
-let scale = under_canvas1.width / canvas.width;//canvasとunder_canvasの比
+let scale = under_canvas[0].width / canvas.width;//canvasとunder_canvasの比
 let dragmode = false;//ドラッグモード
 let dragkoma = null;//ドラッグするコマの添え字
 let size = 2.0;//メイン画面のコマの大きさの倍率
@@ -468,53 +462,12 @@ window.addEventListener('DOMContentLoaded', () => {
         images[0][i].addEventListener('load', () => {
             context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size)
         })
-        switch (i) {
-            case 0://1ローテーション目
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context1.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            case 1://2ローテーション
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context2.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            case 2://3ローテーション目
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context3.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            case 3://4ローテーション
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context4.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            case 4://5ローテーション
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context5.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            case 5://6ローテーション
-                for (let j = 0; j < 6; j++) {
-                    images[i][j].addEventListener('load', () => {
-                        under_context6.drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    })
-                }
-                break;
-            default:
-                break;
-        }
-    }
+            for (let j = 0; j < 6; j++) {
+                images[i][j].addEventListener('load', () => {
+                under_context[i].drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
+                })
+            }   
+    };
 
     //画像読み込み終わってからソース取得する
     for (var i = 0; i < 6; i++) {
@@ -541,13 +494,12 @@ function simulation() {
 function draw(rota) {
     // canvas内を一旦クリア
     context.clearRect(0, 0, canvas.width, canvas.height);
-
+    // コマを表示
     for (var i in images) {
         let x = imagearray[rota][i].x;
         let y = imagearray[rota][i].y;
         let w = koma_w * size;
         let h = koma_h * size;
-
         context.drawImage(images[rota][i], x, y, w, h);
     }
 }
@@ -1426,50 +1378,14 @@ let mousemove = function (e) {
 
             // 画像を描画
             context.drawImage(images[counter][i], x, y, w, h);
-            switch (counter) {
-                case 0://1ローテーション目
-                    under_context1.clearRect(0, 0, under_canvas1.width, under_canvas1.height);
+                    under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
                     for (let j = 5; j >= 0; j--) {
-                        under_context1.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
+                        under_context[counter].drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
                     }
-                    break;
-                case 1://2ローテーション目
-                    under_context2.clearRect(0, 0, under_canvas2.width, under_canvas2.height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context2.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
-                    break;
-                case 2://3ローテーション目
-                    under_context3.clearRect(0, 0, under_canvas3.width, under_canvas3.height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context3.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
-                    break;
-                case 3://4ローテーション目
-                    under_context4.clearRect(0, 0, under_canvas4.width, under_canvas4.height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context4.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
-                    break;
-                case 4://5ローテーション目
-                    under_context5.clearRect(0, 0, under_canvas5.width, under_canvas5.height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context5.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
-                    break;
-                case 5://6ローテーション目
-                    under_context6.clearRect(0, 0, under_canvas6.width, under_canvas6.height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context6.drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
-                    break;
-                default:
-                    break;
-            }
             if (counter == 0) {
-                under_context1.clearRect(0, 0, under_canvas1.width, under_canvas1.height);
+                under_context[0].clearRect(0, 0, under_canvas[0].width, under_canvas[0].height);
                 for (let j = 5; j >= 0; j--) {
-                    under_context1.drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
+                    under_context[0].drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
                 }
             }
         }
@@ -1540,16 +1456,13 @@ document.getElementById("register_btn").onclick = function () {
     
 }
 
-
 //----------------------------------------------------------------
 //お見合い範囲表示
 // const canvas_omiai_width = canvas_omiai.width;//canvas1の横幅
 // const canvas_omiai_height = canvas_omiai.height;//canvas1の縦幅
 
-
 const canvas_omiai = document.getElementById('canvas1');//お見合い範囲用
 const context_omiai = canvas_omiai.getContext('2d');
-
 
 //(36,0)   (563,0)
 //(36,480) (563,480)
@@ -1559,17 +1472,12 @@ const blue = '';
 context_omiai.fillStyle = omiai_color;//色
 context_omiai.globalAlpha = 0.4;//不透明度 0.7
 
-
 // under_canvas
 // const canvas_under = document.getElementById('under_area');//お見合い範囲用
 // const context_under = canvas_under.getContext('2d');
 
-
-
 // context_under.fillStyle = omiai_color;//色
 // context_under.globalAlpha = 0.4;//不透明度 0.7
-
-
 // let set = canvas_omiai.getBoundingClientRect();
 
 let originX = 60;//コート原点左下）x
@@ -1647,7 +1555,6 @@ function omiai(judge_area, rota) {
                 percentage++;
             }
 
-
             //後で消す　お見合い範囲デバッグ用
             // if (omiaiarea[k].judge == 0) {
             //     context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
@@ -1659,7 +1566,6 @@ function omiai(judge_area, rota) {
     }
     return percentage;
 }
-
 
 //----------------------------------------------------------------
 // パターン
@@ -1673,7 +1579,6 @@ function omiai(judge_area, rota) {
 // 4-5 20
 // 4-6 24
 // 5-6 30
-
 
 function area(rota) {
     let subject_array = [];//主観的データ2550
@@ -1845,13 +1750,9 @@ function merge(sub, ob, level) {
     let sum_judge = sub;
     if (level == 0) {//主観的
         sum_judge = sub;
-        console.log('level0');
     } else if (level == 1) {
-        console.log('level1');
-
 
     } else if (level == 2) {
-        console.log('level2');
         for (i = 0; i < sub.length; i++) {
             if (sub[i].judge == ob[i].judge) {
                 sum_judge[i].judge = sub[i].judge;
@@ -1862,7 +1763,6 @@ function merge(sub, ob, level) {
     } else if (level == 3) {
 
     } else if (level == 4) {//客観的
-        console.log('level4')
         sum_judge = ob;
     }
     // switch (level) {
@@ -1893,7 +1793,6 @@ function merge(sub, ob, level) {
     // console.log('sum', sum_judge);
     return sum_judge;
 }
-
 
 function calculation(rota, data) {
     let color_array = [];
@@ -2028,7 +1927,6 @@ function calculation(rota, data) {
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
     }
-    console.log(judge_color);
     console.log(judge_array);
     return judge_color;
 }
@@ -2085,9 +1983,6 @@ function area_calculation(rota) {
             //         }
             //     }
             // }
-
-
-
 
             // console.log('number', color_array[3][0]);
             // console.log('color_array[0].length', color_array[0].length);
@@ -2288,8 +2183,6 @@ function sum(x1, x2, x3, x4, x5, x6) {
     // console.log(box);
     return answer;
 }
-
-
 
 //後で消す
 //お見合い範囲の配列
