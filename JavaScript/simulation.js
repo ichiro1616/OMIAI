@@ -528,68 +528,84 @@ let mousedown = function (e) {
         //コマの中心座標
         let centerX = imagearray_center[counter][i].x;
         let centerY = imagearray_center[counter][i].y;
+        let name = [kensuke,rui,hinata,kento,riku,keisuke];
 
         //コマの当たり判定処理
         if ((centerX - canvasX) * (centerX - canvasX) + (centerY - canvasY) * (centerY - canvasY) <= (koma_h / 2 * size) * (koma_h / 2 * size)) {
             dragkoma = i;//ドラッグしているコマ
+            console.log(dragkoma);
             startX = centerX;//ドラッグ開始時のコマのx座標
             startY = centerY;//ドラッグ開始時のコマのy座標
             dragmode = true;//ドラッグモードにする
-            switch (dragkoma) {
-                case 0://けんすけ
-                    kensuke.style.display = "block";//けんすけ
-                    rui.style.display = "none";//るい
-                    hinata.style.display = "none";//ひなた
-                    kento.style.display = "none";//けんと
-                    riku.style.display = "none";//りく
-                    keisuke.style.display = "none";//けいすけ
-                    break;
-                case 1://るい
-                    kensuke.style.display = "none";//けんすけ
-                    rui.style.display = "block";//るい
-                    hinata.style.display = "none";//ひなた
-                    kento.style.display = "none";//けんと
-                    riku.style.display = "none";//りく
-                    keisuke.style.display = "none";//けいすけ
-                    break;
-                case 2://ひなた
-                    kensuke.style.display = "none";//けんすけ
-                    rui.style.display = "none";//るい
-                    hinata.style.display = "block";//ひなた
-                    kento.style.display = "none";//けんと
-                    riku.style.display = "none";//りく
-                    keisuke.style.display = "none";//けいすけ
-                    break;
-                case 3://けんと
-                    kensuke.style.display = "none";//けんすけ
-                    rui.style.display = "none";//るい
-                    hinata.style.display = "none";//ひなた
-                    kento.style.display = "block";//けんと
-                    riku.style.display = "none";//りく
-                    keisuke.style.display = "none";//けいすけ
-                    break;
-                case 4://りく
-                    kensuke.style.display = "none";//けんすけ
-                    rui.style.display = "none";//るい
-                    hinata.style.display = "none";//ひなた
-                    kento.style.display = "none";//けんと
-                    riku.style.display = "block";//りく
-                    keisuke.style.display = "none";//けいすけ
-                    break;
-                case 5://けいすけ
-                    kensuke.style.display = "none";//けんすけ
-                    rui.style.display = "none";//るい
-                    hinata.style.display = "none";//ひなた
-                    kento.style.display = "none";//けんと
-                    riku.style.display = "none";//りく
-                    keisuke.style.display = "block";//けいすけ
-                    break;
+
+            for(let i = 1; i <= 6; i++){
+                if(dragkoma==i){
+                    name[i].style.display = "block";
+                }
+                else if(dragkoma!=i){
+                    name[dragkoma].style.display = "none";
+                }
             }
-            break;
+
+
+            // switch (dragkoma) {
+            //     case 0://けんすけ
+            //         kensuke.style.display = "block";//けんすけ
+            //         rui.style.display = "none";//るい
+            //         hinata.style.display = "none";//ひなた
+            //         kento.style.display = "none";//けんと
+            //         riku.style.display = "none";//りく
+            //         keisuke.style.display = "none";//けいすけ
+            //         break;
+            //     case 1://るい
+            //         kensuke.style.display = "none";//けんすけ
+            //         rui.style.display = "block";//るい
+            //         hinata.style.display = "none";//ひなた
+            //         kento.style.display = "none";//けんと
+            //         riku.style.display = "none";//りく
+            //         keisuke.style.display = "none";//けいすけ
+            //         break;
+            //     case 2://ひなた
+            //         kensuke.style.display = "none";//けんすけ
+            //         rui.style.display = "none";//るい
+            //         hinata.style.display = "block";//ひなた
+            //         kento.style.display = "none";//けんと
+            //         riku.style.display = "none";//りく
+            //         keisuke.style.display = "none";//けいすけ
+            //         break;
+            //     case 3://けんと
+            //         kensuke.style.display = "none";//けんすけ
+            //         rui.style.display = "none";//るい
+            //         hinata.style.display = "none";//ひなた
+            //         kento.style.display = "block";//けんと
+            //         riku.style.display = "none";//りく
+            //         keisuke.style.display = "none";//けいすけ
+            //         break;
+            //     case 4://りく
+            //         kensuke.style.display = "none";//けんすけ
+            //         rui.style.display = "none";//るい
+            //         hinata.style.display = "none";//ひなた
+            //         kento.style.display = "none";//けんと
+            //         riku.style.display = "block";//りく
+            //         keisuke.style.display = "none";//けいすけ
+            //         break;
+            //     case 5://けいすけ
+            //         kensuke.style.display = "none";//けんすけ
+            //         rui.style.display = "none";//るい
+            //         hinata.style.display = "none";//ひなた
+            //         kento.style.display = "none";//けんと
+            //         riku.style.display = "none";//りく
+            //         keisuke.style.display = "block";//けいすけ
+            //         break;
+            // }
+            // break;
         }
     }
 }
 
+// let rock = 0;
+// let my_x;
+// let your_x;
 //ドラッグ中処理
 let mousemove = function (e) {
     // ドラッグ終了位置
@@ -605,7 +621,7 @@ let mousemove = function (e) {
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
 
-
+  
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -614,6 +630,16 @@ let mousemove = function (e) {
         let y = 0;
         let w = koma_w * size;
         let h = koma_h * size;
+
+        // let rot1 = [1, 1, 0, 0, 0];
+        // let rot2 = [1, 0, 0, 0, 1];
+        // let rot3 = [0, 0, 0, 1, 1];
+        // let rot4 = [0, 0, 1, 1, 1];
+        // let rot5 = [0, 1, 1, 1, 0];
+        // let rot6 = [1, 1, 1, 0, 0];
+
+        // let rotation_array = [rot1, rot2, rot3, rot4, rot5, rot6];
+       
         for (var i = 5; i >= 0; i--) {
             if (i == dragkoma) {
                 //コマの座標
@@ -622,6 +648,52 @@ let mousemove = function (e) {
 
                 let min;
 
+                // for(j = 0; j < rotation_array.length; j++){
+                //     if(j == counter){
+                                // if(rotation_array[counter][dragkoma - 1] == 1){
+                                //     console.log("1");
+                                //     rotation_array[counter][dragkoma - 1] = 100;
+                                //     for(j =0; j < rotation_array[counter].length; j++){
+                                //         if(rotation_array[counter][j] == 1){
+                                //             judge = j;
+                                //             break;
+                                //         }
+                                //     }
+                                //     console.log("j", j);
+                                //     console.log(imagearray_center[counter][dragkoma].x ,  imagearray_center[counter][judge + 1].x);
+                                //     if(rock == 0){
+                                //     console.log("aaa");
+                                //     my_x = imagearray_center[counter][dragkoma].x;
+                                //     your_x = imagearray_center[counter][judge + 1].x;
+                                //     }
+                                //     console.log("my:", my_x, "your;", your_x);
+                                //     if(my_x > your_x){
+                                //         console.log("a>b");
+                                //         if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][judge + 1].x){
+                                //             console.log("auto, 左にいかない");
+                                //             x = my_x;
+                                //             rock = 0;
+                                //         }
+                                //     }else{
+                                //         console.log("a<b");
+
+                                //         if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][judge + 1].x) {
+                                //             console.log("auto, 右にいかない");
+                                //             x = my_x;
+
+                                //             rock = 0;
+                                //         }
+                                //     }
+                                //     rotation_array[counter][dragkoma - 1] = 1;
+                                //     rock = 1;
+                                // }
+                            // }
+                //     }
+                // }
+                
+
+
+                
                 //コマの動きがルールに合ってるか確認+ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
                 switch (counter) {
                     case 0://1ローテーション目
