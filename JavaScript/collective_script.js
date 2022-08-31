@@ -264,7 +264,7 @@ for (let i = 0; i < 6; i++) {
 // 画像を読み込み終わってからソースを取得する
 for (var i = 0; i < 6; i++) {
   for (var j = 0; j < 6; j++)
-    images[i][j].src = srcs[i][j];
+    images[i][j].src = img[i][j];
 }
 
 //画像を表示する
