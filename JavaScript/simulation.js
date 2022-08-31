@@ -1,3 +1,29 @@
+// let cdt =[{x:50,y:10,},{x:550,y:50,},{x:840,y:10,},{x:870,y:460,},{x:350,y:460,},{x:50,y:460,},
+//     {x:460,y:370,},{x:760,y:370,},{x:620,y:600,},{x:310,y:600,},{x:160,y:370,}];
+
+// let cdt_center = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
+// { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
+
+
+
+// let imagearray = [
+//     [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
+//     [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
+//     [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
+//     [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
+//     [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
+//     [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
+// ];
+
+// let imagearray_center = [
+//     [cdt_center[0], cdt_center[6], cdt_center[7], cdt_center[8], cdt_center[9], cdt_center[10]],
+//     [cdt_center[1], cdt_center[7], cdt_center[8], cdt_center[6], cdt_center[9], cdt_center[10]],
+//     [cdt_center[2], cdt_center[7], cdt_center[8], cdt_center[9], cdt_center[10], cdt_center[6]],
+//     [cdt_center[3], cdt_center[8], cdt_center[9], cdt_center[10], cdt_center[6], cdt_center[7]],
+//     [cdt_center[4], cdt_center[9], cdt_center[10], cdt_center[6], cdt_center[7], cdt_center[8]],
+//     [cdt_center[5], cdt_center[10], cdt_center[6], cdt_center[7], cdt_center[8], cdt_center[9]]
+// ];
+
 //コマの座標（中心基準）
 let imagearray_center = [
     [
@@ -1730,7 +1756,10 @@ function merge(sub, ob, level) {
     if (level == 0) {//主観的
         sum_judge = sub;
     } else if (level == 1) {
+        for(i = 0; i < sub.length; i++){
 
+            
+        }
     } else if (level == 2) {
         for (i = 0; i < sub.length; i++) {
             if (sub[i].judge == ob[i].judge) {
@@ -1740,7 +1769,10 @@ function merge(sub, ob, level) {
             }
         }
     } else if (level == 3) {
+        for (i = 0; i < sub.length; i++) {
 
+
+        }
     } else if (level == 4) {//客観的
         sum_judge = ob;
     }
