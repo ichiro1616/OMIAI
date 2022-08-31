@@ -334,62 +334,22 @@ const SlideBar_experience = document.getElementById('input-range');//経験年�
 const SlideBar_subject_object = document.getElementById('subject_object');//主観的・客観的
 
 //画像パス
-const srcs = [
-    //ローテーション0
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-        '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-        '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-        '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-        '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-        '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
-    ],
-    //ローテーション1
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-        '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-        '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-        '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-        '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-        '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
-    ],
-    //ローテーション2
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-        '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-        '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-        '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-        '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-        '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
-    ],
-    //ローテーション3
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-        '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-        '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-        '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-        '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-        '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
-    ],
-    //ローテーション4
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-        '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-        '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-        '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-        '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-        '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
-    ],
-    //ローテーション5
-    [
-        '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-        '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-        '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-        '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-        '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-        '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
-    ]
+const path = ['../Picture/koma/0/2-1.png', //けんすけ
+    '../Picture/koma/1/front/2-2.png', '../Picture/koma/1/back/2-2.png', //るい
+    '../Picture/koma/2/front/2-3.png', '../Picture/koma/2/back/2-3.png', //ひなた
+    '../Picture/koma/3/front/2-4.png', '../Picture/koma/3/back/2-4.png', //けんと
+    '../Picture/koma/4/front/2-5.png', '../Picture/koma/4/back/2-5.png', //りく
+    '../Picture/koma/5/front/2-6.png', '../Picture/koma/5/back/2-6.png', //けいすけ
 ];
+
+const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
+[path[0], path[1], path[4], path[6], path[8], path[9]],
+[path[0], path[2], path[4], path[6], path[7], path[9]],
+[path[0], path[2], path[4], path[5], path[7], path[9]],
+[path[0], path[2], path[3], path[5], path[7], path[10]],
+[path[0], path[1], path[3], path[5], path[8], path[10]]];
+
+
 
 //画像 ローテーションするなら多次元にした方がいいかも
 let images = new Array(6);//要素数6の配列imagesを作成
@@ -472,7 +432,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //画像読み込み終わってからソース取得する
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 6; j++) {
-            images[i][j].src = srcs[i][j];
+            images[i][j].src = img[i][j];       
         }
     }
 });
@@ -546,59 +506,6 @@ let mousedown = function (e) {
                     name[dragkoma].style.display = "none";
                 }
             }
-
-
-            // switch (dragkoma) {
-            //     case 0://けんすけ
-            //         kensuke.style.display = "block";//けんすけ
-            //         rui.style.display = "none";//るい
-            //         hinata.style.display = "none";//ひなた
-            //         kento.style.display = "none";//けんと
-            //         riku.style.display = "none";//りく
-            //         keisuke.style.display = "none";//けいすけ
-            //         break;
-            //     case 1://るい
-            //         kensuke.style.display = "none";//けんすけ
-            //         rui.style.display = "block";//るい
-            //         hinata.style.display = "none";//ひなた
-            //         kento.style.display = "none";//けんと
-            //         riku.style.display = "none";//りく
-            //         keisuke.style.display = "none";//けいすけ
-            //         break;
-            //     case 2://ひなた
-            //         kensuke.style.display = "none";//けんすけ
-            //         rui.style.display = "none";//るい
-            //         hinata.style.display = "block";//ひなた
-            //         kento.style.display = "none";//けんと
-            //         riku.style.display = "none";//りく
-            //         keisuke.style.display = "none";//けいすけ
-            //         break;
-            //     case 3://けんと
-            //         kensuke.style.display = "none";//けんすけ
-            //         rui.style.display = "none";//るい
-            //         hinata.style.display = "none";//ひなた
-            //         kento.style.display = "block";//けんと
-            //         riku.style.display = "none";//りく
-            //         keisuke.style.display = "none";//けいすけ
-            //         break;
-            //     case 4://りく
-            //         kensuke.style.display = "none";//けんすけ
-            //         rui.style.display = "none";//るい
-            //         hinata.style.display = "none";//ひなた
-            //         kento.style.display = "none";//けんと
-            //         riku.style.display = "block";//りく
-            //         keisuke.style.display = "none";//けいすけ
-            //         break;
-            //     case 5://けいすけ
-            //         kensuke.style.display = "none";//けんすけ
-            //         rui.style.display = "none";//るい
-            //         hinata.style.display = "none";//ひなた
-            //         kento.style.display = "none";//けんと
-            //         riku.style.display = "none";//りく
-            //         keisuke.style.display = "block";//けいすけ
-            //         break;
-            // }
-            // break;
         }
     }
 }
