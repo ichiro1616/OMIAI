@@ -526,11 +526,15 @@ let mousedown = function (e) {
 
             for(let i = 1; i <= 6; i++){
                 if(dragkoma==i){
-                    name[i].style.display = "block";
+                    let new_name = name;
+                    name[dragkoma].style.display = "block"; 
+                    new_name = name.filter(n => n !== name[dragkoma]);
+                    for(let j = 0; j < new_name.length; j++){
+                        new_name[j].style.display = "none";
+                    }
                 }
-                else if(dragkoma!=i){
-                    name[dragkoma].style.display = "none";
-                }
+             
+                   
             }
         }
     }
