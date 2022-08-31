@@ -178,62 +178,20 @@ function canvas_draw(){
     com_ctx = com_can.getContext('2d');
 }
 
-const srcs = [
- [
-  // ローテーション1
-  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-  '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-  '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-  '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-  '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
- ], 
- // ローテーション2
- [
-  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-  '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-  '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-  '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-  '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
- ],
-//ローテーション3
- [
-  '../Picture/koma/0/2-1.png',//セッター（コマ0）前衛
-  '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-  '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-  '../Picture/koma/3/back/2-4.png',//けんと（コマ3）後衛
-  '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-  '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
- ],
-  //ローテーション4
- [
-    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-    '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-    '../Picture/koma/2/back/2-3.png',//ひなた（コマ2）後衛
-    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-    '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-    '../Picture/koma/5/front/2-6.png',//けいすけ（コマ5）前衛
- ],
-  //ローテーション5
- [
-    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-    '../Picture/koma/1/back/2-2.png',//るい（コマ1）後衛
-    '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-    '../Picture/koma/4/front/2-5.png',//りく（コマ4）前衛
-    '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
- ],
- //ローテーション6
- [
-    '../Picture/koma/0/2-1.png',//セッター（コマ0）後衛
-    '../Picture/koma/1/front/2-2.png',//るい（コマ1）前衛
-    '../Picture/koma/2/front/2-3.png',//ひなた（コマ2）前衛
-    '../Picture/koma/3/front/2-4.png',//けんと（コマ3）前衛
-    '../Picture/koma/4/back/2-5.png',//りく（コマ4）後衛
-    '../Picture/koma/5/back/2-6.png',//けいすけ（コマ5）後衛
- ],
+//画像パス
+const path = ['../Picture/koma/0/2-1.png', //けんすけ
+  '../Picture/koma/1/front/2-2.png', '../Picture/koma/1/back/2-2.png', //るい
+  '../Picture/koma/2/front/2-3.png', '../Picture/koma/2/back/2-3.png', //ひなた
+  '../Picture/koma/3/front/2-4.png', '../Picture/koma/3/back/2-4.png', //けんと
+  '../Picture/koma/4/front/2-5.png', '../Picture/koma/4/back/2-5.png', //りく
+  '../Picture/koma/5/front/2-6.png', '../Picture/koma/5/back/2-6.png', //けいすけ
 ];
+const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
+[path[0], path[1], path[4], path[6], path[8], path[9]],
+[path[0], path[2], path[4], path[6], path[7], path[9]],
+[path[0], path[2], path[4], path[5], path[7], path[9]],
+[path[0], path[2], path[3], path[5], path[7], path[10]],
+[path[0], path[1], path[3], path[5], path[8], path[10]]];
 
 let images = new Array(6); //要素数6の配列imagesを作成
 for(var i = 0; i < 6; i++){
