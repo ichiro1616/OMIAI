@@ -2,54 +2,82 @@
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/CSS/collective.css">
-  <title>集合知表示ページ</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/CSS/collective.css">
+    <title>集合知表示ページ</title>
 </head>
+
 <body>
+    <button type="button" onclick="location.href = 'OMIAI.html' " class="back_btn"><img src="../Picture/戻る矢印.png"
+            height="50" width="50" />戻る</button>
     <h1>比較したい集合知を選んでください</h1>
 
-<!-- 経験年数選択バー -->
-    <div id = "experience">
-        経験年数選択バー<br>
-        <input type="range" id="experience_years" min="0" max="4" step="1" list="exlist"><br>
+    <div>
+        <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" height="90"
+                width="100" /><br>ローテーションする</button>
     </div>
 
-<!-- 世代選択バー -->
-    <div id = "experience">
-        世代選択バー<br>
-        <input type="range" id= "generation" min="0" max="4" step="1" list="exlist"><br>
+    <div>
+        <!-- 経験年数選択バー -->
+        <h2 id="experience_bar">経験年数選択バー</h2>
+        <!-- 世代選択バー -->
+        <h3 id="generation_bar">世代選択バー</h3>
     </div>
 
-<div id = "court">
-    <h2>あなたの配置</h2>
-    <canvas id="my" width="650" height="650"></canvas>
-    <canvas id="other" width="650" height="650"></canvas>
-    <canvas id="comparison" width="650" height="650"></canvas>
-    <!-- <canvas id="my2" width="350" height="350"></canvas>
-    <canvas id="my3" width="350" height="350"></canvas>
-    <canvas id="my4" width="350" height="350"></canvas>
-    <canvas id="my5" width="350" height="350"></canvas>
-    <canvas id="my6" width="350" height="350"></canvas> -->
-</div>
+    <div>
+        <!-- 経験年数選択バー -->
+        <input type="range" id="experience_change" min="0" max="4" step="1" value="2" style="width: 40%;">
+        <!-- 世代選択バー -->
+        <input type="range" id="generation_change" min="0" max="4" step="1" value="2" style="width: 40%;">
+    </div>
 
-<div>
-    <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button>
-</div>
-
-<!-- <div id = "other">
-    <h2 id = "output"></h2>
-    <canvas id="other" width="350" height="350"></canvas>
-    <canvas id="other2" width="350" height="350"></canvas>
-    <canvas id="other3" width="350" height="350"></canvas>
-    <canvas id="other4" width="350" height="350"></canvas>
-    <canvas id="other5" width="350" height="350"></canvas>
-    <canvas id="other6" width="350" height="350"></canvas> 
-</div> -->
+    <div>
+        <!-- 経験年数選択バー -->
+        <!-- 目盛り -->
+        <div id="wrap1">
+            <p>●●●</p>
+        </div>
+        <!-- 世代選択バー -->
+        <!-- 目盛り -->
+        <div id="wrap2">
+            <p>●●●</p>
+        </div>
+    </div>
 
 
+    <div id="wrapping1">
+        <p>未経験</p>
+        <p>1~2年</p>
+        <p>3~5年</p>
+        <p>6~9年</p>
+        <p>10年以上</p>
+        <p>1世代目</p>
+        <p>2世代目</p>
+        <p>3世代目</p>
+        <p>4世代目</p>
+        <p>5世代目</p>
+    </div>
 
-  <script type="text/javascript" src="/JavaScript/collective_script.js"></script>
+    <div id="name">
+        <p>あなたの配置</p>
+        <p>○○の配置</p>
+        <p>選手配置の差</p>
+    </div>
+
+    <div id="court">
+        <canvas id="my" width="610" height="610"></canvas>
+        <canvas id="other" width="610" height="610"></canvas>
+        <canvas id="comparison" width="610" height="610"></canvas>
+    </div>
+    <div id="range">
+        <p>お見合い範囲○○%</p>
+        <p>お見合い範囲○○%</p>
+    </div>
+
+
+    <script type="text/javascript" src="/JavaScript/collective_script.js"></script>
 </body>
+
 </html>

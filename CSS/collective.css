@@ -6,17 +6,199 @@
     padding-bottom: 150px;
 }
 
-h2 {
+.back_btn {
+    float: left;
+    border: none;
+    border-radius: 0.5rem;
+    /* 角丸       */
+    font-size: 3rem;
+    /* 文字サイズ */
     text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 1.5% 1.8%;
+    /* 余白       */
+    background: rgb(118, 118, 121);
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 100%;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    font-weight: bold;
+    width: 12%;
 }
 
+#rotation_button {
+    border: none;
+    border-radius: 0.5rem;
+    /* 角丸       */
+    font-size: 2rem;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 1.5% 1.8%;
+    /* 余白       */
+    background: rgba(55, 0, 255);
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 100%;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    font-weight: bold;
+    letter-spacing: 0.4rem;
+    width: 20%;
+    position: relative;
+    z-index: 30;
+    left: 46rem;
+    padding: 1rem;
+    top: 10rem;
+}
+
+h1 {
+    float: left;
+    position: relative;
+    left: 30rem;
+    top: 1rem;
+    font-size: 3rem;
+}
+
+#experience_bar {
+    clear: both;
+    float: left;
+    position: relative;
+    left: 19.5rem;
+    font-size: 2rem;
+}
+
+#generation_bar {
+    float: left;
+    position: relative;
+    left: 60rem;
+    font-size: 2rem;
+}
+
+#experience_change {
+    clear: both;
+    float: left;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    height: 1rem;
+    background: #a6a6aa;
+    border-radius: 1rem;
+    border: solid 0.08rem black;
+    position: relative;
+    top: 0.5rem;
+    left: 3rem;
+    z-index: 10;
+}
+
+#generation_change {
+    float: left;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    height: 1rem;
+    background: #a6a6aa;
+    border-radius: 1rem;
+    border: solid 0.08rem black;
+    position: relative;
+    top: 0.5rem;
+    left: 9.7rem;
+    z-index: 10;
+}
+
+#wrap1 p {
+    clear: both;
+    position: relative;
+    float: none;
+    height: 0rem;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    top: 1.34rem;
+    left: 15.5rem;
+    letter-spacing: 7.8rem;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#wrap2 p {
+    position: relative;
+    float: left;
+    height: 0rem;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    top: 1.34rem;
+    left: 15.5rem;
+    letter-spacing: 7.8rem;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#wrapping1 p {
+    clear: both;
+    float: none;
+    position: relative;
+    /* top         : 1rem; */
+    left: 3rem;
+    width: 10.5rem;
+    display: inline-flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0rem;
+}
+
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: rgb(55, 0, 255);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    z-index: 30;
+}
+
+#name p {
+    position: relative;
+    display: inline-flex;
+    left: 20rem;
+    top: 4rem;
+    width: 33%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0rem;
+}
+
+
 canvas {
-    margin: 10px;
+    clear: both;
+    position: relative;
+    left: 8rem;
+    top: 5rem;
+    margin: 0.5rem;
     background-image: url("../Picture/バレーコート背景.png");
     background-size: 100%;
 }
 
 .my {
+    clear: both;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
 }
@@ -31,23 +213,14 @@ canvas {
     margin-right: auto;
 }
 
-#rotation_button {
-  border        : none;
-  border-radius : 0.5rem;          /* 角丸       */
-  font-size     : 1.2rem;        /* 文字サイズ */
-  text-align    : center;      /* 文字位置   */
-  cursor        : pointer;     /* カーソル   */
-  padding       : 1.5% 1.8%;   /* 余白       */
-  background    : rgba(55, 0, 255);     /* 背景色     */
-  color         : #ffffff;     /* 文字色     */
-  line-height   : 100%;         /* 1行の高さ  */
-  transition    : .3s;         /* なめらか変化 */
-  font-weight   : bold;
-  letter-spacing: 0.4rem;
-  width         : 45%;
-  position      : relative;
-  z-index       : 30;
-  left          : 30rem;
-  padding       : 3rem;
-  top           : 5rem;
+
+#range p {
+    position: relative;
+    display: inline-flex;
+    left: 18rem;
+    top: 5rem;
+    width: 32%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0rem;
 }
