@@ -540,9 +540,6 @@ let mousedown = function (e) {
     }
 }
 
-// let rock = 0;
-// let my_x;
-// let your_x;
 //ドラッグ中処理
 let mousemove = function (e) {
     // ドラッグ終了位置
@@ -568,427 +565,151 @@ let mousemove = function (e) {
         let w = koma_w * size;
         let h = koma_h * size;
 
-        // let rot1 = [1, 1, 0, 0, 0];
-        // let rot2 = [1, 0, 0, 0, 1];
-        // let rot3 = [0, 0, 0, 1, 1];
-        // let rot4 = [0, 0, 1, 1, 1];
-        // let rot5 = [0, 1, 1, 1, 0];
-        // let rot6 = [1, 1, 1, 0, 0];
-
-        // let rotation_array = [rot1, rot2, rot3, rot4, rot5, rot6];
-       
         for (var i = 5; i >= 0; i--) {
             if (i == dragkoma) {
                 //コマの座標
                 x = canvasX - koma_w / 2 * size;
                 y = canvasY - koma_h / 2 * size;
-
                 let min;
 
-                // for(j = 0; j < rotation_array.length; j++){
-                //     if(j == counter){
-                                // if(rotation_array[counter][dragkoma - 1] == 1){
-                                //     console.log("1");
-                                //     rotation_array[counter][dragkoma - 1] = 100;
-                                //     for(j =0; j < rotation_array[counter].length; j++){
-                                //         if(rotation_array[counter][j] == 1){
-                                //             judge = j;
-                                //             break;
-                                //         }
-                                //     }
-                                //     console.log("j", j);
-                                //     console.log(imagearray_center[counter][dragkoma].x ,  imagearray_center[counter][judge + 1].x);
-                                //     if(rock == 0){
-                                //     console.log("aaa");
-                                //     my_x = imagearray_center[counter][dragkoma].x;
-                                //     your_x = imagearray_center[counter][judge + 1].x;
-                                //     }
-                                //     console.log("my:", my_x, "your;", your_x);
-                                //     if(my_x > your_x){
-                                //         console.log("a>b");
-                                //         if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][judge + 1].x){
-                                //             console.log("auto, 左にいかない");
-                                //             x = my_x;
-                                //             rock = 0;
-                                //         }
-                                //     }else{
-                                //         console.log("a<b");
+                function right_const(dragkoma,counter,right_id){
+                    if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
+                        x = imagearray[counter][right_id].x - 10;
+                        dragmode = false;
+                        console.log('右の選手を超えようとした');
+                    }
+                }
 
-                                //         if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][judge + 1].x) {
-                                //             console.log("auto, 右にいかない");
-                                //             x = my_x;
+                function left_const(dragkoma,counter,left_id){
+                    if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
+                        x = imagearray[counter][left_id].x + 10;
+                        dragmode = false;
+                        console.log('左の選手を超えようとした');
+                    }
+                }
+                function van_const(dragkoma,counter,van1_id,van2_id,van3_id) {
+                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van3_id].y) {
+                        if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y) {
+                            min = imagearray[counter][van1_id].y;
+                        } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y) {
+                            min = imagearray[counter][van2_id].y;
+                        } else {
+                            min = imagearray[counter][van3_id].y;
+                        }
+                        y = min + 10;
+                        dragmode = false;
+                        console.log('前衛の選手を超えようとした');
+                    }
+                }
 
-                                //             rock = 0;
-                                //         }
-                                //     }
-                                //     rotation_array[counter][dragkoma - 1] = 1;
-                                //     rock = 1;
-                                // }
-                            // }
-                //     }
-                // }
-                
+                function rear_const(dragkoma,counter,rear1_id,rear2_id,rear3_id) {
+                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear3_id].y) {
+                        if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
+                            min = imagearray[counter][rear1_id].y;
+                        } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
+                            min = imagearray[counter][rear2_id].y;
+                        } else {
+                            min = imagearray[counter][rear3_id].y;
+                        }
+                        y = min - 10;
+                        dragmode = false;
+                        console.log('後衛の選手を超えようとした');
+                    }
+          
+                }
 
+                function srear_const(dragkoma,counter,rear1_id,rear2_id){
+                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
+                        if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
+                            min = imagearray[counter][rear1_id].y;
+                        } else {
+                            min = imagearray[counter][rear2_id].y;
+                        }
+                        y = min - 10;
+                        dragmode = false;
+                        console.log('後衛の選手を超えようとした');
+                    }
 
-                
+                }
+
                 //コマの動きがルールに合ってるか確認+ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
                 switch (counter) {
                     case 0://1ローテーション目
                         switch (dragkoma) {
                             case 1://前衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,2);
+                                rear_const(dragkoma,counter,3,4,5)
                                 break;
-
                             case 2://前衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,1)
+                                rear_const(dragkoma,counter,3,4,5)
                                 break;
-
                             case 3://後衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,4)
+                                van_const(dragkoma,counter,0,1,2)
                                 break;
-
                             case 4://後衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,3)
+                                left_const(dragkoma,counter,5)
+                                van_const(dragkoma,counter,0,1,2)
                                 break;
-
                             case 5://後衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,4)
+                                van_const(dragkoma,counter,0,1,2)
                                 break;
                             default:
                                 break;
                         }
                         break;
-
                     case 1://2ローテーション目
                         switch (dragkoma) {
                             case 1://前衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else {
-                                        min = imagearray[counter][4].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,5)
+                                rear_const(dragkoma,counter,2,3,4)
                                 break;
-
                             case 2://後衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,3)
+                                van_const(dragkoma,counter,0,1,5)
                                 break;
-
                             case 3://後衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,2)
+                                left_const(dragkoma,counter,4)
+                                van_const(dragkoma,counter,0,1,5)
                                 break;
-
                             case 4://後衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,3)
+                                van_const(dragkoma,counter,0,1,5)
                                 break;
-
                             case 5://前衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else {
-                                        min = imagearray[counter][4].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,1)
+                                rear_const(dragkoma,counter,2,3,4)
                                 break;
                             default:
                                 break;
                         }
                         break;
-
                     case 2://3ローテーション目
                         switch (dragkoma) {
                             case 1://後衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,2)
+                                van_const(dragkoma,counter,0,4,5)
                                 break;
                             case 2://後衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,1)
+                                left_const(dragkoma,counter,3)
+                                van_const(dragkoma,counter,0,4,5)
                                 break;
                             case 3://後衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][0].y) {
-                                        min = imagearray[counter][0].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,2)
+                                van_const(dragkoma,counter,0,4,5)
                                 break;
                             case 4://前衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else {
-                                        min = imagearray[counter][3].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,5)
+                                rear_const(dragkoma,counter,1,2,3)
                                 break;
                             case 5://前衛真ん中
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][3].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else {
-                                        min = imagearray[counter][3].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,4)
+                                rear_const(dragkoma,counter,1,2,3)
                                 break;
                             default:
                                 break;
@@ -998,90 +719,21 @@ let mousemove = function (e) {
                     case 3://4ローテーション目
                         switch (dragkoma) {
                             case 1://後衛真ん中
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,2)
+                                van_const(dragkoma,counter,3,4,5)
                                 break;
                             case 2://後衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,1)
+                                van_const(dragkoma,counter,3,4,5)
                                 break;
                             case 3://前衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,4)
+                                srear_const(dragkoma,counter,1,2)
                                 break;
                             case 4://前衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,5)
+                                left_const(dragkoma,counter,3)
+                                srear_const(dragkoma,counter,1,2,)
                                 break;
                             case 5://前衛右
                                 //左の選手を超えようとした
@@ -1125,44 +777,12 @@ let mousemove = function (e) {
                     case 4://5ローテーション目
                         switch (dragkoma) {
                             case 1://後衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else {
-                                        min = imagearray[counter][4].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,5)
+                                van_const(dragkoma,counter,2,3,4)
                                 break;
                             case 2://前衛左
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,3)
+                                srear_const(dragkoma,counter,1,5)
                                 break;
                             case 3://前衛真ん中
                                 //左の選手を超えようとした
@@ -1206,44 +826,12 @@ let mousemove = function (e) {
                                 }
                                 break;
                             case 4://前衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,3)
+                                srear_const(dragkoma,counter,1,5)
                                 break;
                             case 5://後衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][4].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                        min = imagearray[counter][3].y;
-                                    } else {
-                                        min = imagearray[counter][4].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,1)
+                                van_const(dragkoma,counter,2,3,4)
                                 break;
                             default:
                                 break;
@@ -1285,96 +873,26 @@ let mousemove = function (e) {
                                 }
                                 break;
                             case 2://前衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][3].x) {
-                                    x = imagearray[counter][3].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,3)
+                                left_const(dragkoma,counter,1)
+                                srear_const(dragkoma,counter,4,5)
                                 break;
                             case 3://前衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //後衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    dragmode = false;
-                                    console.log('後衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,2)
+                                srear_const(dragkoma,counter,4,5)
                                 break;
                             case 4://後衛右
-                                //左の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x + 10;
-                                    dragmode = false;
-                                    console.log('左の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else {
-                                        min = imagearray[counter][3].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                left_const(dragkoma,counter,5)
+                                van_const(dragkoma,counter,1,2,3)
                                 break;
                             case 5://後衛真ん中
-                                //右の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x - 10;
-                                    dragmode = false;
-                                    console.log('右の選手を超えようとした');
-                                }
-                                //前衛の選手を超えようとした
-                                if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][3].y) {
-                                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][2].y) {
-                                        min = imagearray[counter][2].y;
-                                    } else {
-                                        min = imagearray[counter][3].y;
-                                    }
-                                    y = min + 10;
-                                    dragmode = false;
-                                    console.log('前衛の選手を超えようとした');
-                                }
+                                right_const(dragkoma,counter,4)
+                                van_const(dragkoma,counter,1,2,3)
                                 break;
                             default:
                                 break;
                         }
                 }
-
                 // ドラッグが終了した時の情報を記憶
                 imagearray[counter][i].x = x;
                 imagearray[counter][i].y = y;
