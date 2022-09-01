@@ -1511,11 +1511,16 @@ endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 // console.log('右', set.right);
 // console.log('x', (originX + 0 * pixel_sizeX) / 0.41);
 
+//judge_area, rota
+//j0, j1, j2, j3, j4, j5, j6, j7, j8, j9
 function omiai(judge_area, rota) {
     // canvas4内を一旦クリア
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     let k = 0;
     let percentage = 0;
+
+    let overlap = 6;//何個重なるかのパラメータ
+
     var json_str2 = JSON.stringify(judge_area);
     localStorage.setItem('key2', json_str2);
     //後で　ローテーションごとのいる
@@ -1559,7 +1564,7 @@ function omiai(judge_area, rota) {
 
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge == 0) {//後で2に
+            if (judge_area[k].judge == 2) {//後で2に
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1632,8 +1637,8 @@ function area(rota) {
                     object_array.puch(data[i]);
                 }
             }
-            console.log('sub', subject_array);
-            console.log(object_array);
+            // console.log('sub', subject_array);
+            // console.log(object_array);
             //主観的データをペアごとに分ける各255
             for (i = 0; i < subject_array.length; i++) {
                 switch (subject_array[i].left_player * subject_array[i].right_player) {
@@ -1672,28 +1677,31 @@ function area(rota) {
             }
 
             //主観的お見合い範囲
-            // let judge_color_sub_0 = calculation(counter, data_array_sub_0);
+            let judge_color_sub_0 = calculation(counter, data_array_sub_0);
             let judge_color_sub_1 = calculation(counter, data_array_sub_1);
-            // let judge_color_sub_2 = calculation(counter, data_array_sub_2);
-            // let judge_color_sub_3 = calculation(counter, data_array_sub_3);
-            // let judge_color_sub_4 = calculation(counter, data_array_sub_4);
-            // let judge_color_sub_5 = calculation(counter, data_array_sub_5);
-            // let judge_color_sub_6 = calculation(counter, data_array_sub_6);
-            // let judge_color_sub_7 = calculation(counter, data_array_sub_7);
-            // let judge_color_sub_8 = calculation(counter, data_array_sub_8);
-            // let judge_color_sub_9 = calculation(counter, data_array_sub_9);
-            // console.log('judge', judge_color_sub_1);
+            let judge_color_sub_2 = calculation(counter, data_array_sub_2);
+            let judge_color_sub_3 = calculation(counter, data_array_sub_3);
+            let judge_color_sub_4 = calculation(counter, data_array_sub_4);
+            let judge_color_sub_5 = calculation(counter, data_array_sub_5);
+            let judge_color_sub_6 = calculation(counter, data_array_sub_6);
+            let judge_color_sub_7 = calculation(counter, data_array_sub_7);
+            let judge_color_sub_8 = calculation(counter, data_array_sub_8);
+            let judge_color_sub_9 = calculation(counter, data_array_sub_9);
+
+            console.log('----------------------------');
+
+            let area_percentage = omiai(judge_color_sub_0, rota);
 
             //10パターンの重なってるところ 10+結果用の+1
             //judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0
-            let judge_color_sub = color_sub(judge_color_sub_1);
+            let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
             // let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
 
             //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
             let judge_color_merge = merge(judge_color_sub, omiaiarea, subject_object_level);
 
             //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-            let area_percentage = omiai(judge_color_merge, rota);
+            // let area_percentage = omiai(judge_color_sub_1, rota);
             area_percentage = area_percentage / 2116 * 100;
             area_percentage = String(area_percentage);
             area_percentage = parseInt(area_percentage, 10);
@@ -1706,50 +1714,45 @@ function area(rota) {
 
 //複数重なってるところだけのjudgeを作成
 //j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum
-function color_sub(j1) {
-    let overlap = 3;//何個重なるかのパラメータ
-    let judge_sum;//消す
-
-    judge_sum = j1;
-
-    // for (i = 0; i < j1.length; i++) {
-    //     if (j0[i].judge == 2 || j1[i].judge == 2 || j2[i].judge == 2 || j3[i].judge == 2 || j4[i].judge == 2 || j5[i].judge == 2 || j6[i].judge == 2 || j7[i].judge == 2 || j8[i].judge == 2 || j9[i].judge == 2) {
-    //         let j_count = 0;
-    //         if (j0[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j1[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j2[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j3[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j4[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j5[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j6[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j7[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j8[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j9[i].judge == 2) {
-    //             j_count++;
-    //         }
-    //         if (j_count >= overlap) {
-    //             judge_sum[i].judge = 2;
-    //         }
-    //     }
-    // }
+function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
+    for (i = 0; i < j1.length; i++) {
+        if (j0[i].judge == 2 || j1[i].judge == 2 || j2[i].judge == 2 || j3[i].judge == 2 || j4[i].judge == 2 || j5[i].judge == 2 || j6[i].judge == 2 || j7[i].judge == 2 || j8[i].judge == 2 || j9[i].judge == 2) {
+            let j_count = 0;
+            if (j0[i].judge == 2) {
+                j_count++;
+            }
+            if (j1[i].judge == 2) {
+                j_count++;
+            }
+            if (j2[i].judge == 2) {
+                j_count++;
+            }
+            if (j3[i].judge == 2) {
+                j_count++;
+            }
+            if (j4[i].judge == 2) {
+                j_count++;
+            }
+            if (j5[i].judge == 2) {
+                j_count++;
+            }
+            if (j6[i].judge == 2) {
+                j_count++;
+            }
+            if (j7[i].judge == 2) {
+                j_count++;
+            }
+            if (j8[i].judge == 2) {
+                j_count++;
+            }
+            if (j9[i].judge == 2) {
+                j_count++;
+            }
+            judge_sum[i].judge = j_count;
+        } else {
+            judge_sum[i].judge = 0;
+        }
+    }
     return judge_sum;
 }
 
@@ -1761,15 +1764,16 @@ function merge(sub, ob, level) {
         sum_judge = sub;
     } else if (level == 1) {
         for (i = 0; i < sub.length; i++) {
-
-
+            // if (sub[i].judge >= 8) {
+            //     sum_judge.judge = sub[i];
+            // }else if(ob[i].judge == 2)
         }
     } else if (level == 2) {
         for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge == ob[i].judge) {
+            if (sub[i].judge >= 6 && ob[i].judge == 2) {//後で
                 sum_judge[i].judge = sub[i].judge;
             } else {
-                sum_judge[i].judge = 1;//後で直す
+                sum_judge[i].judge = 0;//後で直す
             }
         }
     } else if (level == 3) {
@@ -1778,34 +1782,14 @@ function merge(sub, ob, level) {
 
         }
     } else if (level == 4) {//客観的
-        sum_judge = ob;
+        for (i = 0; i < ob.length; i++) {
+            if (ob[i].judge == 2) {//後で
+                sum_judge[i].judge = 6;
+            } else {
+                sum_judge[i].judge = 0;
+            }
+        }
     }
-    // switch (level) {
-    //     case 0://主観的
-    //         console.log('level0');
-    //         sum_judge = sub;
-    //         break;
-    //     case 1:
-    //         break;
-    //     case 2:
-    //         console.log('level2');
-    //         for (i = 0; i < sub.length; i++) {
-    //             if (sub[i].judge == ob[i].judge) {
-    //                 sum_judge[i].judge = sub[i].judge;
-    //             } else {
-    //                 sum_judge[i].judge = 1;
-    //             }
-    //         }
-    //         break;
-    //     case 3:
-    //         break;
-    //     case 4://客観的
-    //         console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    //         sum_judge = ob;
-    //         console.log('ob');
-    //         break;
-    // }
-    // console.log('sum', sum_judge);
     return sum_judge;
 }
 
@@ -1830,23 +1814,42 @@ function calculation(rota, data) {
         }
     }
 
-    console.log('color_array', color_array);
-    //左の選手
-    let player1_x = imagearray_center[rota][data[0].left_player].x;
-    let player1_y = imagearray_center[rota][data[0].right_player].y;
-    //右の選手
-    let player2_x = imagearray_center[rota][3].x;
-    let player2_y = imagearray_center[rota][3].y;
+    console.log('left', data[0].left_player);
+    console.log('right', data[0].right_player);
 
+    // console.log('kl;jfsda', data);
+
+    //左の選手
+    let player1_x = imagearray_center[rota][data[0].left_player - 1].x / (1200 / 9);
+    let player1_y = imagearray_center[rota][data[0].left_player - 1].y / (1200 / 9) - 9;
+    player1_y = Math.abs(player1_y);
+    //右の選手
+    let player2_x = imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
+    let player2_y = imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
+    player2_y = Math.abs(player2_y);
+
+    console.log('左ｘ', player1_x);
+    console.log('左ｙ', player1_y);
+    console.log('右ｘ', player2_x);
+    console.log('右ｙ', player2_y);
+
+    let reverce = 0;
+    if (player1_x > player2_x) {
+        // idでの条件を描く
+        player1_x = 9 - player1_x;
+        player2_x = 9 - player2_x;
+        reverce = 1;
+    }
+    console.log("judge");
     for (i = 0; i < 9.2; i += 0.2) {
         for (j = 0; j < 9.2; j += 0.2) {
             let data_tmp = {};
-            data_tmp.players_sabun_x = Math.abs(player1_x - player2_x);
-            data_tmp.players_sabun_y = Math.abs(player1_y - player2_y);
-            data_tmp.player1_ball_sabun_x = Math.abs(player1_x - i);
-            data_tmp.player1_ball_sabun_y = Math.abs(player1_y - j);
-            data_tmp.player2_ball_sabun_x = Math.abs(player2_x - i);
-            data_tmp.player2_ball_sabun_y = Math.abs(player2_y - j);
+            data_tmp.players_sabun_x = player1_x - player2_x;
+            data_tmp.players_sabun_y = player1_y - player2_y;
+            data_tmp.player1_ball_sabun_x = player1_x - i;
+            data_tmp.player1_ball_sabun_y = player1_y - j;
+            data_tmp.player2_ball_sabun_x = player2_x - i;
+            data_tmp.player2_ball_sabun_y = player2_y - j;
             test_data.push(data_tmp);
 
             let data_view = {};
@@ -1857,7 +1860,36 @@ function calculation(rota, data) {
         }
     }
 
+    // 標準化 meanとstdに代入するdataのindex番号はdataに入っている量によって変えないといけない
+    let mean = [
+        data[0]["mean_players_sabun_x"],
+        data[0]["mean_players_sabun_y"],
+        data[0]["mean_player1_ball_sabun_x"],
+        data[0]["mean_player1_ball_sabun_y"],
+        data[0]["mean_player2_ball_sabun_x"],
+        data[0]["mean_player2_ball_sabun_y"],
+    ];
+    let std = [
+        data[0]["std_players_sabun_x"],
+        data[0]["std_players_sabun_y"],
+        data[0]["std_player1_ball_sabun_x"],
+        data[0]["std_player1_ball_sabun_y"],
+        data[0]["std_player2_ball_sabun_x"],
+        data[0]["std_player2_ball_sabun_y"],
+    ];
+    console.log(mean, std);
+
+    for (i = 0; i < test_data.length; i++) {
+        test_data[i].players_sabun_x = (test_data[i].players_sabun_x - mean[0]) / std[0];
+        test_data[i].players_sabun_y = (test_data[i].players_sabun_y - mean[1]) / std[1];
+        test_data[i].player1_ball_sabun_x = (test_data[i].player1_ball_sabun_x - mean[2]) / std[2];
+        test_data[i].player1_ball_sabun_y = (test_data[i].player1_ball_sabun_y - mean[3]) / std[3];
+        test_data[i].player2_ball_sabun_x = (test_data[i].player2_ball_sabun_x - mean[4]) / std[4];
+        test_data[i].player2_ball_sabun_y = (test_data[i].player2_ball_sabun_y - mean[5]) / std[5];
+    }
+
     // console.log(test_data);
+
     let blue = [];
     let red = [];
     let green = [];
@@ -1878,27 +1910,28 @@ function calculation(rota, data) {
     }
     // console.log(answer);
 
-    array = [];
+    // array = [];
     //列で正規化をしている
-    for (i = 0; i < answer[0].length; i++) {
-        for (j = 0; j < answer.length; j++) {
-            array.push(answer[j][i]);
-        }
-        max = Math.max(...array);
-        min = Math.min(...array);
-        // console.log(array, "max", max, "min", min);
+    // for (i = 0; i < answer[0].length; i++) {
+    //   for (j = 0; j < answer.length; j++) {
+    //     array.push(answer[j][i]);
+    //   }
+    //   max = Math.max(...array);
+    //   min = Math.min(...array);
+    //   // console.log(array, "max", max, "min", min);
 
-        //NaNを0にしてる
-        for (k = 0; k < answer.length; k++) {
-            if (isNaN((answer[k][i] - min) / (max - min))) {
-                answer[k][i] = 0;
-            } else {
-                answer[k][i] = (answer[k][i] - min) / (max - min);
-            }
-        }
+    //   //NaNを0にしてる
+    //   for (k = 0; k < answer.length; k++) {
+    //     if (isNaN((answer[k][i] - min) / (max - min))) {
+    //       answer[k][i] = 0;
+    //     } else {
+    //       answer[k][i] = (answer[k][i] - min) / (max - min);
+    //     }
+    //   }
 
-        array.length = 0;
-    }
+    //   array.length = 0;
+    // }
+
     // console.log(answer);
     for (i = 0; i < answer.length; i++) {
         //lr.intercept_の値を足している
@@ -1943,6 +1976,16 @@ function calculation(rota, data) {
         judge.length = 0;
     }
     console.log(judge_array);
+    let counter = 1;
+    if (reverce == 1) {
+        for (i = 0; i < judge_color.length / 2; i++) {
+            let keep = judge_color[i]["judge"];
+            judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
+            judge_color[judge_color.length - counter]["judge"] = keep;
+            counter++;
+        }
+        // console.log(judge_color);
+    }
     return judge_color;
 }
 
@@ -2027,11 +2070,16 @@ function area_calculation(rota) {
             // }
             console.log('color_array', color_array);
             //左の選手
-            let player1_x = imagearray_center[rota][1].x;
-            let player1_y = imagearray_center[rota][1].y;
+            let player1_x = imagearray_center[rota][1].x / (1200 / 9);
+            let player1_y = imagearray_center[rota][1].y / (1200 / 9);
             //右の選手
-            let player2_x = imagearray_center[rota][3].x;
-            let player2_y = imagearray_center[rota][3].y;
+            let player2_x = imagearray_center[rota][3].x / (1200 / 9);
+            let player2_y = imagearray_center[rota][3].y / (1200 / 9);
+
+            console.log('p1x', player1_x);
+            console.log('p1y', player1_y);
+            console.log('p2x', player2_x);
+            console.log('p1y', player2_y);
 
             for (i = 0; i < 9.2; i += 0.2) {
                 for (j = 0; j < 9.2; j += 0.2) {
