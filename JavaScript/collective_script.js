@@ -348,6 +348,8 @@ function rotation() {
 
 const my_can2 = document.getElementById('my2');
 const my_ctx2 = my_can2.getContext('2d');
+const ot_can2 = document.getElementById('ot2');
+const ot_ctx2 = ot_can2.getContext('2d');
 
 const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
 // const red = '';
