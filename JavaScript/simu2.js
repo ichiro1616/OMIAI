@@ -1690,7 +1690,7 @@ function area(rota) {
 
             console.log('----------------------------');
 
-            let area_percentage = omiai(judge_color_sub_0, rota);
+            let area_percentage = omiai(judge_color_sub_2, rota);
 
             //10パターンの重なってるところ 10+結果用の+1
             //judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0
