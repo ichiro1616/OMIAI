@@ -177,6 +177,12 @@ function canvas_draw(){
     com_can = document.getElementById('comparison');
     com_ctx = com_can.getContext('2d');
 }
+//自分の配置
+const my_can3 = document.getElementById('my3'); //キャンバスのidを取得
+const my_ctx3 = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
+//他の配置・集合知
+const ot_can3 = document.getElementById('other3');
+const ot_ctx3 = ot_can.getContext('2d');
 
 //画像パス
 const path = ['../Picture/koma/0/2-1.png', //けんすけ
@@ -185,6 +191,7 @@ const path = ['../Picture/koma/0/2-1.png', //けんすけ
   '../Picture/koma/3/front/2-4.png', '../Picture/koma/3/back/2-4.png', //けんと
   '../Picture/koma/4/front/2-5.png', '../Picture/koma/4/back/2-5.png', //りく
   '../Picture/koma/5/front/2-6.png', '../Picture/koma/5/back/2-6.png', //けいすけ
+  '../Picture/koma/red.png', '../Picture/koma/blue.png',
 ];
 const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[4], path[6], path[8], path[9]],
@@ -192,6 +199,23 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[2], path[4], path[5], path[7], path[9]],
 [path[0], path[2], path[3], path[5], path[7], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
+
+const rb_img = [[path[11], path[11], path[11], path[12], path[12], path[12]],
+[path[11], path[11], path[12], path[12], path[12], path[11]],
+[path[11], path[12], path[12], path[12], path[11], path[11]],
+[path[12], path[12], path[12], path[11], path[11], path[11]],
+[path[12], path[12], path[11], path[11], path[11], path[12]],
+[path[12], path[11], path[11], path[11], path[12], path[12]]];
+
+let rb_images = new Array(6); //要素数6の配列rb_imagesを作成
+for (var i = 0; i < 6; i++) {
+  rb_images[i] = new Array(6).fill(0);
+}
+for (var i = 0; i < 6; i++) { //ローテーション
+  for (var j = 0; j < 6; j++) { //コマ番号
+    rb_images[i][j] = new Image();
+  }
+}
 
 let images = new Array(6); //要素数6の配列imagesを作成
 for(var i = 0; i < 6; i++){
@@ -256,15 +280,20 @@ for (let i = 0; i < 6; i++) {
 }
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
-  images[0][i].addEventListener('load', () => {
-    com_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
-    com_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
+  rb_images[0][i].addEventListener('load', () => {
+    com_ctx.drawImage(rb_images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(rb_images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
 });
 }
 // 画像を読み込み終わってからソースを取得する
 for (var i = 0; i < 6; i++) {
   for (var j = 0; j < 6; j++)
     images[i][j].src = img[i][j];
+}
+
+for (var i = 0; i < 6; i++) {
+  for (var j = 0; j < 6; j++)
+    rb_images[i][j].src = rb_img[i][j];
 }
 
 //画像を表示する
@@ -289,9 +318,9 @@ function draw(rota) {
   }
 
   com_ctx.clearRect(0,0,com_can.width,ot_can.height);
-  for(var i in images){
-    com_ctx.drawImage(images[rota][i],imagearray[rota][i].x*scale,imagearray[rota][i].y*scale,koma_w*size,koma_h*size);
-    com_ctx.drawImage(images[rota][i],array[rota][i].x * scale,array[rota][i].y * scale, koma_w * size, koma_h * size);
+  for(var i in rb_images){
+    com_ctx.drawImage(rb_images[rota][i],imagearray[rota][i].x*scale,imagearray[rota][i].y*scale,koma_w*size,koma_h*size);
+    com_ctx.drawImage(rb_images[rota][i],array[rota][i].x * scale,array[rota][i].y * scale, koma_w * size, koma_h * size);
   }
 }
 //ローテーションボタンを押されたら
@@ -305,30 +334,30 @@ function rotation() {
   draw(counter);
 }
 
-// const my_can2 = document.getElementById('my2');
-// const my_ctx2 = my_can2.getContext('2d');
+const my_can2 = document.getElementById('my2');
+const my_ctx2 = my_can2.getContext('2d');
 
-// const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-// // const red = '';
-// // const blue = '';
-// my_ctx2.fillStyle = omiai_color;//色
-// my_ctx2.globalAlpha = 0.4;//不透明度 0.7
-// let originX = 42;
-// let originY = 610;
-// let endX = 615;
-// let endY = 0;
-// let k= 0;
-// let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
-// let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
-// originY = originY - pixel_sizeY;//1ドットの大きさ分引く
-// endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-// let str2 = localStorage.getItem('key2');
-// let judge_area = JSON.parse(str2)
-// for (let i = 0; i < 46; i++) {//x
-//   for (let j = 0; j < 46; j++) {//y
-//     if (judge_area[k].judge == 0) {//後で2に
-//       my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-//     }
-//     k++;
-//   }
-// }
+const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
+// const red = '';
+// const blue = '';
+my_ctx2.fillStyle = omiai_color;//色
+my_ctx2.globalAlpha = 0.4;//不透明度 0.7
+let originX = 42;
+let originY = 610;
+let endX = 615;
+let endY = 0;
+let k= 0;
+let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
+let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
+originY = originY - pixel_sizeY;//1ドットの大きさ分引く
+endX = endX - pixel_sizeX;//1ドットの大きさ分引く
+let str2 = localStorage.getItem('key2');
+let judge_area = JSON.parse(str2)
+for (let i = 0; i < 46; i++) {//x
+  for (let j = 0; j < 46; j++) {//y
+    if (judge_area[k].judge == 0) {//後で2に
+      my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    }
+    k++;
+  }
+}
