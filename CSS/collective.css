@@ -185,45 +185,202 @@ h1 {
     margin: 0rem;
 }
 
+/* #court { */
+/* position: relative; */
+/* border: 0.1rem solid #ccc; */
+/* width: 41rem; */
+/* height: 41rem; */
+/* max-width: 100%; */
+/* top:-0.5rem; */
+/* margin:auto; */
+/* } */
+/*  */
+/* canvas { */
+/* clear: both; */
+/* position: relative; */
+/* left: 8rem; */
+/* top: 5rem; */
+/* margin: 0.5rem; */
+/* background-image: url("../Picture/バレーコート背景.png"); */
+/* background-size: 100%; */
+/* } */
+/*  */
+/* .my, .my2, .my3{ */
+/* clear: both; */
+/* position: relative; */
+/* margin-left: auto; */
+/* margin-right: auto; */
+/* } */
+/*  */
+/* .other { */
+/* margin-left: auto; */
+/* margin-right: auto; */
+/* } */
+/*  */
+/* .comprison { */
+/* margin-left: auto; */
+/* margin-right: auto; */
+/* } */
 
-canvas {
+#my_court {
     clear: both;
+    float: left;
     position: relative;
-    left: 8rem;
+    border: 0.1rem solid #ccc;
+    width: 38rem;
+    height: 38rem;
+    max-width: 100%;
     top: 5rem;
-    margin: 0.5rem;
+    left: 8rem;
+    margin: 0;
+}
+
+#court:before {
+    content: "";
+    display: block;
+    /* padding-top: 58%; */
+}
+
+#my,
+#my2,
+#my3 {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+}
+
+#my3 {
+    z-index: 0;
     background-image: url("../Picture/バレーコート背景.png");
-    background-size: 100%;
+    background-size: cover;
 }
 
-.my2{
-    margin-left: auto;
-    margin-right: auto;
+#my2 {
+    z-index: 1;
 }
 
-.my {
+#my {
+    z-index: 2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#other_court {
     clear: both;
+    float: left;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    border: 0.1rem solid #ccc;
+    width: 38rem;
+    height: 38rem;
+    max-width: 100%;
+    top: -33rem;
+    left: 48rem;
+    margin: 0;
 }
 
-.other {
-    margin-left: auto;
-    margin-right: auto;
+#other_court:before {
+    content: "";
+    display: block;
+    /* padding-top: 58%; */
 }
 
-.comprison {
-    margin-left: auto;
-    margin-right: auto;
+#other,
+#other2,
+#other3 {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
 }
 
+#other3 {
+    z-index: 0;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: cover;
+}
+
+#other2 {
+    z-index: 1;
+}
+
+#other {
+    z-index: 2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#comparison_court {
+    clear: both;
+    float: left;
+    position: relative;
+    border: 0.1rem solid #ccc;
+    width: 38rem;
+    height: 38rem;
+    max-width: 100%;
+    top: -71rem;
+    left: 88rem;
+    margin: 0;
+}
+
+#comparison_court:before {
+    content: "";
+    display: block;
+    /* padding-top: 58%; */
+}
+
+#comparison1,
+#comparison2,
+#comparison3 {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+}
+
+#comparison3 {
+    z-index: 0;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: cover;
+}
+
+#comparison2 {
+    z-index: 1;
+}
+
+#comparison {
+    z-index: 2;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 #range p {
+    clear: both;
     position: relative;
     display: inline-flex;
-    left: 18rem;
-    top: 5rem;
+    left: -22rem;
+    top: 44rem;
     width: 32%;
     font-size: 2.5rem;
     font-weight: bold;

@@ -174,7 +174,7 @@ function canvas_draw(){
     ot_can = document.getElementById('other'); 
     ot_ctx = ot_can.getContext('2d'); 
 //自分と他の重ねた配置
-    com_can = document.getElementById('comparison');
+    com_can = document.getElementById('comparison2');
     com_ctx = com_can.getContext('2d');
 }
 //自分の配置canvas
@@ -289,7 +289,6 @@ for (let i = 0; i < 6; i++) {
 for (let i = 0; i < 6; i++) {
   red_koma[0][i].addEventListener('load', () => {
     com_ctx.drawImage(blue_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
-
     com_ctx.drawImage(red_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
   });
 }
@@ -348,7 +347,7 @@ function rotation() {
 
 const my_can2 = document.getElementById('my2');
 const my_ctx2 = my_can2.getContext('2d');
-const ot_can2 = document.getElementById('ot2');
+const ot_can2 = document.getElementById('other2');
 const ot_ctx2 = ot_can2.getContext('2d');
 
 const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
@@ -356,10 +355,10 @@ const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
 // const blue = '';
 my_ctx2.fillStyle = omiai_color;//色
 my_ctx2.globalAlpha = 0.4;//不透明度 0.7
-let originX = 42;
-let originY = 610;
+let originX = 38;
+let originY = 573;
 let endX = 615;
-let endY = 0;
+let endY = 40;
 let k= 0;
 let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
