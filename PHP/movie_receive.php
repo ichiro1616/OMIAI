@@ -3,7 +3,7 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$cate_num = 90; //動画の総数
+$cate_num = 584; //動画の総数
 $DATA = array(); //registerテーブルから取得したデータ
 $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
@@ -13,45 +13,46 @@ $c = array(); //回答数が最も少ない動画の中から5つを抽出する
 try{
     $dbh = new PDO($dsn, $user, $password);
 
+    //
+    //left_or_right = -1で選択されたexperience_yearsの回答数が少ない動画のmovie_idを取り出す
     $sql = <<<EOS
-    SELECT `movie_id` ,`movie_categorize`, COUNT(movie_categorize) 
-    FROM `answer` 
-    WHERE `experience_years` = {$experience_years} 
-    GROUP BY `movie_categorize` 
-    ORDER BY `movie_categorize` ASC;
+    SELECT `movie_id`, COUNT(movie_id) FROM `answer`
+    WHERE `experience_years` = {$experience_years}
+    AND `left_or_right` = -1
+    GROUP BY `movie_id`
+    ORDER BY `movie_id` ASC;
     EOS;
-
-    //選択された経験年数のうちで、回答数が少ない順にidとcategorizeを取り出す
     $STMT = $dbh->query($sql);
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
     foreach($_DATA as $D){
         $TMP = array(
             "m_id" => $D['movie_id'],
-            "m_cate" => $D['movie_categorize'],
-            "m_count" => $D['COUNT(movie_categorize)']
+            "m_count" => $D['COUNT(movie_id)']
         );
         $DATA[]=$TMP;}
-    //registerテーブルが空だったときでも正常に動くようにする処理(回答数がnullの場所に0を入れる)
-    for($i = 0; $i < $cate_num; $i++){
-        //データが$i番目の時にm_cateがfalseであれば、回答データは存在しないのでcountに0を入れる
-        if(isset($DATA[$i]["m_cate"]) == false){
-                $count[$i] =  0;
-            }
-        //データが$i番目の時にm_cateがtrueであれば、回答データをcountに入れる
-        if(isset($DATA[$i]["m_cate"]) == true){
-            $count[$i] = $DATA[$i]["m_count"];
-        }
+    var_dump($DATA);
+    
+    //回答数が少ない取り出したmovie_idの数が20未満だった場合は
+    //left_or_right = -1が入力されているmovie_idを全て取り出す
+    if(count($DATA) < 20){
+        $sql = <<<EOS
+        SELECT `movie_id` FROM `answer` WHERE `left_or_right` = -1 ORDER BY `movie_id` ASC;
+        EOS;
+        $STMT = $dbh->query($sql);
+        $data = $STMT->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($data);
     }
 
-while(count($c)<5){
-    $ppp = count(array_keys($count,min($count)));
-    for($i = 0; $i <$ppp; $i++){
-        array_push($c,array_keys($count,min($count))[$i]);
-    }
-    for($i = 0; $i < count($c); $i++){
-        $count[$c[$i]] = 100000;
-    }
-}
+
+// while(count($c)<5){
+//     $ppp = count(array_keys($count,min($count)));
+//     for($i = 0; $i <$ppp; $i++){
+//         array_push($c,array_keys($count,min($count))[$i]);
+//     }
+//     for($i = 0; $i < count($c); $i++){
+//         $count[$c[$i]] = 100000;
+//     }
+// }
 
 //回答がある場合は回答が特に少ない順に3つの動画を取り出す
 for($i=0;$i<5;$i++){
