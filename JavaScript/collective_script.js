@@ -183,6 +183,8 @@ my_ctx3 = my_can.getContext('2d');//キャンバスの2Dコンテキストを取
 //他の配置・集合知canvas
 let ot_can3 = document.getElementById('other3');
 ot_ctx3 = ot_can.getContext('2d');
+my_ctx3.globalAlpha = 1;
+ot_ctx3.globalAlpha = 1;
 com_ctx.globalAlpha = 0.8;
 
 //画像パス
