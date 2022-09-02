@@ -13,14 +13,13 @@ $c = array(); //回答数が最も少ない動画の中から5つを抽出する
 try{
     $dbh = new PDO($dsn, $user, $password);
 
-    //
     //left_or_right = -1で選択されたexperience_yearsの回答数が少ない動画のmovie_idを取り出す
     $sql = <<<EOS
     SELECT `movie_id`, COUNT(movie_id) FROM `answer`
     WHERE `experience_years` = {$experience_years}
     AND `left_or_right` = -1
     GROUP BY `movie_id`
-    ORDER BY `movie_id` ASC;
+    ORDER BY COUNT(movie_id) ASC;
     EOS;
     $STMT = $dbh->query($sql);
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
@@ -32,6 +31,17 @@ try{
         $DATA[]=$TMP;}
     var_dump($DATA);
     
+    //回答数が少ない取り出したmovie_idの数が20以上だった場合は
+    //left_or_right = -1が入力されているmovie_idのうち特に回答数が少ないものを20個取り出す
+    if(count($DATA) >= 20){
+        $i = 0;
+        while(count($count)<20){
+            $count[$i] = $DATA[$i];
+            $i += 1;
+        }
+        var_dump($count);
+    }
+
     //回答数が少ない取り出したmovie_idの数が20未満だった場合は
     //left_or_right = -1が入力されているmovie_idを全て取り出す
     if(count($DATA) < 20){
@@ -41,6 +51,9 @@ try{
         $STMT = $dbh->query($sql);
         $data = $STMT->fetchAll(PDO::FETCH_ASSOC);
         var_dump($data);
+
+        $result = array_diff($DATA,$data);
+        print_r($result);
     }
 
 
