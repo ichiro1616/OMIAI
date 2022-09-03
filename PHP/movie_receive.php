@@ -1,4 +1,15 @@
 <?php
+// ・該当の動画のmovie_idを-1した値の場所のstop_time
+// ・movie_id = 4, 5, 6 
+// →4の動画が流れて4のstop_timeの位置で一時停止する
+// →次に5が4のstop_timeから再生される
+// 　→→特別な処理は書かない
+// →同じmovie_categorizeじゃないとstop_timeが意味を成さない
+
+// 一個前のstop_timeを取り出してくるときに同じmovie_categorizeのmovie_idが一個前のstop_timeを取り出してくる
+// →この条件で検索して、stop_timeが存在しなければ、動画を最初から再生
+
+
 //DBへの接続時に必要な情報
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
@@ -9,51 +20,29 @@ $data = array(); //movieテーブルから取得したデータ
 $count = array(); //movie_categorizeそれぞれについての回答数
 $COUNT = array(); //回答数が最も少ないmovie_categorizeのkeyを格納する。
 $c = array(); //回答数が最も少ない動画の中から5つを抽出する。
+$prev = array(); //一つ前のmovie_id
 
 try{
     $dbh = new PDO($dsn, $user, $password);
-
-    //left_or_right = -1で選択されたexperience_yearsの回答数が少ない動画のmovie_idを取り出す
     $sql = <<<EOS
-    SELECT `movie_id`, COUNT(movie_id) FROM `answer`
-    WHERE `experience_years` = {$experience_years}
-    AND `left_or_right` = -1
+    SELECT `movie_id`
+    FROM `answer` WHERE `left_or_right` = -1
     GROUP BY `movie_id`
     ORDER BY COUNT(movie_id) ASC;
     EOS;
     $STMT = $dbh->query($sql);
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
-    foreach($_DATA as $D){
-        $TMP = array(
-            "m_id" => $D['movie_id'],
-            "m_count" => $D['COUNT(movie_id)']
-        );
-        $DATA[]=$TMP;}
-    var_dump($DATA);
-    
-    //回答数が少ない取り出したmovie_idの数が20以上だった場合は
-    //left_or_right = -1が入力されているmovie_idのうち特に回答数が少ないものを20個取り出す
-    if(count($DATA) >= 20){
-        $i = 0;
-        while(count($count)<20){
-            $count[$i] = $DATA[$i];
-            $i += 1;
-        }
-        var_dump($count);
+
+    //回答数が少ない順に100球分のmovie_idを取り出す
+    for($j=0; $j<100; $j++){
+        $TMP = $_DATA[$j]['movie_id'];
+        $DATA[] = $TMP;
     }
 
-    //回答数が少ない取り出したmovie_idの数が20未満だった場合は
-    //left_or_right = -1が入力されているmovie_idを全て取り出す
-    if(count($DATA) < 20){
-        $sql = <<<EOS
-        SELECT `movie_id` FROM `answer` WHERE `left_or_right` = -1 ORDER BY `movie_id` ASC;
-        EOS;
-        $STMT = $dbh->query($sql);
-        $data = $STMT->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data);
-
-        $result = array_diff($DATA,$data);
-        print_r($result);
+    //取り出したmovie_idから-1した値の配列をつくる
+    for($h=0; $h<100; $h++){
+        $temp = $DATA[$h];
+        $prev[] = $temp;
     }
 
 
