@@ -64,17 +64,8 @@ try{
         $_DATA = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         for($m=0;$m<$id;$m++){
-            //-1した結果movie_id=0になってしまった場合はmovie_id=1の最初から再生を行う
-            if($_DATA[$m]['movie_id'] == 0){
-                $TMP = array(
-                    "movie_id" => 1,
-                    "movie_categorize" => $data[$m]['movie_categorize'],
-                    "start_time" => 0,
-                    "movie_path" => $data[$m]['movie_path'],
-                );
-            }
-            //動画が切り替わってしまった場合は、切り替わった後の動画の最初から再生を行う
-            elseif($_DATA[$m]['movie_categorize'] != $data[$m]['movie_categorize']){
+            //動画が切り替わってしまった場合又はmovie_id=0になってしまった場合は、切り替わった後の動画の最初から再生を行う
+            if($_DATA[$m]['movie_categorize'] != $data[$m]['movie_categorize']){
                 $TMP = array(
                     "movie_id" => $data[$m]['movie_id'],
                     "movie_categorize" => $data[$m]['movie_categorize'],
@@ -82,7 +73,7 @@ try{
                     "movie_path" => $data[$m]['movie_path'],
                 );
             }
-            //
+            //前回のmovie_idの停止時間から再生を開始する
             else{
                 $TMP = array(
                     "movie_id" => $_DATA[$m]['movie_id'],
