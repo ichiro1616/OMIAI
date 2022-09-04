@@ -9,18 +9,19 @@
 // 一個前のstop_timeを取り出してくるときに同じmovie_categorizeのmovie_idが一個前のstop_timeを取り出してくる
 // →この条件で検索して、stop_timeが存在しなければ、動画を最初から再生
 
-
 //DBへの接続時に必要な情報
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$cate_num = 584; //動画の総数
-$DATA = array(); //registerテーブルから取得したデータ
-$data = array(); //movieテーブルから取得したデータ
-$count = array(); //movie_categorizeそれぞれについての回答数
-$COUNT = array(); //回答数が最も少ないmovie_categorizeのkeyを格納する。
-$c = array(); //回答数が最も少ない動画の中から5つを抽出する。
-$prev = array(); //一つ前のmovie_id
+$id_num = 584; //left_or_right = -1 のmovie_idの総数
+$id = 100; //100球分のデータを取り出す
+// $id_num = 8;
+// $id = 5;
+$result = array(); //該当のmovie_id
+$prev = array(); //resultの一つ前のmovie_id
+$data = array(); //該当のmovie_idの動画データ
+$DATA = array(); //resultの一つ前のmovie_idの動画データ
+$sendDATA = array(); //dataとDATAをまとめた配列
 
 try{
     $dbh = new PDO($dsn, $user, $password);
@@ -33,48 +34,73 @@ try{
     $STMT = $dbh->query($sql);
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
 
-    //回答数が少ない順に100球分のmovie_idを取り出す
-    for($j=0; $j<100; $j++){
-        $TMP = $_DATA[$j]['movie_id'];
-        $DATA[] = $TMP;
+//--------------------------------------------left_or_right = -1 のmovie_idの取り出し----------------------------------------------------------
+    for($h=0; $h<$id; $h++){
+        $TMP = $_DATA[$h]['movie_id'];
+        $result[] = $TMP;
     }
+    for($i=0;$i<$id;$i++){
+        $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $result[$i]);
+        $stmt = $dbh->query($sql);
+        $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //取り出したmovie_idから-1した値の配列をつくる
-    for($h=0; $h<100; $h++){
-        $temp = $DATA[$h];
-        $prev[] = $temp;
+        foreach($_data as $d){
+            $tmp = array(
+                "movie_id" => $d['movie_id'],
+                "movie_categorize" => $d['movie_categorize'],
+                "stop_time" => $d['stop_time'],
+                "movie_path" => $d['movie_path'],
+            );
+            $data[]=$tmp;
+        }
     }
-
-
-// while(count($c)<5){
-//     $ppp = count(array_keys($count,min($count)));
-//     for($i = 0; $i <$ppp; $i++){
-//         array_push($c,array_keys($count,min($count))[$i]);
-//     }
-//     for($i = 0; $i < count($c); $i++){
-//         $count[$c[$i]] = 100000;
-//     }
-// }
-
-//回答がある場合は回答が特に少ない順に3つの動画を取り出す
-for($i=0;$i<5;$i++){
-    $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path`, `left_player_id`, `right_player_id` FROM `movie` WHERE movie_categorize = '%s';", $c[$i]+1);
-    $stmt = $dbh->query($sql);
-    $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach($_data as $d){
-        $tmp = array(
-            "movie_id" => $d['movie_id'],
-            "movie_categorize" => $d['movie_categorize'],
-            "stop_time" => $d['stop_time'],
-            "movie_path" => $d['movie_path'],
-            "left_player_id" => $d['left_player_id'],
-            "right_player_id" => $d['right_player_id']
-        );
-        $data[]=$tmp;
+//---------------------------------------left_or_right = -1 のmovie_idの1つ前のmovie_id取り出し-------------------------------------------------
+    for($j=0; $j<$id; $j++){
+        $temp = $result[$j];
+        $prev[] = $temp - 1;
     }
-}
-
+    for($k=0;$k<$id;$k++){
+        $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $prev[$k]);
+        $stmt = $dbh->query($sql);
+        $_Data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($_Data as $DA){
+            $tmp = array(
+                "movie_id" => $DA['movie_id'],
+                "movie_categorize" => $DA['movie_categorize'],
+                "stop_time" => $DA['stop_time'],
+                "movie_path" => $DA['movie_path'],
+            );
+            $Data[]=$tmp;
+        }
+        if(isset($Data[$k]['movie_categorize']) == false){
+            $TMP = array(
+                "movie_id" => 1,
+                "movie_categorize" => 1,
+                "start_time" => 0,
+                "movie_path" => $data[$k]['movie_path'],
+                );
+            }
+        elseif($Data[$k]['movie_categorize'] != $data[$k]['movie_categorize']){
+            $TMP = array(
+                "movie_id" => $Data[$k]['movie_id'],
+                "movie_categorize" => $data[$k]['movie_categorize'],
+                "start_time" => 0,
+                "movie_path" => $data[$k]['movie_path'],
+                );
+            }
+        else{
+            $TMP = array(
+                "movie_id" => $Data[$k]['movie_id'],
+                "movie_categorize" => $Data[$k]['movie_categorize'],
+                "start_time" => $Data[$k]['stop_time'],
+                "movie_path" => $Data[$k]['movie_path'],
+                );
+        }
+        $DATA[]=$TMP;
+        }
+    $sendDATA[0] = $DATA;
+    $sendDATA[1] = $data;
+    
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
@@ -82,5 +108,5 @@ for($i=0;$i<5;$i++){
 
 $dbh = null; //DBとの接続を解除
 header('Content-type: application/json');
-echo json_encode($data,JSON_UNESCAPED_UNICODE);
+echo json_encode($sendDATA,JSON_UNESCAPED_UNICODE);
 ?>
