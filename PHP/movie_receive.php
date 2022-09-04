@@ -9,13 +9,14 @@
 // 一個前のstop_timeを取り出してくるときに同じmovie_categorizeのmovie_idが一個前のstop_timeを取り出してくる
 // →この条件で検索して、stop_timeが存在しなければ、動画を最初から再生
 
-
 //DBへの接続時に必要な情報
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$id_num = 584; //left_or_right = -1 のmovie_idの総数
-$id = 100; //100球分のデータを取り出す
+//$id_num = 584; //left_or_right = -1 のmovie_idの総数
+//$id = 100; //100球分のデータを取り出す
+$id_num = 8;
+$id = 5;
 $result = array(); //該当のmovie_id
 $prev = array(); //resultの一つ前のmovie_id
 $data = array(); //該当のmovie_idの動画データ
@@ -61,34 +62,45 @@ try{
     for($k=0;$k<$id;$k++){
         $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $prev[$k]);
         $stmt = $dbh->query($sql);
-        $_DATA = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        for($m=0;$m<$id;$m++){
-            //動画が切り替わってしまった場合又はmovie_id=0になってしまった場合は、切り替わった後の動画の最初から再生を行う
-            if($_DATA[$m]['movie_categorize'] != $data[$m]['movie_categorize']){
-                $TMP = array(
-                    "movie_id" => $data[$m]['movie_id'],
-                    "movie_categorize" => $data[$m]['movie_categorize'],
-                    "start_time" => 0,
-                    "movie_path" => $data[$m]['movie_path'],
-                );
-            }
-            //前回のmovie_idの停止時間から再生を開始する
-            else{
-                $TMP = array(
-                    "movie_id" => $_DATA[$m]['movie_id'],
-                    "movie_categorize" => $_DATA[$m]['movie_categorize'],
-                    "start_time" => $_DATA[$m]['stop_time'],
-                    "movie_path" => $_DATA[$m]['movie_path'],
-                );
-            }
-            $DATA[]=$tmp;
+        $_Data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($_Data as $DA){
+            $tmp = array(
+                "movie_id" => $DA['movie_id'],
+                "movie_categorize" => $DA['movie_categorize'],
+                "stop_time" => $DA['stop_time'],
+                "movie_path" => $DA['movie_path'],
+            );
+            $Data[]=$tmp;
         }
-    }
-
+        if(isset($Data[$k]['movie_categorize']) == false){
+            $TMP = array(
+                "movie_id" => 1,
+                "movie_categorize" => 1,
+                "start_time" => 0,
+                "movie_path" => $data[$k]['movie_path'],
+                );
+            }
+        elseif($Data[$k]['movie_categorize'] != $data[$k]['movie_categorize']){
+            $TMP = array(
+                "movie_id" => $Data[$k]['movie_id'],
+                "movie_categorize" => $data[$k]['movie_categorize'],
+                "start_time" => 0,
+                "movie_path" => $data[$k]['movie_path'],
+                );
+            }
+        else{
+            $TMP = array(
+                "movie_id" => $Data[$k]['movie_id'],
+                "movie_categorize" => $Data[$k]['movie_categorize'],
+                "start_time" => $Data[$k]['stop_time'],
+                "movie_path" => $Data[$k]['movie_path'],
+                );
+        }
+        $DATA[]=$TMP;
+        }
     $sendDATA[0] = $DATA;
     $sendDATA[1] = $data;
-
+    
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
@@ -96,5 +108,5 @@ try{
 
 $dbh = null; //DBとの接続を解除
 header('Content-type: application/json');
-echo json_encode($data,JSON_UNESCAPED_UNICODE);
+echo json_encode($sendDATA,JSON_UNESCAPED_UNICODE);
 ?>
