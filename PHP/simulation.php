@@ -12,7 +12,7 @@ try {
     $dbh = new PDO($dsn, $user, $password);
 
     // 最新の2550個のレコードを取得
-    $sql = "SELECT * FROM `lr.coef_` ORDER BY `lr.coef_id` DESC LIMIT 2550";
+    $sql = "SELECT * FROM `lr.coef_` LIMIT 2550";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
