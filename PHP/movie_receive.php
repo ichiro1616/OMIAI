@@ -14,7 +14,8 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$cate_num = 584; //left_or_right = -1 のmovie_idの総数
+$id_num = 584; //left_or_right = -1 のmovie_idの総数
+$id = 100; //100球分のデータを取り出す
 $result = array(); //該当のmovie_id
 $prev = array(); //resultの一つ前のmovie_id
 $data = array(); //該当のmovie_idの動画データ
@@ -33,11 +34,11 @@ try{
     $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
 
 //--------------------------------------------left_or_right = -1 のmovie_idの取り出し----------------------------------------------------------
-    for($h=0; $h<100; $h++){
+    for($h=0; $h<$id; $h++){
         $TMP = $_DATA[$h]['movie_id'];
         $result[] = $TMP;
     }
-    for($i=0;$i<100;$i++){
+    for($i=0;$i<$id;$i++){
         $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $result[$i]);
         $stmt = $dbh->query($sql);
         $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,16 +54,16 @@ try{
         }
     }
 //---------------------------------------left_or_right = -1 のmovie_idの1つ前のmovie_id取り出し-------------------------------------------------
-    for($j=0; $j<100; $j++){
+    for($j=0; $j<$id; $j++){
         $temp = $result[$j];
         $prev[] = $temp - 1;
     }
-    for($k=0;$k<100;$k++){
+    for($k=0;$k<$id;$k++){
         $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $prev[$k]);
         $stmt = $dbh->query($sql);
         $_DATA = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        for($m=0;$m<100;$m++){
+        for($m=0;$m<$id;$m++){
             //-1した結果movie_id=0になってしまった場合はmovie_id=1の最初から再生を行う
             if($_DATA[$m]['movie_id'] == 0){
                 $TMP = array(
@@ -93,6 +94,9 @@ try{
             $DATA[]=$tmp;
         }
     }
+
+    $sendDATA[0] = $DATA;
+    $sendDATA[1] = $data;
 
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
