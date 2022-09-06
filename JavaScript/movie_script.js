@@ -92,7 +92,7 @@ function movie_time() {
     if (position == 2) {
       Velement.playbackRate = 0.2;
       submit = videoElement.currentTime;
-      console.log(submit);
+      //console.log(submit);
       if (stop_time - submit <= 0.001) {
         position = 1;
         playing = 0;
