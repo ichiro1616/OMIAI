@@ -105,7 +105,6 @@ function movie_time() {
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
 function movie_play() {
   buttons.style.display = "none"; //ボタンを非表示にする
-  console.log(Object.keys(data[1]).length);
   if (Object.keys(data[1]).length <= counter) {
     //全ての動画を再生し終えたらmovie_end()を動かす。
     flag = 1;
