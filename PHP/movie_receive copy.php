@@ -17,7 +17,7 @@ $id_num = 584; //left_or_right = -1 のmovie_idの総数
 $id = 100; //100球分のデータを取り出す
 // $id_num = 8;
 // $id = 5;
-$c = array(); //該当のmovie_id
+$result = array(); //該当のmovie_id
 $prev = array(); //resultの一つ前のmovie_id
 $data = array(); //該当のmovie_idの動画データ
 $DATA = array(); //resultの一つ前のmovie_idの動画データ
@@ -25,37 +25,22 @@ $sendDATA = array(); //dataとDATAをまとめた配列
 
 try{
     $dbh = new PDO($dsn, $user, $password);
-    $dbh = new PDO($dsn, $user, $password);
     $sql = <<<EOS
-    SELECT `movie_id` FROM `answer` WHERE `left_or_right` = -1;
+    SELECT `movie_id`
+    FROM `answer` WHERE `left_or_right` = -1
+    GROUP BY `movie_id`
+    ORDER BY COUNT(movie_id) ASC;
     EOS;
     $STMT = $dbh->query($sql);
-    $all = $STMT->fetchAll(PDO::FETCH_ASSOC);
+    $_DATA = $STMT->fetchAll(PDO::FETCH_ASSOC);
 
 //--------------------------------------------left_or_right = -1 のmovie_idの取り出し----------------------------------------------------------
-    //left_or_right = -1のmovie_idを動画をすべて取り出す
-    foreach($all as $a){
-        $ALL[] = $a["movie_id"];
+    for($h=0; $h<$id; $h++){
+        $TMP = $_DATA[$h]['movie_id'];
+        $result[] = $TMP;
     }
-
-    //left_or_right = -1の動画それぞれの回答数
-    for($a=0;$a<$id_num;$a++){
-        $sql = sprintf("SELECT COUNT(movie_id) FROM `answer` WHERE movie_id = '%s';", $ALL[$a]);
-        $ST = $dbh->query($sql);
-        $call = $ST->fetchAll(PDO::FETCH_ASSOC);
-        foreach($call as $ca){
-            $count[]=$ca["COUNT(movie_id)"];
-        }
-    }
-    //回答数が少ない順に並べる
-    for($i = 0; $i <$id; $i++){
-        $c[] = array_search(min($count),$count);
-        $count[$c[$i]] = 100000;
-    }
-
-    //$count[]に入っているmovie_idを使って動画データを取り出す
     for($i=0;$i<$id;$i++){
-        $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $ALL[$c[$i]]);
+        $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $result[$i]);
         $stmt = $dbh->query($sql);
         $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -71,7 +56,7 @@ try{
     }
 //---------------------------------------left_or_right = -1 のmovie_idの1つ前のmovie_id取り出し-------------------------------------------------
     for($j=0; $j<$id; $j++){
-        $temp = $ALL[$c[$j]];
+        $temp = $result[$j];
         $prev[] = $temp - 1;
     }
 
