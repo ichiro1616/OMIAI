@@ -53,7 +53,6 @@ function control(num) {
   Velement = document.querySelector("video");
   var obj = document.getElementById("mv");
   var n = parseInt(num);
-  console.log("control()に来たよ！");
   if (n == 0) {
     if(data[0][counter]["start_time"] == 0){
       obj.play();
