@@ -67,7 +67,7 @@ function control(num) {
     document.querySelector('[id="1"]').value = "⇨";
     document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
     obj.pause(); //動画を停止させる
-    console.log("一時停止");
+    console.log("pause");
   }
 }
 
@@ -149,7 +149,6 @@ function movie_db() {
   xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
       data_keep = JSON.parse(xhr.response);
-      console.log(data_keep);
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
       } else {
@@ -166,7 +165,6 @@ function movie_db() {
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
 function percentage() {
   formData = new FormData();
-  console.log(data[1][counter]["movie_id"]);
   formData.append("movie_id", data[1][counter]["movie_id"]);
   xhr = new XMLHttpRequest();
   xhr.open("POST", "../PHP/percent_receive.php");
@@ -174,7 +172,6 @@ function percentage() {
     if (xhr.status === 200) {
       LR_temp = JSON.parse(xhr.response);
       LR = LR_temp;
-      console.log(LR);
       //パーセンテージの計算
       per = Object.keys(LR).length; //要素の数
       left = 0; //左選手を選択した人の数
@@ -184,12 +181,8 @@ function percentage() {
           left++;
         }}
       right = per - left; //右選手を選択した人の数
-      console.log(per);
-      console.log(left, right);
       left_per = Math.round((left / per) * 100);
       right_per = Math.round((right / per) * 100);
-      console.log(left_per);
-      console.log(right_per);
       //パーセンテージの表示
       document.querySelector('[id="0"]').value = left_per + "%";
       document.querySelector('[id="1"]').value = right_per + "%";
@@ -211,7 +204,7 @@ function choose(btn) {
   if (STOP == 0) {
     button = btn.getAttribute("id"); // input要素のid属性の値を取得
     button_id = parseInt(button); //取得したIDをint形式に変換する
-    console.log(button_id);
+    console.log("左右選択(0なら左 1なら右) = ",button_id);
     sendData = {
       movie_id: data[1][counter]["movie_id"],
       movie_categorize: data[1][counter]["movie_categorize"],
