@@ -8,6 +8,7 @@ let sendData; //dbに送信する回答データ
 let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
+let playing = 0; //現在再生中かを判断するためのフラグ
 let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
@@ -52,9 +53,15 @@ function control(num) {
   Velement = document.querySelector("video");
   var obj = document.getElementById("mv");
   var n = parseInt(num);
+  console.log("control()に来たよ！");
   if (n == 0) {
-    obj.currentTime = data[0][counter]["start_time"] / 60; //start_timeの位置から再生を開始する
-    obj.play();
+    if(data[0][counter]["start_time"] == 0){
+      obj.play();
+    }
+    else{
+      obj.currentTime = data[0][counter]["start_time"] / 60; //start_timeの位置から再生を開始する
+      obj.play();
+    }
   } else {
     document.querySelector('[id="0"]').value = "⇦";
     document.querySelector('[id="1"]').value = "⇨";
@@ -67,13 +74,16 @@ function control(num) {
 //現在の動画の再生時間を取得する
 function movie_time() {
   stop_time = data[1][counter]["stop_time"] / 60;
-  console.log(stop_time);
   videoElement = document.getElementById("mv");
   Velement = document.querySelector("video");
+  if(position == 0 && playing == 0){
+    control(0); //再生開始
+  }
   videoElement.addEventListener("timeupdate", function () {
     if (position == 0) {
       submit = videoElement.currentTime;
       console.log(submit);
+      playing = 1;
       if (stop_time - submit <= 0.33) {
         console.log("slow");
         position = 2;
@@ -85,6 +95,7 @@ function movie_time() {
       console.log(submit);
       if (stop_time - submit <= 0.001) {
         position = 1;
+        playing = 0;
         STOP = 0;
         control(1); //controlに1を送る(動画を停止する)
       }

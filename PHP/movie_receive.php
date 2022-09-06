@@ -13,10 +13,10 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-$id_num = 584; //left_or_right = -1 のmovie_idの総数
-$id = 100; //100球分のデータを取り出す
-// $id_num = 8;
-// $id = 5;
+//$id_num = 584; //left_or_right = -1 のmovie_idの総数
+//$id = 100; //100球分のデータを取り出す
+$id_num = 8;
+$id = 5;
 $result = array(); //該当のmovie_id
 $prev = array(); //resultの一つ前のmovie_id
 $data = array(); //該当のmovie_idの動画データ
@@ -59,41 +59,57 @@ try{
         $temp = $result[$j];
         $prev[] = $temp - 1;
     }
+
     for($k=0;$k<$id;$k++){
-        $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $prev[$k]);
-        $stmt = $dbh->query($sql);
-        $_Data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach($_Data as $DA){
+        //もし1つ前のmovie_idが0ならテーブルから取り出したデータがnullになってしまうのでここで値を入れる
+        if($prev[$k] == 0){
             $tmp = array(
-                "movie_id" => $DA['movie_id'],
-                "movie_categorize" => $DA['movie_categorize'],
-                "stop_time" => $DA['stop_time'],
-                "movie_path" => $DA['movie_path'],
-            );
-            $Data[]=$tmp;
-        }
-        if(isset($Data[$k]['movie_categorize']) == false){
-            $TMP = array(
-                "movie_id" => 1,
+                "movie_id" => 0,
                 "movie_categorize" => 1,
                 "start_time" => 0,
                 "movie_path" => $data[$k]['movie_path'],
+            );
+        }
+        //1つ前のmovie_idが0以外であればmovieテーブルからmovie_idに紐づいたデータを取り出す
+        else{
+            $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $prev[$k]);
+            $stmt = $dbh->query($sql);
+            $_Data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($_Data as $DA){
+            $tmp = array(
+                "movie_id" => $DA['movie_id'],
+                "movie_categorize" => $DA['movie_categorize'],
+                "start_time" => $DA['stop_time'],
+                "movie_path" => $DA['movie_path'],
+            );
+            }
+        }
+        $Data[]=$tmp;
+    }
+
+for($m=0;$m<$id;$m++){
+        if($prev[$m] == 0){
+            $TMP = array(
+                "movie_id" => 0,
+                "movie_categorize" => 1,
+                "start_time" => 0,
+                "movie_path" => $data[$m]['movie_path'],
                 );
             }
-        elseif($Data[$k]['movie_categorize'] != $data[$k]['movie_categorize']){
+        elseif($Data[$m]['movie_categorize'] != $data[$m]['movie_categorize']){
             $TMP = array(
-                "movie_id" => $Data[$k]['movie_id'],
-                "movie_categorize" => $data[$k]['movie_categorize'],
+                "movie_id" => $Data[$m]['movie_id'],
+                "movie_categorize" => $data[$m]['movie_categorize'],
                 "start_time" => 0,
-                "movie_path" => $data[$k]['movie_path'],
+                "movie_path" => $data[$m]['movie_path'],
                 );
             }
         else{
             $TMP = array(
-                "movie_id" => $Data[$k]['movie_id'],
-                "movie_categorize" => $Data[$k]['movie_categorize'],
-                "start_time" => $Data[$k]['stop_time'],
-                "movie_path" => $Data[$k]['movie_path'],
+                "movie_id" => $Data[$m]['movie_id'],
+                "movie_categorize" => $Data[$m]['movie_categorize'],
+                "start_time" => $Data[$m]['start_time'],
+                "movie_path" => $Data[$m]['movie_path'],
                 );
         }
         $DATA[]=$TMP;
