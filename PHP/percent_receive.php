@@ -7,7 +7,7 @@ $data = array();
 try{
     $dbh = new PDO($dsn, $user, $password);
     // print('接続に成功しました。<br>');
-    $stmt = $dbh->query("SELECT `left_or_right` FROM `answer` WHERE `movie_id` = $movie_id");
+    $stmt = $dbh->query("SELECT `left_or_right` FROM `answer` WHERE `movie_id` = {$movie_id} AND NOT `left_or_right` = -1");
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach($_data as $d){

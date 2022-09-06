@@ -13,10 +13,10 @@
 $experience_years = $_POST["experience_years"];
 include 'db_config.php';
 
-//$id_num = 584; //left_or_right = -1 のmovie_idの総数
-//$id = 100; //100球分のデータを取り出す
-$id_num = 8;
-$id = 5;
+$id_num = 584; //left_or_right = -1 のmovie_idの総数
+$id = 100; //100球分のデータを取り出す
+// $id_num = 8;
+// $id = 5;
 $result = array(); //該当のmovie_id
 $prev = array(); //resultの一つ前のmovie_id
 $data = array(); //該当のmovie_idの動画データ
