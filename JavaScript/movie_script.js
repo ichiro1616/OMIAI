@@ -59,7 +59,7 @@ function control(num) {
       obj.play();
     }
     else{
-      obj.currentTime = data[0][counter]["start_time"] / 60; //start_timeの位置から再生を開始する
+      obj.currentTime = (data[0][counter]["start_time"] / 60) + 2; //start_timeの位置から再生を開始する
       obj.play();
     }
   } else {
