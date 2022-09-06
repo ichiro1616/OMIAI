@@ -82,7 +82,7 @@ function movie_time() {
   videoElement.addEventListener("timeupdate", function () {
     if (position == 0) {
       submit = videoElement.currentTime;
-      console.log(submit);
+      //console.log(submit);
       playing = 1;
       if (stop_time - submit <= 0.33) {
         console.log("slow");
