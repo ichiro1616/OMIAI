@@ -80,7 +80,8 @@
               <p>175cm</p>
             </div>
           </div>
-          <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button>
+          <!-- <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button> -->
+          <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" class="rotation"/></button>
           <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button>
           <h2 id="change_bar">お見合い割合変化バー</h2>
           <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 75%;">
@@ -98,8 +99,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row justify-content-center"> -->
-    <div id="row_justify_content_center"></div>
+    <div id="row_justify_content_center">
     <div class="col-10">
       <div class="under_canvas_warp">
         <div class="under1"><canvas id="under_canvas1" height="200" width="200"></canvas></div>
@@ -111,6 +111,7 @@
       </div>
     </div>
   </div>
+</div>
   </div>
   <script src="../JavaScript/simulation.js"></script>
   <link href="../CSS/simulation.css" rel="stylesheet" />
