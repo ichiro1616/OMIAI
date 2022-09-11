@@ -21,16 +21,17 @@
       <p>未経験</p><p>1~2年</p><p>3~5年</p><p>6~9年</p><p>10年以上</p>
       </div>
       <br />
-      <i class="icon-check" onclick="movie_db();"></i>
-      <p><input type="button" class="button" id="button-check" value="　　決定" onclick="movie_db();" /></p>
+      <button type="button" onclick="movie_db();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
     </div>
     </div>
 
     <div id="video_button">
       <div id="video_window">
       <!-- ビデオの再生 -->
-      <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg">
-        <source src="" id="video" preload controls muted autoplay playinline loop />
+      <video id="mv" autobuffer loop muted controls></video>
+      <!-- <video id="mv" autobuffer autoplay loop muted controls poster="../img/loading.jpg"> -->
+        <source src="" id="video" preload controls muted playinline loop />
+        <!-- <source src="" id="video" preload controls muted autoplay playinline loop /> -->
       </video>
 
       <!--ボタンの設置  -->

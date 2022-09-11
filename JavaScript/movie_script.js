@@ -8,6 +8,7 @@ let sendData; //dbに送信する回答データ
 let LR; //dbから取得した選手が選択されたパーセンテージを計算する用データ
 let categorize = 0; //前回取り出されたデータのmovie_categorize
 let position = 0; //movie_timeでif比較をし続けないためのフラグ
+let playing = 0; //現在再生中かを判断するためのフラグ
 let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
@@ -53,27 +54,35 @@ function control(num) {
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
-    obj.currentTime = data[0][counter]["start_time"] / 60; //start_timeの位置から再生を開始する
-    obj.play();
+    if(data[0][counter]["start_time"] == 0){
+      obj.play();
+    }
+    else{
+      obj.currentTime = (data[0][counter]["start_time"] / 60) + 2; //start_timeの位置から再生を開始する
+      obj.play();
+    }
   } else {
     document.querySelector('[id="0"]').value = "⇦";
     document.querySelector('[id="1"]').value = "⇨";
     document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
     obj.pause(); //動画を停止させる
-    console.log("一時停止");
+    console.log("pause");
   }
 }
 
 //現在の動画の再生時間を取得する
 function movie_time() {
   stop_time = data[1][counter]["stop_time"] / 60;
-  console.log(stop_time);
   videoElement = document.getElementById("mv");
   Velement = document.querySelector("video");
+  if(position == 0 && playing == 0){
+    control(0); //再生開始
+  }
   videoElement.addEventListener("timeupdate", function () {
     if (position == 0) {
       submit = videoElement.currentTime;
-      console.log(submit);
+      //console.log(submit);
+      playing = 1;
       if (stop_time - submit <= 0.33) {
         console.log("slow");
         position = 2;
@@ -82,9 +91,10 @@ function movie_time() {
     if (position == 2) {
       Velement.playbackRate = 0.2;
       submit = videoElement.currentTime;
-      console.log(submit);
+      //console.log(submit);
       if (stop_time - submit <= 0.001) {
         position = 1;
+        playing = 0;
         STOP = 0;
         control(1); //controlに1を送る(動画を停止する)
       }
@@ -95,7 +105,6 @@ function movie_time() {
 //動画の再生をする。前回と違うmovie_pathが呼び出されたら新しい動画を再生する。
 function movie_play() {
   buttons.style.display = "none"; //ボタンを非表示にする
-  console.log(Object.keys(data[1]).length);
   if (Object.keys(data[1]).length <= counter) {
     //全ての動画を再生し終えたらmovie_end()を動かす。
     flag = 1;
@@ -138,7 +147,6 @@ function movie_db() {
   xhr.addEventListener("loadend", function () {
     if (xhr.status === 200) {
       data_keep = JSON.parse(xhr.response);
-      console.log(data_keep);
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
       } else {
@@ -155,7 +163,6 @@ function movie_db() {
 //他の人もどのくらいその選手を選択したのかのパーセンテージを表示する
 function percentage() {
   formData = new FormData();
-  console.log(data[1][counter]["movie_id"]);
   formData.append("movie_id", data[1][counter]["movie_id"]);
   xhr = new XMLHttpRequest();
   xhr.open("POST", "../PHP/percent_receive.php");
@@ -163,7 +170,6 @@ function percentage() {
     if (xhr.status === 200) {
       LR_temp = JSON.parse(xhr.response);
       LR = LR_temp;
-      console.log(LR);
       //パーセンテージの計算
       per = Object.keys(LR).length; //要素の数
       left = 0; //左選手を選択した人の数
@@ -173,12 +179,8 @@ function percentage() {
           left++;
         }}
       right = per - left; //右選手を選択した人の数
-      console.log(per);
-      console.log(left, right);
       left_per = Math.round((left / per) * 100);
       right_per = Math.round((right / per) * 100);
-      console.log(left_per);
-      console.log(right_per);
       //パーセンテージの表示
       document.querySelector('[id="0"]').value = left_per + "%";
       document.querySelector('[id="1"]').value = right_per + "%";
@@ -200,7 +202,7 @@ function choose(btn) {
   if (STOP == 0) {
     button = btn.getAttribute("id"); // input要素のid属性の値を取得
     button_id = parseInt(button); //取得したIDをint形式に変換する
-    console.log(button_id);
+    console.log("左右選択(0なら左 1なら右) = ",button_id);
     sendData = {
       movie_id: data[1][counter]["movie_id"],
       movie_categorize: data[1][counter]["movie_categorize"],
