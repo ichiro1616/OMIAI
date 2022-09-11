@@ -164,6 +164,9 @@ let my_can; //自分の配置を表示するキャンバス
 let ot_can; //選択した配置を表示するキャンバス
 let com_can; //コマを重ねて表示するキャンバス
 let data; //registerテーブルから取得したデータを全て格納する
+let gene_level = 2;
+let exp_level = 2;
+let counter = 0;
 window.onclick = canvas_draw();
 
 function canvas_draw(){
@@ -238,42 +241,53 @@ for (var i = 0; i < 6; i++) { //ローテーション
 let size = 1.5; //メイン画面のコマの大きさの倍率
 let koma_w = 70; //コマの横幅
 let koma_h = 70; //コマの高さ
-let scale = 650 / 1200; //my_canとcanvasの比
-let counter = 0;
-
+let scale = 610 / 1200; //my_canとcanvasの比
+let genekeep; //
 //経験年数
 inputSliderEle = document.getElementById('experience_change');
 inputSliderEle.addEventListener('change', function(){
-    experience_years = inputSliderEle.value;
-    console.log(experience_years);
+    exp_level = inputSliderEle.value;
+    console.log(exp_level);
+    collective();
 });
 
 //世代別表示
 inputSlideBarElement = document.getElementById('generation_change');
 inputSlideBarElement.addEventListener('change', function(){
-    generation = inputSlideBarElement.value;
-    console.log(generation);
+    gene_level = inputSlideBarElement.value;
+    console.log(gene_level);
+    collective();
 });
 
-// dbのregisterテーブルからデータを取得する
-function register_db(){
-    console.log("db内の情報を参照します。"); 
-    formData = new FormData();
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", "/PHP/register_receive.php");
-    xhr.addEventListener("loadend", function () {
-      if (xhr.status === 200) {
-        let data_keep = JSON.parse(xhr.response);
-        console.log('data_keep',data_keep);
-        if (xhr.response === "error") {
-          console.log("通信に失敗しました");
-        } else {
-          data = data_keep;
-        }       
+
+  formData = new FormData();
+  xhr = new XMLHttpRequest();
+  xhr.open("GET","/PHP/collective.php");
+  xhr.addEventListener("loadend",function(){
+    if (xhr.status === 200) {
+       let data = JSON.parse(xhr.response);
+       console.log('data',data);
+       if(xhr.response == "error"){
+        console.log("通信に失敗しました。");
+       }
+    let gene = new Array(19);
+    for(let i = 0; i < 19; i++){
+      gene[i] = Array();
+    }
+    for(let i = 0; i < 19; i++){
+      for(let j = 0; j < data.length; j++){
+        if(data[j].generation == i){
+          gene[i].push(data[j])
+        }
       }
-    });
-    xhr.send(formData);
-  }
+    }
+    console.log('generation',gene);
+    genekeep = gene;
+    }
+    collective();
+  });
+xhr.send(formData)
+
 // あなたの配置
   for (let i = 0; i < 6; i++) {
     images[0][i].addEventListener('load', () => {
@@ -290,8 +304,8 @@ for (let i = 0; i < 6; i++) {
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
   red_koma[0][i].addEventListener('load', () => {
-    com_ctx.drawImage(blue_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
-    com_ctx.drawImage(red_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(blue_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(red_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
   });
 }
 // 画像を読み込み終わってからソースを取得する
@@ -308,32 +322,31 @@ for (var i = 0; i < 6; i++) {
     red_koma[i][j].src = red_img;
 }
 
-
 //画像を表示する
 function draw(rota) {
   // canvas内を一旦クリア
   my_ctx.clearRect(0, 0, my_can.width, my_can.height);
   for (var i in images) {
-    let x = imagearray[rota][i].x*scale;
-    let y = imagearray[rota][i].y*scale;
+    let x = imagearray[rota][i].x * scale;
+    let y = imagearray[rota][i].y * scale;
     let w = koma_w * size;
     let h = koma_h * size;
     my_ctx.drawImage(images[rota][i], x, y, w, h);
   }
 
-  ot_ctx.clearRect(0,0,ot_can.width,ot_can.height);
-  for(var i in images){
+  ot_ctx.clearRect(0, 0, ot_can.width, ot_can.height);
+  for (var i in images) {
     let x = array[rota][i].x;
     let y = array[rota][i].y;
     let w = koma_w * size;
     let h = koma_h * size;
-    ot_ctx.drawImage(images[rota][i],x*scale,y*scale,w,h);
+    ot_ctx.drawImage(images[rota][i], x * scale, y * scale, w, h);
   }
 
-  com_ctx.clearRect(0,0,com_can.width,ot_can.height);
-  for(var i in images){
-    com_ctx.drawImage(blue_koma[rota][i],imagearray[rota][i].x*scale,imagearray[rota][i].y*scale,koma_w*size,koma_h*size);
-    com_ctx.drawImage(red_koma[rota][i],array[rota][i].x * scale,array[rota][i].y * scale, koma_w * size, koma_h * size);
+  com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
+  for (var i in images) {
+    com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
+    com_ctx.drawImage(red_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
   }
 }
 //ローテーションボタンを押されたら
@@ -345,6 +358,7 @@ function rotation() {
   }
   console.log("ローテーション", counter);
   draw(counter);
+  collective();
 }
 
 const my_can2 = document.getElementById('my2');
@@ -374,5 +388,28 @@ for (let i = 0; i < 46; i++) {//x
       my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
     }
     k++;
+  }
+}
+
+
+function collective(){
+  let index = 100000;
+  gene_level = Number(gene_level);
+  console.log(exp_level, gene_level, counter, genekeep[gene_level].length);
+  for(i = 0; i <  genekeep[gene_level].length; i++){
+    if(genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter + 1){
+      index = i;
+      break;
+    }
+  }
+  if(index != 100000){
+    for(i = 0; i < 5; i++){
+      console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
+      array[counter][i + 1].x = genekeep[gene_level][index + i]["x_coordinate"];
+      array[counter][i + 1].y = genekeep[gene_level][index + i]["y_coordinate"];    
+    }
+    draw(counter);
+  }else{
+    console.log(" ねえよ！！");
   }
 }

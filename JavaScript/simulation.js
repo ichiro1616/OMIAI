@@ -978,6 +978,18 @@ document.getElementById("register_btn").onclick = function () {
         }
     }
 
+    form = new FormData();
+    xhr = new XMLHttpRequest();
+    xhr.open("POST","../PHP/execute.php");
+    xhr.addEventListener("loadend",function(){
+        if(xhr.status == 200){
+            if(xhr.response == 'error'){
+                console.log("通信に失敗しました")
+            }
+        }
+    });
+    xhr.send(form);
+    
     var json_str1 = JSON.stringify(imagearray);
     localStorage.setItem('key',json_str1);
     
