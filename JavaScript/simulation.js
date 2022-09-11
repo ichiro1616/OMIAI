@@ -1103,6 +1103,9 @@ function omiai(judge_area, rota) {
             k++;
         }
     }
+    var json_str3 = JSON.stringify(percentage);
+    localStorage.setItem('key3', json_str3);
+    console.log('percentage',percentage)
     return percentage;
 }
 

@@ -304,8 +304,8 @@ for (let i = 0; i < 6; i++) {
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
   red_koma[0][i].addEventListener('load', () => {
-    com_ctx.drawImage(blue_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
-    com_ctx.drawImage(red_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(blue_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
+    com_ctx.drawImage(red_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
   });
 }
 // 画像を読み込み終わってからソースを取得する
@@ -345,9 +345,10 @@ function draw(rota) {
 
   com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
   for (var i in images) {
-    com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
-    com_ctx.drawImage(red_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
+    com_ctx.drawImage(blue_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
+    com_ctx.drawImage(red_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
   }
+
 }
 //ローテーションボタンを押されたら
 function rotation() {
@@ -413,3 +414,12 @@ function collective(){
     console.log(" ねえよ！！");
   }
 }
+
+let str3 = localStorage.getItem('key3');
+let percentage = JSON.parse(str3);
+console.log(percentage)
+percentage = percentage / 2116 * 100;
+percentage = String(percentage);
+percentage = parseInt(percentage,10);
+percentage = 'お見合い範囲' + percentage + '%';
+document.getElementById('area_percentage').innerHTML = percentage;
