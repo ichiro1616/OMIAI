@@ -25,8 +25,7 @@
           <p>10年以上</p>
         </div>
         <br />
-        <i class="icon-check" onclick="simulation();"></i>
-        <p><input type="button" class="button" id="button-check" value="　　決定" onclick="simulation();" /></p>
+        <button type="button" onclick="simulation();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
       </div>
     </div>
 
@@ -81,8 +80,9 @@
             </div>
           </div>
           <!-- <button type="button" onclick="rotation()" id="rotation_button">ローテーションする</button> -->
+          <!-- <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button> -->
           <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" class="rotation"/></button>
-          <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn">登録</button>
+          <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn"><img src="../Picture/check.png" class="collect"/></button>
           <h2 id="change_bar">お見合い割合変化バー</h2>
           <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 75%;">
           <!-- 目盛り -->
