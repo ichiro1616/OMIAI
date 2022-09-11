@@ -427,7 +427,7 @@ imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
-    row_justify_content_center.style.display = 'none';
+    under.style.display = 'none';
     document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
     experience_years = 2; //経験年数の初期値は2
     console.log('経験年数', experience_years);
@@ -465,7 +465,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function simulation() {
     simulation_area.style.display = "block";
-    row_justify_content_center.style.display = "block";
+    under.style.display = "block";
     experience.style.display = "none";
     kensuke.style.display = "block";//けんすけ
     rui.style.display = "none";//るい
