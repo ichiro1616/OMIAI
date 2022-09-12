@@ -164,8 +164,8 @@ let my_can; //自分の配置を表示するキャンバス
 let ot_can; //選択した配置を表示するキャンバス
 let com_can; //コマを重ねて表示するキャンバス
 let data; //registerテーブルから取得したデータを全て格納する
-let gene_level = 2;
-let exp_level = 2;
+let gene_level = 0;
+let exp_level = 0;
 let counter = 0;
 window.onclick = canvas_draw();
 
