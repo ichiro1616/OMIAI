@@ -400,6 +400,8 @@ let startX;//ドラッグ開始時のx座標
 let startY;//ドラッグ開始時のy座標
 let experience_years = 0;//バレーボールの経験年数　初期値0
 let subject_object_level = 2;//主観的・客観的レベル　初期値2(中央)
+let judge_area = [];
+let percentage = 0;
 
 //コマの中心の座標を用意
 for (var i in imagearray) {
@@ -949,52 +951,6 @@ function rotation() {
     draw(counter);
 }
 
-//登録ボタンを押したときの処理
-document.getElementById("register_btn").onclick = function () {
-
-    for (var i = 0; i <= 5; i++) {//ローテーション0~5
-        for (var j = 0; j <= 5; j++) {//コマ番号1~6
-            let formData = new FormData();
-            formData.append("experience_years", experience_years);
-            formData.append("subject_object_level", subject_object_level);
-            formData.append("rotation_counter", i);
-            formData.append("player_number", j + 1);
-            formData.append("player0_x", imagearray[i][j].x);
-            formData.append("player0_y", imagearray[i][j].y);
-            console.log(j)
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "../PHP/sample.php");
-            xhr.addEventListener("loadend", function () {
-                if (xhr.status === 200) {
-                    if (xhr.response === "error") {
-                        console.log("登録に失敗しました");
-                    } else {
-
-                        console.log("データを登録しました!");
-                    }
-                }
-            });
-            xhr.send(formData);
-        }
-    }
-
-    form = new FormData();
-    xhr = new XMLHttpRequest();
-    xhr.open("POST","../PHP/execute.php");
-    xhr.addEventListener("loadend",function(){
-        if(xhr.status == 200){
-            if(xhr.response == 'error'){
-                console.log("通信に失敗しました")
-            }
-        }
-    });
-    xhr.send(form);
-    
-    var json_str1 = JSON.stringify(imagearray);
-    localStorage.setItem('key',json_str1);
-    
-}
-
 //----------------------------------------------------------------
 //お見合い範囲表示
 // const canvas_omiai_width = canvas_omiai.width;//canvas1の横幅
@@ -1046,8 +1002,6 @@ function omiai(judge_area, rota) {
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     let k = 0;
     let percentage = 0;
-    var json_str2 = JSON.stringify(judge_area);
-    localStorage.setItem('key2',json_str2);
     //後で　ローテーションごとのいる
 
     // let ad = canvas_under.width / canvas_omiai.width;
@@ -1093,23 +1047,21 @@ function omiai(judge_area, rota) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
-
             //後で消す　お見合い範囲デバッグ用
             // if (omiaiarea[k].judge == 0) {
             //     context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
             // }
-
-
             k++;
         }
     }
+    var json_str2 = JSON.stringify(judge_area);
+    localStorage.setItem('key2', json_str2);
     var json_str3 = JSON.stringify(percentage);
     localStorage.setItem('key3', json_str3);
-    console.log('percentage',percentage)
+    console.log('percentage', percentage)
     return percentage;
 }
-
-//----------------------------------------------------------------
+//---------------------------------------------------------------
 // パターン
 // 2-3  6
 // 2-4  8
@@ -1477,6 +1429,51 @@ function calculation(rota, data) {
     }
     console.log(judge_array);
     return judge_color;
+}
+
+//登録ボタンを押したときの処理
+document.getElementById("register_btn").onclick = function () {
+
+    var json_str1 = JSON.stringify(imagearray);
+    localStorage.setItem('key', json_str1);
+
+    for (var i = 0; i <= 5; i++) {//ローテーション0~5
+        for (var j = 0; j <= 5; j++) {//コマ番号1~6
+            let formData = new FormData();
+            formData.append("experience_years", experience_years);
+            formData.append("subject_object_level", subject_object_level);
+            formData.append("rotation_counter", i);
+            formData.append("player_number", j + 1);
+            formData.append("player0_x", imagearray[i][j].x);
+            formData.append("player0_y", imagearray[i][j].y);
+            console.log(j)
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "../PHP/sample.php");
+            xhr.addEventListener("loadend", function () {
+                if (xhr.status === 200) {
+                    if (xhr.response === "error") {
+                        console.log("登録に失敗しました");
+                    } else {
+
+                        console.log("データを登録しました!");
+                    }
+                }
+            });
+            xhr.send(formData);
+        }
+    }
+    //集合知の計算
+    form = new FormData();
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "../PHP/execute.php");
+    xhr.addEventListener("loadend", function () {
+        if (xhr.status == 200) {
+            if (xhr.response == 'error') {
+                console.log("通信に失敗しました")
+            }
+        }
+    });
+    xhr.send(form);
 }
 
 //お見合い範囲の計算

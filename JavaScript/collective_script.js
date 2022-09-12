@@ -259,7 +259,7 @@ inputSlideBarElement.addEventListener('change', function(){
     collective();
 });
 
-
+  let datakeep = [];
   formData = new FormData();
   xhr = new XMLHttpRequest();
   xhr.open("GET","/PHP/collective.php");
@@ -270,19 +270,23 @@ inputSlideBarElement.addEventListener('change', function(){
        if(xhr.response == "error"){
         console.log("通信に失敗しました。");
        }
-    let gene = new Array(19);
-    for(let i = 0; i < 19; i++){
+    
+    
+    console.log(data[1]);
+    let gene = new Array();
+    for(let i = 0; i < data[1][0][0]; i++){
       gene[i] = Array();
     }
-    for(let i = 0; i < 19; i++){
-      for(let j = 0; j < data.length; j++){
-        if(data[j].generation == i){
-          gene[i].push(data[j])
+    for(let i = 0; i < data[1][0][0]; i++){
+      for(let j = 0; j < data[0].length; j++){
+        if(data[0][j].generation == i){
+          gene[i].push(data[0][j])
         }
       }
     }
     console.log('generation',gene);
     genekeep = gene;
+    document.getElementById("generation_change").max = genekeep.length;
     }
     collective();
   });
@@ -424,3 +428,6 @@ percentage = String(percentage);
 percentage = parseInt(percentage,10);
 percentage = 'お見合い範囲' + percentage + '%';
 document.getElementById('area_percentage').innerHTML = percentage;
+
+
+

@@ -19,6 +19,12 @@ try{
         );
         $data[]=$tmp;
     }
+
+    $sql = "SELECT MAX(`generation`)  FROM `collective`";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $array = [$data,$result];
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
@@ -26,5 +32,5 @@ try{
 
 $dbh = null;
 header('Content-type: application/json');
-echo json_encode($data,JSON_UNESCAPED_UNICODE);
+echo json_encode($array,JSON_UNESCAPED_UNICODE);
 ?>

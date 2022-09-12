@@ -6,12 +6,13 @@ $sprit_dbname = explode("=", $dsn)[1];
 $dbname = explode(";", $sprit_dbname)[0];
 $mysqli = new mysqli($host, $user, $password, $dbname);
 
+ini_set("max_execution_time",10000);
 
 if(!$mysqli){
     die("データベースの接続に失敗しました。");
 }
 $comand = "python ../Python/collective.py";
-exec($comand)
+exec($comand);
 
 
 mysqli_close($mysqli);
