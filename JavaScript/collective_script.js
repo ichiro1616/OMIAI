@@ -288,6 +288,7 @@ inputSlideBarElement.addEventListener('change', function(){
   });
 xhr.send(formData)
 
+//初期配置
 // あなたの配置
   for (let i = 0; i < 6; i++) {
     images[0][i].addEventListener('load', () => {
