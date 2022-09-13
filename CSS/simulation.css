@@ -333,7 +333,7 @@ input[type=range].slider::-webkit-slider-thumb {
 .bar_and_scale{
   position:relative;
   left:-0.5rem;
-  top:4rem;
+  top:6rem;
 }
 
 .Ob{
@@ -427,7 +427,7 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 .buttons{
   position:relative;
-  top:14rem;
+  top:15.5rem;
 }
 
 #rotation_button {
