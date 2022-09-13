@@ -386,7 +386,9 @@ const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
 // const red = '';
 // const blue = '';
 my_ctx2.fillStyle = omiai_color;//色
+ot_ctx2.fillStyle = omiai_color;
 my_ctx2.globalAlpha = 0.4;//不透明度 0.7
+ot_ctx2.globalAlpha = 0.4;
 let originX = 38;
 let originY = 572;
 let endX = 572;
@@ -396,23 +398,32 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 
-function omiai(judge_area,rota){
+function omiai(judge_area){
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
 let k = 0;
-let percentage = 0;
-let overlap = 6;
-
+let l = 0;
+let my_percentage = 0;
+let ot_percentege = 0;
 for (let i = 0; i < 46; i++) {//x
   for (let j = 0; j < 46; j++) {//y
     if (judge_area[k].judge == 2) {//後で2に
       my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-      percentage++;
+      my_percentage++;
     }
     k++;
   }
 }
-return percentage;
+for(let i = 0; i < 46; i++){
+  for(let j = 0; j < 46; j++){
+    if(judge_area[l].judge == 2){
+      ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);
+      ot_percentege++;
+    }
+    l++;
+  }
+}
+return my_percentage;
 }
 
 function collective(){
@@ -537,14 +548,21 @@ function area(rota) {
 
       //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
       let judge_color_merge = merge(judge_color_sub, omiaiarea);
-      let area_percentage = omiai(judge_color_merge, rota);
+      let my_area_percentage = omiai(judge_color_merge, rota);
       //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-      // let area_percentage = omiai(judge_color_sub_1, rota);
+      // let area_percentage = omiai(judge_color_sub_1, rota)
+      let my_percent = percent(my_area_percentage);
+      let ot_percent = percent(ot_area_percentage);
+
+      function percent(area_percentage){
       area_percentage = area_percentage / 2116 * 100;
       area_percentage = String(area_percentage);
       area_percentage = parseInt(area_percentage, 10);
       area_percentage = area_percentage + '%';
-      document.getElementById('area_percentage').innerHTML = area_percentage;
+      return area_percentage;
+      }
+      document.getElementById('my_area_percentage').innerHTML = my_percent;
+      document.getElementById('ot_area_percentage').innerHTML = ot_percent;
     }
   });
   xhr_area.send(formData_area);
@@ -629,36 +647,36 @@ function calculation(rota, data) {
   console.log('right', data[0].right_player);
 
   //左の選手
-  let player1_x = my_imagearray_center[rota][data[0].left_player - 1].x / (1200 / 9);
-  let player1_y = my_imagearray_center[rota][data[0].left_player - 1].y / (1200 / 9) - 9;
-  player1_y = Math.abs(player1_y);
+  let my_player1_x = my_imagearray_center[rota][data[0].left_player - 1].x / (1200 / 9);
+  let my_player1_y = my_imagearray_center[rota][data[0].left_player - 1].y / (1200 / 9) - 9;
+  my_player1_y = Math.abs(my_player1_y);
   //右の選手
-  let player2_x = my_imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
-  let player2_y = my_imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
-  player2_y = Math.abs(player2_y);
+  let my_player2_x = my_imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
+  let my_player2_y = my_imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
+  my_player2_y = Math.abs(my_player2_y);
 
-  console.log('左ｘ', player1_x);
-  console.log('左ｙ', player1_y);
-  console.log('右ｘ', player2_x);
-  console.log('右ｙ', player2_y);
+  console.log('左ｘ', my_player1_x);
+  console.log('左ｙ', my_player1_y);
+  console.log('右ｘ', my_player2_x);
+  console.log('右ｙ', my_player2_y);
 
   let reverce = 0;
-  if (player1_x > player2_x) {
+  if (my_player1_x > my_player2_x) {
     // idでの条件を描く
-    player1_x = 9 - player1_x;
-    player2_x = 9 - player2_x;
+    my_player1_x = 9 - my_player1_x;
+    my_player2_x = 9 - my_player2_x;
     reverce = 1;
   }
   console.log("judge");
   for (i = 0; i < 9.2; i += 0.2) {
     for (j = 0; j < 9.2; j += 0.2) {
       let data_tmp = {};
-      data_tmp.players_sabun_x = player1_x - player2_x;
-      data_tmp.players_sabun_y = player1_y - player2_y;
-      data_tmp.player1_ball_sabun_x = player1_x - i;
-      data_tmp.player1_ball_sabun_y = player1_y - j;
-      data_tmp.player2_ball_sabun_x = player2_x - i;
-      data_tmp.player2_ball_sabun_y = player2_y - j;
+      data_tmp.my_players_sabun_x = my_player1_x - my_player2_x;
+      data_tmp.my_players_sabun_y = my_player1_y - my_player2_y;
+      data_tmp.my_player1_ball_sabun_x = my_player1_x - i;
+      data_tmp.my_player1_ball_sabun_y = my_player1_y - j;
+      data_tmp.my_player2_ball_sabun_x = my_player2_x - i;
+      data_tmp.my_player2_ball_sabun_y = my_player2_y - j;
       test_data.push(data_tmp);
 
       let data_view = {};
@@ -689,12 +707,12 @@ function calculation(rota, data) {
   console.log(mean, std);
 
   for (i = 0; i < test_data.length; i++) {
-    test_data[i].players_sabun_x = (test_data[i].players_sabun_x - mean[0]) / std[0];
-    test_data[i].players_sabun_y = (test_data[i].players_sabun_y - mean[1]) / std[1];
-    test_data[i].player1_ball_sabun_x = (test_data[i].player1_ball_sabun_x - mean[2]) / std[2];
-    test_data[i].player1_ball_sabun_y = (test_data[i].player1_ball_sabun_y - mean[3]) / std[3];
-    test_data[i].player2_ball_sabun_x = (test_data[i].player2_ball_sabun_x - mean[4]) / std[4];
-    test_data[i].player2_ball_sabun_y = (test_data[i].player2_ball_sabun_y - mean[5]) / std[5];
+    test_data[i].my_players_sabun_x = (test_data[i].my_players_sabun_x - mean[0]) / std[0];
+    test_data[i].my_players_sabun_y = (test_data[i].my_players_sabun_y - mean[1]) / std[1];
+    test_data[i].my_player1_ball_sabun_x = (test_data[i].my_player1_ball_sabun_x - mean[2]) / std[2];
+    test_data[i].my_player1_ball_sabun_y = (test_data[i].my_player1_ball_sabun_y - mean[3]) / std[3];
+    test_data[i].my_player2_ball_sabun_x = (test_data[i].my_player2_ball_sabun_x - mean[4]) / std[4];
+    test_data[i].my_player2_ball_sabun_y = (test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
   }
 
   // console.log(test_data);
@@ -707,12 +725,12 @@ function calculation(rota, data) {
   for (o = 0; o < test_data.length; o++) {
     answer.push(
       sum(
-        test_data[o].players_sabun_x,
-        test_data[o].players_sabun_y,
-        test_data[o].player1_ball_sabun_x,
-        test_data[o].player1_ball_sabun_y,
-        test_data[o].player2_ball_sabun_x,
-        test_data[o].player2_ball_sabun_y
+        test_data[o].my_players_sabun_x,
+        test_data[o].my_players_sabun_y,
+        test_data[o].my_player1_ball_sabun_x,
+        test_data[o].my_player1_ball_sabun_y,
+        test_data[o].my_player2_ball_sabun_x,
+        test_data[o].my_player2_ball_sabun_y
       )
     );
   }
