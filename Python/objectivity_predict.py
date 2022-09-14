@@ -18,29 +18,30 @@ from sklearn.linear_model import LogisticRegression
 
 
 encoding = locale.getpreferredencoding()
-# csvname = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
-# # csvname = ['../Python/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220617_03.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220620_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03.csv']#安西-けいすけ
-# # csvname = ['../Python/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/anzai_kento/trans_anzai_kento_220617_03.csv', '../Python/anzai_kento/trans_anzai_kento_220620_02.csv', '../Python/anzai_kento/trans_anzai_kento_220627_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_01(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_01.csv', '../Python/anzai_kento/trans_anzai_kento_220628_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_03(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_03.csv']#安西-けんと
-# # csvname = ['../Python/anzai_riku/trans_anzai_riku_220614_01.csv ', '../Python/anzai_riku/trans_anzai_riku_220617_03.csv', '../Python/anzai_riku/trans_anzai_riku_220620_02.csv', '../Python/anzai_riku/trans_anzai_riku_220627_01(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_01.csv', '../Python/anzai_riku/trans_anzai_riku_220627_02(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_02.csv', '../Python/anzai_riku/trans_anzai_riku_220628_03(2).csv', '../Python/anzai_riku/trans_anzai_riku_220628_03.csv']#安西-りく
-# csvname = ['../Python/hinata_keisuke/trans_hinata_keisuke_220614_01.csv ', '../Python/hinata_keisuke/trans_hinata_keisuke_220617_03.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220620_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220628_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03.csv']#ひなた-けいすけ
-# # csvname = ['../Python/hinata_kento/trans_hinata_kento_220614_01.csv ', '../Python/hinata_kento/trans_hinata_kento_220617_03.csv', '../Python/hinata_kento/trans_hinata_kento_220628_01.csv', '../Python/hinata_kento/trans_hinata_kento_220705_01.csv', '../Python/hinata_kento/trans_hinata_kento_220705_02(2).csv', '../Python/hinata_kento/trans_hinata_kento_220705_02.csv', '../Python/hinata_kento/trans_hinata_kento_220705_03(2).csv', '../Python/hinata_kento/trans_hinata_kento_220705_03.csv', '../Python/hinata_kento/trans_hinata_kento_220729_02.csv']#ひなた-けんと
-# # csvname = ['../Python/hinata_riku/trans_hinata_riku_220614_01.csv ', '../Python/hinata_riku/trans_hinata_riku_220617_03.csv', '../Python/hinata_riku/trans_hinata_riku_220620_02.csv', '../Python/hinata_riku/trans_hinata_riku_220627_01.csv', '../Python/hinata_riku/trans_hinata_riku_220705_01.csv', '../Python/hinata_riku/trans_hinata_riku_220705_02(2).csv', '../Python/hinata_riku/trans_hinata_riku_220705_02.csv', '../Python/hinata_riku/trans_hinata_riku_220705_03(2).csv', '../Python/hinata_riku/trans_hinata_riku_220705_03.csv']#ひなた-りく
-# # csvname = ['../Python/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
-# # csvname = ['../Python/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
-# # csvname = ['../Python/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/riku_kento/trans_riku_kento_220617_03.csv',  '../Python/riku_kento/trans_riku_kento_220620_02.csv', '../Python/riku_kento/trans_riku_kento_220628_01.csv', '../Python/riku_kento/trans_riku_kento_220705_01.csv', '../Python/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/riku_kento/trans_riku_kento_220705_02.csv', '../Python/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
+# csvname = ['../Python/0/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
+# # csvname = ['../Python/0/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220617_03.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220620_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_01(2).csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_01.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_03(2).csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_03.csv']#安西-けいすけ
+# # csvname = ['../Python/0/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/0/anzai_kento/trans_anzai_kento_220617_03.csv', '../Python/0/anzai_kento/trans_anzai_kento_220620_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220627_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_01(2).csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_01.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_03(2).csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_03.csv']#安西-けんと
+# # csvname = ['../Python/0/anzai_riku/trans_anzai_riku_220614_01.csv ', '../Python/0/anzai_riku/trans_anzai_riku_220617_03.csv', '../Python/0/anzai_riku/trans_anzai_riku_220620_02.csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_01(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_01.csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_02(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_02.csv', '../Python/0/anzai_riku/trans_anzai_riku_220628_03(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220628_03.csv']#安西-りく
+# csvname = ['../Python/0/hinata_keisuke/trans_hinata_keisuke_220614_01.csv ', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220617_03.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220620_02.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220628_01.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_01.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_02(2).csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_02.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_03(2).csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_03.csv']#ひなた-けいすけ
+# # csvname = ['../Python/0/hinata_kento/trans_hinata_kento_220614_01.csv ', '../Python/0/hinata_kento/trans_hinata_kento_220617_03.csv', '../Python/0/hinata_kento/trans_hinata_kento_220628_01.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_01.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_02(2).csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_02.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_03(2).csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_03.csv', '../Python/0/hinata_kento/trans_hinata_kento_220729_02.csv']#ひなた-けんと
+# # csvname = ['../Python/0/hinata_riku/trans_hinata_riku_220614_01.csv ', '../Python/0/hinata_riku/trans_hinata_riku_220617_03.csv', '../Python/0/hinata_riku/trans_hinata_riku_220620_02.csv', '../Python/0/hinata_riku/trans_hinata_riku_220627_01.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_01.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_02(2).csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_02.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_03(2).csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_03.csv']#ひなた-りく
+# # csvname = ['../Python/0/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/0/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
+# # csvname = ['../Python/0/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/0/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
+# # csvname = ['../Python/0/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/0/riku_kento/trans_riku_kento_220617_03.csv',  '../Python/0/riku_kento/trans_riku_kento_220620_02.csv', '../Python/0/riku_kento/trans_riku_kento_220628_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_02.csv', '../Python/0/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
 
-anzai_hinata = ['../Python/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
-anzai_keisuke = ['../Python/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220617_03.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220620_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_01.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220627_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_02.csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03(2).csv', '../Python/anzai_keisuke/trans_anzai_keisuke_220628_03.csv']#安西-けいすけ
-anzai_kento = ['../Python/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/anzai_kento/trans_anzai_kento_220617_03.csv', '../Python/anzai_kento/trans_anzai_kento_220620_02.csv', '../Python/anzai_kento/trans_anzai_kento_220627_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_01(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_01.csv', '../Python/anzai_kento/trans_anzai_kento_220628_02.csv', '../Python/anzai_kento/trans_anzai_kento_220628_03(2).csv', '../Python/anzai_kento/trans_anzai_kento_220628_03.csv']#安西-けんと
-anzai_riku = ['../Python/anzai_riku/trans_anzai_riku_220614_01.csv ', '../Python/anzai_riku/trans_anzai_riku_220617_03.csv', '../Python/anzai_riku/trans_anzai_riku_220620_02.csv', '../Python/anzai_riku/trans_anzai_riku_220627_01(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_01.csv', '../Python/anzai_riku/trans_anzai_riku_220627_02(2).csv', '../Python/anzai_riku/trans_anzai_riku_220627_02.csv', '../Python/anzai_riku/trans_anzai_riku_220628_03(2).csv', '../Python/anzai_riku/trans_anzai_riku_220628_03.csv']#安西-りく
-hinata_keisuke = ['../Python/hinata_keisuke/trans_hinata_keisuke_220614_01.csv ', '../Python/hinata_keisuke/trans_hinata_keisuke_220617_03.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220620_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220628_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_01.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_02.csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03(2).csv', '../Python/hinata_keisuke/trans_hinata_keisuke_220707_03.csv']#ひなた-けいすけ
-hinata_kento = ['../Python/hinata_kento/trans_hinata_kento_220614_01.csv ', '../Python/hinata_kento/trans_hinata_kento_220617_03.csv', '../Python/hinata_kento/trans_hinata_kento_220628_01.csv', '../Python/hinata_kento/trans_hinata_kento_220705_01.csv', '../Python/hinata_kento/trans_hinata_kento_220705_02(2).csv', '../Python/hinata_kento/trans_hinata_kento_220705_02.csv', '../Python/hinata_kento/trans_hinata_kento_220705_03(2).csv', '../Python/hinata_kento/trans_hinata_kento_220705_03.csv', '../Python/hinata_kento/trans_hinata_kento_220729_02.csv']#ひなた-けいすけ
-hinata_riku = ['../Python/hinata_riku/trans_hinata_riku_220614_01.csv ', '../Python/hinata_riku/trans_hinata_riku_220617_03.csv', '../Python/hinata_riku/trans_hinata_riku_220620_02.csv', '../Python/hinata_riku/trans_hinata_riku_220627_01.csv', '../Python/hinata_riku/trans_hinata_riku_220705_01.csv', '../Python/hinata_riku/trans_hinata_riku_220705_02(2).csv', '../Python/hinata_riku/trans_hinata_riku_220705_02.csv', '../Python/hinata_riku/trans_hinata_riku_220705_03(2).csv', '../Python/hinata_riku/trans_hinata_riku_220705_03.csv']#ひなた-りく
-keisuke_kento = ['../Python/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
-keisuke_riku = ['../Python/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
-riku_kento = ['../Python/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/riku_kento/trans_riku_kento_220617_03.csv', '../Python/riku_kento/trans_riku_kento_220620_02.csv', '../Python/riku_kento/trans_riku_kento_220628_01.csv', '../Python/riku_kento/trans_riku_kento_220705_01.csv', '../Python/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/riku_kento/trans_riku_kento_220705_02.csv', '../Python/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
-pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
-# pattern = [anzai_hinata]
+anzai_hinata = ['../Python/0/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/0/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
+anzai_keisuke = ['../Python/0/anzai_keisuke/trans_anzai_keisuke_220614_01.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220617_03.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220620_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_01(2).csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_01.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220627_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_02.csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_03(2).csv', '../Python/0/anzai_keisuke/trans_anzai_keisuke_220628_03.csv']#安西-けいすけ
+anzai_kento = ['../Python/0/anzai_kento/trans_anzai_kento_220614_01.csv', '../Python/0/anzai_kento/trans_anzai_kento_220617_03.csv', '../Python/0/anzai_kento/trans_anzai_kento_220620_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220627_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_01(2).csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_01.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_02.csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_03(2).csv', '../Python/0/anzai_kento/trans_anzai_kento_220628_03.csv']#安西-けんと
+anzai_riku = ['../Python/0/anzai_riku/trans_anzai_riku_220614_01.csv ', '../Python/0/anzai_riku/trans_anzai_riku_220617_03.csv', '../Python/0/anzai_riku/trans_anzai_riku_220620_02.csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_01(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_01.csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_02(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220627_02.csv', '../Python/0/anzai_riku/trans_anzai_riku_220628_03(2).csv', '../Python/0/anzai_riku/trans_anzai_riku_220628_03.csv']#安西-りく
+hinata_keisuke = ['../Python/0/hinata_keisuke/trans_hinata_keisuke_220614_01.csv ', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220617_03.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220620_02.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220628_01.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_01.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_02(2).csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_02.csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_03(2).csv', '../Python/0/hinata_keisuke/trans_hinata_keisuke_220707_03.csv']#ひなた-けいすけ
+hinata_kento = ['../Python/0/hinata_kento/trans_hinata_kento_220614_01.csv ', '../Python/0/hinata_kento/trans_hinata_kento_220617_03.csv', '../Python/0/hinata_kento/trans_hinata_kento_220628_01.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_01.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_02(2).csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_02.csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_03(2).csv', '../Python/0/hinata_kento/trans_hinata_kento_220705_03.csv', '../Python/0/hinata_kento/trans_hinata_kento_220729_02.csv']#ひなた-けいすけ
+hinata_riku = ['../Python/0/hinata_riku/trans_hinata_riku_220614_01.csv ', '../Python/0/hinata_riku/trans_hinata_riku_220617_03.csv', '../Python/0/hinata_riku/trans_hinata_riku_220620_02.csv', '../Python/0/hinata_riku/trans_hinata_riku_220627_01.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_01.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_02(2).csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_02.csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_03(2).csv', '../Python/0/hinata_riku/trans_hinata_riku_220705_03.csv']#ひなた-りく
+keisuke_kento = ['../Python/0/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/0/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
+keisuke_riku = ['../Python/0/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/0/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
+riku_kento = ['../Python/0/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/0/riku_kento/trans_riku_kento_220617_03.csv', '../Python/0/riku_kento/trans_riku_kento_220620_02.csv', '../Python/0/riku_kento/trans_riku_kento_220628_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_02.csv', '../Python/0/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
+# pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
+pattern = [riku_kento]
+# pattern = [anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
 
 
 
@@ -103,12 +104,12 @@ for j,csvname in enumerate(pattern):
                 df_train["player1_x"] = 9 - df_train["player1_x"]
                 df_train["player2_x"] = 9 - df_train["player2_x"]
                 df_train["court_x"] = 9 - df_train["court_x"]
-                for i in range(len(df_train)):
+                for k in range(len(df_train)):
                     # # print(df_train["target"][i])
-                    if(df_train.loc[i, "target"]  == 0):
-                        df_train.loc[i, "target"] = 1
-                    elif (df_train.loc[i, "target"]  == 1):
-                        df_train.loc[i, "target"] = 0
+                    if(df_train.loc[k, "target"]  == 0):
+                        df_train.loc[k, "target"] = 1
+                    elif (df_train.loc[k, "target"]  == 1):
+                        df_train.loc[k, "target"] = 0
     # pd.set_option('display.max_rows', None)
     # print("sssss", df_train)
 
@@ -116,23 +117,23 @@ for j,csvname in enumerate(pattern):
     # df_train= pd.read_csv("../Python/dummy_data/omiai_data.csv", encoding="utf_8")
     df_train_add_omiai = pd.read_csv("../Python/dummy_data/omiai_data.csv", encoding="utf_8")  #データ数311
     df_train_add_player = pd.read_csv("../Python/dummy_data/player_data.csv", encoding="utf_8")  #データ数1405
-    df_train_add_triangle = pd.read_csv("../Python/dummy_data/triangle.csv", encoding="utf_8")   #データ数1100
+    # df_train_add_triangle = pd.read_csv("../Python/dummy_data/triangle.csv", encoding="utf_8")   #データ数1100
 
 
 
     for row in range(len(df_train.index)):
         if(row != 0):
-                # for n in range(10):
+                # for n in range(60):
                     df_train = df_train.append(df_train.iloc[row])
 
 
 
-    # for row in range(len(df_train.index)):
-    #     if(row != 0):
-    #         if(df_train.iloc[row]["target"] == 2):
-    #             # print(df_train.iloc[row])
-    #             # for n in range(2):
-    #                 df_train =  df_train.append(df_train.iloc[row])
+    for row in range(len(df_train.index)):
+        if(row != 0):
+            if(df_train.iloc[row]["target"] == 2):
+                # print(df_train.iloc[row])
+                for n in range(2):
+                    df_train =  df_train.append(df_train.iloc[row])
 
     for row in range(len(df_train_add_omiai.index)):
         if(row != 0):
@@ -148,20 +149,6 @@ for j,csvname in enumerate(pattern):
     #                 df_train = df_train.append(df_train_add_triangle.iloc[row])
     # print(df_train)
 
-    # zero = []
-    # one = []
-    # two = []
-    # for row in range(len(df_train.index)):
-    #     print("!!!!!!!!!!!",df_train["target"][row])
-    #     if(df_train["target"][row] == 0.0):
-    #         zero.append(1)
-    #     elif(df_train["target"][row] == 1.0):
-    #         one.append(1)
-    #     elif(df_train["target"][row] == 2.0):
-    #         two.append(1)
-    # print("zero:", len(zero), "one:", len(one), "two",len(two))
-
-
 
 
 
@@ -174,12 +161,12 @@ for j,csvname in enumerate(pattern):
     df_train['player1_ball_sabun_y'] = df_train['player1_y'] - df_train['ball_y']
     df_train['player2_ball_sabun_x'] = df_train['player2_x'] - df_train['ball_x']
     df_train['player2_ball_sabun_y'] = df_train['player2_y'] - df_train['ball_y']
-    df_train['players_degree'] = np.arctan2(df_train['player2_y'] - df_train['player1_y'], df_train['player2_x'] - df_train['player1_x'])
-    df_train['player1_ball_degree'] = np.arctan2(df_train['player1_y'] - df_train['ball_y'], df_train['player1_x'] - df_train['ball_x'])
-    df_train['player2_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
+    # df_train['players_degree'] = np.arctan2(df_train['player2_y'] - df_train['player1_y'], df_train['player2_x'] - df_train['player1_x'])
+    # df_train['player1_ball_degree'] = np.arctan2(df_train['player1_y'] - df_train['ball_y'], df_train['player1_x'] - df_train['ball_x'])
+    # df_train['player2_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
 
-    df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
-    # df_test_pattern = ["../Python/pattern/pattern_1.csv"]
+    # df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
+    df_test_pattern = ["../Python/pattern/pattern_1.csv"]
     
     for k,link in enumerate(df_test_pattern):
         df_test = pd.read_csv(link, encoding="utf_8")
@@ -194,15 +181,15 @@ for j,csvname in enumerate(pattern):
         df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
 
 
-        df_test['players_degree'] = np.arctan2(df_test['player2_y'] - df_test['player1_y'], df_test['player2_x'] - df_test['player1_x'])
-        df_test['player1_ball_degree'] = np.arctan2(df_test['player1_y'] - df_test['ball_y'], df_test['player1_x'] - df_test['ball_x'])
-        df_test['player2_ball_degree'] = np.arctan2(df_test['player2_y'] - df_test['ball_y'], df_test['player2_x'] - df_test['ball_x'])
+        # df_test['players_degree'] = np.arctan2(df_test['player2_y'] - df_test['player1_y'], df_test['player2_x'] - df_test['player1_x'])
+        # df_test['player1_ball_degree'] = np.arctan2(df_test['player1_y'] - df_test['ball_y'], df_test['player1_x'] - df_test['ball_x'])
+        # df_test['player2_ball_degree'] = np.arctan2(df_test['player2_y'] - df_test['ball_y'], df_test['player2_x'] - df_test['ball_x'])
 
         # df_test = df_test.abs()
-
-        # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
-        # df_train.loc[df_train['target'] == 1, 'target'] = "red"
-        # df_train.loc[df_train['target'] == 2, 'target'] = "green"
+        #dbに代入するときはコメントアウトする
+        df_train.loc[df_train['target'] == 0, 'target'] = "blue"
+        df_train.loc[df_train['target'] == 1, 'target'] = "red"
+        df_train.loc[df_train['target'] == 2, 'target'] = "green"
 
 
         # train = df_train[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y', 'players_degree', 'player1_ball_degree', 'player2_ball_degree']]
@@ -252,7 +239,7 @@ for j,csvname in enumerate(pattern):
         np.set_printoptions(threshold=np.inf)
  
         # np.savetxt('polynomial.csv',train,delimiter=',')
-        np.savetxt('polynomial.csv',test,delimiter=',')
+        # np.savetxt('polynomial.csv',test,delimiter=',')
 
 
         # def min_maxnorm(x, axis=0): #正規化
@@ -382,11 +369,11 @@ for j,csvname in enumerate(pattern):
         # print(len(array_green))
 
     #     #  検証
-    #     # print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+    #     print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
     #     y_pred = lr.predict(test)
-    # #     # print("test " , test)
+    #     # print("test " , test)
 
-    #     # print("y_pred", y_pred)
+    #     print("y_pred", y_pred)
 
     # #     # print("coef " , np.shape(lr.coef_))
     #     aaa = test @ (lr.coef_).T
