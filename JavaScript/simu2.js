@@ -1,19 +1,21 @@
-// let cdt =[{x:50,y:10,},{x:550,y:50,},{x:840,y:10,},{x:870,y:460,},{x:350,y:460,},{x:50,y:460,},
-//     {x:460,y:370,},{x:760,y:370,},{x:620,y:600,},{x:310,y:600,},{x:160,y:370,}];
+let cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
+{ x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
 // let cdt_center = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
 // { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
 
 
-// let imagearray = [
-//     [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
-//     [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
-//     [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
-//     [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
-//     [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
-//     [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
-// ];
+let imagearray = [
+    [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
+    [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
+    [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
+    [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
+    [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
+    [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
+];
+
+// let imagearray_center = imagearray;
 
 // let imagearray_center = [
 //     [cdt_center[0], cdt_center[6], cdt_center[7], cdt_center[8], cdt_center[9], cdt_center[10]],
@@ -185,164 +187,164 @@ let imagearray_center = [
 ];
 
 //コマの座標（左上基準）
-let imagearray = [
-    [
-        {
-            x: 50,
-            y: 10,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-    ],
-    [
-        {
-            x: 550,
-            y: 10,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-    ],
-    [
-        {
-            x: 840,
-            y: 10,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-    ],
-    [
-        {
-            x: 870,
-            y: 460,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-    ],
-    [
-        {
-            x: 350,
-            y: 460,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-    ],
-    [
-        {
-            x: 50,
-            y: 460,
-        },
-        {
-            x: 160,
-            y: 370,
-        },
-        {
-            x: 460,
-            y: 370,
-        },
-        {
-            x: 760,
-            y: 370,
-        },
-        {
-            x: 620,
-            y: 600,
-        },
-        {
-            x: 310,
-            y: 600,
-        },
-    ],
-];
+// let imagearray = [
+//     [
+//         {
+//             x: 50,
+//             y: 10,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//     ],
+//     [
+//         {
+//             x: 550,
+//             y: 10,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//     ],
+//     [
+//         {
+//             x: 840,
+//             y: 10,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//     ],
+//     [
+//         {
+//             x: 870,
+//             y: 460,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//     ],
+//     [
+//         {
+//             x: 350,
+//             y: 460,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//     ],
+//     [
+//         {
+//             x: 50,
+//             y: 460,
+//         },
+//         {
+//             x: 160,
+//             y: 370,
+//         },
+//         {
+//             x: 460,
+//             y: 370,
+//         },
+//         {
+//             x: 760,
+//             y: 370,
+//         },
+//         {
+//             x: 620,
+//             y: 600,
+//         },
+//         {
+//             x: 310,
+//             y: 600,
+//         },
+//     ],
+// ];
 
 //canvasに描画する準備
 const canvas = document.getElementById('canvas3');
@@ -401,6 +403,7 @@ let startY;//ドラッグ開始時のy座標
 let experience_years = 0;//バレーボールの経験年数　初期値0
 let subject_object_level = 2;//主観的・客観的レベル　初期値2(中央)
 
+console.log(imagearray_center);
 //コマの中心の座標を用意
 for (var i in imagearray) {
     for (var j in imagearray[i]) {
@@ -408,6 +411,8 @@ for (var i in imagearray) {
         imagearray_center[i][j].y += koma_h / 2 * size;
     }
 }
+console.log('確認');
+console.log(imagearray_center);
 
 //セッターの座標を修正
 imagearray_center[3][0].x = imagearray_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
@@ -431,6 +436,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
     experience_years = 2; //経験年数の初期値は2
     console.log('経験年数', experience_years);
+
+    console.log('座標', imagearray);
+    console.log('中心座標', imagearray_center);
 
     SlideBar_experience.addEventListener('change', () => {
         experience_years = SlideBar_experience.value;
@@ -493,6 +501,8 @@ function draw(rota) {
 //ドラッグ開始処理
 let mousedown = function (e) {
 
+    console.log('mousedown');
+
     //ドラッグ開始時のウェブサイト上のマウスの座標
     let rect = canvas.getBoundingClientRect();
     let posX = parseInt(e.clientX) - rect.left;
@@ -524,6 +534,8 @@ let mousedown = function (e) {
             startY = centerY;//ドラッグ開始時のコマのy座標
             dragmode = true;//ドラッグモードにする
 
+            console.log('dragmode');
+
             for (let i = 1; i <= 6; i++) {
                 if (dragkoma == i) {
                     let new_name = name;
@@ -545,6 +557,9 @@ let mousedown = function (e) {
 // let your_x;
 //ドラッグ中処理
 let mousemove = function (e) {
+
+    console.log('mousemove');
+
     // ドラッグ終了位置
     let rect = canvas.getBoundingClientRect();
     let posX = parseInt(e.clientX) - rect.left;
@@ -1403,6 +1418,9 @@ let mousemove = function (e) {
 
 //ドラッグ終了処理
 let mouseup = function (e) {
+
+    console.log('mouseup');
+
     if (dragmode) {
         area(counter);
         // omiai();
@@ -1412,6 +1430,7 @@ let mouseup = function (e) {
 
 //コマ以外を押したとき
 let mouseout = function (e) {
+    console.log('mouseout');
     mouseup(e);
 }
 
@@ -1419,6 +1438,11 @@ canvas.addEventListener('mousedown', function (e) { mousedown(e); }, false);
 canvas.addEventListener('mousemove', function (e) { mousemove(e); }, false);
 canvas.addEventListener('mouseup', function (e) { mouseup(e); }, false);
 canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
+// canvas.addEventListener('touchstart', function (e) { mousedown(e); }, false);
+// canvas.addEventListener('touchmove', function (e) { mousemove(e); }, false);
+// canvas.addEventListener('touchend', function (e) { mouseup(e); }, false);
+// canvas.addEventListener('pointerout', function (e) { mouseout(e); false });
+
 
 //ローテーション
 function rotation() {
@@ -1498,18 +1522,7 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 
-//表示されているサイズと実際のキャンバスサイズの比率を求める
-// let tscaleWidth = canvas.clientWidth / canvas.width,
-//     tscaleHeight = canvas.clientHeight / canvas.height;
-
-//調整後の座標
-// let tcanvasX = Math.floor(posX / tscaleWidth),
-//     tcanvasY = Math.floor(posY / tscaleHeight);
-
-
-// console.log('左', set.left);
-// console.log('右', set.right);
-// console.log('x', (originX + 0 * pixel_sizeX) / 0.41);
+let overlap = 4;//何個重なるかのパラメータ
 
 //judge_area, rota
 //j0, j1, j2, j3, j4, j5, j6, j7, j8, j9
@@ -1519,7 +1532,6 @@ function omiai(judge_area, rota) {
     let k = 0;
     let percentage = 0;
 
-    let overlap = 6;//何個重なるかのパラメータ
 
     var json_str2 = JSON.stringify(judge_area);
     localStorage.setItem('key2', json_str2);
@@ -1564,7 +1576,7 @@ function omiai(judge_area, rota) {
 
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge == 2) {//後で2に
+            if (judge_area[k].judge >= overlap) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1627,7 +1639,7 @@ function area(rota) {
     xhr_area.addEventListener("loadend", function () {
         if (xhr_area.status === 200) {
             let data = JSON.parse(xhr_area.response);
-            console.log('data', data[0].type);
+            console.log('data', data);
             for (i = 0; i < data.length; i++) {
                 if (data[i].type == 0) {
                     //主観的
@@ -1690,18 +1702,19 @@ function area(rota) {
 
             console.log('----------------------------');
 
-            let area_percentage = omiai(judge_color_sub_2, rota);
+            // let area_percentage = omiai(omiaiarea, rota);//後で
 
             //10パターンの重なってるところ 10+結果用の+1
-            //judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0
             let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
             // let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
 
             //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
-            let judge_color_merge = merge(judge_color_sub, omiaiarea, subject_object_level);
+            let judge_color_merge = merge(judge_color_sub, omiaiarea2, subject_object_level);
+
+            console.log('merge', judge_color_merge);
 
             //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-            // let area_percentage = omiai(judge_color_sub_1, rota);
+            let area_percentage = omiai(judge_color_merge, rota);
             area_percentage = area_percentage / 2116 * 100;
             area_percentage = String(area_percentage);
             area_percentage = parseInt(area_percentage, 10);
@@ -1760,35 +1773,53 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
 function merge(sub, ob, level) {
     console.log('level', level);
     let sum_judge = sub;
-    if (level == 0) {//主観的
+    //主観的
+    if (level == 0) {
         sum_judge = sub;
-    } else if (level == 1) {
+    }
+    //少し主観的
+    else if (level == 1) {
         for (i = 0; i < sub.length; i++) {
-            // if (sub[i].judge >= 8) {
-            //     sum_judge.judge = sub[i];
-            // }else if(ob[i].judge == 2)
-        }
-    } else if (level == 2) {
-        for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge >= 6 && ob[i].judge == 2) {//後で
+            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
                 sum_judge[i].judge = sub[i].judge;
-            } else {
-                sum_judge[i].judge = 0;//後で直す
-            }
-        }
-    } else if (level == 3) {
-        for (i = 0; i < sub.length; i++) {
-
-
-        }
-    } else if (level == 4) {//客観的
-        for (i = 0; i < ob.length; i++) {
-            if (ob[i].judge == 2) {//後で
-                sum_judge[i].judge = 6;
+            } else if (sub[i].judge >= overlap + 1) {
+                sum_judge[i].judge = sub[i].judge;
             } else {
                 sum_judge[i].judge = 0;
             }
         }
+    }
+    //普通
+    else if (level == 2) {
+        for (i = 0; i < sub.length; i++) {
+            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
+                sum_judge[i].judge = sub[i].judge;
+            } else {
+                sum_judge[i].judge = 0;
+            }
+        }
+    }
+    //少し客観的
+    else if (level == 3) {
+        for (i = 0; i < sub.length; i++) {
+            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
+                sum_judge[i].judge = ob[i].judge;
+            } else if (ob[i].judge >= overlap + 1) {
+                sum_judge[i].judge = ob[i].judge;
+            } else {
+                sum_judge[i].judge = 0;
+            }
+            //overlap + 1 確認用
+            // if (sub[i].judge >= overlap + 1) {
+            //     sum_judge[i].judge = sub[i].judge;
+            // } else {
+            //     sum_judge[i].judge = 0;
+            // }
+        }
+    }
+    //客観的
+    else if (level == 4) {
+        sum_judge = ob;
     }
     return sum_judge;
 }
@@ -1908,7 +1939,7 @@ function calculation(rota, data) {
         );
         // console.log("aa");
     }
-    // console.log(answer);
+    console.log(answer);
 
     // array = [];
     //列で正規化をしている
@@ -1975,7 +2006,8 @@ function calculation(rota, data) {
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
     }
-    console.log(judge_array);
+    console.log(judge_color);
+    console.log('judge_array', judge_array);
     let counter = 1;
     if (reverce == 1) {
         for (i = 0; i < judge_color.length / 2; i++) {
@@ -1987,209 +2019,6 @@ function calculation(rota, data) {
         // console.log(judge_color);
     }
     return judge_color;
-}
-
-//お見合い範囲の計算
-function area_calculation(rota) {
-    let color_array = [];
-    let test_data = [];
-    let judge_color = [];
-    //lr.coef_の値取得、テストデータ作成、特徴量として変換、
-    let formData_area = new FormData();
-    let xhr_area = new XMLHttpRequest();
-    xhr_area.open("POST", "../PHP/simulation.php");
-    xhr_area.addEventListener("loadend", function () {
-        if (xhr_area.status === 200) {
-            let data = JSON.parse(xhr_area.response);
-            console.log(data);
-            let c = 0;
-            let color = ["blue", "red", "green"];
-            for (i = 0; i < 3; i++) {
-                color_array_data = [];
-                for (j = 0; j < data.length; j++) {
-                    if (data[j]["color"] == color[i]) {
-                        color_array_data.push(data[j]["data"]);
-                    }
-                }
-                color_array.push(color_array_data);
-            }
-            // for (i = 0; i < data.length; i++) {
-            //     color_array[i] = data[i].data.split(",");//データいれる
-            // }
-            // console.log('data', data[0].color);
-            // console.log('data', data[0 + 85].color);
-            // console.log('data', data[85 + 85].color);
-            // console.log('color_array_data[j]', Number(color_array_data[0]));
-            console.log(color_array);
-            for (i = 0; i < color_array.length; i++) {
-                for (j = 0; j < color_array[i].length; j++) {
-                    color_array[i][j] = Number(color_array[i][j]);
-                }
-            }
-            // for (i = 0; i < 3; i++) {
-            //     for (j = 0; j < 85; j++) {
-            //         switch (i) {
-            //             case 0:
-            //                 color_array[i][j] = Number(color_array_data[j]);
-            //                 break;
-            //             case 1:
-            //                 color_array[i][j] = Number(color_array_data[j + 85]);
-            //                 break;
-            //             case 2:
-            //                 color_array[i][j] = Number(color_array_data[j + 85 + 85]);
-            //                 break;
-            //         }
-            //     }
-            // }
-
-            // console.log('number', color_array[3][0]);
-            // console.log('color_array[0].length', color_array[0].length);
-            // console.log('color_array.length', color_array.length);
-
-            // for (i = 0; i < 3; i++) {
-            //     color_array[i] = new Array(85).fill(0);//多次元配列を作成し0で初期化
-            // }
-            // for (i = 0; i < 3; i++) {
-            //     switch (i) {
-            //         case 0:
-            //             for (j = 0; j < 85; j++) {
-            //                 color_array[i][j] = data[j].data;
-            //             }
-            //             break;
-            //         case 1:
-            //             for (j = 0; j < 85; j++) {
-            //                 color_array[i][j] = data[j + 85].data
-            //             }
-            //             break;
-            //         case 2:
-            //             for (j = 0; j < 85; j++) {
-            //                 color_array[i][j] = data[j + 85 + 85].data;
-            //             }
-            //             break;
-            //     }
-            // }
-            console.log('color_array', color_array);
-            //左の選手
-            let player1_x = imagearray_center[rota][1].x / (1200 / 9);
-            let player1_y = imagearray_center[rota][1].y / (1200 / 9);
-            //右の選手
-            let player2_x = imagearray_center[rota][3].x / (1200 / 9);
-            let player2_y = imagearray_center[rota][3].y / (1200 / 9);
-
-            console.log('p1x', player1_x);
-            console.log('p1y', player1_y);
-            console.log('p2x', player2_x);
-            console.log('p1y', player2_y);
-
-            for (i = 0; i < 9.2; i += 0.2) {
-                for (j = 0; j < 9.2; j += 0.2) {
-                    let data_tmp = {};
-                    data_tmp.players_sabun_x = Math.abs(player1_x - player2_x);
-                    data_tmp.players_sabun_y = Math.abs(player1_y - player2_y);
-                    data_tmp.player1_ball_sabun_x = Math.abs(player1_x - i);
-                    data_tmp.player1_ball_sabun_y = Math.abs(player1_y - j);
-                    data_tmp.player2_ball_sabun_x = Math.abs(player2_x - i);
-                    data_tmp.player2_ball_sabun_y = Math.abs(player2_y - j);
-                    test_data.push(data_tmp);
-
-                    let data_view = {};
-                    data_view.ball_x = i;
-                    data_view.ball_y = j;
-                    data_view.judge = 100;
-                    judge_color.push(data_view);
-                }
-            }
-
-            // console.log(test_data);
-            let blue = [];
-            let red = [];
-            let green = [];
-            let answer = [];
-
-            for (o = 0; o < test_data.length; o++) {
-                answer.push(
-                    sum(
-                        test_data[o].players_sabun_x,
-                        test_data[o].players_sabun_y,
-                        test_data[o].player1_ball_sabun_x,
-                        test_data[o].player1_ball_sabun_y,
-                        test_data[o].player2_ball_sabun_x,
-                        test_data[o].player2_ball_sabun_y
-                    )
-                );
-                // console.log("aa");
-            }
-            // console.log(answer);
-
-            array = [];
-            //列で正規化をしている
-            for (i = 0; i < answer[0].length; i++) {
-                for (j = 0; j < answer.length; j++) {
-                    array.push(answer[j][i]);
-                }
-                max = Math.max(...array);
-                min = Math.min(...array);
-                // console.log(array, "max", max, "min", min);
-
-                //NaNを0にしてる
-                for (k = 0; k < answer.length; k++) {
-                    if (isNaN((answer[k][i] - min) / (max - min))) {
-                        answer[k][i] = 0;
-                    } else {
-                        answer[k][i] = (answer[k][i] - min) / (max - min);
-                    }
-                }
-
-                array.length = 0;
-            }
-            // console.log(answer);
-            for (i = 0; i < answer.length; i++) {
-                //lr.intercept_の値を足している
-                let b = 0;
-                let r = 0;
-                let g = 0;
-
-                //lr.coef_の値とpolynomialの値をかける
-                for (j = 0; j < color_array[0].length - 1; j++) {
-                    // answer[i][j] = (answer[i][j] - min) / (max - min);
-                    // answer[i][j] = (answer[i][j] - min_array[i]) / (max_array[i] - min_array[i]);
-
-                    b = b + answer[i][j] * color_array[0][j];
-                    r = r + answer[i][j] * color_array[1][j];
-                    g = g + answer[i][j] * color_array[2][j];
-                    // console.log(j, b);
-                }
-                b = b + color_array[0][color_array[0].length - 1];
-                r = r + color_array[1][color_array[0].length - 1];
-                g = g + color_array[2][color_array[0].length - 1];
-                // console.log(b, r, g);
-
-                aa = 1 / (1 + Math.exp(-b));
-                bb = 1 / (1 + Math.exp(-r));
-                cc = 1 / (1 + Math.exp(-g));
-                blue.push(aa);
-                red.push(bb);
-                green.push(cc);
-                // console.log(i, b, r, g, aa, bb, cc);
-            }
-            // console.log(answer[0]);
-            // console.log(color_array[0]);
-            judge_array = [0, 0, 0];
-            for (i = 0; i < blue.length; i++) {
-                //どの色になるかの判断
-                judge = [blue[i], red[i], green[i]];
-                // console.log(judge);
-                // console.log(blue[i], red[i], green[i]);
-                judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
-                // console.log(judge_color[i].judge);
-                judge_array[judge_color[i].judge] += 1;
-                judge.length = 0;
-            }
-            console.log(judge_color);
-            console.log(judge_array);
-        }
-    });
-    xhr_area.send(formData_area);
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
@@ -2249,6 +2078,10588 @@ function sum(x1, x2, x3, x4, x5, x6) {
 
 //後で消す
 //お見合い範囲の配列
+let omiaiarea2 = [
+    {
+        "ball_x": 0,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.2,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.4,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.6000000000000001,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 0.8,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.2,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.4,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1.7999999999999998,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 1.9999999999999998,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 2.1999999999999997,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 2.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.5999999999999999,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 2.6,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 2.8000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.7999999999999998,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 1.9999999999999998,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 4.800000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.1999999999999997,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 5.200000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 5.400000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 5.600000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.4,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 0.6000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 0.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 5.200000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 5.400000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 5.600000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 5.8000000000000025,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 6.000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 6.200000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.6,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 2.8000000000000003,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 8.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.0000000000000004,
+        "ball_y": 9,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 5.200000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 5.400000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 5.600000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 5.8000000000000025,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 6.600000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 6.800000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 7.0000000000000036,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 7.400000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 8.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.2000000000000006,
+        "ball_y": 9,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 2.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 2.6,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 8.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.400000000000001,
+        "ball_y": 9,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 8.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.600000000000001,
+        "ball_y": 9,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 8.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 3.800000000000001,
+        "ball_y": 9,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 8.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.000000000000001,
+        "ball_y": 9,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 8.8,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.200000000000001,
+        "ball_y": 9,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.400000000000001,
+        "ball_y": 9,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 0,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 0.2,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 0.4,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 0.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 2.4,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 2.6,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.600000000000001,
+        "ball_y": 9,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 0,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 0.2,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 0.4,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 0.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 2.4,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 2.6,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 8.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 4.800000000000002,
+        "ball_y": 9,
+        "judge": 2
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 0,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 0.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 0.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 0.8,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 2.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 2.6,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.000000000000002,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 0,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 0.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 0.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 0.8,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 2.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 2.6,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.200000000000002,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 0,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 0.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 0.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 0.8,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1.2,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 2.4,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 2.6,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 7
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.400000000000002,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 0,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 0.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 0.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 0.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 2.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 2.6,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 6
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 5
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.600000000000002,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 0,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 0.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 0.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 0.6000000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 0.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1.5999999999999999,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1.7999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 1.9999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 2.1999999999999997,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 2.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 2.6,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 2.8000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 3.0000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 3.2000000000000006,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 3.400000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 3.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 3.800000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 4.000000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 5.000000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 5.200000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 5.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 6.000000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 6.600000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 7.800000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 8.000000000000004,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 8.200000000000003,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 8.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 8.600000000000001,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 8.8,
+        "judge": 4
+    },
+    {
+        "ball_x": 5.8000000000000025,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1.2,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1.4,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 4
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 4
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.000000000000003,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 0,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 0.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 0.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 0.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 8.8,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.200000000000003,
+        "ball_y": 9,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 0.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1.2,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 3
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 8.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.400000000000003,
+        "ball_y": 9,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 0.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 2.4,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 2.6,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 8.8,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.600000000000003,
+        "ball_y": 9,
+        "judge": 2
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 0,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 0.2,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 0.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 0.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 2.4,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 2.6,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 6.800000000000003,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 3.0000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.0000000000000036,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.200000000000004,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.400000000000004,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.600000000000004,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 7.800000000000004,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 4.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 4.800000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 6.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 6.400000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.000000000000004,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 4.800000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 5.000000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 6.600000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 6.800000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 7.0000000000000036,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 7.200000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.200000000000003,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 5.200000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 7.400000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 7.600000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 7.800000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 8.000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 8.200000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 8.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 8.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 8.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.400000000000002,
+        "ball_y": 9,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 5.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 5.600000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 7.400000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 8.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.600000000000001,
+        "ball_y": 9,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 5.8000000000000025,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 6.000000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 7.400000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 8.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 8.8,
+        "ball_y": 9,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 0,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 0.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 0.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 0.6000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 0.8,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1.2,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1.5999999999999999,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1.7999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 1.9999999999999998,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 2.1999999999999997,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 2.4,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 2.6,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 2.8000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 3.0000000000000004,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 3.2000000000000006,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 3.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 3.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 3.800000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 4.000000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 4.200000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 4.400000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 4.600000000000001,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 4.800000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 5.000000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 5.200000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 5.400000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 5.600000000000002,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 5.8000000000000025,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 6.000000000000003,
+        "judge": 0
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 6.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 6.400000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 6.600000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 6.800000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 7.0000000000000036,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 7.200000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 7.400000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 7.600000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 7.800000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 8.000000000000004,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 8.200000000000003,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 8.400000000000002,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 8.600000000000001,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 8.8,
+        "judge": 1
+    },
+    {
+        "ball_x": 9,
+        "ball_y": 9,
+        "judge": 1
+    }
+]
 let omiaiarea = [
     {
         "ball_x": 0,
