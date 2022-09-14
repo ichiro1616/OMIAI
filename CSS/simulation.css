@@ -322,6 +322,15 @@ input[type=range].slider::-webkit-slider-thumb {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
 }
+.bubble{
+  position:relative;
+}
+#message{
+  position:absolute;
+  font-size:1.1rem;
+  top:3rem;
+  right:4rem;  
+}
 
 .word{
   font-size:2rem;
@@ -333,7 +342,7 @@ input[type=range].slider::-webkit-slider-thumb {
 .bar_and_scale{
   position:relative;
   left:-0.5rem;
-  top:4rem;
+  top:11rem;
 }
 
 .Ob{
@@ -427,7 +436,7 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 .buttons{
   position:relative;
-  top:14rem;
+  top:21rem;
 }
 
 #rotation_button {
