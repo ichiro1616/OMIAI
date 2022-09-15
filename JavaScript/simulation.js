@@ -995,17 +995,19 @@ const blue = '';
 context_omiai.fillStyle = omiai_color;//色
 context_omiai.globalAlpha = 0.4;//不透明度 0.7
 
-// under_canvas
-// const canvas_under = document.getElementById('under_area');//お見合い範囲用
-// const context_under = canvas_under.getContext('2d');
-// context_under.fillStyle = omiai_color;//色
-// context_under.globalAlpha = 0.4;//不透明度 0.7
-// let set = canvas_omiai.getBoundingClientRect();
+//under_canvasに描画する準備
+let omi_canvas_id = ["under_canvas1-3", "under_canvas2-3", "under_canvas3-3", "under_canvas4-3", "under_canvas5-3", "under_canvas6-3"];
+const under_canvas3 = [];
+const under_context3 = [];
+for (let i = 0; i < 6; i++) {
+    under_canvas3[i] = document.getElementById(omi_canvas_id[i]);
+    under_context3[i] = under_canvas3[i].getContext('2d');
+}
 
-let originX = 60;//コート原点左下）x
-let originY = 1135;//コート原点（左下）y
-let endY = 0;//コート上端y
-let endX = 1140;//コート右端x
+let originX = 76.1;//コート原点左下）x
+let originY = 1124.3;//コート原点（左下）y
+let endY = 76.1;//コート上端y
+let endX = 1124.3;//コート右端x
 let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
@@ -1018,30 +1020,42 @@ function omiai(judge_area, rota) {
     let k = 0;
     let percentage = 0;
     //後で　ローテーションごとのいる
+    for (let i = 0; i < 46; i++) {//x
+        for (let j = 0; j < 46; j++) {//y
+            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
+                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+                percentage++;
+            }
+            k++;
+        }
+    }
 
-    // let ad = canvas_under.width / canvas_omiai.width;
-    // let oriX = 60 * ad;
-    // let oriY = 1135 * ad;
-    // let enY = 0;
-    // let enX = 1140 * ad;
-    // let pisiX = (enX - oriX) / 46;
-    // let pisiY = (oriY - enY) / 46;
-    // oriY = oriY - pisiY;
-    // enX = enX - pisiX;
-
+    // under_canvas
+    for(let i = 0;i < under_canvas3.length;i++){
+    under_context3[i].fillStyle = omiai_color;//色
+    under_context3[i].globalAlpha = 0.4;//不透明度 0.7
+    }
+    let ad = under_canvas3[0].width / canvas_omiai.width;
+    let oriX = 76.1 * ad;
+    let oriY = 1124.3 * ad;
+    let enY = 76.1 * ad;
+    let enX = 1124.3 * ad;
+    let pisiX = (enX - oriX) / 46;
+    let pisiY = (oriY - enY) / 46;
+    oriY = oriY - pisiY;
+    enX = enX - pisiX;
     // switch (rota) {
     //     case 0:
     //         let tem = 0;
-    //         context_under.clearRect(0, 0, canvas_under.width, canvas_under.height);
+    //         under_context3[0].clearRect(0, 0, under_canvas3[0].width, under_canvas3[0].height);
     //         for (i = 0; i < 46; i++) {
     //             for (j = 0; j < 46; j++) {
-    //                 if (judge_area[tem].judge == 0) {
-    //                     context_under.fillRect(oriX + i * pisiX, oriY - j * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //                 if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
+    //                     under_context3[0].fillRect(oriX + i * pisiX, oriY - j * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
     //                 }
     //                 tem++;
     //             }
     //         }
-
 
     //         break;
     //     case 1:
@@ -1055,20 +1069,21 @@ function omiai(judge_area, rota) {
     //     case 5:
     //         break;
     // }
-
-    for (let i = 0; i < 46; i++) {//x
-        for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
-                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage++;
+    for(let i = 0; i < 6 ;i++){
+    if(rota==i){
+    let tem = 0;
+    under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
+    for (j = 0; j < 46; j++) {
+        for (k = 0; k < 46; k++) {
+            if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
+                under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
             }
-            //後で消す　お見合い範囲デバッグ用
-            // if (omiaiarea[k].judge == 0) {
-            //     context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-            // }
-            k++;
+            tem++;
         }
     }
+  }
+ }
+
     return percentage;
 }
 //---------------------------------------------------------------

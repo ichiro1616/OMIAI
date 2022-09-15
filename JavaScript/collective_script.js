@@ -404,10 +404,10 @@ my_ctx2.fillStyle = omiai_color;//色
 ot_ctx2.fillStyle = omiai_color;
 my_ctx2.globalAlpha = 0.4;//不透明度 0.7
 ot_ctx2.globalAlpha = 0.4;
-let originX = 30.5;
-let originY = 577;
-let endX = 580;
-let endY = 0;
+let originX = 39;
+let originY = 571.5;
+let endX = 571.5;
+let endY = 39;
 let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
@@ -570,6 +570,9 @@ function area(rota) {
       let ot_percent = percent(ot_area_percentage);
 
       function percent(area_percentage){
+        if (isNaN(area_percentage)) {
+          area_percentage = 0;
+        }
       area_percentage = area_percentage / 2116 * 100;
       area_percentage = String(area_percentage);
       area_percentage = parseInt(area_percentage, 10);
