@@ -1,128 +1,126 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8" />
   <title>OMIAI</title>
 </head>
-
 <body>
   <div id="container">
     <div class="all">
-    <!-- 経験年数の回答 -->
-    <div id="experience">
-      <div class="modalWindow">
-        <h1 id="ex">あなたの経験年数を選んでください</h1>
-        <p class="ex_question">経験年数選択バー</p>
-        <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;" class="slider">
-        <div id="wrap">
-          <p>●●●</p>
+      <!-- 経験年数の回答 -->
+      <div id="experience">
+        <div class="modalWindow">
+          <h1 id="ex">あなたの経験年数を選んでください</h1>
+          <p class="ex_question">経験年数選択バー</p>
+          <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;" class="slider">
+            <div id="wrap">
+              <p>●●●</p>
+            </div>
+            <div id="wrapping">
+              <p>未経験</p>
+              <p>1~2年</p>
+              <p>3~5年</p>
+              <p>6~9年</p>
+              <p>10年以上</p>
+            </div>
+            <br />
+          <button type="button" onclick="simulation();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
         </div>
-        <div id="wrapping">
-          <p>未経験</p>
-          <p>1~2年</p>
-          <p>3~5年</p>
-          <p>6~9年</p>
-          <p>10年以上</p>
-        </div>
-        <br />
-        <button type="button" onclick="simulation();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
       </div>
-    </div>
 
-    <div id="simulation_area">
-      <div class="row justify-content-center">
-        <div class="col-6">
-          <p id="syoukai_bun"></p>
-          <div class="bg_image"></div>
-          <div id="canvas_warp">
-            <canvas id="canvas2" height="1200" width="1200"></canvas>
-            <canvas id="canvas1" height="1200" width="1200"></canvas>
-            <canvas id="canvas3" height="1200" width="1200"></canvas>
+      <div id="simulation_area">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <p id="syoukai_bun"></p>
+            <div class="bg_image"></div>
+              <div id="canvas_warp">
+                <canvas id="canvas2" height="1200" width="1200"></canvas>
+                <canvas id="canvas1" height="1200" width="1200"></canvas>
+                <canvas id="canvas3" height="1200" width="1200"></canvas>
+              </div>
+              <div id="area_percentage"></div>
+            </div>
+            <div class="col-6">
+              <div id="tutorial"><img src="../Picture/tutorial.png" class="tutorial_P"></div>
+              <div class="bubble">
+                <img src="../Picture/talk_bubble.png" class="talk_bubble"/>
+                <div id="message">
+                  <div id="kensuke">
+                    <b>けんすけ</b><br>
+                    <c>50kg<br>
+                    175cm</c>
+                  </div>
+                  <div id="rui">
+                    <b>るい</b><br>
+                    <c>60kg<br>
+                    180cm</p>
+                  </div>
+                  <div id="hinata">
+                    <b>ひなた</b><br>
+                    <c>55kg<br>
+                    175cm</p>
+                  </div>
+                  <div id="kento">
+                    <b>けんと</b><br>
+                    <c>60kg<br>
+                    180cm</p>
+                  </div>
+                  <div id="riku">
+                    <b>りく</b><br>
+                    <p>60kg<br>
+                    180cm</p>
+                  </div>
+                  <div id="keisuke">
+                    <b>けいすけ</b><br>
+                    <p>55kg<br>
+                    175cm</p>
+                  </div>
+                </div>
+                <div class="face">
+                  <img id ="face_img" src="">
+                </div>
+              </div>
+              <div class="buttons">
+                <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" class="rotation"/></button>
+                <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn"><img src="../Picture/check.png" class="collect"/></button>
+              </div>
+              <div class="bar_and_scale">
+                <b class="word">OMIAI</b>
+                <div class="bar">
+                  <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 20rem;">
+                </div>
+                <div class="bar_under_pic">
+                  <img src="../Picture/Ob.png" alt="目盛り" title="主観的" class="Ob">
+                  <img src="../Picture/Sub.png" alt="目盛り" title="客観的" class="Sub">
+                </div>
+                <div class="per">
+                  <c class="Ob_100">100%</c>
+                  <c class="SubOb_50">50%</c>
+                  <c class="Sub_100">100%</c>
+                </div>
+              </div>
+            </div>
           </div>
-          <div id="area_percentage"></div>
         </div>
-        <div class="col-6">
-          <div class="bubble">
-          <div id="message">
-            <img src="../Picture/talk_bubble.png" class="talk_bubble"/>
-            <div id="kensuke">
-              <b>けんすけ</b><br>
-              <c>50kg<br>
-              175cm</c>
+        <div id="under">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="under_canvas_warp">
+                <div class="under1"><canvas id="under_canvas1" height="200" width="200" ></canvas></div>
+                <div class="under2"><canvas id="under_canvas2" height="200" width="200"></canvas></div>
+                <div class="under3"><canvas id="under_canvas3" height="200" width="200"></canvas></div>
+                <div class="under4"><canvas id="under_canvas4" height="200" width="200"></canvas></div>
+                <div class="under5"><canvas id="under_canvas5" height="200" width="200"></canvas></div>
+                <div class="under6"><canvas id="under_canvas6" height="200" width="200"></canvas></div>
+              </div>
             </div>
-            <div id="rui">
-              <b>るい</b><br>
-              <c>60kg<br>
-              180cm</p>
-            </div>
-            <div id="hinata">
-              <b>ひなた</b><br>
-              <c>55kg<br>
-              175cm</p>
-            </div>
-            <div id="kento">
-              <b>けんと</b><br>
-              <c>60kg<br>
-              180cm</p>
-            </div>
-            <div id="riku">
-              <b>りく</b><br>
-              <p>60kg<br>
-              180cm</p>
-            </div>
-            <div id="keisuke">
-              <b>けいすけ</b><br>
-              <p>55kg<br>
-              175cm</p>
-            </div>
-            <div class="face">
-            <img id ="face_img" src="">
-            </div>
-          </div>
-          </div>
-          <div class="buttons">
-          <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" class="rotation"/></button>
-          <button type="button" onclick="location.href = 'O-MIAI.html' " id="register_btn"><img src="../Picture/check.png" class="collect"/></button>
-          </div>
-          <div class="bar_and_scale">
-            <b class="word">OMIAI</b>
-          <div class="bar">
-          <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 20rem;">
-          </div>
-          <div class="bar_under_pic">
-            <img src="../Picture/Ob.png" alt="目盛り" title="主観的" class="Ob">
-            <img src="../Picture/Sub.png" alt="目盛り" title="客観的" class="Sub">
-          </div>
-          <div class="per">
-          <c class="Ob_100">100%</c>
-          <c class="SubOb_50">50%</c>
-          <c class="Sub_100">100%</c>
-          </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="under">
-    <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="under_canvas_warp">
-        <div class="under1"><canvas id="under_canvas1" height="200" width="200" ></canvas></div>
-        <div class="under2"><canvas id="under_canvas2" height="200" width="200"></canvas></div>
-        <div class="under3"><canvas id="under_canvas3" height="200" width="200"></canvas></div>
-        <div class="under4"><canvas id="under_canvas4" height="200" width="200"></canvas></div>
-        <div class="under5"><canvas id="under_canvas5" height="200" width="200"></canvas></div>
-        <div class="under6"><canvas id="under_canvas6" height="200" width="200"></canvas></div>
-      </div>
-    </div>
-    </div>
   </div>
-</div>
-  </div>
-</div>
   <script src="../JavaScript/simulation.js"></script>
   <link href="../CSS/simulation.css" rel="stylesheet" />
   <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
 </body>
-
 </html>
