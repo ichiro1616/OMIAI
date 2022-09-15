@@ -2,15 +2,164 @@ let str = localStorage.getItem('key');
 let imagearray = JSON.parse(str);
 let my_imagearray_center = JSON.parse(str);
 console.log(imagearray);
-let cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
-{ x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
+//コマの座標（左上基準）
 let array = [
-  [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
-  [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
-  [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
-  [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
-  [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
-  [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
+  [
+    {
+      x: 50,
+      y: 10,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+  ],
+  [
+    {
+      x: 550,
+      y: 10,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+  ],
+  [
+    {
+      x: 840,
+      y: 10,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+  ],
+  [
+    {
+      x: 870,
+      y: 460,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+  ],
+  [
+    {
+      x: 350,
+      y: 460,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+  ],
+  [
+    {
+      x: 50,
+      y: 460,
+    },
+    {
+      x: 160,
+      y: 370,
+    },
+    {
+      x: 460,
+      y: 370,
+    },
+    {
+      x: 760,
+      y: 370,
+    },
+    {
+      x: 620,
+      y: 600,
+    },
+    {
+      x: 310,
+      y: 600,
+    },
+  ],
 ];
 let my_can; //自分の配置を表示するキャンバス
 let ot_can; //選択した配置を表示するキャンバス
@@ -491,12 +640,9 @@ function merge(sub, ob) {
 
 
 function calculation(rota, data) {
-  let my_color_array = [];
-  let ot_color_array = [];
-  let my_test_data = [];
-  let ot_test_data = [];
-  let my_judge_color = [];
-  let ot_judge_color = [];
+  let color_array = [];
+  let test_data = [];
+  let judge_color = [];
   let color = ["blue", "red", "green"];
   for (i = 0; i < 3; i++) {
     color_array_data = [];
@@ -505,17 +651,11 @@ function calculation(rota, data) {
         color_array_data.push(data[j]["data"]);
       }
     }
-    my_color_array.push(color_array_data);
-    ot_color_array.push(color_array_data);
+    color_array.push(color_array_data);
   }
-  for (i = 0; i < my_color_array.length; i++) {
-    for (j = 0; j < my_color_array[i].length; j++) {
-      my_color_array[i][j] = Number(my_color_array[i][j]);
-    }
-  }
-  for (i = 0; i < ot_color_array.length; i++) {
-    for (j = 0; j < ot_color_array[i].length; j++) {
-      ot_color_array[i][j] = Number(ot_color_array[i][j]);
+  for (i = 0; i < color_array.length; i++) {
+    for (j = 0; j < color_array[i].length; j++) {
+      color_array[i][j] = Number(color_array[i][j]);
     }
   }
 
@@ -529,15 +669,15 @@ function calculation(rota, data) {
   let my_player2_y = (my_imagearray_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
   my_player2_y = Math.abs(my_player2_y);
 
-  //左の選手
-  let ot_player1_x = (ot_imagearray_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
-  let ot_player1_y = (ot_imagearray_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
-  ot_player1_y = Math.abs(ot_player1_y);
+  // //左の選手
+  // let ot_player1_x = (my_imagearray_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
+  // let ot_player1_y = (my_imagearray_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
+  // ot_player1_y = Math.abs(my_player1_y);
 
-  //右の選手
-  let ot_player2_x = (ot_imagearray_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
-  let ot_player2_y = (ot_imagearray_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
-  ot_player2_y = Math.abs(ot_player2_y);
+  // //右の選手
+  // let ot_player2_x = (my_imagearray_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
+  // let ot_player2_y = (my_imagearray_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
+  // ot_player2_y = Math.abs(my_player2_y);
 
 
 
@@ -554,12 +694,6 @@ function calculation(rota, data) {
     my_player2_x = 9 - my_player2_x;
     reverce = 1;
   }
-  if (ot_player1_x > ot_player2_x) {
-    // idでの条件を描く
-    ot_player1_x = 9 - ot_player1_x;
-    ot_player2_x = 9 - ot_player2_x;
-    reverce = 1;
-  }
   for (i = 0; i < 9.2; i += 0.2) {
     for (j = 0; j < 9.2; j += 0.2) {
       let data_tmp = {};
@@ -569,32 +703,13 @@ function calculation(rota, data) {
       data_tmp.my_player1_ball_sabun_y = my_player1_y - j;
       data_tmp.my_player2_ball_sabun_x = my_player2_x - i;
       data_tmp.my_player2_ball_sabun_y = my_player2_y - j;
-      my_test_data.push(data_tmp);
+      test_data.push(data_tmp);
 
       let data_view = {};
       data_view.ball_x = i;
       data_view.ball_y = j;
       data_view.judge = 100;
-      my_judge_color.push(data_view);
-    }
-  }
-
-  for (i = 0; i < 9.2; i += 0.2) {
-    for (j = 0; j < 9.2; j += 0.2) {
-      let data_tmp = {};
-      data_tmp.ot_players_sabun_x = ot_player1_x - ot_player2_x;
-      data_tmp.ot_players_sabun_y = ot_player1_y - ot_player2_y;
-      data_tmp.ot_player1_ball_sabun_x = ot_player1_x - i;
-      data_tmp.ot_player1_ball_sabun_y = ot_player1_y - j;
-      data_tmp.ot_player2_ball_sabun_x = ot_player2_x - i;
-      data_tmp.ot_player2_ball_sabun_y = ot_player2_y - j;
-      ot_test_data.push(data_tmp);
-
-      let data_view = {};
-      data_view.ball_x = i;
-      data_view.ball_y = j;
-      data_view.judge = 100;
-      ot_judge_color.push(data_view);
+      judge_color.push(data_view);
     }
   }
 
@@ -615,22 +730,13 @@ function calculation(rota, data) {
     data[0]["std_player2_ball_sabun_x"],
     data[0]["std_player2_ball_sabun_y"],
   ];
-  for (i = 0; i < my_test_data.length; i++) {
-    my_test_data[i].my_players_sabun_x = (my_test_data[i].my_players_sabun_x - mean[0]) / std[0];
-    my_test_data[i].my_players_sabun_y = (my_test_data[i].my_players_sabun_y - mean[1]) / std[1];
-    my_test_data[i].my_player1_ball_sabun_x = (my_test_data[i].my_player1_ball_sabun_x - mean[2]) / std[2];
-    my_test_data[i].my_player1_ball_sabun_y = (my_test_data[i].my_player1_ball_sabun_y - mean[3]) / std[3];
-    my_test_data[i].my_player2_ball_sabun_x = (my_test_data[i].my_player2_ball_sabun_x - mean[4]) / std[4];
-    my_test_data[i].my_player2_ball_sabun_y = (my_test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
-  }
-
-  for (i = 0; i < ot_test_data.length; i++) {
-    ot_test_data[i].ot_players_sabun_x = (ot_test_data[i].ot_players_sabun_x - mean[0]) / std[0];
-    ot_test_data[i].ot_players_sabun_y = (ot_test_data[i].ot_players_sabun_y - mean[1]) / std[1];
-    ot_test_data[i].ot_player1_ball_sabun_x = (ot_test_data[i].ot_player1_ball_sabun_x - mean[2]) / std[2];
-    ot_test_data[i].ot_player1_ball_sabun_y = (ot_test_data[i].ot_player1_ball_sabun_y - mean[3]) / std[3];
-    ot_test_data[i].ot_player2_ball_sabun_x = (ot_test_data[i].ot_player2_ball_sabun_x - mean[4]) / std[4];
-    ot_test_data[i].ot_player2_ball_sabun_y = (ot_test_data[i].ot_player2_ball_sabun_y - mean[5]) / std[5];
+  for (i = 0; i < test_data.length; i++) {
+    test_data[i].my_players_sabun_x = (test_data[i].my_players_sabun_x - mean[0]) / std[0];
+    test_data[i].my_players_sabun_y = (test_data[i].my_players_sabun_y - mean[1]) / std[1];
+    test_data[i].my_player1_ball_sabun_x = (test_data[i].my_player1_ball_sabun_x - mean[2]) / std[2];
+    test_data[i].my_player1_ball_sabun_y = (test_data[i].my_player1_ball_sabun_y - mean[3]) / std[3];
+    test_data[i].my_player2_ball_sabun_x = (test_data[i].my_player2_ball_sabun_x - mean[4]) / std[4];
+    test_data[i].my_player2_ball_sabun_y = (test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
   }
 
   // console.log(test_data);
@@ -640,27 +746,15 @@ function calculation(rota, data) {
   let green = [];
   let answer = [];
 
-  for (o = 0; o < my_test_data.length; o++) {
-    answer.push(
-      sum(
-        my_test_data[o].my_players_sabun_x,
-        my_test_data[o].my_players_sabun_y,
-        my_test_data[o].my_player1_ball_sabun_x,
-        my_test_data[o].my_player1_ball_sabun_y,
-        my_test_data[o].my_player2_ball_sabun_x,
-        my_test_data[o].my_player2_ball_sabun_y
-      )
-    );
-  }
   for (o = 0; o < test_data.length; o++) {
     answer.push(
       sum(
-        ot_test_data[o].ot_players_sabun_x,
-        ot_test_data[o].ot_players_sabun_y,
-        ot_test_data[o].ot_player1_ball_sabun_x,
-        ot_test_data[o].ot_player1_ball_sabun_y,
-        ot_test_data[o].ot_player2_ball_sabun_x,
-        ot_test_data[o].ot_player2_ball_sabun_y
+        test_data[o].my_players_sabun_x,
+        test_data[o].my_players_sabun_y,
+        test_data[o].my_player1_ball_sabun_x,
+        test_data[o].my_player1_ball_sabun_y,
+        test_data[o].my_player2_ball_sabun_x,
+        test_data[o].my_player2_ball_sabun_y
       )
     );
   }
@@ -672,29 +766,14 @@ function calculation(rota, data) {
     let g = 0;
 
     //lr.coef_の値とpolynomialの値をかける
-    for (j = 0; j < my_color_array[0].length - 1; j++) {
-      b = b + answer[i][j] * my_color_array[0][j];
-      r = r + answer[i][j] * my_color_array[1][j];
-      g = g + answer[i][j] * my_color_array[2][j];
+    for (j = 0; j < color_array[0].length - 1; j++) {
+      b = b + answer[i][j] * color_array[0][j];
+      r = r + answer[i][j] * color_array[1][j];
+      g = g + answer[i][j] * color_array[2][j];
     }
-    b = b + my_color_array[0][my_color_array[0].length - 1];
-    r = r + my_color_array[1][my_color_array[0].length - 1];
-    g = g + my_color_array[2][my_color_array[0].length - 1];
-    aa = 1 / (1 + Math.exp(-b));
-    bb = 1 / (1 + Math.exp(-r));
-    cc = 1 / (1 + Math.exp(-g));
-    blue.push(aa);
-    red.push(bb);
-    green.push(cc);
-
-    for (j = 0; j < ot_color_array[0].length - 1; j++) {
-      b = b + answer[i][j] * ot_color_array[0][j];
-      r = r + answer[i][j] * ot_color_array[1][j];
-      g = g + answer[i][j] * ot_color_array[2][j];
-    }
-    b = b + ot_color_array[0][ot_color_array[0].length - 1];
-    r = r + ot_color_array[1][ot_color_array[0].length - 1];
-    g = g + ot_color_array[2][ot_color_array[0].length - 1];
+    b = b + color_array[0][color_array[0].length - 1];
+    r = r + color_array[1][color_array[0].length - 1];
+    g = g + color_array[2][color_array[0].length - 1];
     aa = 1 / (1 + Math.exp(-b));
     bb = 1 / (1 + Math.exp(-r));
     cc = 1 / (1 + Math.exp(-g));
