@@ -1637,7 +1637,7 @@ function omiai(judge_area, rota) {
 
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {
+            if (judge_area[k].judge >= overlap) {// || judge_area[k].judge == 1
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1748,6 +1748,43 @@ function area(rota) {
                         break;
                 }
             }
+            //客観的データをペアごとに分ける各255
+            for (i = 0; i < object_array.length; i++) {
+                switch (object_array[i].left_player * object_array[i].right_player) {
+                    case 6://2-3
+                        data_array_ob_0.push(object_array[i]);
+                        break;
+                    case 8://2-4
+                        data_array_ob_1.push(object_array[i]);
+                        break;
+                    case 10://2-5
+                        data_array_ob_2.push(object_array[i]);
+                        break;
+                    case 12://2-6 3-4
+                        if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
+                            data_array_ob_3.push(object_array[i]);
+                        } else {
+                            data_array_ob_4.push(object_array[i]);
+                        }
+                        break;
+                    case 15://3-5
+                        data_array_ob_5.push(object_array[i]);
+                        break;
+                    case 18://3-6
+                        data_array_ob_6.push(object_array[i]);
+                        break;
+                    case 20://4-5
+                        data_array_ob_7.push(object_array[i]);
+                        break;
+                    case 24://4-6
+                        data_array_ob_8.push(object_array[i]);
+                        break;
+                    case 30://5-6
+                        data_array_ob_9.push(object_array[i]);
+                        break;
+                }
+            }
+
 
             //主観的お見合い範囲
             let judge_color_sub_0 = calculation(counter, data_array_sub_0);
@@ -1760,6 +1797,19 @@ function area(rota) {
             let judge_color_sub_7 = calculation(counter, data_array_sub_7);
             let judge_color_sub_8 = calculation(counter, data_array_sub_8);
             let judge_color_sub_9 = calculation(counter, data_array_sub_9);
+
+            //客観的お見合い範囲
+            let judge_color_ob_0 = calculation(counter, data_array_ob_0);
+            let judge_color_ob_1 = calculation(counter, data_array_ob_1);
+            let judge_color_ob_2 = calculation(counter, data_array_ob_2);
+            let judge_color_ob_3 = calculation(counter, data_array_ob_3);
+            let judge_color_ob_4 = calculation(counter, data_array_ob_4);
+            let judge_color_ob_5 = calculation(counter, data_array_ob_5);
+            let judge_color_ob_6 = calculation(counter, data_array_ob_6);
+            let judge_color_ob_7 = calculation(counter, data_array_ob_7);
+            let judge_color_ob_8 = calculation(counter, data_array_ob_8);
+            let judge_color_ob_9 = calculation(counter, data_array_ob_9);
+
 
             console.log('----------------------------');
 
@@ -1781,10 +1831,10 @@ function area(rota) {
 
             //10パターンの重なってるところ 10+結果用の+1
             let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
-            // let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
+            let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
 
             //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
-            let judge_color_merge = merge(judge_color_sub, omiaiarea2, subject_object_level);
+            let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
             console.log('merge', judge_color_merge);
 
