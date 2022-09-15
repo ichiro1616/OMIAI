@@ -332,26 +332,35 @@ input[type=range].slider::-webkit-slider-thumb {
 #face_img{
   position: absolute;
   width:6.5rem;
-  right: 7rem;
-  top:-5.8rem;
+  left:11rem;
+  top:3.2rem;
 }
-
 .bubble{
   position:relative;
   width:100%;
 }
-
+#tutorial{
+  position:relative;
+  z-index:20;
+}
+.tutorial_P{
+  position:absolute;
+  width:10%;
+  opacity: 0.92;
+  right:-6rem;
+  top:0.2rem;
+}
 .talk_bubble{
   position:absolute;
   width:15rem;
-  top:-1rem;
-  left:-3rem;
+  top:3rem;
+  left:17.5rem;
 }
 #message{
   position:absolute;
   font-size:1.1rem;
-  top:3rem;
-  right:3.5rem;  
+  top:4rem;
+  left:21rem;  
 }
 
 .word{
@@ -364,7 +373,7 @@ input[type=range].slider::-webkit-slider-thumb {
 .bar_and_scale{
   position:relative;
   left:3rem;
-  top:12rem;
+  top:12.5rem;
 }
 
 .Ob{
@@ -464,6 +473,7 @@ input[type=range].slider::-webkit-slider-thumb {
 .buttons{
   position:relative;
   top:22rem;
+  left:0.2rem;
 }
 
 #rotation_button {
