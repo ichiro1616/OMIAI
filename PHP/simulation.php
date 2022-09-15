@@ -11,8 +11,8 @@ $result = array();
 try {
     $dbh = new PDO($dsn, $user, $password);
 
-    // 最新の2550個のレコードを取得
-    $sql = "SELECT * FROM `lr.coef_` LIMIT 2550";
+    // 最新の5100個のレコードを取得
+    $sql = "SELECT * FROM `lr.coef_` LIMIT 5100";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
