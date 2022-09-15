@@ -960,8 +960,8 @@ let mouseout = function (e) {
     mouseup(e);
 }
 
-canvas.addEventListener('mousedown', function (e) { mousedown(e); }, false);
-canvas.addEventListener('mousemove', function (e) { mousemove(e); }, false);
+canvas.addEventListener('mousedown', function (e) { mousedown(e, 0); }, false);
+canvas.addEventListener('mousemove', function (e) { mousemove(e, 0); }, false);
 canvas.addEventListener('mouseup', function (e) { mouseup(e); }, false);
 canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
 canvas.addEventListener('touchstart', function (e) { mousedown(e, 1); }, false);
@@ -1057,7 +1057,7 @@ function omiai(judge_area, rota) {
 
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap) {//後で2に
+            if (judge_area[k].judge >= overlap) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1123,7 +1123,7 @@ function area(rota) {
                     subject_array.push(data[i]);
                 } else if (data[i].type == 1) {
                     //客観的
-                    object_array.puch(data[i]);
+                    object_array.push(data[i]);
                 }
             }
             //主観的データをペアごとに分ける各255
