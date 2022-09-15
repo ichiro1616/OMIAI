@@ -182,8 +182,8 @@ function percentage() {
       left_per = Math.round((left / per) * 100);
       right_per = Math.round((right / per) * 100);
       //パーセンテージの表示
-      document.querySelector('[id="0"]').value = left_per + "%";
-      document.querySelector('[id="1"]').value = right_per + "%";
+      document.getElementById("0").value = left_per + "%";
+      document.getElementById("1").value = right_per + "%";
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
       }
@@ -223,6 +223,6 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    setTimeout(percentage,100);
+    setTimeout(percentage,50);
   }
 }
