@@ -168,6 +168,16 @@ input[type=range].slider::-webkit-slider-thumb {
   width   : 100%;
   height  : 100vh;
 }
+#tutorial{
+  position:absolute;
+  z-index:20;
+  top:0.5rem;
+  right:-13rem;
+}
+.tutorial_P{
+  width:15%;
+  opacity: 0.92;
+}
 video {
   min-width  : 100%;
   min-height : 100vh;
