@@ -177,16 +177,16 @@ let genekeep; // 世代 別で区切った配列
 window.onclick = canvas_draw();
 area(counter);
 
-function canvas_draw(){
-//自分の配置koma
-    my_can = document.getElementById('my'); //キャンバスのidを取得
-    my_ctx = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
-//他の配置・集合知koma
-    ot_can = document.getElementById('other'); 
-    ot_ctx = ot_can.getContext('2d'); 
-//自分と他の重ねた配置
-    com_can = document.getElementById('comparison2');
-    com_ctx = com_can.getContext('2d');
+function canvas_draw() {
+  //自分の配置koma
+  my_can = document.getElementById('my'); //キャンバスのidを取得
+  my_ctx = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
+  //他の配置・集合知koma
+  ot_can = document.getElementById('other');
+  ot_ctx = ot_can.getContext('2d');
+  //自分と他の重ねた配置
+  com_can = document.getElementById('comparison2');
+  com_ctx = com_can.getContext('2d');
 }
 //自分の配置canvas
 let my_can3 = document.getElementById('my3'); //キャンバスのidを取得
@@ -242,12 +242,12 @@ imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size
 
 
 let images = new Array(6); //要素数6の配列imagesを作成
-for(var i = 0; i < 6; i++){
+for (var i = 0; i < 6; i++) {
   images[i] = new Array(6).fill(0);
 }
-for(var i = 0; i< 6; i++){ //ローテーション
-  for(var j = 0; j < 6; j++){ //コマ番号
-      images[i][j] = new Image();
+for (var i = 0; i < 6; i++) { //ローテーション
+  for (var j = 0; j < 6; j++) { //コマ番号
+    images[i][j] = new Image();
   }
 }
 
@@ -272,63 +272,63 @@ for (var i = 0; i < 6; i++) { //ローテーション
 
 //経験年数
 inputSliderEle = document.getElementById('experience_change');
-inputSliderEle.addEventListener('change', function(){
-    exp_level = inputSliderEle.value;
-    console.log(exp_level);
-    collective();
+inputSliderEle.addEventListener('change', function () {
+  exp_level = inputSliderEle.value;
+  console.log(exp_level);
+  collective();
 });
 
 //世代別表示
 inputSlideBarElement = document.getElementById('generation_change');
-inputSlideBarElement.addEventListener('change', function(){
-    gene_level = inputSlideBarElement.value;
-    console.log(gene_level);
-    collective();
+inputSlideBarElement.addEventListener('change', function () {
+  gene_level = inputSlideBarElement.value;
+  console.log(gene_level);
+  collective();
 });
 
-  let datakeep = [];
-  formData = new FormData();
-  xhr = new XMLHttpRequest();
-  xhr.open("GET","/PHP/collective.php");
-  xhr.addEventListener("loadend",function(){
-    if (xhr.status === 200) {
-       let data = JSON.parse(xhr.response);
-       console.log('data',data);
-       if(xhr.response == "error"){
-        console.log("通信に失敗しました。");
-       }
+let datakeep = [];
+formData = new FormData();
+xhr = new XMLHttpRequest();
+xhr.open("GET", "/PHP/collective.php");
+xhr.addEventListener("loadend", function () {
+  if (xhr.status === 200) {
+    let data = JSON.parse(xhr.response);
+    console.log('data', data);
+    if (xhr.response == "error") {
+      console.log("通信に失敗しました。");
+    }
     console.log(data[1]);
     let gene = new Array();
-    for(let i = 0; i < data[1][0][0]; i++){
+    for (let i = 0; i < data[1][0][0]; i++) {
       gene[i] = Array();
     }
-    for(let i = 0; i < data[1][0][0]; i++){
-      for(let j = 0; j < data[0].length; j++){
-        if(data[0][j].generation == i){
+    for (let i = 0; i < data[1][0][0]; i++) {
+      for (let j = 0; j < data[0].length; j++) {
+        if (data[0][j].generation == i) {
           gene[i].push(data[0][j])
         }
       }
     }
-    console.log('generation',gene);
+    console.log('generation', gene);
     genekeep = gene;
     document.getElementById("generation_change").max = genekeep.length;
-    }
-    collective();
-  });
+  }
+  collective();
+});
 xhr.send(formData)
 
 //初期配置
 // あなたの配置
-  for (let i = 0; i < 6; i++) {
-    images[0][i].addEventListener('load', () => {
-      my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
-    })
-    }
-
-  // 集合知
 for (let i = 0; i < 6; i++) {
   images[0][i].addEventListener('load', () => {
-    ot_ctx.drawImage(images[0][i], array[0][i].x * scale,array[0][i].y * scale, koma_w * size, koma_h * size)
+    my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
+  })
+}
+
+// 集合知
+for (let i = 0; i < 6; i++) {
+  images[0][i].addEventListener('load', () => {
+    ot_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
   })
 }
 // 選手配置比較
@@ -412,54 +412,54 @@ let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）�
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-let overlap = 4;
+let overlap = 3;
 
-function omiai(judge_area){
+function omiai(judge_area) {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
-let k = 0;
-let l = 0;
-let my_percentage = 0;
-let ot_percentege = 0;
-for (let i = 0; i < 46; i++) {//x
-  for (let j = 0; j < 46; j++) {//y
-    if (judge_area[k].judge >= overlap) {//後で2に
-      my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-      my_percentage++;
+  let k = 0;
+  let l = 0;
+  let my_percentage = 0;
+  let ot_percentege = 0;
+  for (let i = 0; i < 46; i++) {//x
+    for (let j = 0; j < 46; j++) {//y
+      if (judge_area[k].judge >= overlap) {//後で2に
+        my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+        my_percentage++;
+      }
+      k++;
     }
-    k++;
   }
-}
-for(let i = 0; i < 46; i++){
-  for(let j = 0; j < 46; j++){
-    if(judge_area[l].judge == 2){
-      ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);
-      ot_percentege++;
+  for (let i = 0; i < 46; i++) {
+    for (let j = 0; j < 46; j++) {
+      if (judge_area[l].judge == 2) {
+        ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);
+        ot_percentege++;
+      }
+      l++;
     }
-    l++;
   }
-}
-return my_percentage;
+  return my_percentage;
 }
 
-function collective(){
+function collective() {
   let index = 100000;
   gene_level = Number(gene_level);
   console.log(exp_level, gene_level, counter, genekeep[gene_level].length);
-  for(i = 0; i <  genekeep[gene_level].length; i++){
-    if(genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter + 1){
+  for (i = 0; i < genekeep[gene_level].length; i++) {
+    if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter + 1) {
       index = i;
       break;
     }
   }
-  if(index != 100000){
-    for(i = 0; i < 5; i++){
+  if (index != 100000) {
+    for (i = 0; i < 5; i++) {
       console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
       array[counter][i + 1].x = genekeep[gene_level][index + i]["x_coordinate"];
-      array[counter][i + 1].y = genekeep[gene_level][index + i]["y_coordinate"];    
+      array[counter][i + 1].y = genekeep[gene_level][index + i]["y_coordinate"];
     }
     draw(counter);
-  }else{
+  } else {
   }
 }
 
@@ -569,12 +569,12 @@ function area(rota) {
       let my_percent = percent(my_area_percentage);
       let ot_percent = percent(ot_area_percentage);
 
-      function percent(area_percentage){
-      area_percentage = area_percentage / 2116 * 100;
-      area_percentage = String(area_percentage);
-      area_percentage = parseInt(area_percentage, 10);
-      area_percentage = area_percentage + '%';
-      return area_percentage;
+      function percent(area_percentage) {
+        area_percentage = area_percentage / 2116 * 100;
+        area_percentage = String(area_percentage);
+        area_percentage = parseInt(area_percentage, 10);
+        area_percentage = area_percentage + '%';
+        return area_percentage;
       }
       document.getElementById('my_area_percentage').innerHTML = my_percent;
       document.getElementById('ot_area_percentage').innerHTML = ot_percent;
@@ -626,14 +626,14 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
 }
 
 function merge(sub, ob) {
- let sum_judge = sub;
-    for (i = 0; i < sub.length; i++) {
-      if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-        sum_judge[i].judge = sub[i].judge;
-      } else {
-        sum_judge[i].judge = 0;
-      }
+  let sum_judge = sub;
+  for (i = 0; i < sub.length; i++) {
+    if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
+      sum_judge[i].judge = sub[i].judge;
+    } else {
+      sum_judge[i].judge = 0;
     }
+  }
   return sum_judge;
 }
 
@@ -681,7 +681,7 @@ function calculation(rota, data) {
 
 
 
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA",my_imagearray_center)
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA", my_imagearray_center)
   console.log('左ｘ', my_player1_x);
   console.log('左ｙ', my_player1_y);
   console.log('右ｘ', my_player2_x);

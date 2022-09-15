@@ -46,6 +46,13 @@
     width         : 20%;
     position      : relative;
     top           : 3.5rem;
+    box-shadow      : 0.1rem 0.1rem 0 0 rgba(0,0,0,0.5);
+}
+#button-check:active{
+  background-color: rgb(75, 177, 245);
+  -webkit-transform: translateY(0.1rem);
+  transform: translateY(0.1rem);
+  border-bottom: none;
 }
 
 /* === バックグランド ============================== */
@@ -496,6 +503,7 @@ input[type=range].slider::-webkit-slider-thumb {
   padding         : 1rem;
   position        : absolute;
   left            : 1rem;
+  box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
 }
 
 #register_btn {
@@ -517,5 +525,19 @@ input[type=range].slider::-webkit-slider-thumb {
   padding         : 1rem;
   position        : absolute;
   right           : -1.5rem;
-  box-shadow      : 0.5rem 0.5rem 0 0 rgba(0,0,0,0.5);
+  box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
+}
+
+#rotation_button:active{
+  background-color: rgb(75, 177, 245);
+  -webkit-transform: translateY(0.1rem);
+  transform: translateY(0.1rem);
+  border-bottom: none;
+}
+
+#registere_btn:active{
+  background-color: rgb(75, 177, 245);
+  -webkit-transform: translateY(0.1rem);
+  transform: translateY(0.1rem);
+  border-bottom: none;
 }
