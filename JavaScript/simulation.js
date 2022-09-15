@@ -348,7 +348,7 @@ let imagearray = [
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 //under_canvasに描画する準備
-let canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5","under_canvas6"];
+let canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5", "under_canvas6"];
 const under_canvas = [];
 const under_context = [];
 for (let i = 0; i < 6; i++) {
@@ -450,17 +450,17 @@ window.addEventListener('DOMContentLoaded', () => {
         images[0][i].addEventListener('load', () => {
             context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size)
         })
-            for (let j = 0; j < 6; j++) {
-                images[i][j].addEventListener('load', () => {
+        for (let j = 0; j < 6; j++) {
+            images[i][j].addEventListener('load', () => {
                 under_context[i].drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
-                })
-            }   
+            })
+        }
     };
 
     //画像読み込み終わってからソース取得する
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 6; j++) {
-            images[i][j].src = img[i][j];       
+            images[i][j].src = img[i][j];
         }
     }
 });
@@ -496,12 +496,23 @@ function draw(rota) {
 }
 
 //ドラッグ開始処理
-let mousedown = function (e) {
+let mousedown = function (e, type) {
+    //タッチのデフォルト処理を禁止
+    e.preventDefault();
+
+
 
     //ドラッグ開始時のウェブサイト上のマウスの座標
     let rect = canvas.getBoundingClientRect();
-    let posX = parseInt(e.clientX) - rect.left;
-    let posY = parseInt(e.clientY) - rect.top;
+    let posX;
+    let posY;
+    if (type == 0) {
+        posX = parseInt(e.clientX) - rect.left;
+        posY = parseInt(e.clientY) - rect.top;
+    } else if (type == 1) {
+        posX = parseInt(e.targetTouches[0].clientX) - rect.left;
+        posY = parseInt(e.targetTouches[0].clientY) - rect.top;
+    }
 
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
@@ -519,7 +530,7 @@ let mousedown = function (e) {
         //コマの中心座標
         let centerX = imagearray_center[counter][i].x;
         let centerY = imagearray_center[counter][i].y;
-        let name = [kensuke,rui,hinata,kento,riku,keisuke];
+        let name = [kensuke, rui, hinata, kento, riku, keisuke];
 
         //コマの当たり判定処理
         if ((centerX - canvasX) * (centerX - canvasX) + (centerY - canvasY) * (centerY - canvasY) <= (koma_h / 2 * size) * (koma_h / 2 * size)) {
@@ -529,29 +540,39 @@ let mousedown = function (e) {
             startY = centerY;//ドラッグ開始時のコマのy座標
             dragmode = true;//ドラッグモードにする
 
-            for(let i = 1; i <= 6; i++){
-                if(dragkoma==i){
+            for (let i = 1; i <= 6; i++) {
+                if (dragkoma == i) {
                     document.getElementById("face_img").src = img[counter][dragkoma];
                     let new_name = name;
-                    name[dragkoma].style.display = "block"; 
+                    name[dragkoma].style.display = "block";
                     new_name = name.filter(n => n !== name[dragkoma]);
-                    for(let j = 0; j < new_name.length; j++){
+                    for (let j = 0; j < new_name.length; j++) {
                         new_name[j].style.display = "none";
                     }
                 }
-             
-                   
+
+
             }
         }
     }
 }
 
 //ドラッグ中処理
-let mousemove = function (e) {
+let mousemove = function (e, type) {
+    //タッチのデフォルト処理を禁止
+    e.preventDefault();
+
     // ドラッグ終了位置
     let rect = canvas.getBoundingClientRect();
-    let posX = parseInt(e.clientX) - rect.left;
-    let posY = parseInt(e.clientY) - rect.top;
+    let posX;
+    let posY;
+    if (type == 0) {
+        posX = parseInt(e.clientX) - rect.left;
+        posY = parseInt(e.clientY) - rect.top;
+    } else if (type == 1) {
+        posX = parseInt(e.targetTouches[0].clientX) - rect.left;
+        posY = parseInt(e.targetTouches[0].clientY) - rect.top;
+    }
 
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
@@ -561,7 +582,7 @@ let mousemove = function (e) {
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
 
-  
+
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -578,7 +599,7 @@ let mousemove = function (e) {
                 y = canvasY - koma_h / 2 * size;
                 let min;
 
-                function right_const(dragkoma,counter,right_id){
+                function right_const(dragkoma, counter, right_id) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 10;
                         dragmode = false;
@@ -586,14 +607,14 @@ let mousemove = function (e) {
                     }
                 }
 
-                function left_const(dragkoma,counter,left_id){
+                function left_const(dragkoma, counter, left_id) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 10;
                         dragmode = false;
                         console.log('左の選手を超えようとした');
                     }
                 }
-                function van_const(dragkoma,counter,van1_id,van2_id,van3_id) {
+                function van_const(dragkoma, counter, van1_id, van2_id, van3_id) {
                     if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van3_id].y) {
                         if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y) {
                             min = imagearray[counter][van1_id].y;
@@ -608,7 +629,7 @@ let mousemove = function (e) {
                     }
                 }
 
-                function rear_const(dragkoma,counter,rear1_id,rear2_id,rear3_id) {
+                function rear_const(dragkoma, counter, rear1_id, rear2_id, rear3_id) {
                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear3_id].y) {
                         if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
                             min = imagearray[counter][rear1_id].y;
@@ -621,10 +642,10 @@ let mousemove = function (e) {
                         dragmode = false;
                         console.log('後衛の選手を超えようとした');
                     }
-          
+
                 }
 
-                function srear_const(dragkoma,counter,rear1_id,rear2_id){
+                function srear_const(dragkoma, counter, rear1_id, rear2_id) {
                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
                         if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
                             min = imagearray[counter][rear1_id].y;
@@ -643,25 +664,25 @@ let mousemove = function (e) {
                     case 0://1ローテーション目
                         switch (dragkoma) {
                             case 1://前衛真ん中
-                                right_const(dragkoma,counter,2);
-                                rear_const(dragkoma,counter,3,4,5)
+                                right_const(dragkoma, counter, 2);
+                                rear_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 2://前衛右
-                                left_const(dragkoma,counter,1)
-                                rear_const(dragkoma,counter,3,4,5)
+                                left_const(dragkoma, counter, 1)
+                                rear_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 3://後衛右
-                                left_const(dragkoma,counter,4)
-                                van_const(dragkoma,counter,0,1,2)
+                                left_const(dragkoma, counter, 4)
+                                van_const(dragkoma, counter, 0, 1, 2)
                                 break;
                             case 4://後衛真ん中
-                                right_const(dragkoma,counter,3)
-                                left_const(dragkoma,counter,5)
-                                van_const(dragkoma,counter,0,1,2)
+                                right_const(dragkoma, counter, 3)
+                                left_const(dragkoma, counter, 5)
+                                van_const(dragkoma, counter, 0, 1, 2)
                                 break;
                             case 5://後衛左
-                                right_const(dragkoma,counter,4)
-                                van_const(dragkoma,counter,0,1,2)
+                                right_const(dragkoma, counter, 4)
+                                van_const(dragkoma, counter, 0, 1, 2)
                                 break;
                             default:
                                 break;
@@ -670,25 +691,25 @@ let mousemove = function (e) {
                     case 1://2ローテーション目
                         switch (dragkoma) {
                             case 1://前衛右
-                                left_const(dragkoma,counter,5)
-                                rear_const(dragkoma,counter,2,3,4)
+                                left_const(dragkoma, counter, 5)
+                                rear_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             case 2://後衛右
-                                left_const(dragkoma,counter,3)
-                                van_const(dragkoma,counter,0,1,5)
+                                left_const(dragkoma, counter, 3)
+                                van_const(dragkoma, counter, 0, 1, 5)
                                 break;
                             case 3://後衛真ん中
-                                right_const(dragkoma,counter,2)
-                                left_const(dragkoma,counter,4)
-                                van_const(dragkoma,counter,0,1,5)
+                                right_const(dragkoma, counter, 2)
+                                left_const(dragkoma, counter, 4)
+                                van_const(dragkoma, counter, 0, 1, 5)
                                 break;
                             case 4://後衛左
-                                right_const(dragkoma,counter,3)
-                                van_const(dragkoma,counter,0,1,5)
+                                right_const(dragkoma, counter, 3)
+                                van_const(dragkoma, counter, 0, 1, 5)
                                 break;
                             case 5://前衛左
-                                right_const(dragkoma,counter,1)
-                                rear_const(dragkoma,counter,2,3,4)
+                                right_const(dragkoma, counter, 1)
+                                rear_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             default:
                                 break;
@@ -697,25 +718,25 @@ let mousemove = function (e) {
                     case 2://3ローテーション目
                         switch (dragkoma) {
                             case 1://後衛右
-                                left_const(dragkoma,counter,2)
-                                van_const(dragkoma,counter,0,4,5)
+                                left_const(dragkoma, counter, 2)
+                                van_const(dragkoma, counter, 0, 4, 5)
                                 break;
                             case 2://後衛真ん中
-                                right_const(dragkoma,counter,1)
-                                left_const(dragkoma,counter,3)
-                                van_const(dragkoma,counter,0,4,5)
+                                right_const(dragkoma, counter, 1)
+                                left_const(dragkoma, counter, 3)
+                                van_const(dragkoma, counter, 0, 4, 5)
                                 break;
                             case 3://後衛左
-                                right_const(dragkoma,counter,2)
-                                van_const(dragkoma,counter,0,4,5)
+                                right_const(dragkoma, counter, 2)
+                                van_const(dragkoma, counter, 0, 4, 5)
                                 break;
                             case 4://前衛左
-                                right_const(dragkoma,counter,5)
-                                rear_const(dragkoma,counter,1,2,3)
+                                right_const(dragkoma, counter, 5)
+                                rear_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             case 5://前衛真ん中
-                                left_const(dragkoma,counter,4)
-                                rear_const(dragkoma,counter,1,2,3)
+                                left_const(dragkoma, counter, 4)
+                                rear_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             default:
                                 break;
@@ -725,21 +746,21 @@ let mousemove = function (e) {
                     case 3://4ローテーション目
                         switch (dragkoma) {
                             case 1://後衛真ん中
-                                left_const(dragkoma,counter,2)
-                                van_const(dragkoma,counter,3,4,5)
+                                left_const(dragkoma, counter, 2)
+                                van_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 2://後衛左
-                                right_const(dragkoma,counter,1)
-                                van_const(dragkoma,counter,3,4,5)
+                                right_const(dragkoma, counter, 1)
+                                van_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 3://前衛左
-                                right_const(dragkoma,counter,4)
-                                srear_const(dragkoma,counter,1,2)
+                                right_const(dragkoma, counter, 4)
+                                srear_const(dragkoma, counter, 1, 2)
                                 break;
                             case 4://前衛真ん中
-                                right_const(dragkoma,counter,5)
-                                left_const(dragkoma,counter,3)
-                                srear_const(dragkoma,counter,1,2,)
+                                right_const(dragkoma, counter, 5)
+                                left_const(dragkoma, counter, 3)
+                                srear_const(dragkoma, counter, 1, 2,)
                                 break;
                             case 5://前衛右
                                 //左の選手を超えようとした
@@ -783,12 +804,12 @@ let mousemove = function (e) {
                     case 4://5ローテーション目
                         switch (dragkoma) {
                             case 1://後衛左
-                                right_const(dragkoma,counter,5)
-                                van_const(dragkoma,counter,2,3,4)
+                                right_const(dragkoma, counter, 5)
+                                van_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             case 2://前衛左
-                                right_const(dragkoma,counter,3)
-                                srear_const(dragkoma,counter,1,5)
+                                right_const(dragkoma, counter, 3)
+                                srear_const(dragkoma, counter, 1, 5)
                                 break;
                             case 3://前衛真ん中
                                 //左の選手を超えようとした
@@ -832,12 +853,12 @@ let mousemove = function (e) {
                                 }
                                 break;
                             case 4://前衛右
-                                left_const(dragkoma,counter,3)
-                                srear_const(dragkoma,counter,1,5)
+                                left_const(dragkoma, counter, 3)
+                                srear_const(dragkoma, counter, 1, 5)
                                 break;
                             case 5://後衛右
-                                left_const(dragkoma,counter,1)
-                                van_const(dragkoma,counter,2,3,4)
+                                left_const(dragkoma, counter, 1)
+                                van_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             default:
                                 break;
@@ -879,21 +900,21 @@ let mousemove = function (e) {
                                 }
                                 break;
                             case 2://前衛真ん中
-                                right_const(dragkoma,counter,3)
-                                left_const(dragkoma,counter,1)
-                                srear_const(dragkoma,counter,4,5)
+                                right_const(dragkoma, counter, 3)
+                                left_const(dragkoma, counter, 1)
+                                srear_const(dragkoma, counter, 4, 5)
                                 break;
                             case 3://前衛右
-                                left_const(dragkoma,counter,2)
-                                srear_const(dragkoma,counter,4,5)
+                                left_const(dragkoma, counter, 2)
+                                srear_const(dragkoma, counter, 4, 5)
                                 break;
                             case 4://後衛右
-                                left_const(dragkoma,counter,5)
-                                van_const(dragkoma,counter,1,2,3)
+                                left_const(dragkoma, counter, 5)
+                                van_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             case 5://後衛真ん中
-                                right_const(dragkoma,counter,4)
-                                van_const(dragkoma,counter,1,2,3)
+                                right_const(dragkoma, counter, 4)
+                                van_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             default:
                                 break;
@@ -911,10 +932,10 @@ let mousemove = function (e) {
 
             // 画像を描画
             context.drawImage(images[counter][i], x, y, w, h);
-                    under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
-                    for (let j = 5; j >= 0; j--) {
-                        under_context[counter].drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-                    }
+            under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
+            for (let j = 5; j >= 0; j--) {
+                under_context[counter].drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
+            }
             if (counter == 0) {
                 under_context[0].clearRect(0, 0, under_canvas[0].width, under_canvas[0].height);
                 for (let j = 5; j >= 0; j--) {
@@ -943,6 +964,11 @@ canvas.addEventListener('mousedown', function (e) { mousedown(e); }, false);
 canvas.addEventListener('mousemove', function (e) { mousemove(e); }, false);
 canvas.addEventListener('mouseup', function (e) { mouseup(e); }, false);
 canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
+canvas.addEventListener('touchstart', function (e) { mousedown(e, 1); }, false);
+canvas.addEventListener('touchmove', function (e) { mousemove(e, 1); }, false);
+canvas.addEventListener('touchend', function (e) { mouseup(e); }, false);
+canvas.addEventListener('touchcancel', function (e) { mouseout(e); false });
+
 
 //ローテーション
 function rotation() {
@@ -1204,7 +1230,7 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
             if (j9[i].judge == 2) {
                 j_count++;
             }
-        }else{
+        } else {
             judge_sum[i].judge = 2;
         }
     }
