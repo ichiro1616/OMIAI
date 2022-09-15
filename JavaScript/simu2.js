@@ -1,19 +1,19 @@
-let cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
-{ x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
+// let cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
+// { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
 // let cdt_center = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
 // { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
 
 
-let imagearray = [
-    [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
-    [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
-    [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
-    [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
-    [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
-    [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
-];
+// let imagearray = [
+//     [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
+//     [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
+//     [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
+//     [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
+//     [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
+//     [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
+// ];
 
 // let imagearray_center = imagearray;
 
@@ -187,164 +187,164 @@ let imagearray_center = [
 ];
 
 //コマの座標（左上基準）
-// let imagearray = [
-//     [
-//         {
-//             x: 50,
-//             y: 10,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//     ],
-//     [
-//         {
-//             x: 550,
-//             y: 10,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//     ],
-//     [
-//         {
-//             x: 840,
-//             y: 10,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//     ],
-//     [
-//         {
-//             x: 870,
-//             y: 460,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//     ],
-//     [
-//         {
-//             x: 350,
-//             y: 460,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//     ],
-//     [
-//         {
-//             x: 50,
-//             y: 460,
-//         },
-//         {
-//             x: 160,
-//             y: 370,
-//         },
-//         {
-//             x: 460,
-//             y: 370,
-//         },
-//         {
-//             x: 760,
-//             y: 370,
-//         },
-//         {
-//             x: 620,
-//             y: 600,
-//         },
-//         {
-//             x: 310,
-//             y: 600,
-//         },
-//     ],
-// ];
+let imagearray = [
+    [
+        {
+            x: 50,
+            y: 10,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+    ],
+    [
+        {
+            x: 550,
+            y: 10,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+    ],
+    [
+        {
+            x: 840,
+            y: 10,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+    ],
+    [
+        {
+            x: 870,
+            y: 460,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+    ],
+    [
+        {
+            x: 350,
+            y: 460,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+    ],
+    [
+        {
+            x: 50,
+            y: 460,
+        },
+        {
+            x: 160,
+            y: 370,
+        },
+        {
+            x: 460,
+            y: 370,
+        },
+        {
+            x: 760,
+            y: 370,
+        },
+        {
+            x: 620,
+            y: 600,
+        },
+        {
+            x: 310,
+            y: 600,
+        },
+    ],
+];
 
 //canvasに描画する準備
 const canvas = document.getElementById('canvas3');
@@ -432,7 +432,7 @@ imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
-    row_justify_content_center.style.display = 'none';
+    // row_justify_content_center.style.display = 'none';
     document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
     experience_years = 2; //経験年数の初期値は2
     console.log('経験年数', experience_years);
@@ -473,7 +473,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function simulation() {
     simulation_area.style.display = "block";
-    row_justify_content_center.style.display = "block";
+    // row_justify_content_center.style.display = "block";
     experience.style.display = "none";
     kensuke.style.display = "block";//けんすけ
     rui.style.display = "none";//るい
@@ -499,14 +499,33 @@ function draw(rota) {
 }
 
 //ドラッグ開始処理
-let mousedown = function (e) {
+let mousedown = function (e, type) {
 
-    console.log('mousedown');
+    console.log('type', type);
+    if (type == 0) {
+        console.log('mousedown');
+    } else if (type == 1) {
+        console.log('touchstart');
+    }
+
+    //タッチのデフォルト処理を禁止
+    e.preventDefault();
+
+    // console.log('targetTouches', e.targetTouches[0].clientX);
+
 
     //ドラッグ開始時のウェブサイト上のマウスの座標
     let rect = canvas.getBoundingClientRect();
-    let posX = parseInt(e.clientX) - rect.left;
-    let posY = parseInt(e.clientY) - rect.top;
+    let posX;
+    let posY;
+
+    if (type == 0) {
+        posX = parseInt(e.clientX) - rect.left;
+        posY = parseInt(e.clientY) - rect.top;
+    } else if (type == 1) {
+        posX = parseInt(e.targetTouches[0].clientX) - rect.left;
+        posY = parseInt(e.targetTouches[0].clientY) - rect.top;
+    }
 
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
@@ -556,14 +575,28 @@ let mousedown = function (e) {
 // let my_x;
 // let your_x;
 //ドラッグ中処理
-let mousemove = function (e) {
+let mousemove = function (e, type) {
 
-    console.log('mousemove');
 
+
+    if (type == 0) {
+        console.log('mousemove');
+    } else if (type == 1) {
+        console.log('touchmove');
+    }
     // ドラッグ終了位置
     let rect = canvas.getBoundingClientRect();
-    let posX = parseInt(e.clientX) - rect.left;
-    let posY = parseInt(e.clientY) - rect.top;
+    let posX;
+    let posY;
+
+    if (type == 0) {
+        posX = parseInt(e.clientX) - rect.left;
+        posY = parseInt(e.clientY) - rect.top;
+    } else if (type == 1) {
+        posX = parseInt(e.targetTouches[0].clientX) - rect.left;
+        posY = parseInt(e.targetTouches[0].clientY) - rect.top;
+    }
+
 
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
@@ -1417,9 +1450,14 @@ let mousemove = function (e) {
 };
 
 //ドラッグ終了処理
-let mouseup = function (e) {
+let mouseup = function (e, type) {
 
-    console.log('mouseup');
+    if (type == 0) {
+        console.log('mouseup');
+    } else if (type == 1) {
+        console.log('touchend');
+    }
+
 
     if (dragmode) {
         area(counter);
@@ -1429,19 +1467,24 @@ let mouseup = function (e) {
 }
 
 //コマ以外を押したとき
-let mouseout = function (e) {
-    console.log('mouseout');
+let mouseout = function (e, type) {
+    if (type == 0) {
+        console.log('mouseout');
+    } else if (type == 1) {
+        console.log('touchcancel');
+    }
+
     mouseup(e);
 }
 
-canvas.addEventListener('mousedown', function (e) { mousedown(e); }, false);
-canvas.addEventListener('mousemove', function (e) { mousemove(e); }, false);
-canvas.addEventListener('mouseup', function (e) { mouseup(e); }, false);
-canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
-// canvas.addEventListener('touchstart', function (e) { mousedown(e); }, false);
-// canvas.addEventListener('touchmove', function (e) { mousemove(e); }, false);
-// canvas.addEventListener('touchend', function (e) { mouseup(e); }, false);
-// canvas.addEventListener('pointerout', function (e) { mouseout(e); false });
+canvas.addEventListener('mousedown', function (e) { mousedown(e, 0); }, false);
+canvas.addEventListener('mousemove', function (e) { mousemove(e, 0); }, false);
+canvas.addEventListener('mouseup', function (e) { mouseup(e, 0); }, false);
+canvas.addEventListener('mouseout', function (e) { mouseout(e, 0); false });
+canvas.addEventListener('touchstart', function (e) { mousedown(e, 1); }, false);
+canvas.addEventListener('touchmove', function (e) { mousemove(e, 1); }, false);
+canvas.addEventListener('touchend', function (e) { mouseup(e, 1); }, false);
+canvas.addEventListener('touchcancel', function (e) { mouseout(e, 1); false });
 
 
 //ローテーション
@@ -1503,7 +1546,7 @@ const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
 const red = '';
 const blue = '';
 context_omiai.fillStyle = omiai_color;//色
-context_omiai.globalAlpha = 0.4;//不透明度 0.7
+context_omiai.globalAlpha = 0.3;//不透明度 0.4
 
 // under_canvas
 // const canvas_under = document.getElementById('under_area');//お見合い範囲用
@@ -1522,7 +1565,7 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 
-let overlap = 4;//何個重なるかのパラメータ
+let overlap = 3;//何個重なるかのパラメータ
 
 //judge_area, rota
 //j0, j1, j2, j3, j4, j5, j6, j7, j8, j9
@@ -1574,9 +1617,27 @@ function omiai(judge_area, rota) {
     //         break;
     // }
 
+    // for (let i = 0; i < 46; i++) {//x
+    //     for (let j = 0; j < 46; j++) {//y
+    //         if (judge_area[k].judge == 2) {
+    //             context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //             percentage++;
+    //         }
+
+    //         //後で消す　お見合い範囲デバッグ用
+    //         // if (omiaiarea[k].judge == 0) {
+    //         //     context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //         // }
+
+
+    //         k++;
+    //     }
+    // }
+
+
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap) {
+            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1646,11 +1707,11 @@ function area(rota) {
                     subject_array.push(data[i]);
                 } else if (data[i].type == 1) {
                     //客観的
-                    object_array.puch(data[i]);
+                    object_array.push(data[i]);
                 }
             }
-            // console.log('sub', subject_array);
-            // console.log(object_array);
+            console.log('sub', subject_array);
+            console.log('ob', object_array);
             //主観的データをペアごとに分ける各255
             for (i = 0; i < subject_array.length; i++) {
                 switch (subject_array[i].left_player * subject_array[i].right_player) {
@@ -1701,6 +1762,20 @@ function area(rota) {
             let judge_color_sub_9 = calculation(counter, data_array_sub_9);
 
             console.log('----------------------------');
+
+            // context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
+            // let area_percentage = omiai(judge_color_sub_0, rota);
+            // area_percentage = omiai(judge_color_sub_1, rota);
+            // area_percentage = omiai(judge_color_sub_2, rota);
+            // area_percentage = omiai(judge_color_sub_3, rota);
+            // area_percentage = omiai(judge_color_sub_4, rota);
+            // area_percentage = omiai(judge_color_sub_5, rota);
+            // area_percentage = omiai(judge_color_sub_6, rota);
+            // area_percentage = omiai(judge_color_sub_7, rota);
+            // area_percentage = omiai(judge_color_sub_8, rota);
+            // area_percentage = omiai(judge_color_sub_9, rota);
+
+
 
             // let area_percentage = omiai(omiaiarea, rota);//後で
 
