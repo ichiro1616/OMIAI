@@ -412,7 +412,7 @@ let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）�
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-let overlap = 4;
+let overlap = 3;
 
 function omiai(judge_area){
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
