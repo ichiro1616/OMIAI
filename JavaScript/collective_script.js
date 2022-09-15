@@ -414,7 +414,7 @@ originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
 
-function omiai(judge_area) {
+function omiai(judge_area,rota) {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k = 0;
@@ -423,7 +423,7 @@ function omiai(judge_area) {
   let ot_percentege = 0;
   for (let i = 0; i < 46; i++) {//x
     for (let j = 0; j < 46; j++) {//y
-      if (judge_area[k].judge >= overlap) {//後で2に
+      if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
         my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
         my_percentage++;
       }
@@ -503,7 +503,7 @@ function area(rota) {
           subject_array.push(data[i]);
         } else if (data[i].type == 1) {
           //客観的
-          object_array.puch(data[i]);
+          object_array.push(data[i]);
         }
       }
       //主観的データをペアごとに分ける各255
@@ -568,25 +568,15 @@ function area(rota) {
       // let area_percentage = omiai(judge_color_sub_1, rota)
       let my_percent = percent(my_area_percentage);
       let ot_percent = percent(ot_area_percentage);
-
-<<<<<<< HEAD
-      function percent(area_percentage){
-        if (isNaN(area_percentage)) {
+      function percent(area_percentage) {
+        if(isNaN(area_percentage)){
           area_percentage = 0;
         }
-      area_percentage = area_percentage / 2116 * 100;
-      area_percentage = String(area_percentage);
-      area_percentage = parseInt(area_percentage, 10);
-      area_percentage = area_percentage + '%';
-      return area_percentage;
-=======
-      function percent(area_percentage) {
         area_percentage = area_percentage / 2116 * 100;
         area_percentage = String(area_percentage);
         area_percentage = parseInt(area_percentage, 10);
         area_percentage = area_percentage + '%';
         return area_percentage;
->>>>>>> 23c59422dc9f703773f863256a3835607a5f4671
       }
       document.getElementById('my_area_percentage').innerHTML = my_percent;
       document.getElementById('ot_area_percentage').innerHTML = ot_percent;
@@ -693,7 +683,6 @@ function calculation(rota, data) {
 
 
 
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA", my_imagearray_center)
   console.log('左ｘ', my_player1_x);
   console.log('左ｙ', my_player1_y);
   console.log('右ｘ', my_player2_x);

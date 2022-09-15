@@ -232,19 +232,7 @@ input[type=range].slider::-webkit-slider-thumb {
   top             : -0.5rem;
   left            : 0.6rem;
 }
-/* 
-#under_canvas1,
-#under_canvas3,
-#under_canvas2 {
-    position: absolute;
-      left: 0;
-      top: 0;
-      border: 0;
-      max-width: 75%;
-      box-sizing: content-box;
-      padding: 0;
-      margin: 0;
-} */
+
 
 #under_canvas1 {
   border          : 0;
@@ -254,22 +242,13 @@ input[type=range].slider::-webkit-slider-thumb {
   /* width: 100%; */
   box-sizing      : content-box;
   padding         : 0;
-  z-index: 2;
-}
+  background-image: url("../Picture/バレーコート背景.png");
+  background-size: 100%;
+  }
 
 .col-10{
   border          : 0.1rem solid;
   border-color    : #cbcee4;
-}
-
-#under_canvas1-2 {
-    z-index: 0;
-    background-image: url("../Picture/バレーコート背景.png");
-    background-size: 100%;
-}
-
-#under_canvas1-3 {
-  z-index: 1;
 }
 
 

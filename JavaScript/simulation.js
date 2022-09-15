@@ -979,6 +979,7 @@ function rotation() {
     }
     console.log("ローテーション", counter);
     draw(counter);
+    context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     area(counter);
 }
 
@@ -990,8 +991,6 @@ function rotation() {
 const canvas_omiai = document.getElementById('canvas1');//お見合い範囲用
 const context_omiai = canvas_omiai.getContext('2d');
 const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-const red = '';
-const blue = '';
 context_omiai.fillStyle = omiai_color;//色
 context_omiai.globalAlpha = 0.4;//不透明度 0.7
 
@@ -1012,7 +1011,7 @@ let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）�
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-let overlap = 4;
+let overlap = 3;
 function omiai(judge_area, rota) {
     // canvas4内を一旦クリア
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
@@ -1021,7 +1020,7 @@ function omiai(judge_area, rota) {
     //後で　ローテーションごとのいる
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
+            if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
@@ -1043,32 +1042,7 @@ function omiai(judge_area, rota) {
     let pisiY = (oriY - enY) / 46;
     oriY = oriY - pisiY;
     enX = enX - pisiX;
-    // switch (rota) {
-    //     case 0:
-    //         let tem = 0;
-    //         under_context3[0].clearRect(0, 0, under_canvas3[0].width, under_canvas3[0].height);
-    //         for (i = 0; i < 46; i++) {
-    //             for (j = 0; j < 46; j++) {
-    //                 if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
-    //                     under_context3[0].fillRect(oriX + i * pisiX, oriY - j * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
-    //                 }
-    //                 tem++;
-    //             }
-    //         }
 
-    //         break;
-    //     case 1:
-    //         break;
-    //     case 2:
-    //         break;
-    //     case 3:
-    //         break;
-    //     case 4:
-    //         break;
-    //     case 5:
-    //         break;
-    // }
-<<<<<<< HEAD
     for(let i = 0; i < 6 ;i++){
     if(rota==i){
     let tem = 0;
@@ -1077,22 +1051,14 @@ function omiai(judge_area, rota) {
         for (k = 0; k < 46; k++) {
             if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
                 under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
-=======
-
-    for (let i = 0; i < 46; i++) {//x
-        for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap) {
-                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage++;
->>>>>>> 23c59422dc9f703773f863256a3835607a5f4671
             }
             tem++;
         }
     }
-  }
- }
-
+}
+    }
     return percentage;
+
 }
 //---------------------------------------------------------------
 // パターン
@@ -1254,6 +1220,7 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
             if (j9[i].judge == 2) {
                 j_count++;
             }
+            judge_sum[i].judge = j_count;
         } else {
             judge_sum[i].judge = 2;
         }
@@ -1337,6 +1304,7 @@ function calculation(rota, data) {
     //右の選手
     let player2_x = imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
     let player2_y = imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
+    player2_y = Math.abs(player2_y);
 
     let reverce = 0;
     if (player1_x > player2_x) {
