@@ -11,7 +11,6 @@ Sub_Ob = 5
 player = 6
 
 #dbとの接続・ローテーション別にテーブルから情報を抽出する
-#ダミーデータでの経験年数が1~6表記なのでりくと揃えるときにここを書き換える必要がある
 conn = MySQLdb.connect(
     dbc.host,
     dbc.user,
@@ -90,15 +89,11 @@ print("length_old=", length_old)
 #集合知の計算----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def first():
     print("初回実行")
-    #rotation 0
     gene = 0 #世代の数
     clip = 5  #5人ずつに区切るとき使う変数
     counter = 0 #while文から抜ける用の条件変数
-    datalist = [] #今回の世代のデータを一時的に格納する
     x_tmp = [] #今回の世代のx座標を一時的に格納する
     y_tmp = [] #今回の世代のy座標を一時的に格納する
-    sb_count = [] #0~clipまでの範囲で同じSub_Obを選択した人数をカウント
-    weight = [] #datalistの加重平均を求めるのに使うデータの重み
 
     for Dcount in range(6):
         for h in range(ex_years): #キー：experience_years
@@ -112,19 +107,12 @@ def first():
                         print("h(ex_years)=",h, "i(player_id)=",i)
                         print("generation = ", gene)
                         print("clip = ", clip)
-                        datalist = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['Sub_Ob'][0:clip]).values.tolist()) #0~clip(初期値は5でその後5ずつ増加)までのex_years = h, player_id = iのときのSub_Ob
                         print("----------------------------------------------------")
-                        for j in range(clip): #同じSub_Obが選択されている人数をカウント
-                            sb_count.append(datalist.count(datalist[j]))
-                        for k in range(clip): #同じSub_Obを選択した人 ÷ 範囲内全体の人数で重みを算出
-                            weight.append(round(sb_count[k]/clip,4))
                         x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'][0:clip]).values.tolist())
                         y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['y'][0:clip]).values.tolist())
-                        x = round((np.average(np.array(x_tmp), weights=np.array(weight))),4)
-                        y = round((np.average(np.array(y_tmp), weights=np.array(weight))),4)
+                        x = round((np.mean(np.array(x_tmp))),4)
+                        y = round((np.mean(np.array(y_tmp))),4)
                         clip += 5
-                        print("datalist = ",datalist)
-                        print("weight = ",weight)
                         print("x_tmp = ",x_tmp)
                         print("y_tmp = ", y_tmp)
                         print("x_mean = ", x)
@@ -132,9 +120,6 @@ def first():
                         cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i,x,y))
                         conn.commit() #結果を保存・確定する
                         print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
-                        datalist = [] #データリストの初期化
-                        sb_count = [] #同じSub_Obを選択した人数の初期化
-                        weight = [] #重みの初期化
                         gene += 1
                         time.sleep(0.2)
                 counter = 0
@@ -147,11 +132,8 @@ def first():
 def add():
     print("2回目以降の実行")
     counter = 0 #while文から抜ける用の条件変数
-    datalist = [] #今回の世代のデータを一時的に格納する
     x_tmp = [] #今回の世代のx座標を一時的に格納する
     y_tmp = [] #今回の世代のy座標を一時的に格納する
-    sb_count = [] #0~clipまでの範囲で同じSub_Obを選択した人数をカウント
-    weight = [] #datalistの加重平均を求めるのに使うデータの重み
     flug = 0 #世代計算用のフラグ
 
     for Dcount in range(6):
@@ -181,19 +163,12 @@ def add():
                     if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'])-clip)<=5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合はループから抜ける
                         counter = 1
                     else: #現在取得したデータを5つずつ区切ってその中で平均を出す
-                        datalist = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['Sub_Ob'][0:clip]).values.tolist()) #0~clip(初期値は5でその後5ずつ増加)までのex_years = h, player_id = iのときのSub_Ob
                         print("----------------------------------------------------")
-                        for j in range(clip): #同じSub_Obが選択されている人数をカウント
-                            sb_count.append(datalist.count(datalist[j]))
-                        for k in range(clip): #同じSub_Obを選択した人 ÷ 範囲内全体の人数で重みを算出
-                            weight.append(round(sb_count[k]/clip,4))
                         x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'][0:clip]).values.tolist())
                         y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['y'][0:clip]).values.tolist())
-                        x = round((np.average(np.array(x_tmp), weights=np.array(weight))),4)
-                        y = round((np.average(np.array(y_tmp), weights=np.array(weight))),4)
+                        x = round((np.mean(np.array(x_tmp))),4)
+                        y = round((np.mean(np.array(y_tmp))),4)
                         clip += 5
-                        print("datalist = ",datalist)
-                        print("weight = ",weight)
                         print("x_tmp = ",x_tmp)
                         print("y_tmp = ", y_tmp)
                         print("x_mean = ", x)
@@ -201,9 +176,6 @@ def add():
                         cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i,x,y))
                         conn.commit()
                         print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
-                        datalist = [] #データリストの初期化
-                        sb_count = [] #同じSub_Obを選択した人数の初期化
-                        weight = [] #重みの初期化
                         gene += 1
                         time.sleep(0.2)
                 counter = 0
