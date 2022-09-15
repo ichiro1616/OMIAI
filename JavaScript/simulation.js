@@ -561,6 +561,7 @@ let mousedown = function (e, type) {
 let mousemove = function (e, type) {
     //タッチのデフォルト処理を禁止
     e.preventDefault();
+
     // ドラッグ終了位置
     let rect = canvas.getBoundingClientRect();
     let posX;
@@ -959,8 +960,8 @@ let mouseout = function (e) {
     mouseup(e);
 }
 
-canvas.addEventListener('mousedown', function (e) { mousedown(e); }, false);
-canvas.addEventListener('mousemove', function (e) { mousemove(e); }, false);
+canvas.addEventListener('mousedown', function (e) { mousedown(e, 0); }, false);
+canvas.addEventListener('mousemove', function (e) { mousemove(e, 0); }, false);
 canvas.addEventListener('mouseup', function (e) { mouseup(e); }, false);
 canvas.addEventListener('mouseout', function (e) { mouseout(e); false });
 canvas.addEventListener('touchstart', function (e) { mousedown(e, 1); }, false);
@@ -978,7 +979,6 @@ function rotation() {
     }
     console.log("ローテーション", counter);
     draw(counter);
-    context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     area(counter);
 }
 
@@ -1012,8 +1012,7 @@ let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）�
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
-let overlap = 3;
-
+let overlap = 4;
 function omiai(judge_area, rota) {
     // canvas4内を一旦クリア
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
@@ -1069,6 +1068,7 @@ function omiai(judge_area, rota) {
     //     case 5:
     //         break;
     // }
+<<<<<<< HEAD
     for(let i = 0; i < 6 ;i++){
     if(rota==i){
     let tem = 0;
@@ -1077,6 +1077,14 @@ function omiai(judge_area, rota) {
         for (k = 0; k < 46; k++) {
             if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
                 under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+=======
+
+    for (let i = 0; i < 46; i++) {//x
+        for (let j = 0; j < 46; j++) {//y
+            if (judge_area[k].judge >= overlap) {
+                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+                percentage++;
+>>>>>>> 23c59422dc9f703773f863256a3835607a5f4671
             }
             tem++;
         }
@@ -1139,7 +1147,7 @@ function area(rota) {
                     subject_array.push(data[i]);
                 } else if (data[i].type == 1) {
                     //客観的
-                    object_array.puch(data[i]);
+                    object_array.push(data[i]);
                 }
             }
             //主観的データをペアごとに分ける各255
@@ -1246,9 +1254,8 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
             if (j9[i].judge == 2) {
                 j_count++;
             }
-            judge_sum[i].judge = j_count;
         } else {
-            judge_sum[i].judge = 0;
+            judge_sum[i].judge = 2;
         }
     }
     return judge_sum;
@@ -1300,7 +1307,6 @@ function merge(sub, ob, level) {
     else if (level == 4) {
         sum_judge = ob;
     }
-    console.log(sum_judge)
     return sum_judge;
 }
 
@@ -1331,7 +1337,6 @@ function calculation(rota, data) {
     //右の選手
     let player2_x = imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
     let player2_y = imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
-    player2_y = Math.abs(player2_y);
 
     let reverce = 0;
     if (player1_x > player2_x) {
