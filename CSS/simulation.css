@@ -333,25 +333,32 @@ input[type=range].slider::-webkit-slider-thumb {
   position: absolute;
   width:6.5rem;
   right: 7rem;
-  top:-6rem;
+  top:-5.8rem;
 }
 
 .bubble{
   position:relative;
   width:100%;
 }
+
+.talk_bubble{
+  position:absolute;
+  width:15rem;
+  top:-1rem;
+  left:-3rem;
+}
 #message{
   position:absolute;
   font-size:1.1rem;
   top:3rem;
-  right:4rem;  
+  right:3.5rem;  
 }
 
 .word{
   font-size:2rem;
   position:absolute;
   top:-1rem;
-  left: 10rem;
+  left: 9.7rem;
 }
 
 .bar_and_scale{
