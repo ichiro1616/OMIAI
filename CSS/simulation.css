@@ -707,7 +707,7 @@ input[type=range].slider::-webkit-slider-thumb {
   border-bottom: none;
 }
 
-#registere_btn:active{
+#register_btn:active{
   background-color: rgb(75, 177, 245);
   -webkit-transform: translateY(0.1rem);
   transform: translateY(0.1rem);
