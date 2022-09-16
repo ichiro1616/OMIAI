@@ -380,6 +380,14 @@ function draw(rota) {
   }
 
 }
+const rotation_images = [
+  '../Picture/サイクル_1.png',
+  '../Picture/サイクル_2.png',
+  '../Picture/サイクル_3.png',
+  '../Picture/サイクル_4.png',
+  '../Picture/サイクル_5.png',
+  '../Picture/サイクル_6.png',
+];
 //ローテーションボタンを押されたら
 function rotation() {
   counter++;
@@ -387,10 +395,13 @@ function rotation() {
   if (counter == 6) {
     counter = 0;
   }
+  document.getElementById('rotation_image').src = rotation_images[counter];
   console.log("ローテーション", counter);
   draw(counter);
   collective();
+  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   area(counter)
+
 }
 
 const my_can2 = document.getElementById('my2');
@@ -460,6 +471,7 @@ function collective() {
     }
     draw(counter);
   } else {
+    // 世代がなかった時の処理
   }
 }
 

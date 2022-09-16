@@ -367,6 +367,14 @@ const path = ['../Picture/koma/0/2-1.png', //けんすけ
     '../Picture/koma/4/front/2-5.png', '../Picture/koma/4/back/2-5.png', //りく
     '../Picture/koma/5/front/2-6.png', '../Picture/koma/5/back/2-6.png', //けいすけ
 ];
+const rotation_images = [
+    '../Picture/サイクル_1.png',
+    '../Picture/サイクル_2.png',
+    '../Picture/サイクル_3.png',
+    '../Picture/サイクル_4.png',
+    '../Picture/サイクル_5.png',
+    '../Picture/サイクル_6.png',
+];
 
 const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[4], path[6], path[8], path[9]],
@@ -980,6 +988,7 @@ function rotation() {
     if (counter == 6) {
         counter = 0;
     }
+    document.getElementById('rotation_image').src = rotation_images[counter];
     console.log("ローテーション", counter);
     draw(counter);
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);

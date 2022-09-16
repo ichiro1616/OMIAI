@@ -10,14 +10,10 @@
 </head>
 
 <body>
-    <button type="button" onclick="location.href = 'OMIAI.html' " class="back_btn"><img src="../Picture/戻る矢印.png"
-            height="50" width="50" />戻る</button>
     <h1>比較したい集合知を選んでください</h1>
 
-    <div>
-        <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/6サイクル.png" height="90"
-                width="100" /><br>ローテーションする</button>
-    </div>
+    <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/サイクル_1.png" height="90"
+            width="100" id="rotation_image" /><br></button>
 
     <div>
         <!-- 経験年数選択バー -->
@@ -28,9 +24,9 @@
 
     <div>
         <!-- 経験年数選択バー -->
-        <input type="range" id="experience_change" min="0" max="4" step="1" value="0" style="width: 40%;">
+        <input type="range" id="experience_change" min="0" max="4" step="1" value="0">
         <!-- 世代選択バー -->
-        <input type="range" id="generation_change" min="0" step="1" value="0" style="width: 40%;">
+        <input type="range" id="generation_change" min="0" step="1" value="0">
     </div>
 
     <div>
@@ -53,6 +49,8 @@
         <p>3~5年</p>
         <p>6~9年</p>
         <p>10年以上</p>
+    </div>
+    <div id="wrapping2">
         <p>1世代目</p>
         <p>2世代目</p>
         <p>3世代目</p>
@@ -61,32 +59,32 @@
     </div>
 
     <div id="name">
-        <p>あなたの配置</p>
-        <p>みんなの配置</p>
-        <p>選手配置の差</p>
+        <p id="my_data">あなたの配置</p>
+        <p id="other_data">みんなの配置</p>
+        <p id="comparison_data">選手配置の差</p>
     </div>
 
-    <div>
-        <div id="my_court">
-            <canvas id="my2" width="610" height="610"></canvas>
-            <canvas id="my" width="610" height="610"></canvas>
-            <canvas id="my3" width="610" height="610"></canvas>
-        </div>
-        <div id="other_court">
-            <canvas id="other2" width="610" height="610"></canvas>
-            <canvas id="other" width="610" height="610"></canvas>
-            <canvas id="other3" width="610" height="610"></canvas>
-        </div>
-        <div id="comparison_court">
-            <canvas id="comparison2" width="610" height="610"></canvas>
-            <canvas id="comparison" width="610" height="610"></canvas>
-            <canvas id="comparison3" width="610" height="610"></canvas>
-        </div>
+    <!-- <div id = "all_canvas"> -->
+    <div id="my_court">
+        <canvas id="my2" width="610" height="610"></canvas>
+        <canvas id="my" width="610" height="610"></canvas>
+        <canvas id="my3" width="610" height="610"></canvas>
     </div>
+    <div id="other_court">
+        <canvas id="other2" width="610" height="610"></canvas>
+        <canvas id="other" width="610" height="610"></canvas>
+        <canvas id="other3" width="610" height="610"></canvas>
+    </div>
+    <div id="comparison_court">
+        <canvas id="comparison2" width="610" height="610"></canvas>
+        <canvas id="comparison" width="610" height="610"></canvas>
+        <canvas id="comparison3" width="610" height="610"></canvas>
+    </div>
+    <!-- </div> -->
 
     <div id="range">
-        <p id = "my_area_percentage"></p>
-        <p id = "ot_area_percentage"></p>
+        <p id="my_area_percentage"></p>
+        <p id="ot_area_percentage"></p>
     </div>
 
 
