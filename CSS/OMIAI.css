@@ -110,3 +110,16 @@ body {
     transform: translateY(0.1rem);
     border-bottom: none;
   }
+
+#answer{
+        font-size: 5rem;  /* 文字サイズ */
+        text-align: left;/* 文字位置   */
+}
+#simu{
+    font-size: 5rem;/* 文字サイズ */
+    text-align: left;/* 文字位置   */
+}
+#colle {
+    font-size: 5rem;/* 文字サイズ */
+    text-align: left;/* 文字位置   */
+}
