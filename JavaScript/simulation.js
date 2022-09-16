@@ -500,8 +500,6 @@ let mousedown = function (e, type) {
     //タッチのデフォルト処理を禁止
     e.preventDefault();
 
-
-
     //ドラッグ開始時のウェブサイト上のマウスの座標
     let rect = canvas.getBoundingClientRect();
     let posX;
@@ -582,6 +580,11 @@ let mousemove = function (e, type) {
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
 
+    if (type == 1) {
+        if (canvasX >= canvas.width || canvasX <= 0 || canvasY >= canvas.height || canvasY <= 0) {
+            mouseup(e);
+        }
+    }
 
     if (dragmode) {
         // canvas内を一旦クリア
@@ -1029,9 +1032,9 @@ function omiai(judge_area, rota) {
     }
 
     // under_canvas
-    for(let i = 0;i < under_canvas3.length;i++){
-    under_context3[i].fillStyle = omiai_color;//色
-    under_context3[i].globalAlpha = 0.4;//不透明度 0.7
+    for (let i = 0; i < under_canvas3.length; i++) {
+        under_context3[i].fillStyle = omiai_color;//色
+        under_context3[i].globalAlpha = 0.4;//不透明度 0.7
     }
     let ad = under_canvas3[0].width / canvas_omiai.width;
     let oriX = 76.1 * ad;
@@ -1043,19 +1046,19 @@ function omiai(judge_area, rota) {
     oriY = oriY - pisiY;
     enX = enX - pisiX;
 
-    for(let i = 0; i < 6 ;i++){
-    if(rota==i){
-    let tem = 0;
-    under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
-    for (j = 0; j < 46; j++) {
-        for (k = 0; k < 46; k++) {
-            if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
-                under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    for (let i = 0; i < 6; i++) {
+        if (rota == i) {
+            let tem = 0;
+            under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
+            for (j = 0; j < 46; j++) {
+                for (k = 0; k < 46; k++) {
+                    if (judge_area[tem].judge >= overlap || judge_area[tem].judge == 1) {
+                        under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+                    }
+                    tem++;
+                }
             }
-            tem++;
         }
-    }
-}
     }
     return percentage;
 
