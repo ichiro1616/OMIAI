@@ -83,7 +83,7 @@ function movie_time() {
       submit = videoElement.currentTime;
       //console.log(submit);
       playing = 1;
-      if (stop_time - submit <= 0.33) {
+      if (stop_time - submit <= 0.55) {
         console.log("slow");
         position = 2;
       }
@@ -194,7 +194,7 @@ function percentage() {
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 1000);
+  setTimeout(movie_play, 1200);
 }
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
@@ -223,6 +223,6 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    setTimeout(percentage,50);
+    setTimeout(percentage,100);
   }
 }
