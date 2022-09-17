@@ -655,6 +655,129 @@ input[type=range].slider::-webkit-slider-thumb {
   top             : 22rem;
   left            : 0.2rem;
 }
+#rota0{
+    border: none;
+      cursor: pointer;/* カーソル   */
+      background: #00000000; /* 背景色     */
+      color: #00000000;/* 文字色     */
+      line-height: 100%;/* 1行の高さ  */
+      transition: .3s;/* なめらか変化 */
+      font-weight: bold;
+      letter-spacing: 0.4rem;
+      width: 10.863rem;
+      height: 10.863rem;
+      width: 75%;
+      height: 75%;
+      z-index: 30;
+      padding: 1rem;
+      position: absolute;
+}
+#rota1{
+  border: none;
+  cursor: pointer;
+  /* カーソル   */
+  background: #00000000;
+  /* 背景色     */
+  color: #00000000;
+  /* 文字色     */
+  line-height: 100%;
+  /* 1行の高さ  */
+  transition: .3s;
+  /* なめらか変化 */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10.863rem;
+  height: 10.863rem;
+  width: 75%;
+  height: 75%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
+}#rota2 {
+  border: none;
+  cursor: pointer;
+  /* カーソル   */
+  background: #00000000;
+  /* 背景色     */
+  color: #00000000;
+  /* 文字色     */
+  line-height: 100%;
+  /* 1行の高さ  */
+  transition: .3s;
+  /* なめらか変化 */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10.863rem;
+  height: 10.863rem;
+  width: 75%;
+  height: 75%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
+}#rota3{
+  border: none;
+  cursor: pointer;
+  /* カーソル   */
+  background: #00000000;
+  /* 背景色     */
+  color: #00000000;
+  /* 文字色     */
+  line-height: 100%;
+  /* 1行の高さ  */
+  transition: .3s;
+  /* なめらか変化 */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10.863rem;
+  height: 10.863rem;
+  width: 75%;
+  height: 75%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
+}#rota4{
+  border: none;
+  cursor: pointer;
+  /* カーソル   */
+  background: #00000000;
+  /* 背景色     */
+  color: #00000000;
+  /* 文字色     */
+  line-height: 100%;
+  /* 1行の高さ  */
+  transition: .3s;
+  /* なめらか変化 */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10.863rem;
+  height: 10.863rem;
+  width: 75%;
+  height: 75%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
+}#rota5{
+  border: none;
+  cursor: pointer;
+  /* カーソル   */
+  background: #00000000;
+  /* 背景色     */
+  color: #00000000;
+  /* 文字色     */
+  line-height: 100%;
+  /* 1行の高さ  */
+  transition: .3s;
+  /* なめらか変化 */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10.863rem;
+  height: 10.863rem;
+  width: 75%;
+  height: 75%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
+}
 
 #rotation_button {
   border          : none;

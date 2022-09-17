@@ -355,6 +355,7 @@ for (let i = 0; i < 6; i++) {
     under_canvas[i] = document.getElementById(canvas_id[i]);
     under_context[i] = under_canvas[i].getContext('2d');
 }
+const button_id = ["rota0","rota1","rota2","rota3","rota4","rota5"];
 //スライダーバー
 const SlideBar_experience = document.getElementById('input-range');//経験年数
 const SlideBar_subject_object = document.getElementById('subject_object');//主観的・客観的
@@ -982,8 +983,12 @@ canvas.addEventListener('touchcancel', function (e) { mouseout(e); false });
 
 
 //ローテーション
-function rotation() {
+function rotation(value) {
+    if(value == -1){
     counter++;
+    }else{
+        counter = value;
+    }
     //6回目なら最初に戻す
     if (counter == 6) {
         counter = 0;
