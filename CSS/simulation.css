@@ -12,16 +12,9 @@
 /* ======================================================================================= */
  /* =================================経験年数選択画面===================================== */
 /* ======================================================================================= */
-/* === 文字「経験年数選択バー」 ==================================== */
 #ex{
   position        : relative;
   top             : 3rem;
-}
-.ex_question{
-  position        : relative;
-  top             : 5.5rem;
-  font-size       : 1.2rem;
-  font-weight     : bold;
 }
 
 .check_box{
@@ -45,7 +38,7 @@
     font-weight   : bold;
     width         : 20%;
     position      : relative;
-    top           : 3.5rem;
+    top           : 6rem;
     box-shadow      : 0.1rem 0.1rem 0 0 rgba(0,0,0,0.5);
 }
 #button-check:active{
@@ -101,7 +94,7 @@
 input[type=range].slider {
   -webkit-appearance: none;
   width             : 100%;
-  margin            : 0.7px 0;
+  margin            : 0.7rem 0;
 }
 
 /* === スライダーバー ==================================== */
@@ -114,7 +107,7 @@ input[type=range].slider::-webkit-slider-runnable-track {
   background      : #a6a6aa;
   border-radius   : 2rem;
   position        : relative;
-  top             : 5.5rem;
+  top             : 7.2rem;
   left            : -0.3rem;
   border          : 0.1rem solid;
 }
@@ -140,7 +133,7 @@ input[type=range].slider::-webkit-slider-thumb {
   height          : 1rem;
   width           : 100%;
   color           : rgb(255, 255, 255);
-  top             : 4.04rem;
+  top             : 5.57rem;
   left            : 3.3rem;
   letter-spacing  : 7.3rem;
   box-sizing      : border-box;
@@ -153,8 +146,8 @@ input[type=range].slider::-webkit-slider-thumb {
 #wrapping p{
   float           : none;
   position        : relative;
-  top             : 3rem;
-  left            : 2rem;
+  top             : 4.7rem;
+  left            : 2.1rem;
   width           : 8rem;
   display         : inline-flex;
   font-size       : 0.9rem;
@@ -533,16 +526,16 @@ b{
 }
 
 .word{
-  font-size       : 2rem;
+  font-size       : 1.4rem;
   position        : absolute;
-  top             : -1rem;
-  left            : 9.7rem;
+  top             : 0rem;
+  left            : 5.9rem;
 }
 
 .bar_and_scale{
   position        : relative;
   left            : 4.2rem;
-  top             : 12.5rem;
+  top             : 12.1rem;
 }
 
 .Ob{
@@ -591,7 +584,8 @@ b{
   height            : 14px;
   background        : #a6a6aa;
   border-radius     : 10px;
-  border            : solid 0.08rem black;
+  border            : solid 0.08rem;
+  border-color      : rgb(133, 129, 133);
   z-index           :10;
 }
 ::-webkit-slider-thumb {
