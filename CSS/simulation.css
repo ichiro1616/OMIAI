@@ -43,8 +43,8 @@
 }
 #button-check:active{
   background-color: rgb(75, 177, 245);
-  -webkit-transform: translateY(0.1rem);
-  transform: translateY(0.1rem);
+  -webkit-transform: translateY(0.05rem);
+  transform: translateY(0.05rem);
   border-bottom: none;
 }
 
@@ -784,7 +784,7 @@ b{
 
 #register_btn:active{
   background-color: rgb(75, 177, 245);
-  -webkit-transform: translateY(0.1rem);
-  transform: translateY(0.1rem);
+  -webkit-transform: translateY(0.05rem);
+  transform: translateY(0.05rem);
   border-bottom: none;
 }
