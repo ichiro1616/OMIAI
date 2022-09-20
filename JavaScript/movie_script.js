@@ -81,7 +81,6 @@ function movie_time() {
   videoElement.addEventListener("timeupdate", function () {
     if (position == 0) {
       submit = videoElement.currentTime;
-      //console.log(submit);
       playing = 1;
       if (stop_time - submit <= 0.55) {
         console.log("slow");
@@ -91,7 +90,6 @@ function movie_time() {
     if (position == 2) {
       Velement.playbackRate = 0.2;
       submit = videoElement.currentTime;
-      //console.log(submit);
       if (stop_time - submit <= 0.001) {
         position = 1;
         playing = 0;
@@ -194,7 +192,7 @@ function percentage() {
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 1200);
+  setTimeout(movie_play, 1500);
 }
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
@@ -223,6 +221,7 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    setTimeout(percentage,100);
+    setTimeout(percentage,50);
+    //percentage();
   }
 }
