@@ -996,7 +996,7 @@ function rotation(value) {
     document.getElementById('rotation_image').src = rotation_images[counter];
     console.log("ローテーション", counter);
     draw(counter);
-    under_context3[counter].clearRect(0, 0, under_canvas3[counter].width, under_canvas3[counter].height);
+    // under_context3[counter].clearRect(0, 0, under_canvas3[counter].width, under_canvas3[counter].height);
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     area(counter);
 }
@@ -1546,7 +1546,7 @@ document.getElementById("register_btn").onclick = function () {
         }
     });
     xhr.send(form);
-    location.href = "../HTML/OMIAI.html";
+    // location.href = "../HTML/OMIAI.html";
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
