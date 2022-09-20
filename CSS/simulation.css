@@ -5,8 +5,8 @@
 }
 .all{
   position        : absolute;
-  left            : 2rem;
-  height          : 99%
+  height          : 100%;
+  left            : 0.5rem;
 }
 
 /* ======================================================================================= */
@@ -170,16 +170,16 @@ input[type=range].slider::-webkit-slider-thumb {
   position        : relative;
   /* border: 0.1rem solid #ccc; */
   /* タブレットの場合 */
-  width           : 29rem;
-  height          : 29rem;
+  width           : 28.5rem;
+  height          : 28.5rem;
   /* PCの場合 */
   /* width:41rem;
   height:41rem; */
   max-width       : 100%;
   max-height      : 100%;
-  top             : -0.8rem;
+  top             : -0.5rem;
   margin          : auto;
-  left            : 0.6rem;
+  left            : 1.2rem;
 }
 /* #canvas_warp:before {
   content: "";
@@ -226,71 +226,57 @@ input[type=range].slider::-webkit-slider-thumb {
 .under_canvas_warp {
   display         : flex;
   position        : relative;
-  justify-content :space-between;
+  justify-content : space-between;
   width           : 110%;
-  height          : 100%;
-  top             : -0.5rem;
-  left            : 2rem;
+  left            : 1rem;
 }
 
 .under1{
-        position: relative;
-        /* border: 0.1rem solid #ccc; */
-        width: 10.863rem;
-        height: 10.863rem;
-        max-width: 100%;
-        margin: 0;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 .under2 {
   position: relative;
-  /* border: 0.1rem solid #ccc; */
-  width: 10.863rem;
-  height: 10.863rem;
-  max-width: 100%;
-  margin: 0;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 .under3 {
   position: relative;
-  /* border: 0.1rem solid #ccc; */
-  width: 10.863rem;
-  height: 10.863rem;
-  max-width: 100%;
-  margin: 0;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 .under4 {
   position: relative;
-  /* border: 0.1rem solid #ccc; */
-  width: 10.863rem;
-  height: 10.863rem;
-  max-width: 100%;
-  margin: 0;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 .under5 {
   position: relative;
-  /* border: 0.1rem solid #ccc; */
-  width: 10.863rem;
-  height: 10.863rem;
-  max-width: 100%;
-  margin: 0;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 .under6 {
   position: relative;
-  /* border: 0.1rem solid #ccc; */
-  width: 10.863rem;
-  height: 10.863rem;
-  max-width: 100%;
-  margin: 0;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
 }
 
 #under_canvas1 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -299,28 +285,28 @@ input[type=range].slider::-webkit-slider-thumb {
   }
 
 #under_canvas1-2 {
-    background-image: url("../Picture/バレーコート背景.png");
-    background-size: 100%;
-      width: 75%;
-    z-index: 0;
+  background-image: url("../Picture/バレーコート背景.png");
+  background-size: 100%;
+  width: 80%;
+  z-index: 0;
 }
 
 #under_canvas1-3{
-    width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
 #under_canvas1,
 #under_canvas1-2,
 #under_canvas1-3{
-        position: absolute;
-        left: 0;
-        top: 0;
-        border: 0;
-        max-width: 100%;
-        box-sizing: content-box;
-        padding: 0;
-        margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  max-width: 80%;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
 }
 
 .col-10{
@@ -331,7 +317,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas2 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -341,12 +327,12 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas2-2 {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
-  width: 75%;
+  width: 80%;
   z-index: 0;
 }
 
 #under_canvas2-3 {
-  width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
@@ -357,7 +343,7 @@ input[type=range].slider::-webkit-slider-thumb {
   left: 0;
   top: 0;
   border: 0;
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
@@ -366,7 +352,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas3 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -376,12 +362,12 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas3-2 {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
-  width: 75%;
+  width: 80%;
   z-index: 0;
 }
 
 #under_canvas3-3 {
-  width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
@@ -392,7 +378,7 @@ input[type=range].slider::-webkit-slider-thumb {
   left: 0;
   top: 0;
   border: 0;
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
@@ -401,7 +387,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas4 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -411,12 +397,12 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas4-2 {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
-  width: 75%;
+  width: 80%;
   z-index: 0;
 }
 
 #under_canvas4-3 {
-  width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
@@ -427,7 +413,7 @@ input[type=range].slider::-webkit-slider-thumb {
   left: 0;
   top: 0;
   border: 0;
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
@@ -436,7 +422,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas5 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -446,12 +432,12 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas5-2 {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
-  width: 75%;
+  width: 80%;
   z-index: 0;
 }
 
 #under_canvas5-3 {
-  width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
@@ -462,7 +448,7 @@ input[type=range].slider::-webkit-slider-thumb {
   left: 0;
   top: 0;
   border: 0;
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
@@ -472,7 +458,7 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas6 {
   border          : 0;
   /* タブレットの場合 */
-  width           : 75%;
+  width           : 80%;
   /* PCの場合 */
   /* width: 100%; */
   box-sizing      : content-box;
@@ -482,12 +468,12 @@ input[type=range].slider::-webkit-slider-thumb {
 #under_canvas6-2 {
   background-image: url("../Picture/バレーコート背景.png");
   background-size: 100%;
-  width: 75%;
+  width: 80%;
   z-index: 0;
 }
 
 #under_canvas6-3 {
-  width: 75%;
+  width: 80%;
   z-index: 1;
 }
 
@@ -498,7 +484,7 @@ input[type=range].slider::-webkit-slider-thumb {
   left: 0;
   top: 0;
   border: 0;
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: content-box;
   padding: 0;
   margin: 0;
@@ -511,8 +497,8 @@ input[type=range].slider::-webkit-slider-thumb {
 #face_img{
   position        : absolute;
   width           : 6.5rem;
-  left            : 11rem;
-  top             : 3.2rem;
+  left            : 2.5rem;
+  top             : 3rem;
 }
 .bubble{
   position        : relative;
@@ -526,21 +512,24 @@ input[type=range].slider::-webkit-slider-thumb {
   position        : absolute;
   width           : 10%;
   opacity         : 0.92;
-  right           : -6rem;
+  right           : -6.5rem;
   top             : 0.2rem;
   filter          : drop-shadow(0.05rem 0.05rem 0 rgba(0,0,0,0.5));
 }
 .talk_bubble{
   position        : absolute;
-  width           : 15rem;
-  top             : 3rem;
-  left            : 17.5rem;
+  width           : 22.5rem;
+  top             : 2.7rem;
+  left            : 9.5rem;
 }
 #message{
   position        : absolute;
+  font-size       : 0.9rem;
+  top             : 3.5rem;
+  left            : 12.8rem;  
+}
+b{
   font-size       : 1.1rem;
-  top             : 4rem;
-  left            : 21rem;  
 }
 
 .word{
@@ -552,7 +541,7 @@ input[type=range].slider::-webkit-slider-thumb {
 
 .bar_and_scale{
   position        : relative;
-  left            : 3rem;
+  left            : 4.2rem;
   top             : 12.5rem;
 }
 
@@ -653,127 +642,96 @@ input[type=range].slider::-webkit-slider-thumb {
 .buttons{
   position        : relative;
   top             : 22rem;
-  left            : 0.2rem;
+  left            : 1rem;
 }
 #rota0{
-    border: none;
-      cursor: pointer;/* カーソル   */
-      background: #00000000; /* 背景色     */
-      color: #00000000;/* 文字色     */
-      line-height: 100%;/* 1行の高さ  */
-      transition: .3s;/* なめらか変化 */
-      font-weight: bold;
-      letter-spacing: 0.4rem;
-      width: 10.863rem;
-      height: 10.863rem;
-      width: 75%;
-      height: 75%;
-      z-index: 30;
-      padding: 1rem;
-      position: absolute;
+  border: none;
+  cursor: pointer;/* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000;/* 文字色     */
+  line-height: 100%;/* 1行の高さ  */
+  font-weight: bold;
+  letter-spacing: 0.4rem;
+  width: 10rem;
+  height: 10rem;
+  width: 80%;
+  height: 80%;
+  z-index: 30;
+  padding: 1rem;
+  position: absolute;
 }
 #rota1{
   border: none;
-  cursor: pointer;
-  /* カーソル   */
-  background: #00000000;
-  /* 背景色     */
-  color: #00000000;
-  /* 文字色     */
-  line-height: 100%;
-  /* 1行の高さ  */
-  transition: .3s;
-  /* なめらか変化 */
+  cursor: pointer; /* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000; /* 文字色     */
+  line-height: 100%; /* 1行の高さ  */
   font-weight: bold;
   letter-spacing: 0.4rem;
-  width: 10.863rem;
-  height: 10.863rem;
-  width: 75%;
-  height: 75%;
+  width: 10rem;
+  height: 10rem;
+  width: 100%;
+  height: 100%;
   z-index: 30;
   padding: 1rem;
   position: absolute;
 }#rota2 {
   border: none;
-  cursor: pointer;
-  /* カーソル   */
-  background: #00000000;
-  /* 背景色     */
-  color: #00000000;
-  /* 文字色     */
-  line-height: 100%;
-  /* 1行の高さ  */
-  transition: .3s;
-  /* なめらか変化 */
+  cursor: pointer; /* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000; /* 文字色     */
+  line-height: 100%; /* 1行の高さ  */
   font-weight: bold;
   letter-spacing: 0.4rem;
-  width: 10.863rem;
-  height: 10.863rem;
-  width: 75%;
-  height: 75%;
+  width: 10rem;
+  height: 10rem;
+  width: 100%;
+  height: 100%;
   z-index: 30;
   padding: 1rem;
   position: absolute;
 }#rota3{
   border: none;
-  cursor: pointer;
-  /* カーソル   */
-  background: #00000000;
-  /* 背景色     */
-  color: #00000000;
-  /* 文字色     */
-  line-height: 100%;
-  /* 1行の高さ  */
-  transition: .3s;
-  /* なめらか変化 */
+  cursor: pointer;  /* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000; /* 文字色     */
+  line-height: 100%; /* 1行の高さ  */
   font-weight: bold;
   letter-spacing: 0.4rem;
-  width: 10.863rem;
-  height: 10.863rem;
-  width: 75%;
-  height: 75%;
+  width: 10rem;
+  height: 10rem;
+  width: 100%;
+  height: 100%;
   z-index: 30;
   padding: 1rem;
   position: absolute;
 }#rota4{
   border: none;
-  cursor: pointer;
-  /* カーソル   */
-  background: #00000000;
-  /* 背景色     */
-  color: #00000000;
-  /* 文字色     */
-  line-height: 100%;
-  /* 1行の高さ  */
-  transition: .3s;
-  /* なめらか変化 */
+  cursor: pointer; /* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000; /* 文字色     */
+  line-height: 100%; /* 1行の高さ  */
   font-weight: bold;
   letter-spacing: 0.4rem;
-  width: 10.863rem;
-  height: 10.863rem;
-  width: 75%;
-  height: 75%;
+  width: 10rem;
+  height: 10rem;
+  width: 100%;
+  height: 100%;
   z-index: 30;
   padding: 1rem;
   position: absolute;
 }#rota5{
   border: none;
-  cursor: pointer;
-  /* カーソル   */
-  background: #00000000;
-  /* 背景色     */
-  color: #00000000;
-  /* 文字色     */
-  line-height: 100%;
-  /* 1行の高さ  */
-  transition: .3s;
-  /* なめらか変化 */
+  cursor: pointer; /* カーソル   */
+  background: #00000000; /* 背景色     */
+  color: #00000000; /* 文字色     */
+  line-height: 100%; /* 1行の高さ  */
   font-weight: bold;
   letter-spacing: 0.4rem;
-  width: 10.863rem;
-  height: 10.863rem;
-  width: 75%;
-  height: 75%;
+  width: 10rem;
+  height: 10rem;
+  width: 100%;
+  height: 100%;
   z-index: 30;
   padding: 1rem;
   position: absolute;
