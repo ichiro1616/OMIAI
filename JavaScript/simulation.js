@@ -1555,7 +1555,7 @@ document.getElementById("register_btn").onclick = function () {
         }
     });
     xhr.send(form);
-    location.href = "../HTML/OMIAI.html";
+    // location.href = "../HTML/OMIAI.html";
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
