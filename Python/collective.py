@@ -99,17 +99,17 @@ def first():
         for h in range(ex_years): #キー：experience_years
             for i in range(player): #キー：player_id
                 while(counter == 0):
-                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'])-clip)
-                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
+                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)
+                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
                         counter = 1
                     else: #現在取得したデータを5つずつ区切ってその中で平均を出す
                         print("rotation = ",Dcount)
-                        print("h(ex_years)=",h, "i(player_id)=",i)
+                        print("h(ex_years)=",h, "i(player_id)=",i+1)
                         print("generation = ", gene)
                         print("clip = ", clip)
                         print("----------------------------------------------------")
-                        x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'][0:clip]).values.tolist())
-                        y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['y'][0:clip]).values.tolist())
+                        x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'][0:clip]).values.tolist())
+                        y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['y'][0:clip]).values.tolist())
                         x = round((np.mean(np.array(x_tmp))),4)
                         y = round((np.mean(np.array(y_tmp))),4)
                         clip += 5
@@ -117,9 +117,9 @@ def first():
                         print("y_tmp = ", y_tmp)
                         print("x_mean = ", x)
                         print("y_mean = ", y)
-                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i,x,y))
+                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i+1,x,y))
                         conn.commit() #結果を保存・確定する
-                        print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
+                        print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i+1, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
                         gene += 1
                         time.sleep(0.2)
                 counter = 0
@@ -142,7 +142,7 @@ def add():
                 while(counter == 0):
                     if(flug==0):
                         #collectiveテーブルに入っている世代の数を取得する
-                        cur.execute("SELECT MAX(`generation`) FROM `collective` WHERE `rotation` = %s AND `experience_years` = %s AND `player_id` = %s;",(Dcount,h,i))
+                        cur.execute("SELECT MAX(`generation`) FROM `collective` WHERE `rotation` = %s AND `experience_years` = %s AND `player_id` = %s;",(Dcount,h,i+1))
                         generation = cur.fetchall()
                         #世代の値がNaNだった場合は世代1から計算する
                         if generation[0][0] is None:
@@ -156,16 +156,16 @@ def add():
                             clip = (gene*5)
                             flug = 1
                     print("rotation = ",Dcount)
-                    print("h(ex_years)=",h, "i(player_id)=",i)
+                    print("h(ex_years)=",h, "i(player_id)=",i+1)
                     print("generation = ", gene)
                     print("clip = ", clip)
-                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'])-clip)
-                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'])-clip)<=5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合はループから抜ける
+                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)
+                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)<=5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合はループから抜ける
                         counter = 1
                     else: #現在取得したデータを5つずつ区切ってその中で平均を出す
                         print("----------------------------------------------------")
-                        x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['x'][0:clip]).values.tolist())
-                        y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i)]['y'][0:clip]).values.tolist())
+                        x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'][0:clip]).values.tolist())
+                        y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['y'][0:clip]).values.tolist())
                         x = round((np.mean(np.array(x_tmp))),4)
                         y = round((np.mean(np.array(y_tmp))),4)
                         clip += 5
@@ -173,9 +173,9 @@ def add():
                         print("y_tmp = ", y_tmp)
                         print("x_mean = ", x)
                         print("y_mean = ", y)
-                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i,x,y))
+                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i+1,x,y))
                         conn.commit()
-                        print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
+                        print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i+1, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
                         gene += 1
                         time.sleep(0.2)
                 counter = 0

@@ -349,7 +349,7 @@ video#mv {
 	left            : 0;
 }
 .window {
-	width           : 37rem;
+	width           : 40rem;
 	max-width       : 40rem;
 	height          : 27rem;
 	background-color: #ffffff;
@@ -369,7 +369,7 @@ video#mv {
 .close {
 	cursor          : pointer;
 	position        : absolute;
-	top             : 1rem;
+	top             : 0.7rem;
 	right           : 1rem;
 	font-size       : 1rem;
   z-index         : 1010;
@@ -377,6 +377,8 @@ video#mv {
 
 .tutorial_movie{
   position        : absolute;
-  max-width       : 35em;
+  /* max-width       : 35rem; */
+  width:37rem;
+  height:20.8rem;
   z-index         : 1005;
 }
