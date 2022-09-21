@@ -29,7 +29,7 @@ function question() {
 //ページが開かれたら自動でquestionを動かす
 document.addEventListener("DOMContentLoaded", function () {
   question();
- });
+});
 
 //データの送信時、phpで受け取れる形に変換する
 function EncodeHTMLForm(data) {
@@ -54,11 +54,10 @@ function control(num) {
   var obj = document.getElementById("mv");
   var n = parseInt(num);
   if (n == 0) {
-    if(data[0][counter]["start_time"] == 0){
+    if (data[0][counter]["start_time"] == 0) {
       obj.play();
-    }
-    else{
-      obj.currentTime = (data[0][counter]["start_time"] / 60) + 2; //start_timeの位置から再生を開始する
+    } else {
+      obj.currentTime = data[0][counter]["start_time"] / 60 + 2; //start_timeの位置から再生を開始する
       obj.play();
     }
   } else {
@@ -75,7 +74,7 @@ function movie_time() {
   stop_time = data[1][counter]["stop_time"] / 60;
   videoElement = document.getElementById("mv");
   Velement = document.querySelector("video");
-  if(position == 0 && playing == 0){
+  if (position == 0 && playing == 0) {
     control(0); //再生開始
   }
   videoElement.addEventListener("timeupdate", function () {
@@ -114,7 +113,7 @@ function movie_play() {
     movie_path = data[1][counter]["movie_path"];
     movie_categorize = data[1][counter]["movie_categorize"];
     stop_time = data[1][counter]["stop_time"] / 60; //dbにはフレーム数で登録されている。60fpsのため60で割る。
-    console.log("再生開始位置 = ", data[0][counter]["start_time"] /60);
+    console.log("再生開始位置 = ", data[0][counter]["start_time"] / 60);
     console.log("動画停止位置 = ", data[1][counter]["stop_time"] / 60);
 
     if (categorize != movie_categorize) {
@@ -175,7 +174,8 @@ function percentage() {
         //左選手を選択した人の数を数える
         if (LR[i] == 0) {
           left++;
-        }}
+        }
+      }
       right = per - left; //右選手を選択した人の数
       left_per = Math.round((left / per) * 100);
       right_per = Math.round((right / per) * 100);
@@ -200,7 +200,7 @@ function choose(btn) {
   if (STOP == 0) {
     button = btn.getAttribute("id"); // input要素のid属性の値を取得
     button_id = parseInt(button); //取得したIDをint形式に変換する
-    console.log("左右選択(0なら左 1なら右) = ",button_id);
+    console.log("左右選択(0なら左 1なら右) = ", button_id);
     sendData = {
       movie_id: data[1][counter]["movie_id"],
       movie_categorize: data[1][counter]["movie_categorize"],
@@ -221,7 +221,21 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
-    setTimeout(percentage,50);
+    setTimeout(percentage, 50);
     //percentage();
   }
+}
+
+function jump() {
+  let formData = new FormData();
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
+  xhr.addEventListener("loadend", function () {
+    if (xhr.status === 200) {
+      let data = JSON.parse(xhr.response);
+      console.log(data);
+      location.href = "../HTML/OMIAI.html";
+    }
+  });
+  xhr.send(formData);
 }
