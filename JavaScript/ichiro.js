@@ -32,10 +32,10 @@ function a() {
         }
       }
       //player1 = 安西、player2 = 西根
-      let player1_x = 2.16;
-      let player1_y = 6.57;
-      let player2_x = 6.45;
-      let player2_y = 5.48;
+      let player1_x = 4.2;
+      let player1_y = 5.475;
+      let player2_x = 6.9975;
+      let player2_y = 5.58;
 
       // let player1_x = 6;
       // let player1_y = 4.5;
@@ -162,9 +162,9 @@ function a() {
         g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
 
-        aa = Math.exp(b) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
-        bb = Math.exp(r) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
-        cc = Math.exp(g) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
+        aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
         blue.push(aa);
         red.push(bb);
         green.push(cc);
@@ -184,16 +184,23 @@ function a() {
       }
       console.log(judge_color);
       console.log(judge_array);
-      let counter = 1;
+      let counter1 = 0;
+      let counter2 = 45;
       if (reverce == 1) {
-        console.log("reverce");
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        //線対称に配列を入れ替えている
         for (i = 0; i < judge_color.length / 2; i++) {
+          if (counter1 == 46) {
+            counter1 = 0;
+            counter2 += 46;
+          }
           let keep = judge_color[i]["judge"];
-          judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-          judge_color[judge_color.length - counter]["judge"] = keep;
-          counter++;
+          judge_color[i]["judge"] = judge_color[judge_color.length - 1 - counter2 + counter1]["judge"];
+          judge_color[judge_color.length - 1 - counter2 + counter1]["judge"] = keep;
+          console.log(i, judge_color.length - 1 - counter2 + counter1);
+          counter1++;
         }
-        // console.log(judge_color);
+        console.log(judge_color);
       }
     }
   });
