@@ -196,7 +196,7 @@ input[type=range].slider::-webkit-slider-thumb {
 	top             : 0.05rem;
   transition      : 0.2s;
 } 
-video {
+video#mv {
   min-width       : 100%;
   min-height      : 100vh;
   height          : 100%;
@@ -340,7 +340,7 @@ video {
 }
 #pop-up:checked + .overlay {
 	display         : block;
-	z-index         : 9999;
+	z-index         : 1000;
 	background-color: #00000070;
 	position        : fixed;
 	width           : 100%;
@@ -372,4 +372,11 @@ video {
 	top             : 1rem;
 	right           : 1rem;
 	font-size       : 1rem;
+  z-index         : 1010;
+}
+
+.tutorial_movie{
+  position        : absolute;
+  max-width       : 35em;
+  z-index         : 1005;
 }
