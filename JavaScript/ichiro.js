@@ -32,10 +32,10 @@ function a() {
         }
       }
       //player1 = 安西、player2 = 西根
-      let player1_x = 3;
-      let player1_y = 4.5;
-      let player2_x = 6;
-      let player2_y = 4.5;
+      let player1_x = 2.16;
+      let player1_y = 6.57;
+      let player2_x = 6.45;
+      let player2_y = 5.48;
 
       // let player1_x = 6;
       // let player1_y = 4.5;
@@ -49,6 +49,7 @@ function a() {
         reverce = 1;
       }
       console.log("judge");
+      console.log("color_array", color_array);
       for (i = 0; i < 9.2; i += 0.2) {
         for (j = 0; j < 9.2; j += 0.2) {
           let data_tmp = {};
@@ -67,6 +68,7 @@ function a() {
           judge_color.push(data_view);
         }
       }
+      console.log(test_data);
 
       // 標準化 meanとstdに代入するdataのindex番号はdataに入っている量によって変えないといけない
       let mean = [
@@ -141,34 +143,32 @@ function a() {
       // }
 
       console.log(answer);
+      console.log(color_array);
       for (i = 0; i < answer.length; i++) {
-        //lr.intercept_の値を足している
         let b = 0;
         let r = 0;
         let g = 0;
 
         //lr.coef_の値とpolynomialの値をかける
         for (j = 0; j < color_array[0].length - 1; j++) {
-          // answer[i][j] = (answer[i][j] - min) / (max - min);
-          // answer[i][j] = (answer[i][j] - min_array[i]) / (max_array[i] - min_array[i]);
-
           b = b + answer[i][j] * color_array[0][j];
           r = r + answer[i][j] * color_array[1][j];
           g = g + answer[i][j] * color_array[2][j];
-          // console.log(j, b);
         }
+
+        //lr.intercept_の値を足している
         b = b + color_array[0][color_array[0].length - 1];
         r = r + color_array[1][color_array[0].length - 1];
         g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
 
-        aa = 1 / (1 + Math.exp(-b));
-        bb = 1 / (1 + Math.exp(-r));
-        cc = 1 / (1 + Math.exp(-g));
+        aa = Math.exp(b) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
+        bb = Math.exp(r) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
+        cc = Math.exp(g) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
         blue.push(aa);
         red.push(bb);
         green.push(cc);
-        // console.log(i, b, r, g, aa, bb, cc);
+        // console.log(b, r, g, aa, bb, cc);
       }
       // console.log(answer[0]);
       // console.log(color_array[0]);
@@ -177,9 +177,8 @@ function a() {
         //どの色になるかの判断
         judge = [blue[i], red[i], green[i]];
         // console.log(judge);
-        // console.log(blue[i], red[i], green[i]);
+        console.log(blue[i], red[i], green[i]);
         judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
-        // console.log(judge_color[i].judge);
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
       }
@@ -187,13 +186,14 @@ function a() {
       console.log(judge_array);
       let counter = 1;
       if (reverce == 1) {
+        console.log("reverce");
         for (i = 0; i < judge_color.length / 2; i++) {
           let keep = judge_color[i]["judge"];
           judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
           judge_color[judge_color.length - counter]["judge"] = keep;
           counter++;
         }
-        console.log(judge_color);
+        // console.log(judge_color);
       }
     }
   });
