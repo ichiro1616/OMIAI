@@ -1517,7 +1517,6 @@ document.getElementById("register_btn").onclick = function () {
 
     var json_str1 = JSON.stringify(imagearray);
     localStorage.setItem('key', json_str1);
-
     for (var i = 0; i <= 5; i++) {//ローテーション0~5
         for (var j = 0; j <= 5; j++) {//コマ番号1~6
             let formData = new FormData();
@@ -1555,9 +1554,11 @@ document.getElementById("register_btn").onclick = function () {
         }
     });
     xhr.send(form);
+    setTimeout(jump,1000);
+}
+function jump(){
     location.href = "../HTML/OMIAI.html";
 }
-
 function sum(x1, x2, x3, x4, x5, x6) {
     //polynomialfeatureの3次元の乗算の組み合わせを表示
     let array = [x1, x2, x3, x4, x5, x6];

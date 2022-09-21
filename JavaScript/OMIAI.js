@@ -14,7 +14,6 @@ function total() {
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
             let data = JSON.parse(xhr.response);
-            console.log(data)
             answer = data[0];
             simu = data[1];
             colle = data[2];
