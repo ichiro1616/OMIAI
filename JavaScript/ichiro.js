@@ -184,24 +184,6 @@ function a() {
       }
       console.log(judge_color);
       console.log(judge_array);
-      let counter1 = 0;
-      let counter2 = 45;
-      if (reverce == 1) {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        //線対称に配列を入れ替えている
-        for (i = 0; i < judge_color.length / 2; i++) {
-          if (counter1 == 46) {
-            counter1 = 0;
-            counter2 += 46;
-          }
-          let keep = judge_color[i]["judge"];
-          judge_color[i]["judge"] = judge_color[judge_color.length - 1 - counter2 + counter1]["judge"];
-          judge_color[judge_color.length - 1 - counter2 + counter1]["judge"] = keep;
-          console.log(i, judge_color.length - 1 - counter2 + counter1);
-          counter1++;
-        }
-        console.log(judge_color);
-      }
     }
   });
   xhr.send(formData);
