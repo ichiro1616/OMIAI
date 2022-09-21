@@ -592,6 +592,7 @@ function rotation() {
   draw(counter);
   collective();
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
+  ot_ctx2.clearRect(0,0,         )
   area(counter)
 
 }
@@ -653,16 +654,16 @@ function collective() {
   let index = 100000;
   gene_level = Number(gene_level);
   for (i = 0; i < genekeep[gene_level].length; i++) {
-    if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter + 1) {
+    if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter) {
       index = i;
       break;
     }
   }
   if (index != 100000) {
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 6; i++) {
       console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
-      array[counter][i + 1].x = genekeep[gene_level][index + i]["x_coordinate"];
-      array[counter][i + 1].y = genekeep[gene_level][index + i]["y_coordinate"];
+      array[counter][i].x = genekeep[gene_level][index + i]["x_coordinate"];
+      array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
     }
     draw(counter);
   } else {
@@ -954,9 +955,6 @@ function my_calculation(rota, data) {
   let my_player1_y = (my_imagearray_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
   my_player1_y = Math.abs(my_player1_y);
 
-  console.log("mymymymymymy",my_player1_x);
-  console.log("mymymymymymy",my_player1_y)
-
   //右の選手
   let my_player2_x = (my_imagearray_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
   let my_player2_y = (my_imagearray_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
@@ -1100,8 +1098,6 @@ function ot_calculation(rota, data) {
   let ot_player1_x = (array_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
   let ot_player1_y = (array_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
   ot_player1_y = Math.abs(ot_player1_y);
-  console.log("otototot",ot_player1_x);
-  console.log("otototot",ot_player1_y)
 
   //右の選手
   let ot_player2_x = (array_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);

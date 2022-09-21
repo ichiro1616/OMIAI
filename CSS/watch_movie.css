@@ -196,7 +196,7 @@ input[type=range].slider::-webkit-slider-thumb {
 	top             : 0.05rem;
   transition      : 0.2s;
 } 
-video {
+video#mv {
   min-width       : 100%;
   min-height      : 100vh;
   height          : 100%;
@@ -340,7 +340,7 @@ video {
 }
 #pop-up:checked + .overlay {
 	display         : block;
-	z-index         : 9999;
+	z-index         : 1000;
 	background-color: #00000070;
 	position        : fixed;
 	width           : 100%;
@@ -349,7 +349,7 @@ video {
 	left            : 0;
 }
 .window {
-	width           : 37rem;
+	width           : 40rem;
 	max-width       : 40rem;
 	height          : 27rem;
 	background-color: #ffffff;
@@ -369,7 +369,16 @@ video {
 .close {
 	cursor          : pointer;
 	position        : absolute;
-	top             : 1rem;
+	top             : 0.7rem;
 	right           : 1rem;
 	font-size       : 1rem;
+  z-index         : 1010;
+}
+
+.tutorial_movie{
+  position        : absolute;
+  /* max-width       : 35rem; */
+  width:37rem;
+  height:20.8rem;
+  z-index         : 1005;
 }
