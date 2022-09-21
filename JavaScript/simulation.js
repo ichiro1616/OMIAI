@@ -421,20 +421,20 @@ for (var i in imagearray) {
 }
 
 //セッターの座標を修正
-imagearray_center[3][0].x = imagearray_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray_center[3][0].y = imagearray_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[3][0].x = imagearray[3][0].x + koma_w / 2 * size;//45°
+imagearray_center[3][0].y = imagearray[3][0].y + koma_h / 2 * size;//45°
 
-imagearray_center[4][0].x = imagearray_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
-imagearray_center[4][0].y = imagearray_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
 imagearray[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[4][0].x = imagearray[4][0].x + koma_w / 2 * size;//45°
+imagearray_center[4][0].y = imagearray[4][0].y + koma_h / 2 * size;//45°
 
-imagearray_center[5][0].x = imagearray_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray_center[5][0].y = imagearray_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[5][0].x = imagearray[5][0].x + koma_w / 2 * size;//45°
+imagearray_center[5][0].y = imagearray[5][0].y + koma_h / 2 * size;//45°
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
@@ -812,9 +812,10 @@ let mousemove = function (e, type) {
                                 } else {
                                     let tempX = imagearray[counter][0].x - imagearray[counter][5].x;
                                     let tempY = imagearray[counter][0].y - imagearray[counter][5].y;
-
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
+                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
+                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
                                 }
                                 break;
                             default:
@@ -871,6 +872,8 @@ let mousemove = function (e, type) {
                                     let tempY = imagearray[counter][0].y - imagearray[counter][3].y;
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
+                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
+                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
                                 }
                                 break;
                             case 4://前衛右
@@ -918,6 +921,8 @@ let mousemove = function (e, type) {
                                     let tempY = imagearray[counter][0].y - imagearray[counter][1].y;
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
+                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
+                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
                                 }
                                 break;
                             case 2://前衛真ん中
