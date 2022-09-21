@@ -1548,17 +1548,15 @@ document.getElementById("register_btn").onclick = function () {
     xhr.open("POST", "../PHP/execute.php");
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
+            location.href = "../HTML/OMIAI.html";
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
         }
     });
     xhr.send(form);
-    setTimeout(jump,1000);
 }
-function jump(){
-    location.href = "../HTML/OMIAI.html";
-}
+
 function sum(x1, x2, x3, x4, x5, x6) {
     //polynomialfeatureの3次元の乗算の組み合わせを表示
     let array = [x1, x2, x3, x4, x5, x6];
