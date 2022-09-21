@@ -187,9 +187,8 @@ function a() {
 
       let counter1 = 0;
       let counter2 = 45;
+      //線対称に配列を入れ替えている
       if (reverce == 1) {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        //線対称に配列を入れ替えている
         for (i = 0; i < judge_color.length / 2; i++) {
           if (counter1 == 46) {
             counter1 = 0;
