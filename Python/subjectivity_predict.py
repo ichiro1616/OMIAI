@@ -1,3 +1,5 @@
+from datetime import datetime
+from itertools import count
 import db_config as dbc
 import numpy as np
 import pandas as pd
@@ -24,6 +26,8 @@ keisuke_riku = ['../Python/1/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '.
 riku_kento = ['../Python/1/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/1/riku_kento/trans_riku_kento_220617_03.csv', '../Python/1/riku_kento/trans_riku_kento_220620_02.csv', '../Python/1/riku_kento/trans_riku_kento_220628_01.csv', '../Python/1/riku_kento/trans_riku_kento_220705_01.csv', '../Python/1/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/1/riku_kento/trans_riku_kento_220705_02.csv', '../Python/1/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/1/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
 
 pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
+pattern_string = ["anzai_hinata", "anzai_keisuke", "anzai_kento", "anzai_riku", "hinata_keisuke", "hinata_kento", "hinata_riku", "keisuke_kento", "keisuke_riku", "riku_kento"]
+
 # pattern = [anzai_hinata]
 
 
@@ -50,6 +54,32 @@ conn = MySQLdb.connect(
 
 # カーソルを取得する
 cur = conn.cursor()
+sql = "SELECT MAX(`datetime`) FROM `lr.coef_` WHERE type = 1"
+cur.execute(sql)
+previous = cur.fetchall()
+# print("previous:",previous)
+
+sql = "SELECT `movie_id` FROM `answer` WHERE `datetime` > %s"
+cur.execute(sql, previous)
+movie_id_new = cur.fetchall()
+# print("movie_id_new",movie_id_new)
+
+movie_path_array = []
+for n in movie_id_new:
+    sql = "SELECT `movie_path` FROM `movie` WHERE `movie_id` = %s"
+    cur.execute(sql, n)
+    movie_id_new = cur.fetchall()
+    movie_path_array.append(movie_id_new)
+# print(movie_path_array)
+
+pattern_select = []
+for i in movie_path_array:
+    idx = pattern_string.index(i[0][0].split('\\')[2])
+    if not pattern[idx] in pattern_select:
+        pattern_select.append(pattern[idx])
+
+# print("select",pattern_select)
+
 
 
 sql = "SELECT * FROM `answer`"
@@ -58,7 +88,7 @@ cur.execute(sql)
 # 実行結果を取得する
 answer_array = cur.fetchall()
 # print(type(answer_array))
-for o,csvname in enumerate(pattern):
+for o,csvname in enumerate(pattern_select):
 
 
      #figure()でグラフを表示する領域をつくり，figというオブジェクトにする．
@@ -124,8 +154,8 @@ for o,csvname in enumerate(pattern):
 
         for i in movie_id_array:  #targetを決めている。
             judge_array = []
-            # for row in gain_array: #経験年数に応じて増やしたデータ
-            for row in answer_array: #経験年数に応じて増やしてないデータ
+            for row in gain_array: #経験年数に応じて増やしたデータ
+            # for row in answer_array: #経験年数に応じて増やしてないデータ
                 # print("row",row)
                 if row[1] == i:
                     judge_array.append(row[4])
@@ -212,12 +242,6 @@ for o,csvname in enumerate(pattern):
                     df_train = df_train.append(df_train_add_player.iloc[row])
 
 
-    # df_train = pd.read_csv(filename, encoding="utf_8")
-    # print("aaaa", df_train['target'].shape)
-    # df_train.pop('target')
-    # print("aaaa", df_train)
-
-    # df_train = pd.read_csv(csv_file, encoding="utf_8")
     df_train['ball_x'] = df_train['court_x']
     df_train['ball_y'] = df_train['court_z']
 
@@ -227,147 +251,107 @@ for o,csvname in enumerate(pattern):
     df_train['player1_ball_sabun_y'] = df_train['player1_y'] - df_train['ball_y']
     df_train['player2_ball_sabun_x'] = df_train['player2_x'] - df_train['ball_x']
     df_train['player2_ball_sabun_y'] = df_train['player2_y'] - df_train['ball_y']
-    # df_train['my_your_degree'] = np.arctan2(df_train['player2_y'] - df_train['player1_y'], df_train['player2_x'] - df_train['player1_x'])
-    # df_train['my_ball_degree'] = np.arctan2(df_train['player1_y'] - df_train['ball_y'], df_train['player1_x'] - df_train['ball_x'])
-    # df_train['your_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
-    # df_test = pd.read_csv("../Python/pattern_1.csv", encoding="utf_8")
+   
     # df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
-    df_test_pattern = ["../Python/pattern/pattern_1.csv"]
+    # df_test_pattern = ["../Python/pattern/pattern_1.csv"]
     
-    for k,link in enumerate(df_test_pattern):
-        df_test = pd.read_csv(link, encoding="utf_8")
+    # for k,link in enumerate(df_test_pattern):
+    #     df_test = pd.read_csv(link, encoding="utf_8")
        
 
-        # df_test = pd.read_csv("../Python/test_data.csv", encoding="utf_8")
-        df_test['players_sabun_x'] = df_test['player1_x'] - df_test['player2_x']
-        df_test['players_sabun_y'] = df_test['player1_y'] - df_test['player2_y']
-        df_test['player1_ball_sabun_x'] = df_test['player1_x'] - df_test['ball_x']
-        df_test['player1_ball_sabun_y'] = df_test['player1_y'] - df_test['ball_y']
-        df_test['player2_ball_sabun_x'] = df_test['player2_x'] - df_test['ball_x']
-        df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
-        # df_test['my_your_degree'] = np.arctan2(df_test['player2_y'] - df_test['player1_y'], df_test['player2_x'] - df_test['player1_x'])
-        # df_test['my_ball_degree'] = np.arctan2(df_train['player1_y'] - df_train['ball_y'], df_train['player1_x'] - df_train['ball_x'])
-        # df_test['your_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
-
-        # df_train = df_train.abs()
-        # df_test = df_test.abs()
+    #     # df_test = pd.read_csv("../Python/test_data.csv", encoding="utf_8")
+    #     df_test['players_sabun_x'] = df_test['player1_x'] - df_test['player2_x']
+    #     df_test['players_sabun_y'] = df_test['player1_y'] - df_test['player2_y']
+    #     df_test['player1_ball_sabun_x'] = df_test['player1_x'] - df_test['ball_x']
+    #     df_test['player1_ball_sabun_y'] = df_test['player1_y'] - df_test['ball_y']
+    #     df_test['player2_ball_sabun_x'] = df_test['player2_x'] - df_test['ball_x']
+    #     df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
 
 
-        train = df_train[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
-        # train = train.abs()
-        mean = train.mean()
-        std = train.std(ddof=1)
-        train = (train-mean)/std
-
-        # train = df_train[['my_your_degree','my_ball_degree', 'your_ball_degree']]
-        # test = df_test[['my_your_degree','my_ball_degree', 'your_ball_degree']]
-        # print("df_train", df_train["target"])
-
-        # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
-        # df_train.loc[df_train['target'] == 1, 'target'] = "red"
-        # df_train.loc[df_train['target'] == 2, 'target'] = "green"
+    train = df_train[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
+    # train = train.abs()
+    mean = train.mean()
+    std = train.std(ddof=1)
+    train = (train-mean)/std
 
 
-        y = df_train['target']
-        test = df_test[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
-        test = (test-mean)/std
+    # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
+    # df_train.loc[df_train['target'] == 1, 'target'] = "red"
+    # df_train.loc[df_train['target'] == 2, 'target'] = "green"
 
-        # test.to_csv('a.csv', index = False, columns=['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y'],encoding=encoding) #客観的データ用csv
 
-  
+    y = df_train['target']
+    # test = df_test[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
+    # test = (test-mean)/std
 
 
 
-        poly3d = PolynomialFeatures(degree=3, interaction_only=False, include_bias=True, order='C')
-        train =  poly3d.fit_transform(train)
-        test =  poly3d.fit_transform(test)
-        np.set_printoptions(threshold=np.inf)
-        # print(test[:200])
-
-        # def min_maxnorm(df_input):       #正規化
-        #     return (df_input - df_input.min()) / ( df_input.max() - df_input.min())
-        # def min_maxnorm(x, axis=0): #正規化
-        #     min = x.min(axis=axis, keepdims=True)
-        #     max = x.max(axis=axis, keepdims=True)
-        #     # print("min", min)
-        #     # print("max", max)
-
-        #     result = (x-min)/(max-min)
-        #     result = np.nan_to_num(result)
-        #     return result
-        # train = min_maxnorm(train)
-        # test = min_maxnorm(test)
-        X_train = train
-        y_train = y
-
-        # print("y_train",y_train)
-        # np.savetxt('out.csv',test,delimiter=',')
-        # train.to_csv('a.csv', index = False, columns=['my_your_degree', 'my_ball_sabun_x', 'my_ball_sabun_y', 'your_ball_sabun_x', 'your_ball_sabun_y'],encoding=encoding) #客観的データ用csv
-        # print("test", test)
-        # test.to_csv('a.csv', index = False, columns=['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y'],encoding=encoding) #客観的データ用csv
-
-        # X_poly = X_poly.reindex(labels=X.columns,axis=1)
-        # ロジスティック回帰で学習
-        # lr = LogisticRegressionCV(cv=3, random_state=0, penalty='l1',solver='saga') #penalty='l1'使えない係数を0にする   
-        lr = LogisticRegression(C = 100, random_state=123, class_weight =None, fit_intercept = True, intercept_scaling = 1, penalty='l2',solver='lbfgs',  max_iter=100, tol = 0.0001, multi_class='auto')
-
-        # print(y_train.shape)
-        # print(X_train.shape)
-
-        y_train=y_train.values.reshape(-1)
-        lr.fit(X_train, y_train)
-
-
-        # print ("lr_intercept",lr.intercept_)
-
-        array_blue = []
-        array_red = []
-        array_green = []
-
-
-        for b in lr.coef_[0]:
-            array_blue.append(b)
-
-        for r in lr.coef_[1]:
-            array_red.append(r)
-
-        for g in lr.coef_[2]:
-            array_green.append(g)
-
-
-        array_blue.append(lr.intercept_[0])
-        array_red.append(lr.intercept_[1])
-        array_green.append(lr.intercept_[2])
-        x = [1,filename.split('_')[2],filename.split('_')[3],array_blue,array_red,array_green, mean['players_sabun_x'], mean['players_sabun_y'], mean['player1_ball_sabun_x'], mean['player1_ball_sabun_y'], mean['player2_ball_sabun_x'], mean['player2_ball_sabun_y'], std['players_sabun_x'], std['players_sabun_y'], std['player1_ball_sabun_x'], std['player1_ball_sabun_y'], std['player2_ball_sabun_x'], std['player2_ball_sabun_y']]
-        
-        print(x)
-
-
-    #     # #  検証
-#     #     print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-#         y_pred = lr.predict(test)
-#     #     # print("test " , test)
-#         # y_pred= lr.predict_proba(test)
-
-#     #     print("y_pred", y_pred[0])
-
-#         # print("coef " , np.shape(lr.coef_))
-#         aaa = test @ (lr.coef_).T
-#         np.set_printoptions(threshold=np.inf)
-#         # print("sss", aaa)
-#         # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
-#         # df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
-        
-#         # axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], c=y_pred[:,1], cmap='jet')#y_pred)
-#         axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], color=y_pred)#y_pred)
-
-#         axarray[k].scatter(x = df_test['player1_x'][0], y = df_test['player1_y'][0], color = "black")
-#         axarray[k].scatter(x = df_test['player2_x'][0], y = df_test['player2_y'][0], color = "black")
-#         # axarray[k].legend(loc = 'best') #凡例
-#     fig.tight_layout()         #レイアウトの設定
-#     plt.show()
 
 
 
-# cur.close
-# conn.close
+    poly3d = PolynomialFeatures(degree=3, interaction_only=False, include_bias=True, order='C')
+    train =  poly3d.fit_transform(train)
+    # test =  poly3d.fit_transform(test)
+    np.set_printoptions(threshold=np.inf)
+
+    
+    X_train = train
+    y_train = y
+
+    
+    # ロジスティック回帰で学習
+    lr = LogisticRegression(C = 100, random_state=123, class_weight =None, fit_intercept = True, intercept_scaling = 1, penalty='l2',solver='lbfgs',  max_iter=100, tol = 0.0001, multi_class='auto')
+
+    y_train=y_train.values.reshape(-1)
+    lr.fit(X_train, y_train)
+
+
+    array_blue = []
+    array_red = []
+    array_green = []
+
+
+    for b in lr.coef_[0]:
+        array_blue.append(b)
+
+    for r in lr.coef_[1]:
+        array_red.append(r)
+
+    for g in lr.coef_[2]:
+        array_green.append(g)
+
+
+    array_blue.append(lr.intercept_[0])
+    array_red.append(lr.intercept_[1])
+    array_green.append(lr.intercept_[2])
+    x = [1,filename.split('_')[2],filename.split('_')[3],array_blue,array_red,array_green, mean['players_sabun_x'], mean['players_sabun_y'], mean['player1_ball_sabun_x'], mean['player1_ball_sabun_y'], mean['player2_ball_sabun_x'], mean['player2_ball_sabun_y'], std['players_sabun_x'], std['players_sabun_y'], std['player1_ball_sabun_x'], std['player1_ball_sabun_y'], std['player2_ball_sabun_x'], std['player2_ball_sabun_y']]
+    
+    print(x)
+
+
+#     # #  検証
+# #     print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+#     # y_pred = lr.predict(test)
+# #     # print("test " , test)
+#     y_pred= lr.predict_proba(test)
+
+# #     print("y_pred", y_pred[0])
+
+#     # print("coef " , np.shape(lr.coef_))
+#     aaa = test @ (lr.coef_).T
+#     np.set_printoptions(threshold=np.inf)
+#     # print("sss", aaa)
+#     # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
+#     # df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
+    
+#     axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], c=y_pred[:,2], cmap='jet')#y_pred)
+#     # axarray[k].scatter(x=d        f_test["ball_x"], y=df_test["ball_y"], color=y_pred)#y_pred)
+
+#     axarray[k].scatter(x = df_test['player1_x'][0], y = df_test['player1_y'][0], color = "black")
+#     axarray[k].scatter(x = df_test['player2_x'][0], y = df_test['player2_y'][0], color = "black")
+#     # axarray[k].legend(loc = 'best') #凡例
+# fig.tight_layout()         #レイアウトの設定
+# plt.show()
+
+cur.close
+conn.close
