@@ -1503,13 +1503,19 @@ function calculation(rota, data) {
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
     }
-    let counter = 1;
+    let coun1 = 0;
+    let coun2 = 45;
     if (reverce == 1) {
         for (i = 0; i < judge_color.length / 2; i++) {
+            if (coun1 == 46) {
+                coun1 = 0;
+                coun2 += 46;
+            }
             let keep = judge_color[i]["judge"];
-            judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-            judge_color[judge_color.length - counter]["judge"] = keep;
-            counter++;
+            judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
+            judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
+            console.log(i, judge_color.length - 1 - coun2 + coun1);
+            coun1++;
         }
         // console.log(judge_color);
     }
