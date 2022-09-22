@@ -10,11 +10,6 @@ import locale
 import MySQLdb
 
 
-# df = pd.read_csv("dummy_data.csv", encoding="utf_8")
-# df1 = pd.read_csv("y_pred_data.csv", encoding="utf_8")
-# df2 = pd.read_csv("grid_data.csv", encoding="utf_8")
-# df2 = df[['ball_x', 'ball_y']]
-
 encoding = locale.getpreferredencoding()
 
 anzai_hinata = ['../Python/1/anzai_hinata/trans_anzai_hinata_220614_01.csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220617_03.csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220620_02.csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220627_01(2).csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220627_01.csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220627_02(2).csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220627_02.csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220628_03(2).csv', '../Python/1/anzai_hinata/trans_anzai_hinata_220628_03.csv'] #安西-西根
@@ -29,7 +24,7 @@ keisuke_riku = ['../Python/1/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '.
 riku_kento = ['../Python/1/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/1/riku_kento/trans_riku_kento_220617_03.csv', '../Python/1/riku_kento/trans_riku_kento_220620_02.csv', '../Python/1/riku_kento/trans_riku_kento_220628_01.csv', '../Python/1/riku_kento/trans_riku_kento_220705_01.csv', '../Python/1/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/1/riku_kento/trans_riku_kento_220705_02.csv', '../Python/1/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/1/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
 
 pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
-# pattern = [anzai_keisuke]
+# pattern = [anzai_hinata]
 
 
 
@@ -86,12 +81,9 @@ for o,csvname in enumerate(pattern):
     axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
 
     movie_id_array = [] #動画のパスから特定の20個のmovie_idをとってくる処理をかく
-    # print(csvname, i)
     target_array = []
     counter = 0
     for p,filename in enumerate(csvname):
-        # print(filename)
-        # print(j)
 
 
         value1 = filename.split('_')[2] + '_' + filename.split('_')[3]
@@ -115,7 +107,6 @@ for o,csvname in enumerate(pattern):
 
         for row in rows:
             movie_id_array.append(row[0])
-            # print("a",row[0])
 
         # print("movie_id_array", movie_id_array)
 
@@ -133,8 +124,8 @@ for o,csvname in enumerate(pattern):
 
         for i in movie_id_array:  #targetを決めている。
             judge_array = []
-            for row in gain_array: #経験年数に応じて増やしたデータ
-            # for row in answer_array: #経験年数に応じて増やしてないデータ
+            # for row in gain_array: #経験年数に応じて増やしたデータ
+            for row in answer_array: #経験年数に応じて増やしてないデータ
                 # print("row",row)
                 if row[1] == i:
                     judge_array.append(row[4])
@@ -210,7 +201,7 @@ for o,csvname in enumerate(pattern):
     for row in range(len(df_train.index)):
         if(row != 0):
             if(df_train.iloc[row]["target"] == 2):
-                for n in range(2):
+                # for n in range(2):
                     df_train =  df_train.append(df_train.iloc[row])
 
     for row in range(len(df_train_add_omiai.index)):
@@ -240,8 +231,8 @@ for o,csvname in enumerate(pattern):
     # df_train['my_ball_degree'] = np.arctan2(df_train['player1_y'] - df_train['ball_y'], df_train['player1_x'] - df_train['ball_x'])
     # df_train['your_ball_degree'] = np.arctan2(df_train['player2_y'] - df_train['ball_y'], df_train['player2_x'] - df_train['ball_x'])
     # df_test = pd.read_csv("../Python/pattern_1.csv", encoding="utf_8")
-    df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
-    # df_test_pattern = ["../Python/pattern/pattern_1.csv"]
+    # df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
+    df_test_pattern = ["../Python/pattern/pattern_1.csv"]
     
     for k,link in enumerate(df_test_pattern):
         df_test = pd.read_csv(link, encoding="utf_8")
@@ -272,9 +263,9 @@ for o,csvname in enumerate(pattern):
         # test = df_test[['my_your_degree','my_ball_degree', 'your_ball_degree']]
         # print("df_train", df_train["target"])
 
-        df_train.loc[df_train['target'] == 0, 'target'] = "blue"
-        df_train.loc[df_train['target'] == 1, 'target'] = "red"
-        df_train.loc[df_train['target'] == 2, 'target'] = "green"
+        # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
+        # df_train.loc[df_train['target'] == 1, 'target'] = "red"
+        # df_train.loc[df_train['target'] == 2, 'target'] = "green"
 
 
         y = df_train['target']
@@ -352,29 +343,31 @@ for o,csvname in enumerate(pattern):
         print(x)
 
 
-        # # #  検証
-        # print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
-    #     y_pred = lr.predict(test)
-    #     # print("test " , test)
+    #     # #  検証
+#     #     print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+#         y_pred = lr.predict(test)
+#     #     # print("test " , test)
+#         # y_pred= lr.predict_proba(test)
 
-    #     print("y_pred", y_pred)
+#     #     print("y_pred", y_pred[0])
 
-    #     # print("coef " , np.shape(lr.coef_))
-    #     aaa = test @ (lr.coef_).T
-    #     np.set_printoptions(threshold=np.inf)
-    #     # print("sss", aaa)
-    #     # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
-    #     # df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
+#         # print("coef " , np.shape(lr.coef_))
+#         aaa = test @ (lr.coef_).T
+#         np.set_printoptions(threshold=np.inf)
+#         # print("sss", aaa)
+#         # df_test.plot.scatter(x='ball_x', y='ball_y', color=test['target'])
+#         # df_test.plot.scatter(x='ball_x', y='ball_y', color=y_pred)
         
-    #     axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], color=y_pred)
+#         # axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], c=y_pred[:,1], cmap='jet')#y_pred)
+#         axarray[k].scatter(x=df_test["ball_x"], y=df_test["ball_y"], color=y_pred)#y_pred)
 
-    #     axarray[k].scatter(x = df_test['player1_x'][0], y = df_test['player1_y'][0], color = "black")
-    #     axarray[k].scatter(x = df_test['player2_x'][0], y = df_test['player2_y'][0], color = "black")
-    #     # axarray[k].legend(loc = 'best') #凡例
-    # fig.tight_layout()         #レイアウトの設定
-    # plt.show()
+#         axarray[k].scatter(x = df_test['player1_x'][0], y = df_test['player1_y'][0], color = "black")
+#         axarray[k].scatter(x = df_test['player2_x'][0], y = df_test['player2_y'][0], color = "black")
+#         # axarray[k].legend(loc = 'best') #凡例
+#     fig.tight_layout()         #レイアウトの設定
+#     plt.show()
 
 
 
-cur.close
-conn.close
+# cur.close
+# conn.close
