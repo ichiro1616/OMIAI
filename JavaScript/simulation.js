@@ -1,10 +1,12 @@
-// let cdt =[{x:50,y:10,},{x:550,y:50,},{x:840,y:10,},{x:870,y:460,},{x:350,y:460,},{x:50,y:460,},
-//     {x:460,y:370,},{x:760,y:370,},{x:620,y:600,},{x:310,y:600,},{x:160,y:370,}];
+// const cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
+// { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
 // let cdt_center = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
 // { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
 
-
+//後で
+// let tempaa = [cdt[0]];
+// console.log('temapjd', tempaa);
 
 // let imagearray = [
 //     [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
@@ -763,7 +765,6 @@ let mousemove = function (e, type) {
                                 break;
                         }
                         break;
-
                     case 3://4ローテーション目
                         switch (dragkoma) {
                             case 1://後衛真ん中
@@ -816,13 +817,14 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].y = y + tempY;
                                     imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
                                     imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
+                                    console.log('ima', imagearray[3][0]);
+                                    console.log('imac', imagearray_center[3][0]);
                                 }
                                 break;
                             default:
                                 break;
                         }
                         break;
-
                     case 4://5ローテーション目
                         switch (dragkoma) {
                             case 1://後衛左
@@ -888,7 +890,6 @@ let mousemove = function (e, type) {
                                 break;
                         }
                         break;
-
                     case 5://6ローテーション目
                         switch (dragkoma) {
                             case 1://前衛左
@@ -1482,9 +1483,9 @@ function calculation(rota, data) {
         g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
 
-        aa = 1 / (1 + Math.exp(-b));
-        bb = 1 / (1 + Math.exp(-r));
-        cc = 1 / (1 + Math.exp(-g));
+        aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
         blue.push(aa);
         red.push(bb);
         green.push(cc);
@@ -1503,13 +1504,19 @@ function calculation(rota, data) {
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
     }
-    let counter = 1;
+    let coun1 = 0;
+    let coun2 = 45;
     if (reverce == 1) {
         for (i = 0; i < judge_color.length / 2; i++) {
+            if (coun1 == 46) {
+                coun1 = 0;
+                coun2 += 46;
+            }
             let keep = judge_color[i]["judge"];
-            judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-            judge_color[judge_color.length - counter]["judge"] = keep;
-            counter++;
+            judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
+            judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
+            // console.log(i, judge_color.length - 1 - coun2 + coun1);
+            coun1++;
         }
         // console.log(judge_color);
     }

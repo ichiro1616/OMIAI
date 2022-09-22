@@ -1587,7 +1587,7 @@ const context_omiai = canvas_omiai.getContext('2d');
 
 //(36,0)   (563,0)
 //(36,480) (563,480)
-const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
+const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F 0,234,95
 const red = '';
 const blue = '';
 context_omiai.fillStyle = omiai_color;//色
@@ -2178,9 +2178,9 @@ function calculation(rota, data) {
         g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
 
-        aa = Math.exp(b) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
-        bb = Math.exp(r) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
-        cc = Math.exp(g) / (1 + Math.exp(-b) + Math.exp(-r) + Math.exp(-g));
+        aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
         blue.push(aa);
         red.push(bb);
         green.push(cc);
@@ -2204,18 +2204,22 @@ function calculation(rota, data) {
     // console.log('judge_color', judge_color[1104].judge);
     // console.log('judge_array', judge_array);
     // console.log('aiueo', aiueo[200].judge);
-    let counter = 1;
+    let coun1 = 0;
+    let coun2 = 45;
     if (reverce == 1) {
         for (i = 0; i < judge_color.length / 2; i++) {
+            if (coun1 == 46) {
+                coun1 = 0;
+                coun2 += 46;
+            }
             let keep = judge_color[i]["judge"];
-            judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-            judge_color[judge_color.length - counter]["judge"] = keep;
-            counter++;
+            judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
+            judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
+            console.log(i, judge_color.length - 1 - coun2 + coun1);
+            coun1++;
         }
         // console.log(judge_color);
     }
-    // console.log('return', judge_color[200].judge);
-    // console.log('return+100', judge_color[200].judge + 100);
     return judge_color;
 }
 

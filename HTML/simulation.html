@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <title>OMIAI</title>
 </head>
+
 <body>
   <div id="container">
     <div class="all">
@@ -11,19 +13,21 @@
       <div id="experience">
         <div class="modalWindow">
           <h1 id="ex">あなたの経験年数を選んでください</h1>
-          <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;" class="slider">
-            <div id="wrap">
-              <p>●●●</p>
-            </div>
-            <div id="wrapping">
-              <p>未経験</p>
-              <p>1~2年</p>
-              <p>3~5年</p>
-              <p>6~9年</p>
-              <p>10年以上</p>
-            </div>
-            <br />
-          <button type="button" onclick="simulation();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
+          <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;"
+            class="slider">
+          <div id="wrap">
+            <p>●●●</p>
+          </div>
+          <div id="wrapping">
+            <p>未経験</p>
+            <p>1~2年</p>
+            <p>3~5年</p>
+            <p>6~9年</p>
+            <p>10年以上</p>
+          </div>
+          <br />
+          <button type="button" onclick="simulation();" id="button-check"><img src="../Picture/checkbox-icon.png"
+              class="check_box" /></button>
         </div>
       </div>
 
@@ -32,158 +36,160 @@
           <div class="col-6">
             <p id="syoukai_bun"></p>
             <div class="bg_image"></div>
-              <div id="canvas_warp">
-                <canvas id="canvas2" height="1200" width="1200"></canvas>
-                <canvas id="canvas1" height="1200" width="1200"></canvas>
-                <canvas id="canvas3" height="1200" width="1200"></canvas>
-              </div>
-              <div id="area_percentage"></div>
+            <div id="canvas_warp">
+              <canvas id="canvas2" height="1200" width="1200"></canvas>
+              <canvas id="canvas1" height="1200" width="1200"></canvas>
+              <canvas id="canvas3" height="1200" width="1200"></canvas>
             </div>
-            <div class="col-6">
+            <div id="area_percentage"></div>
+          </div>
+          <div class="col-6">
 
-              <label class="open" for="pop-up">
-                <div id="tutorial" ontouchstart="">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-                  </svg>
-                </div>
-              </label>
-              <input type="checkbox" id="pop-up">
-              <div class="overlay">
+            <label class="open" for="pop-up">
+              <div id="tutorial" ontouchstart="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
+                </svg>
+              </div>
+            </label>
+            <input type="checkbox" id="pop-up">
+            <div class="overlay">
               <div class="window">
-              <label class="close" for="pop-up">閉じる</label>
-              <p class="text">tutorial</p>
+                <label class="close" for="pop-up">閉じる</label>
+                <p class="text">tutorial</p>
               </div>
-              </div>
-              <div class="bubble">
-                <img src="../Picture/talk_bubble2.png" class="talk_bubble"/>
-                <div id="message">
-                  <div id="kensuke">
-                    <b>けんすけ</b><br>
-                    <c>50kg　175cm<br>
-                      なぜかあだ名が「けんぴ」な男！<br>
-                      スマブラが上手いぞ!!
-                    </c>
-                  </div>
-                  <div id="rui">
-                    <b>るい</b><br>
-                    <c>60kg　180cm<br>
-                      信頼感溢れる優しいキャプテン！<br>
-                      皆にご飯を奢ってくれるぞ!!
-                    </c>
-                  </div>
-                  <div id="hinata">
-                    <b>ひなた</b><br>
-                    <c>55kg　175cm<br>
-                      <nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>
-                      まるで仏のようだ!!
-                    </c>
-                  </div>
-                  <div id="kento">
-                    <b>けんと</b><br>
-                    <c>60kg　180cm<br>
-                      ご飯大好き食いしん坊！<br>
-                      パワー満点のスパイクを放つぞ!!
-                    </c>
-                  </div>
-                  <div id="riku">
-                    <b>りく</b><br>
-                    <c>60kg　180cm<br>
-                      ゲーム大好きの高身長男！<br>
-                      ゲームばかりせずに勉強しよう!!
-                    </c>
-                  </div>
-                  <div id="keisuke">
-                    <b>けいすけ</b><br>
-                    <c>55kg　175cm<br>
-                      安心感抜群の圧倒的お父さん感！<br>
-                      レシーブがもの凄く上手いぞ！
-                    </c>
-                  </div>
+            </div>
+            <div class="bubble">
+              <img src="../Picture/talk_bubble2.png" class="talk_bubble" />
+              <div id="message">
+                <div id="kensuke">
+                  <b>けんすけ</b><br>
+                  <c>50kg　175cm<br>
+                    なぜかあだ名が「けんぴ」な男！<br>
+                    スマブラが上手いぞ!!
+                  </c>
                 </div>
-                <div class="face">
-                  <img id ="face_img" src="">
+                <div id="rui">
+                  <b>るい</b><br>
+                  <c>60kg　180cm<br>
+                    信頼感溢れる優しいキャプテン！<br>
+                    皆にご飯を奢ってくれるぞ!!
+                  </c>
+                </div>
+                <div id="hinata">
+                  <b>ひなた</b><br>
+                  <c>55kg　175cm<br>
+                    <nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>
+                    まるで仏のようだ!!
+                  </c>
+                </div>
+                <div id="kento">
+                  <b>けんと</b><br>
+                  <c>60kg　180cm<br>
+                    ご飯大好き食いしん坊！<br>
+                    パワー満点のスパイクを放つぞ!!
+                  </c>
+                </div>
+                <div id="riku">
+                  <b>りく</b><br>
+                  <c>60kg　180cm<br>
+                    ゲーム大好きの高身長男！<br>
+                    ゲームばかりせずに勉強しよう!!
+                  </c>
+                </div>
+                <div id="keisuke">
+                  <b>けいすけ</b><br>
+                  <c>55kg　175cm<br>
+                    安心感抜群の圧倒的お父さん感！<br>
+                    レシーブがもの凄く上手いぞ！
+                  </c>
                 </div>
               </div>
-              <div class="buttons">
-                <button type="button"  onclick="rotation(-1)" id="rotation_button">
-                  <img src="../Picture/サイクル_1.png" class="rotation" id = 'rotation_image'/></button>
-                  <button type="button" onclick="jump()" id="register_btn">
-                  <img src="../Picture/check.png" class="collect"/></button>
+              <div class="face">
+                <img id="face_img" src="">
               </div>
-              <div class="bar_and_scale">
-                <b class="word">お見合い割合変化バー</b>
-                <div class="bar">
-                  <input type="range" id="subject_object" min="0" max="4" step="1" value="2" style="width: 20rem;">
-                </div>
-                <div class="bar_under_pic">
-                  <img src="../Picture/Ob.png" alt="目盛り" title="主観的" class="Ob">
-                  <img src="../Picture/Sub.png" alt="目盛り" title="客観的" class="Sub">
-                </div>
-                <div class="per">
-                  <c class="Ob_100">100%</c>
-                  <c class="SubOb_50">50%</c>
-                  <c class="Sub_100">100%</c>
-                </div>
+            </div>
+            <div class="buttons">
+              <button type="button" onclick="rotation(-1)" id="rotation_button">
+                <img src="../Picture/サイクル_1.png" class="rotation" id='rotation_image' /></button>
+              <button type="button" onclick="jump()" id="register_btn">
+                <img src="../Picture/check.png" class="collect" /></button>
+            </div>
+            <div class="bar_and_scale">
+              <b class="word">お見合い割合変化バー</b>
+              <div class="bar">
+                <input type="range" id="subject_object" min="0" max="4" step="2" value="2" style="width: 20rem;">
+              </div>
+              <div class="bar_under_pic">
+                <img src="../Picture/Ob.png" alt="目盛り" title="主観的" class="Ob">
+                <img src="../Picture/Sub.png" alt="目盛り" title="客観的" class="Sub">
+              </div>
+              <div class="per">
+                <c class="Ob_100">100%</c>
+                <c class="SubOb_50">50%</c>
+                <c class="Sub_100">100%</c>
               </div>
             </div>
           </div>
         </div>
-        <div id="under">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div class="under_canvas_warp">
-                <div class="under1">
-                  <canvas id="under_canvas1" height="200" width="200" ></canvas>
-                  <canvas id="under_canvas1-2" height="200" width="200"></canvas>
-                  <canvas id="under_canvas1-3" height="200" width="200"></canvas>
-                  <button type="button"  onclick="rotation(0)"id="rota0">
-                </div>
-                <div class="under2">
-                  <canvas id="under_canvas2" height="200" width="200"></canvas>
-                  <canvas id="under_canvas2-2" height="200" width="200"></canvas>
-                  <canvas id="under_canvas2-3" height="200" width="200"></canvas>
-                  <button type="button"  onclick="rotation(1)"id="rota1">
+      </div>
+      <div id="under">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="under_canvas_warp">
+              <div class="under1">
+                <canvas id="under_canvas1" height="200" width="200"></canvas>
+                <canvas id="under_canvas1-2" height="200" width="200"></canvas>
+                <canvas id="under_canvas1-3" height="200" width="200"></canvas>
+                <button type="button" onclick="rotation(0)" id="rota0">
+              </div>
+              <div class="under2">
+                <canvas id="under_canvas2" height="200" width="200"></canvas>
+                <canvas id="under_canvas2-2" height="200" width="200"></canvas>
+                <canvas id="under_canvas2-3" height="200" width="200"></canvas>
+                <button type="button" onclick="rotation(1)" id="rota1">
 
-                </div>
-                <div class="under3">
+              </div>
+              <div class="under3">
                 <canvas id="under_canvas3" height="200" width="200"></canvas>
                 <canvas id="under_canvas3-2" height="200" width="200"></canvas>
                 <canvas id="under_canvas3-3" height="200" width="200"></canvas>
-                <button type="button"  onclick="rotation(2)"id="rota2">
+                <button type="button" onclick="rotation(2)" id="rota2">
 
-               </div>
-                <div class="under4">
+              </div>
+              <div class="under4">
                 <canvas id="under_canvas4" height="200" width="200"></canvas>
                 <canvas id="under_canvas4-2" height="200" width="200"></canvas>
                 <canvas id="under_canvas4-3" height="200" width="200"></canvas>
-                <button type="button"  onclick="rotation(3)"id="rota3">
+                <button type="button" onclick="rotation(3)" id="rota3">
 
-               </div>
-                <div class="under5">
-                  <canvas id="under_canvas5" height="200" width="200"></canvas>
+              </div>
+              <div class="under5">
+                <canvas id="under_canvas5" height="200" width="200"></canvas>
                 <canvas id="under_canvas5-2" height="200" width="200"></canvas>
                 <canvas id="under_canvas5-3" height="200" width="200"></canvas>
-                <button type="button"  onclick="rotation(4)"id="rota4">
+                <button type="button" onclick="rotation(4)" id="rota4">
 
-               </div>
-                <div class="under6">
+              </div>
+              <div class="under6">
                 <canvas id="under_canvas6" height="200" width="200"></canvas>
                 <canvas id="under_canvas6-2" height="200" width="200"></canvas>
                 <canvas id="under_canvas6-3" height="200" width="200"></canvas>
-                <button type="button" onclick="rotation(5)"id="rota5">
+                <button type="button" onclick="rotation(5)" id="rota5">
 
               </div>
 
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
   <script src="../JavaScript/simulation.js"></script>
   <link href="../CSS/simulation.css" rel="stylesheet" />
   <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
 </body>
+
 </html>
