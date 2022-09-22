@@ -334,7 +334,6 @@ let genekeep; // 世代 別で区切った配列
 
 window.onclick = canvas_draw();
 area(counter);
-
 function canvas_draw() {
   //自分の配置koma
   my_can = document.getElementById('my'); //キャンバスのidを取得
@@ -477,6 +476,7 @@ inputSlideBarElement.addEventListener('change', function () {
 });
 
 let datakeep = [];
+let max_gene //最大世代数
 formData = new FormData();
 xhr = new XMLHttpRequest();
 xhr.open("GET", "/PHP/collective.php");
@@ -501,7 +501,12 @@ xhr.addEventListener("loadend", function () {
     }
     console.log('generation', gene);
     genekeep = gene;
-    document.getElementById("generation_change").max = genekeep.length;
+    max_gene = genekeep.length;
+    if(max_gene != 1){
+      document.getElementById('max_gene').innerHTML = max_gene + '世代目';
+    }
+    document.getElementById("generation_change").max = genekeep.length - 1;
+
   }
   collective();
 });
@@ -574,10 +579,10 @@ function draw(rota) {
 }
 const rotation_images = [
   '../Picture/サイクル_1.png',
-  '../Picture/サイクル_2.png',
-  '../Picture/サイクル_3.png',
-  '../Picture/サイクル_4.png',
-  '../Picture/サイクル_5.png',
+  '../Picture/light_blue_1.png',
+  '../Picture/light_green_1.png',
+  '../Picture/pink_1.png',
+  '../Picture/purple_1.png',
   '../Picture/サイクル_6.png',
 ];
 //ローテーションボタンを押されたら
@@ -587,12 +592,12 @@ function rotation() {
   if (counter == 6) {
     counter = 0;
   }
+  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
+  ot_ctx2.clearRect(0,0,ot_can2.width,ot_can2.height);
   document.getElementById('rotation_image').src = rotation_images[counter];
   console.log("ローテーション", counter);
   draw(counter);
   collective();
-  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
-  ot_ctx2.clearRect(0,0,         )
   area(counter)
 
 }
