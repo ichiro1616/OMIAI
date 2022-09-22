@@ -24,8 +24,8 @@ if (!$mysqli) {
   die("データベースの接続に失敗しました．");
 }
 
-$command="python ../Python/objectivity_predict.py"; //基本はpython ../Python/subjectivity_predict.py　にしといて、手動で主観的データを入れるときだけ、python ../Python/objectivity_predict.pyと書く。
-// $command="python ../Python/subjectivity_predict.py"; 
+// $command="python ../Python/objectivity_predict.py"; //基本はpython ../Python/subjectivity_predict.py　にしといて、手動で主観的データを入れるときだけ、python ../Python/objectivity_predict.pyと書く。
+$command="python ../Python/subjectivity_predict.py"; 
 
 
 exec($command,$output);
@@ -73,8 +73,7 @@ $obvious = mysqli_fetch_all($result_status, MYSQLI_ASSOC);
 if($obvious){
   $data_array = array_merge($data[3], $data[4], $data[5]);
   print("obvious");
-  // var_dump($obvious);
-  print("data_array");
+  var_dump($data_array);
   // var_dump($data_array);
 
   for($i = 0; $i < count($obvious); $i++){
@@ -90,12 +89,12 @@ $color_array = array('blue', 'red', 'green');
 for($i = 0; $i < count($color_array); $i++){
     
     for($j = 0; $j < count($data[$i + 3]); $j++){
-      var_dump($data[0]);
-      var_dump($color_array[$i]);
-      var_dump($left_player[0]["player_id"]);
-      var_dump($right_player[0]["player_id"]);
-      var_dump($data[$i + 3][$j]);
-      var_dump($time_stamp);
+      // var_dump($data[0]);
+      // var_dump($color_array[$i]);
+      // var_dump($left_player[0]["player_id"]);
+      // var_dump($right_player[0]["player_id"]);
+      // var_dump($data[$i + 3][$j]);
+      // var_dump($time_stamp);
       #typeは主観的データの場合は0, 客観的データの場合は1とする
         $sql = "INSERT INTO `lr.coef_`(`type`, `color`, `left_player`, `right_player`, `data`, `mean_players_sabun_x`, `mean_players_sabun_y`, `mean_player1_ball_sabun_x`, `mean_player1_ball_sabun_y`, `mean_player2_ball_sabun_x`, `mean_player2_ball_sabun_y`, `std_players_sabun_x`, `std_players_sabun_y`, `std_player1_ball_sabun_x`, `std_player1_ball_sabun_y`, `std_player2_ball_sabun_x`, `std_player2_ball_sabun_y`, `date`) VALUES ({$data[0]},  '$color_array[$i]', {$left_player[0]["player_id"]}, {$right_player[0]["player_id"]}, {$data[$i + 3][$j]}, {$data[6]}, {$data[7]}, {$data[8]}, {$data[9]}, {$data[10]}, {$data[11]}, {$data[12]}, {$data[13]}, {$data[14]}, {$data[15]}, {$data[16]}, {$data[17]}, '$time_stamp')";
         $stmt = $mysqli->prepare($sql);
