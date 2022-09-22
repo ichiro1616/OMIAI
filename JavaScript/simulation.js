@@ -1,31 +1,3 @@
-// const cdt = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
-// { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
-
-// let cdt_center = [{ x: 50, y: 10, }, { x: 550, y: 50, }, { x: 840, y: 10, }, { x: 870, y: 460, }, { x: 350, y: 460, }, { x: 50, y: 460, },
-// { x: 460, y: 370, }, { x: 760, y: 370, }, { x: 620, y: 600, }, { x: 310, y: 600, }, { x: 160, y: 370, }];
-
-//後で
-// let tempaa = [cdt[0]];
-// console.log('temapjd', tempaa);
-
-// let imagearray = [
-//     [cdt[0], cdt[6], cdt[7], cdt[8], cdt[9], cdt[10]],
-//     [cdt[1], cdt[7], cdt[8], cdt[6], cdt[9], cdt[10]],
-//     [cdt[2], cdt[7], cdt[8], cdt[9], cdt[10], cdt[6]],
-//     [cdt[3], cdt[8], cdt[9], cdt[10], cdt[6], cdt[7]],
-//     [cdt[4], cdt[9], cdt[10], cdt[6], cdt[7], cdt[8]],
-//     [cdt[5], cdt[10], cdt[6], cdt[7], cdt[8], cdt[9]]
-// ];
-
-// let imagearray_center = [
-//     [cdt_center[0], cdt_center[6], cdt_center[7], cdt_center[8], cdt_center[9], cdt_center[10]],
-//     [cdt_center[1], cdt_center[7], cdt_center[8], cdt_center[6], cdt_center[9], cdt_center[10]],
-//     [cdt_center[2], cdt_center[7], cdt_center[8], cdt_center[9], cdt_center[10], cdt_center[6]],
-//     [cdt_center[3], cdt_center[8], cdt_center[9], cdt_center[10], cdt_center[6], cdt_center[7]],
-//     [cdt_center[4], cdt_center[9], cdt_center[10], cdt_center[6], cdt_center[7], cdt_center[8]],
-//     [cdt_center[5], cdt_center[10], cdt_center[6], cdt_center[7], cdt_center[8], cdt_center[9]]
-// ];
-
 //コマの座標（中心基準）
 let imagearray_center = [
     [
@@ -350,7 +322,7 @@ let imagearray = [
 const canvas = document.getElementById('canvas3');
 const context = canvas.getContext('2d');
 //under_canvasに描画する準備
-let canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5", "under_canvas6"];
+const canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5", "under_canvas6"];
 const under_canvas = [];
 const under_context = [];
 for (let i = 0; i < 6; i++) {
@@ -358,9 +330,12 @@ for (let i = 0; i < 6; i++) {
     under_context[i] = under_canvas[i].getContext('2d');
 }
 const button_id = ["rota0", "rota1", "rota2", "rota3", "rota4", "rota5"];
+
 //スライダーバー
-const SlideBar_experience = document.getElementById('input-range');//経験年数
-const SlideBar_subject_object = document.getElementById('subject_object');//主観的・客観的
+//経験年数選択バー
+const SlideBar_experience = document.getElementById('input-range');
+//お見合い割合変化バー
+const SlideBar_subject_object = document.getElementById('subject_object');
 
 //画像パス
 const path = ['../Picture/koma/0/2-1.png', //けんすけ
@@ -378,7 +353,6 @@ const rotation_images = [
     '../Picture/サイクル_5.png',
     '../Picture/サイクル_6.png',
 ];
-
 const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[4], path[6], path[8], path[9]],
 [path[0], path[2], path[4], path[6], path[7], path[9]],
@@ -386,9 +360,7 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[2], path[3], path[5], path[7], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
-
-
-//画像 ローテーションするなら多次元にした方がいいかも
+//画像
 let images = new Array(6);//要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
     images[i] = new Array(6).fill(0);//imagesの多次元配列を作成し0で初期化
@@ -397,6 +369,31 @@ for (var i = 0; i < 6; i++) {//ローテーション
     for (var j = 0; j < 6; j++) {//コマ番号
         images[i][j] = new Image();
     }
+}
+
+//グラデーション用配列
+let gradation = new Array(10);
+let G_gra = 120;
+let A_gra = 1;
+for (i = 0; i < gradation.length; i++) {
+    gradation[i] = new Array(4).fill(0);
+}
+for (i = 0; i < gradation.length; i++) {
+    for (j = 1; j < gradation[i].length; j += 2) {
+        if (j == 1) {
+            //Gの変化
+            gradation[i][j] = G_gra;
+        }
+        if (j == 3) {
+            //透明度の変化
+            //小数誤差の調整
+            gradation[i][j] = Math.floor(A_gra * 10) / 10;
+        }
+    }
+    //変化量120から255
+    G_gra += (255 - 120) / (gradation.length - 1);
+    //変化量0から1
+    A_gra -= 0.1;
 }
 
 let scale = under_canvas[0].width / canvas.width;//canvasとunder_canvasの比
@@ -443,16 +440,13 @@ window.addEventListener('DOMContentLoaded', () => {
     under.style.display = 'none';
     document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
     experience_years = 2; //経験年数の初期値は2
-    console.log('経験年数', experience_years);
 
     SlideBar_experience.addEventListener('change', () => {
         experience_years = SlideBar_experience.value;
-        console.log('経験年数', experience_years);
     })
 
     SlideBar_subject_object.addEventListener('change', () => {
         subject_object_level = SlideBar_subject_object.value;
-        console.log('主観的か客観的か', subject_object_level);
         area(counter);
     })
 
@@ -468,7 +462,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    //画像読み込み終わってからソース取得する
+    //画像の読み込みが終わってからソース取得する
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 6; j++) {
             images[i][j].src = img[i][j];
@@ -476,6 +470,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+//経験年数選択のポップアップを非表示
 function simulation() {
     simulation_area.style.display = "block";
     under.style.display = "block";
@@ -487,10 +482,7 @@ function simulation() {
     riku.style.display = "none";//りく
     keisuke.style.display = "none";//けいすけ
     document.getElementById("face_img").src = img[0][0];
-
-
 }
-
 
 //画像を表示する
 function draw(rota) {
@@ -510,11 +502,11 @@ function draw(rota) {
 let mousedown = function (e, type) {
     //タッチのデフォルト処理を禁止
     e.preventDefault();
-
-    //ドラッグ開始時のウェブサイト上のマウスの座標
+    //ウェブサイト上のcanvasの座標
     let rect = canvas.getBoundingClientRect();
     let posX;
     let posY;
+    //PCかタブレットに合わせて座標を取得
     if (type == 0) {
         posX = parseInt(e.clientX) - rect.left;
         posY = parseInt(e.clientY) - rect.top;
@@ -522,30 +514,24 @@ let mousedown = function (e, type) {
         posX = parseInt(e.targetTouches[0].clientX) - rect.left;
         posY = parseInt(e.targetTouches[0].clientY) - rect.top;
     }
-
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
         scaleHeight = canvas.clientHeight / canvas.height;
-
     //調整後の座標
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
-
-    console.log('------------------------------------');
-    console.log('x,y', canvasX, canvasY);
-
     //コマ0（セッター）は計算しない
     for (var i = images.length - 1; i >= 0; i--) {
         //コマの中心座標
         let centerX = imagearray_center[counter][i].x;
         let centerY = imagearray_center[counter][i].y;
         let name = [kensuke, rui, hinata, kento, riku, keisuke];
-
         //コマの当たり判定処理
         if ((centerX - canvasX) * (centerX - canvasX) + (centerY - canvasY) * (centerY - canvasY) <= (koma_h / 2 * size) * (koma_h / 2 * size)) {
-            dragkoma = i;//ドラッグしているコマ
-            console.log(dragkoma);
-            dragmode = true;//ドラッグモードにする
+            //ドラッグしているコマ
+            dragkoma = i;
+            //ドラッグモードにする
+            dragmode = true;
             for (let i = 0; i < 6; i++) {
                 if (dragkoma == i) {
                     document.getElementById("face_img").src = img[counter][dragkoma];
@@ -559,8 +545,6 @@ let mousedown = function (e, type) {
                         dragmode = false;
                     }
                 }
-
-
             }
         }
     }
@@ -570,11 +554,11 @@ let mousedown = function (e, type) {
 let mousemove = function (e, type) {
     //タッチのデフォルト処理を禁止
     e.preventDefault();
-
-    // ドラッグ終了位置
+    //ウェブサイト上のcanvasの座標
     let rect = canvas.getBoundingClientRect();
     let posX;
     let posY;
+    //PCかタブレットに合わせて座標を取得
     if (type == 0) {
         posX = parseInt(e.clientX) - rect.left;
         posY = parseInt(e.clientY) - rect.top;
@@ -582,30 +566,25 @@ let mousemove = function (e, type) {
         posX = parseInt(e.targetTouches[0].clientX) - rect.left;
         posY = parseInt(e.targetTouches[0].clientY) - rect.top;
     }
-
     //表示されているサイズと実際のキャンバスサイズの比率を求める
     let scaleWidth = canvas.clientWidth / canvas.width,
         scaleHeight = canvas.clientHeight / canvas.height;
-
     //調整後の座標
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
-
+    //canvas外にドラッグした場合
     if (type == 1) {
         if (canvasX >= canvas.width || canvasX <= 0 || canvasY >= canvas.height || canvasY <= 0) {
             mouseup(e);
         }
     }
-
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
-
         let x = 0;
         let y = 0;
         let w = koma_w * size;
         let h = koma_h * size;
-
         //コマが重ならないように
         for (i = 0; i < 6; i++) {
             if (i != dragkoma) {
@@ -614,29 +593,28 @@ let mousemove = function (e, type) {
                 }
             }
         }
-
+        //コマの制約
         for (var i = 5; i >= 0; i--) {
             if (i == dragkoma) {
                 //コマの座標
                 x = canvasX - koma_w / 2 * size;
                 y = canvasY - koma_h / 2 * size;
                 let min;
-
+                //右の選手を超えた場合
                 function right_const(dragkoma, counter, right_id) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 10;
                         mouseup(e);
-                        console.log('右の選手を超えようとした');
                     }
                 }
-
+                //左の選手を超えた場合
                 function left_const(dragkoma, counter, left_id) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 10;
                         mouseup(e);
-                        console.log('左の選手を超えようとした');
                     }
                 }
+                //前衛の選手を超えた場合
                 function van_const(dragkoma, counter, van1_id, van2_id, van3_id) {
                     if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van3_id].y) {
                         if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y) {
@@ -648,10 +626,9 @@ let mousemove = function (e, type) {
                         }
                         y = min + 10;
                         mouseup(e);
-                        console.log('前衛の選手を超えようとした');
                     }
                 }
-
+                //後衛の選手を超えた場合
                 function rear_const(dragkoma, counter, rear1_id, rear2_id, rear3_id) {
                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear3_id].y) {
                         if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
@@ -663,11 +640,10 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        console.log('後衛の選手を超えようとした');
                     }
 
                 }
-
+                //後衛の選手を超えた場合
                 function srear_const(dragkoma, counter, rear1_id, rear2_id) {
                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
                         if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
@@ -677,12 +653,9 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        console.log('後衛の選手を超えようとした');
                     }
-
                 }
-
-                //コマの動きがルールに合ってるか確認+ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
+                //コマの動きがルールに合ってるか確認し、ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
                 switch (counter) {
                     case 0://1ローテーション目
                         switch (dragkoma) {
@@ -793,8 +766,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('セッター座標x,y', imagearray[counter][0].x, imagearray[counter][0].y);
-                                    console.log('左の選手を超えようとした');
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
                                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
@@ -808,7 +779,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('後衛の選手を超えようとした');
                                     //セッターを一緒に動かす
                                 } else {
                                     let tempX = imagearray[counter][0].x - imagearray[counter][5].x;
@@ -817,8 +787,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].y = y + tempY;
                                     imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
                                     imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
-                                    console.log('ima', imagearray[3][0]);
-                                    console.log('imac', imagearray_center[3][0]);
                                 }
                                 break;
                             default:
@@ -844,7 +812,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('左の選手を超えようとした');
                                     //右の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
                                     x = imagearray[counter][4].x - 10;
@@ -853,7 +820,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('右の選手を超えようとした');
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
                                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
@@ -867,7 +833,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('後衛の選手を超えようとした');
                                     //セッターを一緒に動かす
                                 } else {
                                     let tempX = imagearray[counter][0].x - imagearray[counter][3].x;
@@ -901,7 +866,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('右の選手を超えようとした');
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
                                     if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
@@ -915,7 +879,6 @@ let mousemove = function (e, type) {
                                     imagearray[counter][0].x = x + tempX;
                                     imagearray[counter][0].y = y + tempY;
                                     mouseup(e);
-                                    console.log('後衛の選手を超えようとした');
                                     //セッターを一緒に動かす
                                 } else {
                                     let tempX = imagearray[counter][0].x - imagearray[counter][1].x;
@@ -977,7 +940,6 @@ let mousemove = function (e, type) {
 let mouseup = function (e) {
     if (dragmode) {
         area(counter);
-        // omiai();
     }
     dragmode = false;
 }
@@ -996,7 +958,6 @@ canvas.addEventListener('touchmove', function (e) { mousemove(e, 1); }, false);
 canvas.addEventListener('touchend', function (e) { mouseup(e); }, false);
 canvas.addEventListener('touchcancel', function (e) { mouseout(e); false });
 
-
 //ローテーション
 function rotation(value) {
     if (value == -1) {
@@ -1009,23 +970,14 @@ function rotation(value) {
         counter = 0;
     }
     document.getElementById('rotation_image').src = rotation_images[counter];
-    console.log("ローテーション", counter);
     draw(counter);
     // under_context3[counter].clearRect(0, 0, under_canvas3[counter].width, under_canvas3[counter].height);
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
     area(counter);
 }
 
-//----------------------------------------------------------------
-//お見合い範囲表示
-// const canvas_omiai_width = canvas_omiai.width;//canvas1の横幅
-// const canvas_omiai_height = canvas_omiai.height;//canvas1の縦幅
-
 const canvas_omiai = document.getElementById('canvas1');//お見合い範囲用
 const context_omiai = canvas_omiai.getContext('2d');
-const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-context_omiai.fillStyle = omiai_color;//色
-context_omiai.globalAlpha = 0.4;//不透明度 0.7
 
 //under_canvasに描画する準備
 let omi_canvas_id = ["under_canvas1-3", "under_canvas2-3", "under_canvas3-3", "under_canvas4-3", "under_canvas5-3", "under_canvas6-3"];
@@ -1045,27 +997,30 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
+
+//お見合い範囲表示関数
 function omiai(judge_area, rota) {
     // canvas4内を一旦クリア
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
-    let k = 0;
+    let k_sum = 0;
     let percentage = 0;
-    //後で　ローテーションごとのいる
+    //お見合い範囲表示
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
-            if (judge_area[k].judge >= overlap) {
+            let judge_index = 10 - Math.round(judge_area[k_sum].judge);
+            if (judge_index != 10) {
+                let gra_g = gradation[judge_index][1];
+                let gra_a = gradation[judge_index][3];
+                context_omiai.globalAlpha = gra_a;
+                context_omiai.fillStyle = 'rgb(0,' + gra_g + ',0)';
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
                 percentage++;
             }
-            k++;
+            k_sum++;
         }
     }
 
     // under_canvas
-    for (let i = 0; i < under_canvas3.length; i++) {
-        under_context3[i].fillStyle = omiai_color;//色
-        under_context3[i].globalAlpha = 0.4;//不透明度 0.7
-    }
     let ad = under_canvas3[0].width / canvas_omiai.width;
     let oriX = 76.1 * ad;
     let oriY = 1124.3 * ad;
@@ -1082,7 +1037,12 @@ function omiai(judge_area, rota) {
             under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
             for (j = 0; j < 46; j++) {
                 for (k = 0; k < 46; k++) {
-                    if (judge_area[tem].judge >= overlap) {
+                    let judge_index = 10 - Math.round(judge_area[tem].judge);
+                    if (judge_index != 10) {
+                        let gra_g = gradation[judge_index][1];
+                        let gra_a = gradation[judge_index][3];
+                        under_context3[i].globalAlpha = gra_a;
+                        under_context3[i].fillStyle = 'rgb(0,' + gra_g + ',0)';
                         under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
                     }
                     tem++;
@@ -1091,21 +1051,9 @@ function omiai(judge_area, rota) {
         }
     }
     return percentage;
-
 }
-//---------------------------------------------------------------
-// パターン
-// 2-3  6
-// 2-4  8
-// 2-5 10
-// 2-6 12
-// 3-4 12
-// 3-5 15
-// 3-6 18
-// 4-5 20
-// 4-6 24
-// 5-6 30
 
+//お見合い範囲関数
 function area(rota) {
     let subject_array = [];//主観的データ2550
     let object_array = [];//客観的データ2550
@@ -1139,7 +1087,6 @@ function area(rota) {
     xhr_area.addEventListener("loadend", function () {
         if (xhr_area.status === 200) {
             let data = JSON.parse(xhr_area.response);
-            console.log('data', data[0].type);
             for (i = 0; i < data.length; i++) {
                 if (data[i].type == 0) {
                     //主観的
@@ -1185,7 +1132,6 @@ function area(rota) {
                         break;
                 }
             }
-
             //客観的データをペアごとに分ける各255
             for (i = 0; i < object_array.length; i++) {
                 switch (object_array[i].left_player * object_array[i].right_player) {
@@ -1247,7 +1193,6 @@ function area(rota) {
             let judge_color_ob_8 = calculation(counter, data_array_ob_8);
             let judge_color_ob_9 = calculation(counter, data_array_ob_9);
 
-
             //10パターンの重なってるところ 10+結果用の+1
             let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
             let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
@@ -1267,90 +1212,25 @@ function area(rota) {
     xhr_area.send(formData_area);
 }
 
-//複数重なってるところだけのjudgeを作成
-//j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum
+//judgeのアナログ値を足し合わせる
 function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
-    for (i = 0; i < j1.length; i++) {
-        if (j0[i].judge == 2 || j1[i].judge == 2 || j2[i].judge == 2 || j3[i].judge == 2 || j4[i].judge == 2 || j5[i].judge == 2 || j6[i].judge == 2 || j7[i].judge == 2 || j8[i].judge == 2 || j9[i].judge == 2) {
-            let j_count = 0;
-            if (j0[i].judge == 2) {
-                j_count++;
-            }
-            if (j1[i].judge == 2) {
-                j_count++;
-            }
-            if (j2[i].judge == 2) {
-                j_count++;
-            }
-            if (j3[i].judge == 2) {
-                j_count++;
-            }
-            if (j4[i].judge == 2) {
-                j_count++;
-            }
-            if (j5[i].judge == 2) {
-                j_count++;
-            }
-            if (j6[i].judge == 2) {
-                j_count++;
-            }
-            if (j7[i].judge == 2) {
-                j_count++;
-            }
-            if (j8[i].judge == 2) {
-                j_count++;
-            }
-            if (j9[i].judge == 2) {
-                j_count++;
-            }
-            judge_sum[i].judge = j_count;
-        } else {
-            judge_sum[i].judge = 2;
-        }
+    for (i = 0; i < j0.length; i++) {
+        judge_sum[i].judge = j0[i].judge + j1[i].judge + j2[i].judge + j3[i].judge + j4[i].judge + j5[i].judge + j6[i].judge + j7[i].judge + j8[i].judge + j9[i].judge;
     }
     return judge_sum;
 }
 
-//お見合い範囲割合変化 sub, ob, level
+//お見合い範囲割合変化
 function merge(sub, ob, level) {
-    console.log('level', level);
     let sum_judge = sub;
     //主観的
     if (level == 0) {
         sum_judge = sub;
     }
-    //少し主観的
-    else if (level == 1) {
-        for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-                sum_judge[i].judge = sub[i].judge;
-            } else if (sub[i].judge >= overlap + 1) {
-                sum_judge[i].judge = sub[i].judge;
-            } else {
-                sum_judge[i].judge = 0;
-            }
-        }
-    }
     //普通
     else if (level == 2) {
         for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-                sum_judge[i].judge = sub[i].judge;
-            } else {
-                sum_judge[i].judge = 0;
-            }
-        }
-    }
-    //少し客観的
-    else if (level == 3) {
-        for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-                sum_judge[i].judge = ob[i].judge;
-            } else if (ob[i].judge >= overlap + 1) {
-                sum_judge[i].judge = ob[i].judge;
-            } else {
-                sum_judge[i].judge = 0;
-            }
+            sum_judge[i].judge = (sub[i].judge + ob[i].judge) / 2;
         }
     }
     //客観的
@@ -1360,6 +1240,7 @@ function merge(sub, ob, level) {
     return sum_judge;
 }
 
+//お見合い範囲計算
 function calculation(rota, data) {
     let color_array = [];
     let test_data = [];
@@ -1374,12 +1255,12 @@ function calculation(rota, data) {
         }
         color_array.push(color_array_data);
     }
-    console.log(color_array);
     for (i = 0; i < color_array.length; i++) {
         for (j = 0; j < color_array[i].length; j++) {
             color_array[i][j] = Number(color_array[i][j]);
         }
     }
+
     //左の選手
     let player1_x = imagearray_center[rota][data[0].left_player - 1].x / (1200 / 9);
     let player1_y = imagearray_center[rota][data[0].left_player - 1].y / (1200 / 9) - 9;
@@ -1396,8 +1277,6 @@ function calculation(rota, data) {
         player2_x = 9 - player2_x;
         reverce = 1;
     }
-
-
     for (i = 0; i < 9.2; i += 0.2) {
         for (j = 0; j < 9.2; j += 0.2) {
             let data_tmp = {};
@@ -1444,7 +1323,6 @@ function calculation(rota, data) {
         test_data[i].player2_ball_sabun_y = (test_data[i].player2_ball_sabun_y - mean[5]) / std[5];
     }
 
-    // console.log(test_data);
     let blue = [];
     let red = [];
     let green = [];
@@ -1470,18 +1348,13 @@ function calculation(rota, data) {
 
         //lr.coef_の値とpolynomialの値をかける
         for (j = 0; j < color_array[0].length - 1; j++) {
-            // answer[i][j] = (answer[i][j] - min) / (max - min);
-            // answer[i][j] = (answer[i][j] - min_array[i]) / (max_array[i] - min_array[i]);
-
             b = b + answer[i][j] * color_array[0][j];
             r = r + answer[i][j] * color_array[1][j];
             g = g + answer[i][j] * color_array[2][j];
-            // console.log(j, b);
         }
         b = b + color_array[0][color_array[0].length - 1];
         r = r + color_array[1][color_array[0].length - 1];
         g = g + color_array[2][color_array[0].length - 1];
-        // console.log(b, r, g);
 
         aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
         bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
@@ -1489,18 +1362,12 @@ function calculation(rota, data) {
         blue.push(aa);
         red.push(bb);
         green.push(cc);
-        // console.log(i, b, r, g, aa, bb, cc);
     }
-    // console.log(answer[0]);
-    // console.log(color_array[0]);
     judge_array = [0, 0, 0];
     for (i = 0; i < blue.length; i++) {
         //どの色になるかの判断
         judge = [blue[i], red[i], green[i]];
-        // console.log(judge);
-        // console.log(blue[i], red[i], green[i]);
-        judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
-        // console.log(judge_color[i].judge);
+        judge_color[i].judge = green[i];
         judge_array[judge_color[i].judge] += 1;
         judge.length = 0;
     }
@@ -1515,12 +1382,9 @@ function calculation(rota, data) {
             let keep = judge_color[i]["judge"];
             judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
             judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
-            // console.log(i, judge_color.length - 1 - coun2 + coun1);
             coun1++;
         }
-        // console.log(judge_color);
     }
-
     return judge_color;
 }
 
@@ -1538,7 +1402,6 @@ document.getElementById("register_btn").onclick = function () {
             formData.append("player_number", j + 1);
             formData.append("player0_x", imagearray[i][j].x);
             formData.append("player0_y", imagearray[i][j].y);
-            console.log(j)
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "../PHP/sample.php");
             xhr.addEventListener("loadend", function () {
@@ -1603,7 +1466,6 @@ function sum(x1, x2, x3, x4, x5, x6) {
                             if (j > counter_i) {
                                 if (isNaN(box[j - 1][k] * array[i - 1])) {
                                 } else {
-                                    // console.log("k", k, "j", j, "i", i, "answer", box[j - 1][k] * i, "counter_j", counter_j, "box[j-1]", box[j - 1]);
                                     answer.push(box[j - 1][k] * array[i - 1]);
                                 }
                             }
@@ -1612,14 +1474,10 @@ function sum(x1, x2, x3, x4, x5, x6) {
                 }
             }
             counter_k++;
-            // console.log("counter", counter_k);
         }
         counter_j--;
         counter_i++;
         counter_k = -1;
-        // console.log("NOW", answer);
     }
-    // console.log(answer);
-    // console.log(box);
     return answer;
 }
