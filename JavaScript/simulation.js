@@ -1482,9 +1482,9 @@ function calculation(rota, data) {
         g = g + color_array[2][color_array[0].length - 1];
         // console.log(b, r, g);
 
-        aa = 1 / (1 + Math.exp(-b));
-        bb = 1 / (1 + Math.exp(-r));
-        cc = 1 / (1 + Math.exp(-g));
+        aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+        cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
         blue.push(aa);
         red.push(bb);
         green.push(cc);
