@@ -360,6 +360,22 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[2], path[3], path[5], path[7], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
+let message = [
+    '<b>けんすけ</b><br><c>50kg　175cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
+    '<b>るい</b><br><c>60kg　180cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
+    '<b>ひなた</b><br><c> 55kg　175cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
+    '<b>けんと</b><br><c>60kg　180cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
+    ' <b>りく</b><br><c>60kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
+    '<b>けいすけ</b><br><c>55kg　175cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
+];
+
+let player_id = ['kensuke','rui','hinata','kento','riku','keisuke'];
+
+function talk_bubble(){
+    document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
+}
+
+
 //画像
 let images = new Array(6);//要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
@@ -605,6 +621,8 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 10;
                         mouseup(e);
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>右の選手を超えた！</h1>'
+                        setTimeout(talk_bubble,1000)
                     }
                 }
                 //左の選手を超えた場合
@@ -612,6 +630,9 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 10;
                         mouseup(e);
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>左の選手を超えた！</h1>'
+                        setTimeout(talk_bubble,1000)
+
                     }
                 }
                 //前衛の選手を超えた場合
@@ -626,6 +647,9 @@ let mousemove = function (e, type) {
                         }
                         y = min + 10;
                         mouseup(e);
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>前衛の選手を超えた！</h1>'
+                        setTimeout(talk_bubble, 1000)
+
                     }
                 }
                 //後衛の選手を超えた場合
@@ -640,6 +664,9 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>後衛の選手を超えた！</h1>'
+                        setTimeout(talk_bubble, 1000)
+
                     }
 
                 }
@@ -653,6 +680,8 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>後衛の選手を超えた！</h1>'
+                        setTimeout(talk_bubble, 1000)
                     }
                 }
                 //コマの動きがルールに合ってるか確認し、ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
