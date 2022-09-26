@@ -230,17 +230,3 @@ function choose(btn) {
     //percentage();
   }
 }
-
-function jump() {
-  let formData = new FormData();
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../PHP/db_insert_lr.coef_.php");
-  xhr.addEventListener("loadend", function () {
-    if (xhr.status === 200) {
-      let data = JSON.parse(xhr.response);
-      console.log(data);
-      location.href = "../HTML/OMIAI.html";
-    }
-  });
-  xhr.send(formData);
-}
