@@ -413,20 +413,20 @@ console.log('確認');
 console.log(imagearray_center);
 
 //セッターの座標を修正
-imagearray_center[3][0].x = imagearray_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray_center[3][0].y = imagearray_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[3][0].x = imagearray[3][0].x + koma_w / 2 * size;//45°
+imagearray_center[3][0].y = imagearray[3][0].y + koma_h / 2 * size;//45°
 
-imagearray_center[4][0].x = imagearray_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
-imagearray_center[4][0].y = imagearray_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
 imagearray[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[4][0].x = imagearray[4][0].x + koma_w / 2 * size;//45°
+imagearray_center[4][0].y = imagearray[4][0].y + koma_h / 2 * size;//45°
 
-imagearray_center[5][0].x = imagearray_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray_center[5][0].y = imagearray_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+imagearray_center[5][0].x = imagearray[5][0].x + koma_w / 2 * size;//45°
+imagearray_center[5][0].y = imagearray[5][0].y + koma_h / 2 * size;//45°
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
@@ -1664,6 +1664,7 @@ function omiai(judge_area, rota) {
     // }
 
 
+    console.log('judge_area', judge_area);
     //グラデーションで表示
     let judge_result = judge_area.map(function (value) {
         return value.judge * 255;
@@ -1672,6 +1673,7 @@ function omiai(judge_area, rota) {
     for (let i = 0; i < 46; i++) {//x
         for (let j = 0; j < 46; j++) {//y
             context_omiai.globalAlpha = 0.8;
+            // context_omiai.fillStyle =
             context_omiai.fillStyle = 'rgb(' + Math.floor(judge_result[k]) + ',0,' + Math.floor(255 - judge_result[k]) + ')';
             context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
             percentage++;
@@ -1871,7 +1873,7 @@ function area(rota) {
             console.log(l * r);
             switch (l * r) {
                 case 6://2-3
-                    area_percentage = omiai(judge_color_sub_0, rota);
+                    area_percentage = omiai(judge_color_ob_0, rota);
                     break;
                 case 8://2-4
                     area_percentage = omiai(judge_color_sub_1, rota);
@@ -1935,9 +1937,10 @@ function area(rota) {
             //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
             // let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
+            // console.log('merge', judge_color_merge[0].judge);
             // console.log('merge', judge_color_merge);
-            console.log('left', data_array_sub_0[0].left_player);
-            console.log('right', data_array_sub_0[0].right_player);
+            // console.log('left', data_array_sub_0[0].left_player);
+            // console.log('right', data_array_sub_0[0].right_player);
 
             //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
             // let area_percentage = omiai(judge_color_merge, rota);
@@ -1985,11 +1988,7 @@ function merge(sub, ob, level) {
     //普通
     else if (level == 2) {
         for (i = 0; i < sub.length; i++) {
-            if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-                sum_judge[i].judge = sub[i].judge;
-            } else {
-                sum_judge[i].judge = 0;
-            }
+            sum_judge[i].judge = (sub[i].judge + ob[i].judge) / 2;
         }
     }
     //少し客観的
@@ -2215,7 +2214,7 @@ function calculation(rota, data) {
             let keep = judge_color[i]["judge"];
             judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
             judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
-            console.log(i, judge_color.length - 1 - coun2 + coun1);
+            // console.log(i, judge_color.length - 1 - coun2 + coun1);
             coun1++;
         }
         // console.log(judge_color);

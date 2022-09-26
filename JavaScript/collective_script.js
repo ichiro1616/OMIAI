@@ -1,7 +1,6 @@
 let str = localStorage.getItem('key');
 let imagearray = JSON.parse(str);
 let my_imagearray_center = JSON.parse(str);
-console.log(imagearray);
 //コマの座標（左上基準）
 let array = [
   [
@@ -334,7 +333,6 @@ let genekeep; // 世代 別で区切った配列
 
 window.onclick = canvas_draw();
 area(counter);
-
 function canvas_draw() {
   //自分の配置koma
   my_can = document.getElementById('my'); //キャンバスのidを取得
@@ -367,8 +365,6 @@ const path = ['../Picture/koma/0/2-1.png', //けんすけ
   '../Picture/koma/blue_4.png', '../Picture/koma/blue_5.png', '../Picture/koma/blue_6.png',
   '../Picture/koma/red_1.png', '../Picture/koma/red_2.png', '../Picture/koma/red_3.png',
   '../Picture/koma/red_4.png', '../Picture/koma/red_5.png', '../Picture/koma/red_6.png',
-  
-
 ];
 
 const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
@@ -380,6 +376,31 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 
 const blue_img = [path[11],path[12],path[13],path[14],path[15],path[16]];
 const red_img = [path[17],path[18],path[19],path[20],path[21],path[22]];
+
+//グラデーション用配列
+let gradation = new Array(10);
+let G_gra = 120;
+let A_gra = 1;
+for (i = 0; i < gradation.length; i++) {
+  gradation[i] = new Array(4).fill(0);
+}
+for (i = 0; i < gradation.length; i++) {
+  for (j = 1; j < gradation[i].length; j += 2) {
+    if (j == 1) {
+      //Gの変化
+      gradation[i][j] = G_gra;
+    }
+    if (j == 3) {
+      //透明度の変化
+      //小数誤差の調整
+      gradation[i][j] = Math.floor(A_gra * 10) / 10;
+    }
+  }
+  //変化量120から255
+  G_gra += (255 - 120) / (gradation.length - 1);
+  //変化量0から1
+  A_gra -= 0.1;
+}
 
 //コマの中心の座標を用意
 for (var i in imagearray) {
@@ -477,17 +498,16 @@ inputSlideBarElement.addEventListener('change', function () {
 });
 
 let datakeep = [];
+let max_gene //最大世代数
 formData = new FormData();
 xhr = new XMLHttpRequest();
 xhr.open("GET", "/PHP/collective.php");
 xhr.addEventListener("loadend", function () {
   if (xhr.status === 200) {
     let data = JSON.parse(xhr.response);
-    console.log('data', data);
     if (xhr.response == "error") {
       console.log("通信に失敗しました。");
     }
-    console.log(data[1]);
     let gene = new Array();
     for (let i = 0; i < data[1][0][0]; i++) {
       gene[i] = Array();
@@ -499,9 +519,13 @@ xhr.addEventListener("loadend", function () {
         }
       }
     }
-    console.log('generation', gene);
     genekeep = gene;
-    document.getElementById("generation_change").max = genekeep.length;
+    max_gene = genekeep.length;
+    if(max_gene != 1){
+      document.getElementById('max_gene').innerHTML = max_gene + '世代目';
+    }
+    document.getElementById("generation_change").max = genekeep.length - 1;
+
   }
   collective();
 });
@@ -574,10 +598,10 @@ function draw(rota) {
 }
 const rotation_images = [
   '../Picture/サイクル_1.png',
-  '../Picture/サイクル_2.png',
-  '../Picture/サイクル_3.png',
-  '../Picture/サイクル_4.png',
-  '../Picture/サイクル_5.png',
+  '../Picture/light_blue_1.png',
+  '../Picture/light_green_1.png',
+  '../Picture/pink_1.png',
+  '../Picture/purple_1.png',
   '../Picture/サイクル_6.png',
 ];
 //ローテーションボタンを押されたら
@@ -587,12 +611,12 @@ function rotation() {
   if (counter == 6) {
     counter = 0;
   }
+  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
+  ot_ctx2.clearRect(0,0,ot_can2.width,ot_can2.height);
   document.getElementById('rotation_image').src = rotation_images[counter];
   console.log("ローテーション", counter);
   draw(counter);
   collective();
-  my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
-  ot_ctx2.clearRect(0,0,         )
   area(counter)
 
 }
@@ -620,34 +644,44 @@ let overlap = 3;
 
 function my_omiai(judge_area) {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
-  let k = 0;
-  let my_percentage = 0;
+  let k_sum = 0;
+  let percentage = 0
   for (let i = 0; i < 46; i++) {//x
     for (let j = 0; j < 46; j++) {//y
-      if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
+      let judge_index = 10 - Math.round(judge_area[k_sum].judge);
+      if (judge_index != 10) {
+        let gra_g = gradation[judge_index][1];
+        let gra_a = gradation[judge_index][3];
+        my_ctx2.globalAlpha = gra_a;
+        my_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
         my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        my_percentage++;
+        percentage++;
       }
-      k++;
+      k_sum++;
     }
   }
-  return my_percentage;
+  return percentage;
 }
 
 function ot_omiai(judge_area) {
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
-  let k = 0;
-  let ot_percentage = 0;
+  let k_sum = 0;
+  let percentage = 0;
   for (let i = 0; i < 46; i++) {//x
     for (let j = 0; j < 46; j++) {//y
-      if (judge_area[k].judge >= overlap || judge_area[k].judge == 1) {//後で2に
+      let judge_index = 10 - Math.round(judge_area[k_sum].judge);
+      if (judge_index != 10) {
+        let gra_g = gradation[judge_index][1];
+        let gra_a = gradation[judge_index][3];
+        ot_ctx2.globalAlpha = gra_a;
+        ot_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
         ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        ot_percentage++;
+        percentage++;
       }
-      k++;
+      k_sum++;
     }
   }
-  return ot_percentage;
+  return percentage;
 }
 
 function collective() {
@@ -666,6 +700,8 @@ function collective() {
       array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
     }
     draw(counter);
+    area(counter)
+
   } else {
     // 世代がなかった時の処理
   }
@@ -704,7 +740,6 @@ function area(rota) {
   xhr_area.addEventListener("loadend", function () {
     if (xhr_area.status === 200) {
       let data = JSON.parse(xhr_area.response);
-      console.log('data', data[0].type);
       for (i = 0; i < data.length; i++) {
         if (data[i].type == 0) {
           //主観的
@@ -839,7 +874,6 @@ function area(rota) {
 
 
 
-      console.log('----------------------------');
       //10パターンの重なってるところ 10+結果用の+1
       let my_judge_color_sub = color_sub(my_judge_color_sub_0, my_judge_color_sub_1, my_judge_color_sub_2, my_judge_color_sub_3, my_judge_color_sub_4, my_judge_color_sub_5, my_judge_color_sub_6, my_judge_color_sub_7, my_judge_color_sub_8, my_judge_color_sub_9, my_judge_color_sub_0);
       let my_judge_color_ob = color_sub(my_judge_color_ob_0, my_judge_color_ob_1, my_judge_color_ob_2, my_judge_color_ob_3, my_judge_color_ob_4, my_judge_color_ob_5, my_judge_color_ob_6, my_judge_color_ob_7, my_judge_color_ob_8, my_judge_color_ob_9, my_judge_color_ob_0);
@@ -875,43 +909,8 @@ function area(rota) {
 }
 
 function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
-  for (i = 0; i < j1.length; i++) {
-    if (j0[i].judge == 2 || j1[i].judge == 2 || j2[i].judge == 2 || j3[i].judge == 2 || j4[i].judge == 2 || j5[i].judge == 2 || j6[i].judge == 2 || j7[i].judge == 2 || j8[i].judge == 2 || j9[i].judge == 2) {
-      let j_count = 0;
-      if (j0[i].judge == 2) {
-        j_count++;
-      }
-      if (j1[i].judge == 2) {
-        j_count++;
-      }
-      if (j2[i].judge == 2) {
-        j_count++;
-      }
-      if (j3[i].judge == 2) {
-        j_count++;
-      }
-      if (j4[i].judge == 2) {
-        j_count++;
-      }
-      if (j5[i].judge == 2) {
-        j_count++;
-      }
-      if (j6[i].judge == 2) {
-        j_count++;
-      }
-      if (j7[i].judge == 2) {
-        j_count++;
-      }
-      if (j8[i].judge == 2) {
-        j_count++;
-      }
-      if (j9[i].judge == 2) {
-        j_count++;
-      }
-      judge_sum[i].judge = j_count;
-    } else {
-      judge_sum[i].judge = 0;
-    }
+  for (i = 0; i < j0.length; i++) {
+    judge_sum[i].judge = j0[i].judge + j1[i].judge + j2[i].judge + j3[i].judge + j4[i].judge + j5[i].judge + j6[i].judge + j7[i].judge + j8[i].judge + j9[i].judge;
   }
   return judge_sum;
 }
@@ -919,11 +918,7 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
 function merge(sub, ob) {
   let sum_judge = sub;
   for (i = 0; i < sub.length; i++) {
-    if (sub[i].judge >= overlap && ob[i].judge >= overlap) {
-      sum_judge[i].judge = sub[i].judge;
-    } else {
-      sum_judge[i].judge = 0;
-    }
+    sum_judge[i].judge = (sub[i].judge + ob[i].judge) / 2;
   }
   return sum_judge;
 }
@@ -1047,9 +1042,11 @@ function my_calculation(rota, data) {
     b = b + color_array[0][color_array[0].length - 1];
     r = r + color_array[1][color_array[0].length - 1];
     g = g + color_array[2][color_array[0].length - 1];
-    aa = 1 / (1 + Math.exp(-b));
-    bb = 1 / (1 + Math.exp(-r));
-    cc = 1 / (1 + Math.exp(-g));
+
+    aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+    bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+    cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+
     blue.push(aa);
     red.push(bb);
     green.push(cc);
@@ -1057,18 +1054,24 @@ function my_calculation(rota, data) {
 
   judge_array = [0, 0, 0];
   for (i = 0; i < blue.length; i++) {
+    //どの色になるかの判断
     judge = [blue[i], red[i], green[i]];
-    judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
+    judge_color[i].judge = green[i];
     judge_array[judge_color[i].judge] += 1;
     judge.length = 0;
   }
-  let counter = 1;
+  let coun1 = 0;
+  let coun2 = 45;
   if (reverce == 1) {
     for (i = 0; i < judge_color.length / 2; i++) {
+      if (coun1 == 46) {
+        coun1 = 0;
+        coun2 += 46;
+      }
       let keep = judge_color[i]["judge"];
-      judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-      judge_color[judge_color.length - counter]["judge"] = keep;
-      counter++;
+      judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
+      judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
+      coun1++;
     }
   }
   return judge_color;
@@ -1103,6 +1106,7 @@ function ot_calculation(rota, data) {
   let ot_player2_x = (array_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
   let ot_player2_y = (array_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
   ot_player2_y = Math.abs(ot_player2_y);
+
   let reverce = 0;
   if (ot_player1_x > ot_player2_x) {
     // idでの条件を描く
@@ -1190,9 +1194,10 @@ function ot_calculation(rota, data) {
     b = b + color_array[0][color_array[0].length - 1];
     r = r + color_array[1][color_array[0].length - 1];
     g = g + color_array[2][color_array[0].length - 1];
-    aa = 1 / (1 + Math.exp(-b));
-    bb = 1 / (1 + Math.exp(-r));
-    cc = 1 / (1 + Math.exp(-g));
+
+    aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+    bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
+    cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
     blue.push(aa);
     red.push(bb);
     green.push(cc);
@@ -1200,18 +1205,24 @@ function ot_calculation(rota, data) {
 
   judge_array = [0, 0, 0];
   for (i = 0; i < blue.length; i++) {
+    //どの色になるかの判断
     judge = [blue[i], red[i], green[i]];
-    judge_color[i].judge = judge.lastIndexOf(Math.max(...judge));
+    judge_color[i].judge = green[i];
     judge_array[judge_color[i].judge] += 1;
     judge.length = 0;
   }
-  let counter = 1;
+  let coun1 = 0;
+  let coun2 = 45;  
   if (reverce == 1) {
     for (i = 0; i < judge_color.length / 2; i++) {
+      if (coun1 == 46) {
+        coun1 = 0;
+        coun2 += 46;
+      }
       let keep = judge_color[i]["judge"];
-      judge_color[i]["judge"] = judge_color[judge_color.length - counter]["judge"];
-      judge_color[judge_color.length - counter]["judge"] = keep;
-      counter++;
+      judge_color[i]["judge"] = judge_color[judge_color.length - 1 - coun2 + coun1]["judge"];
+      judge_color[judge_color.length - 1 - coun2 + coun1]["judge"] = keep;
+      coun1++;
     }
   }
   return judge_color;
@@ -1250,7 +1261,6 @@ function sum(x1, x2, x3, x4, x5, x6) {
               if (j > counter_i) {
                 if (isNaN(box[j - 1][k] * array[i - 1])) {
                 } else {
-                  // console.log("k", k, "j", j, "i", i, "answer", box[j - 1][k] * i, "counter_j", counter_j, "box[j-1]", box[j - 1]);
                   answer.push(box[j - 1][k] * array[i - 1]);
                 }
               }
