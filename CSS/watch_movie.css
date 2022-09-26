@@ -280,12 +280,24 @@ video#mv {
 .answer_c{
   position         : absolute;
   z-index          : 30;
-  top              : 1rem;
-  left             : 1rem;
-  font-size        : 1.2rem;
+  top              : 0.8rem;
+  left             : 0.7rem;
+  font-size        : 1.5rem;
   font-weight      : bold;
   color            : white;
   -webkit-text-stroke: 0.03rem rgba(11, 14, 104, 0.7);
+  animation-name     : fadeInAnime;
+  animation-duration : 1s;
+  animation-fill-mode: forwards;
+  opacity            : 0;
+}
+@keyframes fadeInAnime{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
