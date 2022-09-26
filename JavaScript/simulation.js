@@ -621,7 +621,7 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h3>右の選手は超えられないよ！</h3>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble,1000)
                     }
                 }
@@ -630,7 +630,7 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h3>左の選手は超えられないよ！</h3>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble,1000)
 
                     }
@@ -647,7 +647,7 @@ let mousemove = function (e, type) {
                         }
                         y = min + 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h3>前衛の選手は超えられないよ！</h3>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>前衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
 
                     }
@@ -664,7 +664,7 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h3>後衛の選手は超えられないよ！</h3>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
 
                     }
@@ -680,7 +680,7 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h3>後衛の選手は超えられないよ！</h3>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
                     }
                 }
