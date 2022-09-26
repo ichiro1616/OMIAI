@@ -11,6 +11,9 @@ let position = 0; //movie_timeでif比較をし続けないためのフラグ
 let playing = 0; //現在再生中かを判断するためのフラグ
 let experience_years = 2; //バレーボールの経験年数。2はスライドバーの初期値
 let movie = document.getElementById("mv"); //動画のデータを取得してくる
+let answer = 0; //回答した動画数をカウント
+let answer_c = document.getElementById("answer_c"); //回答数表示用
+answer_c.innerHTML = answer;
 movie.controls = false; //手動による動画の再生・停止・音量調節などを無効にする
 
 //バレーボールの経験年数をきく
@@ -221,6 +224,8 @@ function choose(btn) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(EncodeHTMLForm(sendData));
     console.log("登録しました");
+    answer += 1;
+    answer_c.innerHTML = answer;
     setTimeout(percentage, 50);
     //percentage();
   }
