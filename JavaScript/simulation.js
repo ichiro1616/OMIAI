@@ -369,9 +369,9 @@ let message = [
     '<b>けいすけ</b><br><c>55kg　175cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
 ];
 
-let player_id = ['kensuke','rui','hinata','kento','riku','keisuke'];
+let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
-function talk_bubble(){
+function talk_bubble() {
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
 }
 
@@ -621,8 +621,8 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>右の選手を超えた！</h1>'
-                        setTimeout(talk_bubble,1000)
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
+                        setTimeout(talk_bubble, 1000)
                     }
                 }
                 //左の選手を超えた場合
@@ -630,8 +630,8 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>左の選手を超えた！</h1>'
-                        setTimeout(talk_bubble,1000)
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
+                        setTimeout(talk_bubble, 1000)
 
                     }
                 }
@@ -647,7 +647,7 @@ let mousemove = function (e, type) {
                         }
                         y = min + 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>前衛の選手を超えた！</h1>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>前衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
 
                     }
@@ -664,7 +664,7 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>後衛の選手を超えた！</h1>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
 
                     }
@@ -680,7 +680,7 @@ let mousemove = function (e, type) {
                         }
                         y = min - 10;
                         mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<h1>後衛の選手を超えた！</h1>'
+                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
                     }
                 }
@@ -1432,7 +1432,7 @@ document.getElementById("register_btn").onclick = function () {
             formData.append("player0_x", imagearray[i][j].x);
             formData.append("player0_y", imagearray[i][j].y);
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "../PHP/sample.php");
+            xhr.open("POST", "../PHP/registration.php");
             xhr.addEventListener("loadend", function () {
                 if (xhr.status === 200) {
                     if (xhr.response === "error") {

@@ -39,10 +39,10 @@
     box-shadow      : 0.1rem 0.1rem 0 0 rgba(0,0,0,0.5);
 }
 #button-check:active{
-  background-color: rgb(75, 177, 245);
+  background-color : rgb(75, 177, 245);
   -webkit-transform: translateY(0.05rem);
-  transform: translateY(0.05rem);
-  border-bottom: none;
+  transform        : translateY(0.05rem);
+  border-bottom    : none;
 }
 
 /* === バックグランド ============================== */
@@ -266,18 +266,39 @@ video#mv {
   box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
 }
 .button-1:active{
-  background-color: rgb(75, 177, 245);
+  background-color : rgb(75, 177, 245);
   -webkit-transform: translateY(0.05rem);
-  transform: translateY(0.05rem);
-  border-bottom: none;
+  transform        : translateY(0.05rem);
+  border-bottom    : none;
 }
 .button-2:active{
-  background-color: rgb(75, 177, 245);
+  background-color : rgb(75, 177, 245);
   -webkit-transform: translateY(0.05rem);
-  transform: translateY(0.05rem);
-  border-bottom: none;
+  transform        : translateY(0.05rem);
+  border-bottom    : none;
 }
-
+.answer_c{
+  position         : absolute;
+  z-index          : 30;
+  top              : 0.8rem;
+  left             : 0.7rem;
+  font-size        : 1.5rem;
+  font-weight      : bold;
+  color            : white;
+  -webkit-text-stroke: 0.03rem rgba(11, 14, 104, 0.7);
+  animation-name     : fadeInAnime;
+  animation-duration : 1s;
+  animation-fill-mode: forwards;
+  opacity            : 0;
+}
+@keyframes fadeInAnime{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 
 
@@ -320,10 +341,10 @@ video#mv {
   box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
 }
 .rtn:active{
-  background-color: rgb(75, 177, 245);
+  background-color : rgb(75, 177, 245);
   -webkit-transform: translateY(0.05rem);
-  transform: translateY(0.05rem);
-  border-bottom: none;
+  transform        : translateY(0.05rem);
+  border-bottom    : none;
 }
 
 
@@ -349,10 +370,9 @@ video#mv {
 	left            : 0;
 }
 .window {
-	width           : 40rem;
-	max-width       : 40rem;
-	height          : 27rem;
-	background-color: #ffffff;
+	width           : 40.8rem;
+	height          : 30rem;
+	background-color:rgba(255, 255, 255, 0);
 	border-radius   : 1rem;
 	display         : flex;
 	justify-content : center;
@@ -369,16 +389,21 @@ video#mv {
 .close {
 	cursor          : pointer;
 	position        : absolute;
-	top             : 0.7rem;
-	right           : 1rem;
-	font-size       : 1rem;
+  text-align      : center;
+  padding         : 0.9rem;
+  padding-left    : 1rem;
+  padding-right   : 1rem;
+  background-color: rgba(228, 224, 224, 0.7);
+	top             : 0.06rem;
+	right           : 0rem;
+	font-size       : 1.1rem;
   z-index         : 1010;
+  border-radius   : 0.1rem 0.1rem 0rem 0rem;
 }
 
 .tutorial_movie{
   position        : absolute;
-  /* max-width       : 35rem; */
-  width:37rem;
-  height:20.8rem;
+  width           : 40.8rem;
+  height          : 23rem;
   z-index         : 1005;
 }

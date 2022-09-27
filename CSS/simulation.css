@@ -494,7 +494,7 @@ input[type=range].slider::-webkit-slider-thumb {
   position        : absolute;
   width           : 6.5rem;
   left            : 2.5rem;
-  top             : 3rem;
+  top             : 1.7rem;
 }
 .bubble{
   position        : relative;
@@ -503,17 +503,31 @@ input[type=range].slider::-webkit-slider-thumb {
 .talk_bubble{
   position        : absolute;
   width           : 22.5rem;
-  top             : 2.7rem;
+  top             : 1.4rem;
   left            : 9.5rem;
 }
 #message{
   position        : absolute;
   font-size       : 0.9rem;
-  top             : 3.5rem;
+  top             : 2.2rem;
   left            : 12.8rem;  
 }
 b{
   font-size       : 1.1rem;
+}
+#attention{
+  position        : absolute;
+  font-size       : 1.2rem;
+  font-weight     : bold;
+  top             : 2rem;
+  left            : 1.1rem;
+}
+#attention_2{
+  position        : absolute;
+  font-size       : 1.2rem;
+  font-weight     : bold;
+  top             : 2rem;
+  left            : 0.5rem;
 }
 
 /* ================================================ */
@@ -522,14 +536,14 @@ b{
 .word{
   font-size       : 1.4rem;
   position        : absolute;
-  top             : 0rem;
+  top             : -0.5rem;
   left            : 5.9rem;
 }
 
 .bar_and_scale{
   position        : relative;
   left            : 4.2rem;
-  top             : 12.1rem;
+  top             : 11rem;
 }
 
 .Ob{
@@ -632,7 +646,7 @@ b{
 }
 .buttons{
   position        : relative;
-  top             : 22rem;
+  top             : 20.5rem;
   left            : 1rem;
 }
 #rota0{
@@ -768,6 +782,7 @@ b{
   position        : absolute;
   right           : -1.5rem;
   box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
+  cursor: pointer; /* カーソルを当てたときにポインターに */
 }
 #rotation_button:active{
   background-color: rgb(75, 177, 245);
