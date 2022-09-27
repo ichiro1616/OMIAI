@@ -420,12 +420,8 @@ let size_under = scale * size;//サブ画面のコマの大きさの倍率
 let koma_w = 100;//コマの横幅
 let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
-let startX;//ドラッグ開始時のx座標
-let startY;//ドラッグ開始時のy座標
 let experience_years = 0;//バレーボールの経験年数　初期値0
 let subject_object_level = 2;//主観的・客観的レベル　初期値2(中央)
-let judge_area = [];
-let percentage = 0;
 
 //コマの中心の座標を用意
 for (var i in imagearray) {
@@ -1161,7 +1157,7 @@ function omiai(judge_area, rota) {
                 context_omiai.globalAlpha = gra_a;
                 context_omiai.fillStyle = 'rgb(0,' + gra_g + ',0)';
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage++;
+                percentage += gra_a;
             }
             k_sum++;
         }
