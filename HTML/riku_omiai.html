@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>OMIAI</title>
+    <link rel="stylesheet" href="../CSS/riku_omiai.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="bg_image">
+        <img src="../Picture/白紙.PNG" alt="背景" title="予選資料タイトル" class="back">
+      </div>
+      <div id="box">
+        <img src="../Picture/タイトルロゴ小.png" hight='200' width='400' alt="ロゴ" title="O-MIAI" id="rogo">
+      </div>
+      <div id="first_canvas">
+        <canvas id="first_canvas1" width="610" height="610"></canvas> <!--コマ表示用のキャンバス-->
+        <canvas id="first_canvas2" width="610" height="610"></canvas> <!--お見合い範囲表示用のキャンバス-->
+        <canvas id="first_canvas3" width="610" height="610"></canvas> <!--コート背景表示用のキャンバス-->
+    </div>
+    <div id="new_canvas">
+        <canvas id="new_canvas1" width="610" height="610"></canvas> <!--コマ表示用のキャンバス-->
+        <canvas id="new_canvas2" width="610" height="610"></canvas> <!--お見合い範囲表示用のキャンバス-->
+        <canvas id="new_canvas3" width="610" height="610"></canvas> <!--コート背景表示用のキャンバス-->
+    </div>
+        <button type="button" onclick="location.href = 'watch_movie.html' " id="btn1">客観的クイズ</button>
+        <button type="button" onclick="location.href = 'simulation.html' " id="btn2">配置シミュレーション</button>
+        <button type="button" onclick="location.href = 'collective.html' " id="btn3">集合知との比較</button>
+    </div>
+    <div id = 'answer'></div>
+    <div id='simu'></div>
+    <div id='colle'></div>
+      <script src="../JavaScript/riku_omiai.js"></script>
+  </body>
+</html>
