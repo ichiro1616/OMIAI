@@ -1,160 +1,128 @@
 body {
-    overflow: hidden;
+    position          :absolute;
+    overflow          : hidden;
+    width             : 100%;
+    height            : 100%;
 }
-.container{
+.sentence{
+    position          : relative;
+    font-size         : 3rem;
+    font-weight       : bold;
+    text-align        : center;
+}
+/* ================================================== */
+/* =======================ボタン====================== */
+/* ================================================== */
+.button{
     position:relative;
 }
-
-.font_size {
-    font-family: "Arial Black";
-    font-size: 200px;
-    color: #3300DA;
-    padding-left: 380px;
-    padding-bottom: 150px;
-}
-
 #rotation_button {
-    border: none;
-    border-radius: 0.5rem;
-    /* 角丸       */
-    font-size: 2rem;
-    /* 文字サイズ */
-    text-align: center;
-    /* 文字位置   */
-    cursor: pointer;
-    /* カーソル   */
-    padding: 1.5% 1.8%;
-    /* 余白       */
-    background: rgba(55, 0, 255);
-    /* 背景色     */
-    color: #ffffff;
-    /* 文字色     */
-    line-height: 100%;
-    /* 1行の高さ  */
-    transition: .3s;
-    /* なめらか変化 */
-    font-weight: bold;
-    letter-spacing: 0.4rem;
-    width: 20%;
-    position: relative;
-    z-index: 30;
-    left: 105rem;
-    width: 15rem;
-    padding: 1rem;
-    /* top: 8rem; */
-    box-shadow: 0.5rem 0.5rem 0 0 rgba(0, 0, 0, 0.5);
+    border          : none;
+    border-radius   : 0.5rem;          /* 角丸       */
+    font-size       : 1.2rem;        /* 文字サイズ */
+    text-align      : center;      /* 文字位置   */
+    cursor          : pointer;     /* カーソル   */
+    padding         : 1.5% 1.8%;   /* 余白       */
+    background      : rgba(55, 0, 255);     /* 背景色     */
+    color           : #ffffff;     /* 文字色     */
+    line-height     : 100%;         /* 1行の高さ  */
+    transition      : .3s;         /* なめらか変化 */
+    font-weight     : bold;
+    letter-spacing  : 0.4rem;
+    width           : 17%;
+    max-width       : 17rem;
+    z-index         : 30;
+    padding         : 1rem;
+    position        : absolute;
+    right           : 0.7rem;
+    top             : 2rem;
+    box-shadow      : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
 }
-
 #rotation_button:active {
-    background-color: rgb(75, 177, 245);
-    -webkit-transform: translateY(0.5rem);
-    transform: translateY(0.5rem);
-    border-bottom: none;
+    background-color  : rgb(75, 177, 245);
+    -webkit-transform : translateY(0.05rem);
+    transform         : translateY(0.05rem);
+    border-bottom     : none;
+}
+#rotation_image{
+    width:50%;
 }
 
-
-h1 {
-    float: left;
-    position: relative;
-    left: 35rem;
-    top: 1rem;
-    font-size: 3rem;
+/* ================================================== */
+/* =======================バー======================== */
+/* ================================================== */
+.bars{
+    position:relative;
+    top:5rem;
 }
-
-#experience_bar {
-    clear: both;
-    float: left;
-    position: relative;
-    left: 19.5rem;
-    top: -7rem;
-    font-size: 2rem;
-}
-
-#generation_bar {
-    float: left;
-    position: relative;
-    left: 55rem;
-    top: -7rem;
-    font-size: 2rem;
-}
-
 #experience_change {
-    clear: both;
-    float: left;
     position: relative;
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
     outline: none;
     height: 1rem;
-    width: 45rem;
+    width: 35%;
     background: #a6a6aa;
     border-radius: 1rem;
     border: solid 0.08rem black;
-    position: relative;
-    top: -8rem;
-    left: 3rem;
     z-index: 10;
+    left:2rem;
 }
-
 #generation_change {
-    float: left;
     position: relative;
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
     outline: none;
     height: 1rem;
-    width: 45rem;
+    width: 35%;
     background: #a6a6aa;
     border-radius: 1rem;
     border: solid 0.08rem black;
-    position: relative;
-    top: -9.2rem;
-    left: 55rem;
     z-index: 10;
+    left    :6.5rem;
 }
-
+/* ------------------目盛りなど-------------------- */
+.bar_scale{
+    width:100%;
+}
+.bar_wrap{
+    position:relative;
+    top:5rem;
+}
 #wrap1 p {
     clear: both;
-    position: relative;
-    float: none;
+    position: absolute;
     height: 0rem;
     width: 100%;
     color: rgb(255, 255, 255);
-    top: -10.4rem;
-    left: 14.5rem;
     letter-spacing: 10.2rem;
     box-sizing: border-box;
     font-size: 0.7rem;
     font-weight: bold;
     z-index: 10;
 }
-
 #wrap2 p {
-    position: relative;
-    float: left;
+    position: absolute;
     height: 0rem;
     width: 100%;
     color: rgb(255, 255, 255);
-    top: -11.8rem;
-    left: 66rem;
     letter-spacing: 10.5rem;
     box-sizing: border-box;
     font-size: 0.7rem;
     font-weight: bold;
     z-index: 10;
 }
-
 #wrapping1 p {
     clear: both;
     float: none;
     position: relative;
-    top: -10rem;
-    left: 1rem;
-    width: 10.5rem;
+    left:1rem;
+    top:0.3rem;
+    width: 5.7rem;
     display: inline-flex;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     margin: 0rem;
@@ -163,17 +131,15 @@ h1 {
 #wrapping2 p {
     float: none;
     position: relative;
-    top: -12.3rem;
-    left: 53rem;
-    width: 10.5rem;
+    top:-1.2rem;
+    left:31.1rem;
+    width: 5.7rem;
     display: inline-flex;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     margin: 0rem;
 }
-
-
 ::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: rgb(55, 0, 255);
@@ -183,99 +149,89 @@ h1 {
     z-index: 30;
 }
 
-#name p {
+
+/* ================================================== */
+/* =======================ラベル====================== */
+/* ================================================== */
+.bar_name{
+    position:relative;
+    font-size:1rem;
+}
+#experience {
+    position: absolute;
+    top:2.2rem;
+    left:8.5rem;
+
+}
+#generation {
+    position: absolute;
+    top:2.2rem;
+    left:40rem;
+
+}
+#name{
+    display:flex;
+    justify-content : space-between;
     clear: both;
     position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    top             : 7rem;
+}
+#my_data{
+    position:relative;
+    left:6.5rem;
+}
+#comparison_data{
+    position:relative;
+    right:6rem;
+}
+#range{
+    clear: both;
+    position: relative;
+    display: inline-flex;
+    width: 32%;
     font-size: 2.5rem;
     font-weight: bold;
     margin: 0rem;
+    top:6.5rem;
+}
+#my_area_percentage{
+    position:relative;
+    left:0.5rem;
+}
+#ot_area_percentage{
+    position:absolute;
+    left:25rem;
 }
 
-#my_data {
-    position: relative;
-    float: left;
-    left: 14rem;
-    top: -9rem;
+/* ================================================== */
+/* =======================集合知====================== */
+/* ================================================== */
+.all_canvas{
+    width:100%;
+    display         : flex;
+    justify-content : space-between;
+    position        : relative;
+    top             : 6rem;
 }
-
-#other_data {
-    position: relative;
-    float: left;
-    left: 54rem;
-    top: -12.5rem;
-}
-
-#comparison_data {
-    position: relative;
-    float: left;
-    left: 94rem;
-    top: -16.5rem;
-}
-
-/* #court { */
-/* position: relative; */
-/* border: 0.1rem solid #ccc; */
-/* width: 41rem; */
-/* height: 41rem; */
-/* max-width: 100%; */
-/* top:-0.5rem; */
-/* margin:auto; */
-/* } */
-/*  */
-/* canvas { */
-/* clear: both; */
-/* position: relative; */
-/* left: 8rem; */
-/* top: 5rem; */
-/* margin: 0.5rem; */
-/* background-image: url("../Picture/バレーコート背景.png"); */
-/* background-size: 100%; */
-/* } */
-/*  */
-/* .my, .my2, .my3{ */
-/* clear: both; */
-/* position: relative; */
-/* margin-left: auto; */
-/* margin-right: auto; */
-/* } */
-/*  */
-/* .other { */
-/* margin-left: auto; */
-/* margin-right: auto; */
-/* } */
-/*  */
-/* .comprison { */
-/* margin-left: auto; */
-/* margin-right: auto; */
-/* } */
-
-/* #all_canvas{ */
-/* display: flex; */
-/* } */
-
 #my_court {
     clear: both;
     float: left;
     position: relative;
     border: 0.1rem solid #ccc;
-    width: 38rem;
-    height: 38rem;
+    width: 23.5rem;
+    height: 23.5rem;
     max-width: 100%;
-    top: -15rem;
-    left: 3rem;
     margin: 0;
 }
-
 #court:before {
     content: "";
     display: block;
-    /* padding-top: 58%; */
 }
-
 #my,
 #my2,
 #my3 {
-    float: left;
     position: absolute;
     left: 0;
     top: 0;
@@ -306,14 +262,11 @@ h1 {
 
 #other_court {
     clear: both;
-    float: left;
     position: relative;
     border: 0.1rem solid #ccc;
-    width: 38rem;
-    height: 38rem;
+    width: 23.5rem;
+    height: 23.5rem;
     max-width: 100%;
-    top: -53rem;
-    left: 43rem;
     margin: 0;
 }
 
@@ -326,7 +279,6 @@ h1 {
 #other,
 #other2,
 #other3 {
-    float: left;
     position: absolute;
     left: 0;
     top: 0;
@@ -336,48 +288,39 @@ h1 {
     padding: 0;
     margin: 0;
 }
-
 #other3 {
     z-index: 0;
     background-image: url("../Picture/バレーコート背景.png");
     background-size: cover;
 }
-
 #other2 {
     z-index: 1;
 }
-
 #other {
     z-index: 2;
 }
-
 * {
     box-sizing: border-box;
 }
 
 #comparison_court {
     clear: both;
-    float: left;
     position: relative;
     border: 0.1rem solid #ccc;
-    width: 38rem;
-    height: 38rem;
+    width: 23.5rem;
+    height: 23.5rem;
     max-width: 100%;
-    top: -91rem;
-    left: 83rem;
     margin: 0;
 }
 
 #comparison_court:before {
     content: "";
     display: block;
-    /* padding-top: 58%; */
 }
 
 #comparison1,
 #comparison2,
 #comparison3 {
-    float: left;
     position: absolute;
     left: 0;
     top: 0;
@@ -387,51 +330,38 @@ h1 {
     padding: 0;
     margin: 0;
 }
-
 #comparison3 {
     z-index: 0;
     background-image: url("../Picture/バレーコート背景.png");
     background-size: cover;
 }
-
 #comparison2 {
     z-index: 1;
 }
-
 #comparison {
     z-index: 2;
+    width:15%;
 }
-
 * {
     box-sizing: border-box;
 }
 
-#range p {
-    clear: both;
-    position: relative;
-    display: inline-flex;
-    left: 5rem;
-    top: 35rem;
-    width: 32%;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 0rem;
-}
-
-
+/* ================================================== */
+/* ====================チュートリアル================== */
+/* ================================================== */
 #tutorial{
     position        : absolute;
     z-index         : 20;
-    right           : -65.3rem;
-    top             : 0.3rem;
+    right           : 0rem;
+    top             : 0.5rem;
 }
 .question_circle{
     fill            : rgba(55, 0, 255, 1);
     width           : 15%;
     opacity         : 0.92;
     filter          : drop-shadow(0.05rem 0.05rem 0 rgba(0,0,0,0.6));
-    height          : 5.3rem;
-    width           : 5.3rem;
+    height          : 3rem;
+    width           : 3rem;
     -webkit-text-stroke: 2rem #000;
   }
 .question_circle:hover{
