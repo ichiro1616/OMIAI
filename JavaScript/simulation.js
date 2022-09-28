@@ -361,12 +361,12 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
 let message = [
-    '<b>けんすけ</b><br><c>50kg　175cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
-    '<b>るい</b><br><c>60kg　180cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
-    '<b>ひなた</b><br><c> 55kg　175cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
-    '<b>けんと</b><br><c>60kg　180cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
-    ' <b>りく</b><br><c>60kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
-    '<b>けいすけ</b><br><c>55kg　175cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
+    '<b>けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
+    '<b>るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
+    '<b>ひなた</b><br><c> 63kg　169cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
+    '<b>けんと</b><br><c>76kg　176cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
+    ' <b>りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
+    '<b>けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
 ];
 
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
@@ -420,12 +420,8 @@ let size_under = scale * size;//サブ画面のコマの大きさの倍率
 let koma_w = 100;//コマの横幅
 let koma_h = 100;//コマの高さ
 let counter = 0;//ローテーションカウント用
-let startX;//ドラッグ開始時のx座標
-let startY;//ドラッグ開始時のy座標
 let experience_years = 0;//バレーボールの経験年数　初期値0
 let subject_object_level = 2;//主観的・客観的レベル　初期値2(中央)
-let judge_area = [];
-let percentage = 0;
 
 //コマの中心の座標を用意
 for (var i in imagearray) {
@@ -450,6 +446,32 @@ imagearray[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size
 imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 imagearray_center[5][0].x = imagearray[5][0].x + koma_w / 2 * size;//45°
 imagearray_center[5][0].y = imagearray[5][0].y + koma_h / 2 * size;//45°
+
+let subject_array = [];//主観的データ2550
+let object_array = [];//客観的データ2550
+//主観的のdata
+let data_array_sub_0 = [];//2-3
+let data_array_sub_1 = [];//2-4
+let data_array_sub_2 = [];//2-5
+let data_array_sub_3 = [];//2-6
+let data_array_sub_4 = [];//3-4
+let data_array_sub_5 = [];//3-5
+let data_array_sub_6 = [];//3-6
+let data_array_sub_7 = [];//4-5
+let data_array_sub_8 = [];//4-6
+let data_array_sub_9 = [];//5-6
+//客観的のdata
+let data_array_ob_0 = [];//2-3
+let data_array_ob_1 = [];//2-4
+let data_array_ob_2 = [];//2-5
+let data_array_ob_3 = [];//2-6
+let data_array_ob_4 = [];//3-4
+let data_array_ob_5 = [];//3-5
+let data_array_ob_6 = [];//3-6
+let data_array_ob_7 = [];//4-5
+let data_array_ob_8 = [];//4-6
+let data_array_ob_9 = [];//5-6
+
 
 window.addEventListener('DOMContentLoaded', () => {
     simulation_area.style.display = 'none';//配置シミュレーションを非表示
@@ -484,6 +506,98 @@ window.addEventListener('DOMContentLoaded', () => {
             images[i][j].src = img[i][j];
         }
     }
+
+    //lr.coef_の値取得、テストデータ作成、特徴量として変換、
+    let formData_area = new FormData();
+    let xhr_area = new XMLHttpRequest();
+    xhr_area.open("POST", "../PHP/simulation.php");
+    xhr_area.addEventListener("loadend", function () {
+        if (xhr_area.status === 200) {
+            let data = JSON.parse(xhr_area.response);
+            for (i = 0; i < data.length; i++) {
+                if (data[i].type == 0) {
+                    //主観的
+                    subject_array.push(data[i]);
+                } else if (data[i].type == 1) {
+                    //客観的
+                    object_array.push(data[i]);
+                }
+            }
+            //主観的データをペアごとに分ける各255
+            for (i = 0; i < subject_array.length; i++) {
+                switch (subject_array[i].left_player * subject_array[i].right_player) {
+                    case 6://2-3
+                        data_array_sub_0.push(subject_array[i]);
+                        break;
+                    case 8://2-4
+                        data_array_sub_1.push(subject_array[i]);
+                        break;
+                    case 10://2-5
+                        data_array_sub_2.push(subject_array[i]);
+                        break;
+                    case 12://2-6 3-4
+                        if (subject_array[i].left_player == 2 || subject_array[i].right_player == 2) {
+                            data_array_sub_3.push(subject_array[i]);
+                        } else {
+                            data_array_sub_4.push(subject_array[i]);
+                        }
+                        break;
+                    case 15://3-5
+                        data_array_sub_5.push(subject_array[i]);
+                        break;
+                    case 18://3-6
+                        data_array_sub_6.push(subject_array[i]);
+                        break;
+                    case 20://4-5
+                        data_array_sub_7.push(subject_array[i]);
+                        break;
+                    case 24://4-6
+                        data_array_sub_8.push(subject_array[i]);
+                        break;
+                    case 30://5-6
+                        data_array_sub_9.push(subject_array[i]);
+                        break;
+                }
+            }
+            //客観的データをペアごとに分ける各255
+            for (i = 0; i < object_array.length; i++) {
+                switch (object_array[i].left_player * object_array[i].right_player) {
+                    case 6://2-3
+                        data_array_ob_0.push(object_array[i]);
+                        break;
+                    case 8://2-4
+                        data_array_ob_1.push(object_array[i]);
+                        break;
+                    case 10://2-5
+                        data_array_ob_2.push(object_array[i]);
+                        break;
+                    case 12://2-6 3-4
+                        if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
+                            data_array_ob_3.push(object_array[i]);
+                        } else {
+                            data_array_ob_4.push(object_array[i]);
+                        }
+                        break;
+                    case 15://3-5
+                        data_array_ob_5.push(object_array[i]);
+                        break;
+                    case 18://3-6
+                        data_array_ob_6.push(object_array[i]);
+                        break;
+                    case 20://4-5
+                        data_array_ob_7.push(object_array[i]);
+                        break;
+                    case 24://4-6
+                        data_array_ob_8.push(object_array[i]);
+                        break;
+                    case 30://5-6
+                        data_array_ob_9.push(object_array[i]);
+                        break;
+                }
+            }
+        }
+    });
+    xhr_area.send(formData_area);
 });
 
 //経験年数選択のポップアップを非表示
@@ -1043,7 +1157,7 @@ function omiai(judge_area, rota) {
                 context_omiai.globalAlpha = gra_a;
                 context_omiai.fillStyle = 'rgb(0,' + gra_g + ',0)';
                 context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage++;
+                percentage += gra_a;
             }
             k_sum++;
         }
@@ -1084,161 +1198,44 @@ function omiai(judge_area, rota) {
 
 //お見合い範囲関数
 function area(rota) {
-    let subject_array = [];//主観的データ2550
-    let object_array = [];//客観的データ2550
-    //主観的のdata
-    let data_array_sub_0 = [];//2-3
-    let data_array_sub_1 = [];//2-4
-    let data_array_sub_2 = [];//2-5
-    let data_array_sub_3 = [];//2-6
-    let data_array_sub_4 = [];//3-4
-    let data_array_sub_5 = [];//3-5
-    let data_array_sub_6 = [];//3-6
-    let data_array_sub_7 = [];//4-5
-    let data_array_sub_8 = [];//4-6
-    let data_array_sub_9 = [];//5-6
-    //客観的のdata
-    let data_array_ob_0 = [];//2-3
-    let data_array_ob_1 = [];//2-4
-    let data_array_ob_2 = [];//2-5
-    let data_array_ob_3 = [];//2-6
-    let data_array_ob_4 = [];//3-4
-    let data_array_ob_5 = [];//3-5
-    let data_array_ob_6 = [];//3-6
-    let data_array_ob_7 = [];//4-5
-    let data_array_ob_8 = [];//4-6
-    let data_array_ob_9 = [];//5-6
+    //主観的お見合い範囲
+    let judge_color_sub_0 = calculation(data_array_sub_0);
+    let judge_color_sub_1 = calculation(data_array_sub_1);
+    let judge_color_sub_2 = calculation(data_array_sub_2);
+    let judge_color_sub_3 = calculation(data_array_sub_3);
+    let judge_color_sub_4 = calculation(data_array_sub_4);
+    let judge_color_sub_5 = calculation(data_array_sub_5);
+    let judge_color_sub_6 = calculation(data_array_sub_6);
+    let judge_color_sub_7 = calculation(data_array_sub_7);
+    let judge_color_sub_8 = calculation(data_array_sub_8);
+    let judge_color_sub_9 = calculation(data_array_sub_9);
 
-    //lr.coef_の値取得、テストデータ作成、特徴量として変換、
-    let formData_area = new FormData();
-    let xhr_area = new XMLHttpRequest();
-    xhr_area.open("POST", "../PHP/simulation.php");
-    xhr_area.addEventListener("loadend", function () {
-        if (xhr_area.status === 200) {
-            let data = JSON.parse(xhr_area.response);
-            for (i = 0; i < data.length; i++) {
-                if (data[i].type == 0) {
-                    //主観的
-                    subject_array.push(data[i]);
-                } else if (data[i].type == 1) {
-                    //客観的
-                    object_array.push(data[i]);
-                }
-            }
-            //主観的データをペアごとに分ける各255
-            for (i = 0; i < subject_array.length; i++) {
-                switch (subject_array[i].left_player * subject_array[i].right_player) {
-                    case 6://2-3
-                        data_array_sub_0.push(subject_array[i]);
-                        break;
-                    case 8://2-4
-                        data_array_sub_1.push(subject_array[i]);
-                        break;
-                    case 10://2-5
-                        data_array_sub_2.push(subject_array[i]);
-                        break;
-                    case 12://2-6 3-4
-                        if (subject_array[i].left_player == 2 || subject_array[i].right_player == 2) {
-                            data_array_sub_3.push(subject_array[i]);
-                        } else {
-                            data_array_sub_4.push(subject_array[i]);
-                        }
-                        break;
-                    case 15://3-5
-                        data_array_sub_5.push(subject_array[i]);
-                        break;
-                    case 18://3-6
-                        data_array_sub_6.push(subject_array[i]);
-                        break;
-                    case 20://4-5
-                        data_array_sub_7.push(subject_array[i]);
-                        break;
-                    case 24://4-6
-                        data_array_sub_8.push(subject_array[i]);
-                        break;
-                    case 30://5-6
-                        data_array_sub_9.push(subject_array[i]);
-                        break;
-                }
-            }
-            //客観的データをペアごとに分ける各255
-            for (i = 0; i < object_array.length; i++) {
-                switch (object_array[i].left_player * object_array[i].right_player) {
-                    case 6://2-3
-                        data_array_ob_0.push(object_array[i]);
-                        break;
-                    case 8://2-4
-                        data_array_ob_1.push(object_array[i]);
-                        break;
-                    case 10://2-5
-                        data_array_ob_2.push(object_array[i]);
-                        break;
-                    case 12://2-6 3-4
-                        if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
-                            data_array_ob_3.push(object_array[i]);
-                        } else {
-                            data_array_ob_4.push(object_array[i]);
-                        }
-                        break;
-                    case 15://3-5
-                        data_array_ob_5.push(object_array[i]);
-                        break;
-                    case 18://3-6
-                        data_array_ob_6.push(object_array[i]);
-                        break;
-                    case 20://4-5
-                        data_array_ob_7.push(object_array[i]);
-                        break;
-                    case 24://4-6
-                        data_array_ob_8.push(object_array[i]);
-                        break;
-                    case 30://5-6
-                        data_array_ob_9.push(object_array[i]);
-                        break;
-                }
-            }
+    //客観的お見合い範囲
+    let judge_color_ob_0 = calculation(data_array_ob_0);
+    let judge_color_ob_1 = calculation(data_array_ob_1);
+    let judge_color_ob_2 = calculation(data_array_ob_2);
+    let judge_color_ob_3 = calculation(data_array_ob_3);
+    let judge_color_ob_4 = calculation(data_array_ob_4);
+    let judge_color_ob_5 = calculation(data_array_ob_5);
+    let judge_color_ob_6 = calculation(data_array_ob_6);
+    let judge_color_ob_7 = calculation(data_array_ob_7);
+    let judge_color_ob_8 = calculation(data_array_ob_8);
+    let judge_color_ob_9 = calculation(data_array_ob_9);
 
-            //主観的お見合い範囲
-            let judge_color_sub_0 = calculation(counter, data_array_sub_0);
-            let judge_color_sub_1 = calculation(counter, data_array_sub_1);
-            let judge_color_sub_2 = calculation(counter, data_array_sub_2);
-            let judge_color_sub_3 = calculation(counter, data_array_sub_3);
-            let judge_color_sub_4 = calculation(counter, data_array_sub_4);
-            let judge_color_sub_5 = calculation(counter, data_array_sub_5);
-            let judge_color_sub_6 = calculation(counter, data_array_sub_6);
-            let judge_color_sub_7 = calculation(counter, data_array_sub_7);
-            let judge_color_sub_8 = calculation(counter, data_array_sub_8);
-            let judge_color_sub_9 = calculation(counter, data_array_sub_9);
+    //10パターンの重なってるところ 10+結果用の+1
+    let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
+    let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
 
-            //客観的お見合い範囲
-            let judge_color_ob_0 = calculation(counter, data_array_ob_0);
-            let judge_color_ob_1 = calculation(counter, data_array_ob_1);
-            let judge_color_ob_2 = calculation(counter, data_array_ob_2);
-            let judge_color_ob_3 = calculation(counter, data_array_ob_3);
-            let judge_color_ob_4 = calculation(counter, data_array_ob_4);
-            let judge_color_ob_5 = calculation(counter, data_array_ob_5);
-            let judge_color_ob_6 = calculation(counter, data_array_ob_6);
-            let judge_color_ob_7 = calculation(counter, data_array_ob_7);
-            let judge_color_ob_8 = calculation(counter, data_array_ob_8);
-            let judge_color_ob_9 = calculation(counter, data_array_ob_9);
+    //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
+    let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
-            //10パターンの重なってるところ 10+結果用の+1
-            let judge_color_sub = color_sub(judge_color_sub_0, judge_color_sub_1, judge_color_sub_2, judge_color_sub_3, judge_color_sub_4, judge_color_sub_5, judge_color_sub_6, judge_color_sub_7, judge_color_sub_8, judge_color_sub_9, judge_color_sub_0);
-            let judge_color_ob = color_sub(judge_color_ob_0, judge_color_ob_1, judge_color_ob_2, judge_color_ob_3, judge_color_ob_4, judge_color_ob_5, judge_color_ob_6, judge_color_ob_7, judge_color_ob_8, judge_color_ob_9, judge_color_ob_0);
-
-            //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
-            let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
-
-            //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-            let area_percentage = omiai(judge_color_merge, rota);
-            area_percentage = area_percentage / 2116 * 100;
-            area_percentage = String(area_percentage);
-            area_percentage = parseInt(area_percentage, 10);
-            area_percentage = area_percentage + '%';
-            document.getElementById('area_percentage').innerHTML = area_percentage;
-        }
-    });
-    xhr_area.send(formData_area);
+    //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
+    let area_percentage = omiai(judge_color_merge, rota);
+    area_percentage = area_percentage / 2116 * 100;
+    area_percentage = String(area_percentage);
+    area_percentage = parseInt(area_percentage, 10);
+    area_percentage = area_percentage + '%';
+    document.getElementById('area_percentage').innerHTML = area_percentage;
 }
 
 //judgeのアナログ値を足し合わせる
@@ -1270,7 +1267,7 @@ function merge(sub, ob, level) {
 }
 
 //お見合い範囲計算
-function calculation(rota, data) {
+function calculation(data) {
     let color_array = [];
     let test_data = [];
     let judge_color = [];
@@ -1291,12 +1288,12 @@ function calculation(rota, data) {
     }
 
     //左の選手
-    let player1_x = imagearray_center[rota][data[0].left_player - 1].x / (1200 / 9);
-    let player1_y = imagearray_center[rota][data[0].left_player - 1].y / (1200 / 9) - 9;
+    let player1_x = imagearray_center[counter][data[0].left_player - 1].x / (1200 / 9);
+    let player1_y = imagearray_center[counter][data[0].left_player - 1].y / (1200 / 9) - 9;
     player1_y = Math.abs(player1_y);
     //右の選手
-    let player2_x = imagearray_center[rota][data[0].right_player - 1].x / (1200 / 9);
-    let player2_y = imagearray_center[rota][data[0].right_player - 1].y / (1200 / 9) - 9;
+    let player2_x = imagearray_center[counter][data[0].right_player - 1].x / (1200 / 9);
+    let player2_y = imagearray_center[counter][data[0].right_player - 1].y / (1200 / 9) - 9;
     player2_y = Math.abs(player2_y);
 
     let reverce = 0;

@@ -75,62 +75,9 @@ data5 = pd.DataFrame(data_5,columns=columns)
 data = [data0,data1,data2,data3,data4,data5]
 time.sleep(0.2)
 
-#================================================================================================
-#2回目以降の実行で使用する
-#================================================================================================
-#collectiveテーブルに既に入っているデータを取得する
-cur.execute("SELECT * FROM `collective`")
-length_old = cur.fetchall()
-conn.commit()
-length_old = len(length_old)
-print("length_old=", length_old)
-#================================================================================================
-
-#集合知の計算----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def first():
-    print("初回実行")
-    gene = 0 #世代の数
-    clip = 5  #5人ずつに区切るとき使う変数
-    counter = 0 #while文から抜ける用の条件変数
-    x_tmp = [] #今回の世代のx座標を一時的に格納する
-    y_tmp = [] #今回の世代のy座標を一時的に格納する
-
-    for Dcount in range(6):
-        for h in range(ex_years): #キー：experience_years
-            for i in range(player): #キー：player_id
-                while(counter == 0):
-                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)
-                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)<5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合
-                        counter = 1
-                    else: #現在取得したデータを5つずつ区切ってその中で平均を出す
-                        print("rotation = ",Dcount)
-                        print("h(ex_years)=",h, "i(player_id)=",i+1)
-                        print("generation = ", gene)
-                        print("clip = ", clip)
-                        print("----------------------------------------------------")
-                        x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'][0:clip]).values.tolist())
-                        y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['y'][0:clip]).values.tolist())
-                        x = round((np.mean(np.array(x_tmp))),4)
-                        y = round((np.mean(np.array(y_tmp))),4)
-                        clip += 5
-                        print("x_tmp = ",x_tmp)
-                        print("y_tmp = ", y_tmp)
-                        print("x_mean = ", x)
-                        print("y_mean = ", y)
-                        cur.execute('INSERT INTO `collective`(`rotation`, `generation`, `experience_years`,`player_id`, `x_coordinate`, `y_coordinate`) VALUES (%s,%s,%s,%s,%s,%s);',(Dcount,gene,h,i+1,x,y))
-                        conn.commit() #結果を保存・確定する
-                        print("rotation=",Dcount ,"experience_years=",h ,"player_id=",i+1, "x_coordinate=",x, "y_coordinate=",y, "generation=",gene)
-                        gene += 1
-                        time.sleep(0.2)
-                counter = 0
-                gene = 0
-                clip = 5
-            time.sleep(0.2)
-
-
-##-------以下2回目以降の処理----------------------------------------------------------------------------------------------
+##---集合知の計算--------------------------------------------------------------------------------
 def add():
-    print("2回目以降の実行")
+    print("集合知の計算を行います")
     counter = 0 #while文から抜ける用の条件変数
     x_tmp = [] #今回の世代のx座標を一時的に格納する
     y_tmp = [] #今回の世代のy座標を一時的に格納する
@@ -144,26 +91,27 @@ def add():
                         #collectiveテーブルに入っている世代の数を取得する
                         cur.execute("SELECT MAX(`generation`) FROM `collective` WHERE `rotation` = %s AND `experience_years` = %s AND `player_id` = %s;",(Dcount,h,i+1))
                         generation = cur.fetchall()
+                        print("---------------------------------")
                         #世代の値がNaNだった場合は世代1から計算する
                         if generation[0][0] is None:
                             gene = 1
                             clip = 5
-                            print("isNaN")
+                            print("最初から計算します")
                         #世代の値がある場合はテーブルに入っていた世代の次の世代から計算をする
                         else:
                             gene = int(generation[0][0])
                             gene += 1
                             clip = (gene*5)
                             flug = 1
+                    length = len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip
                     print("rotation = ",Dcount)
                     print("h(ex_years)=",h, "i(player_id)=",i+1)
                     print("generation = ", gene)
                     print("clip = ", clip)
-                    print("残りデータ数：",len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)
-                    if((len(data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'])-clip)<=5): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合はループから抜ける
+                    print("残りデータ数：",length)
+                    if((length<5) & (length != 0)): #現在取得したデータを5つずつ区切って残りデータが5より少なくなった場合はループから抜ける
                         counter = 1
                     else: #現在取得したデータを5つずつ区切ってその中で平均を出す
-                        print("----------------------------------------------------")
                         x_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['x'][0:clip]).values.tolist())
                         y_tmp = ((data[Dcount][(data[Dcount]['ex_years']==h) & (data[Dcount]['player_id']==i+1)]['y'][0:clip]).values.tolist())
                         x = round((np.mean(np.array(x_tmp))),4)
@@ -183,10 +131,6 @@ def add():
                 flug = 0
             time.sleep(0.2)
 
-
-if(length_old == 0): #length_oldがゼロの場合は、まだ1度も集合知の計算を行っていないので、全ての計算を行う
-    first()
-else: #length_dbよりlength_oldが小さい場合は、前回計算した時からデータ数が増えているので増えた部分についてのみ計算を行う
-    add()
+add()
 
 conn.close()

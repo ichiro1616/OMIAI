@@ -633,6 +633,13 @@ b{
   text-align      : center;
 }
 
+.area{
+  position        : relative;
+}
+#area_percent{
+  position        : absolute;
+}
+
 /* ================================================ */
 /* ====================ボタン類==================== */
 /* ================================================ */
@@ -811,8 +818,8 @@ b{
   width           : 15%;
   opacity         : 0.92;
   filter          : drop-shadow(0.05rem 0.05rem 0 rgba(0,0,0,0.6));
-  height          : 2.5rem;
-  width           : 2.5rem;
+  height          : 3rem;
+  width           : 3rem;
   -webkit-text-stroke: 2rem #000;
 }
 .question_circle:hover{
