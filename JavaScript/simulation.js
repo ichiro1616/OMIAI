@@ -368,14 +368,11 @@ let message = [
     ' <b>りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
     '<b>けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
 ];
-
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
 function talk_bubble() {
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
 }
-
-
 //画像
 let images = new Array(6);//要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
@@ -1415,8 +1412,9 @@ function calculation(data) {
 }
 
 //登録ボタンを押したときの処理
+let load_button = document.querySelector('span');
 document.getElementById("register_btn").onclick = function () {
-
+    load_button.innerHTML = `<div class="loading"></div>`;
     var json_str1 = JSON.stringify(imagearray);
     localStorage.setItem('key', json_str1);
     for (var i = 0; i <= 5; i++) {//ローテーション0~5
@@ -1449,13 +1447,17 @@ document.getElementById("register_btn").onclick = function () {
     xhr.open("POST", "../PHP/execute.php");
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
-            location.href = "../HTML/OMIAI.html";
+            load_button.innerHTML = "SUCCESS!"
+            setTimeout(jump,500)
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
         }
     });
     xhr.send(form);
+}
+function jump(){
+    location.href = "../HTML/OMIAI.html";    
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
