@@ -688,6 +688,9 @@ function ot_omiai(judge_area) {
 function collective() {
   let index = 100000;
   gene_level = Number(gene_level);
+  // document.getElementById('other3').style.backgroundImage = 'url("../Picture/バレーコート背景.png")'
+  // document.getElementById('other3').style.zIndex = 0;
+
   for (i = 0; i < genekeep[gene_level].length; i++) {
     if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter) {
       index = i;
@@ -717,12 +720,16 @@ function collective() {
     array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
     array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
     array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-
     draw(counter);
     area(counter)
 
   } else {
     // 世代がなかった時の処理
+    // console.log("SSSSS")
+    // document.getElementById('other3').style.backgroundImage = 'url("../Picture/バレーコート背景2.png")'
+    // document.getElementById('other3').style.zIndex = 100;
+    
+    ot_ctx2.globalAlpha = 0.7;
   }
 }
 
