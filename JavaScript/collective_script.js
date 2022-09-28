@@ -598,10 +598,10 @@ function draw(rota) {
 }
 const rotation_images = [
   '../Picture/サイクル_1.png',
-  '../Picture/light_blue_1.png',
-  '../Picture/light_green_1.png',
-  '../Picture/pink_1.png',
-  '../Picture/purple_1.png',
+  '../Picture/サイクル_2.png',
+  '../Picture/サイクル_3.png',
+  '../Picture/サイクル_4.png',
+  '../Picture/サイクル_5.png',
   '../Picture/サイクル_6.png',
 ];
 //ローテーションボタンを押されたら
