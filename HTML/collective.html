@@ -1,109 +1,114 @@
-<!-- 担当：上村 -->
-
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/CSS/collective.css">
+    <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
     <title>集合知表示ページ</title>
 </head>
 
 <body>
-    <div class="container">
-    <label class="open" for="pop-up">
-        <div id="tutorial" ontouchstart="">
-          <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-          </svg>
+    <!-- <div class="container-fluid"> -->
+        <div class="row justify-content-center">
+            <div class="col">
+                <label class="open" for="pop-up">
+                    <div id="tutorial" ontouchstart="">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                        </svg>
+                    </div>
+                </label>
+                <input type="checkbox" id="pop-up">
+                <div class="overlay">
+                    <div class="window">
+                        <label class="close" for="pop-up">閉じる</label>
+                        <p class="text">tutorial</p>
+                        <iframe class="tutorial_movie" src="" frameborder="0"></iframe>
+                    </div>
+                </div>
+                <h1 class="sentence">比較したい集合知を選んでください</h1></div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="button">
+                <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/サイクル_1.png" id="rotation_image" /><br></button>
+                        </div>
+                <div class="bar_and_scale">
+                <div class="bar_name">
+                    <!-- 経験年数選択バー -->
+                    <h4 id="experience">経験年数選択バー</h4>
+                    <!-- 世代選択バー -->
+                    <h4 id="generation">世代選択バー</h4>
+                </div>
+
+                <div class="bars">
+                    <!-- 経験年数選択バー -->
+                    <input type="range" id="experience_change" min="0" max="4" step="1" value="0">
+                    <!-- 世代選択バー -->
+                    <input type="range" id="generation_change" min="0" step="1" value="0">
+                </div>
+
+                <div class="bar_scale">
+                    <!-- 経験年数選択バー -->
+                    <div id="wrap1">
+                        <p>●●●</p>
+                    </div>
+                    <!-- 世代選択バー -->
+                    <div id="wrap2">
+                        <p>●●●</p>
+                    </div>
+                </div>
+                <div class="bar_wrap">
+                <div id="wrapping1">
+                    <p>未経験</p>
+                    <p>1~2年</p>
+                    <p>3~5年</p>
+                    <p>6~9年</p>
+                    <p>10年以上</p>
+                </div>
+                <div id="wrapping2">
+                    <p>1世代目</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p id = 'max_gene'></p>
+                </div>
+                </div>
+            </div>
         </div>
-      </label>
-      <input type="checkbox" id="pop-up">
-      <div class="overlay">
-      <div class="window">
-      <label class="close" for="pop-up">閉じる</label>
-      <p class="text">tutorial</p>
-      <iframe class="tutorial_movie" src="" frameborder="0"></iframe>
-      </div>
-      </div>
-
-    <h1>比較したい集合知を選んでください</h1>
-
-    <button type="button" onclick="rotation()" id="rotation_button"><img src="../Picture/サイクル_1.png" height="90"
-            width="100" id="rotation_image" /><br></button>
-
-    <div>
-        <!-- 経験年数選択バー -->
-        <h2 id="experience_bar">経験年数選択バー</h2>
-        <!-- 世代選択バー -->
-        <h3 id="generation_bar">世代選択バー</h3>
     </div>
 
-    <div>
-        <!-- 経験年数選択バー -->
-        <input type="range" id="experience_change" min="0" max="4" step="1" value="0">
-        <!-- 世代選択バー -->
-        <input type="range" id="generation_change" min="0" step="1" value="0">
-    </div>
-
-    <div>
-        <!-- 経験年数選択バー -->
-        <!-- 目盛り -->
-        <div id="wrap1">
-            <p>●●●</p>
+    <div class="row justify-content-center">
+        <div class="col">
+        <div id="name">
+            <p id="my_data">あなたの配置</p>
+            <p id="other_data">みんなの配置</p>
+            <p id="comparison_data">選手配置の差</p>
         </div>
-        <!-- 世代選択バー -->
-        <!-- 目盛り -->
-        <div id="wrap2">
-            <p>●●●</p>
+        <div class = "all_canvas">
+            <div id="my_court">
+                <canvas id="my2" width="610" height="610"></canvas>
+                <canvas id="my" width="610" height="610"></canvas>
+                <canvas id="my3" width="610" height="610"></canvas>
+            </div>
+            <div id="other_court">
+                <canvas id="other2" width="610" height="610"></canvas>
+                <canvas id="other" width="610" height="610"></canvas>
+                <canvas id="other3" width="610" height="610"></canvas>
+            </div>
+            <div id="comparison_court">
+                <canvas id="comparison2" width="610" height="610"></canvas>
+                <canvas id="comparison" width="610" height="610"></canvas>
+                <canvas id="comparison3" width="610" height="610"></canvas>
+            </div>
         </div>
-    </div>
 
-
-    <div id="wrapping1">
-        <p>未経験</p>
-        <p>1~2年</p>
-        <p>3~5年</p>
-        <p>6~9年</p>
-        <p>10年以上</p>
+        <div id="range">
+            <p id="my_area_percentage"></p>
+            <p id="ot_area_percentage"></p>
+        </div>
+        </div></div>
     </div>
-    <div id="wrapping2">
-        <p>1世代目</p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p id = 'max_gene'></p>
-    </div>
-
-    <div id="name">
-        <p id="my_data">あなたの配置</p>
-        <p id="other_data">みんなの配置</p>
-        <p id="comparison_data">選手配置の差</p>
-    </div>
-
-    <!-- <div id = "all_canvas"> -->
-    <div id="my_court">
-        <canvas id="my2" width="610" height="610"></canvas>
-        <canvas id="my" width="610" height="610"></canvas>
-        <canvas id="my3" width="610" height="610"></canvas>
-    </div>
-    <div id="other_court">
-        <canvas id="other2" width="610" height="610"></canvas>
-        <canvas id="other" width="610" height="610"></canvas>
-        <canvas id="other3" width="610" height="610"></canvas>
-    </div>
-    <div id="comparison_court">
-        <canvas id="comparison2" width="610" height="610"></canvas>
-        <canvas id="comparison" width="610" height="610"></canvas>
-        <canvas id="comparison3" width="610" height="610"></canvas>
-    </div>
-    <!-- </div> -->
-
-    <div id="range">
-        <p id="my_area_percentage"></p>
-        <p id="ot_area_percentage"></p>
-    </div>
-
     </div>
     <script type="text/javascript" src="/JavaScript/collective_script.js"></script>
 </body>
