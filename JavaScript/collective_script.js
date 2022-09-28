@@ -656,7 +656,7 @@ function my_omiai(judge_area) {
         my_ctx2.globalAlpha = gra_a;
         my_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
         my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        percentage++;
+        percentage += gra_a;
       }
       k_sum++;
     }
@@ -677,7 +677,7 @@ function ot_omiai(judge_area) {
         ot_ctx2.globalAlpha = gra_a;
         ot_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
         ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        percentage++;
+        percentage += gra_a;
       }
       k_sum++;
     }
