@@ -701,14 +701,12 @@ let mousemove = function (e, type) {
     let scaleWidth = canvas.clientWidth / canvas.width,
         scaleHeight = canvas.clientHeight / canvas.height;
     //調整後の座標
-    let canvasX = Math.floor(posX / scaleWidth),
-        canvasY = Math.floor(posY / scaleHeight);
+    let canvasX = Math.floor(posX / scaleWidth) ,
+        canvasY = Math.floor(posY / scaleHeight) ;
     //canvas外にドラッグした場合
-    if (type == 1) {
-        if (canvasX >= canvas.width || canvasX <= 0 || canvasY >= canvas.height || canvasY <= 0) {
+        if (canvasX  >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
             mouseup(e);
         }
-    }
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
