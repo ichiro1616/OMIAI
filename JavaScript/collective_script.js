@@ -698,7 +698,25 @@ function collective() {
       console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
       array[counter][i].x = genekeep[gene_level][index + i]["x_coordinate"];
       array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
-    }
+      array_center[counter][i].x = array[counter][i].x + koma_w / 2 * size;
+      array_center[counter][i].y = array[counter][i].y + koma_h / 2 * size;
+    }    
+    //セッターの座標を修正
+    array_center[3][0].x = array_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
+    array_center[3][0].y = array_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    array[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
+    array[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+
+    array_center[4][0].x = array_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
+    array_center[4][0].y = array_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
+    array[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
+    array[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+
+    array_center[5][0].x = array_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
+    array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
+    array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+
     draw(counter);
     area(counter)
 
