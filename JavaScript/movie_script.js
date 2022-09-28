@@ -59,9 +59,11 @@ function control(num) {
   if (n == 0) {
     if (data[0][counter]["start_time"] == 0) {
       obj.play();
+      obj.playbackRate = 0.85;
     } else {
       obj.currentTime = data[0][counter]["start_time"] / 60 + 2; //start_timeの位置から再生を開始する
       obj.play();
+      obj.playbackRate = 0.85;
     }
   } else {
     document.querySelector('[id="0"]').value = "⇦";
@@ -84,15 +86,14 @@ function movie_time() {
     if (position == 0) {
       submit = videoElement.currentTime;
       playing = 1;
-      if (stop_time - submit <= 0.3) {
+      if (stop_time - submit <= 0.5) {
         console.log("slow");
         position = 2;
       }
     }
     if (position == 2) {
-      Velement.playbackRate = 0.2;
       submit = videoElement.currentTime;
-      if (stop_time - submit <= 0.05) {
+      if (stop_time - submit <= 0.15) {
         position = 1;
         playing = 0;
         STOP = 0;
@@ -226,7 +227,7 @@ function choose(btn) {
     console.log("登録しました");
     answer += 1;
     answer_c.innerHTML = answer;
-    setTimeout(percentage, 50);
+    setTimeout(percentage, 500);
     //percentage();
   }
 }
