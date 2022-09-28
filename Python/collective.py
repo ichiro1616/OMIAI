@@ -96,7 +96,7 @@ def add():
                         if generation[0][0] is None:
                             gene = 1
                             clip = 5
-                            print("また集合知はありません")
+                            print("最初から計算します")
                         #世代の値がある場合はテーブルに入っていた世代の次の世代から計算をする
                         else:
                             gene = int(generation[0][0])
