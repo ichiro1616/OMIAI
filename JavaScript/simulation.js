@@ -6,20 +6,20 @@ let imagearray_center = [
             y: 10,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
@@ -32,20 +32,20 @@ let imagearray_center = [
             y: 10,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
@@ -58,76 +58,76 @@ let imagearray_center = [
             y: 10,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
     ],
     [
         {
-            x: 870,
+            x: 940,
             y: 460,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
     ],
     [
         {
-            x: 350,
+            x: 390,
             y: 460,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
     ],
     [
@@ -140,20 +140,20 @@ let imagearray_center = [
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
     ],
 ];
@@ -166,20 +166,20 @@ let imagearray = [
             y: 10,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
@@ -192,20 +192,20 @@ let imagearray = [
             y: 10,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
@@ -218,76 +218,76 @@ let imagearray = [
             y: 10,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
     ],
     [
         {
-            x: 870,
+            x: 940,
             y: 460,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
     ],
     [
         {
-            x: 350,
+            x: 390,
             y: 460,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
         {
             x: 160,
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
     ],
     [
@@ -300,20 +300,20 @@ let imagearray = [
             y: 370,
         },
         {
-            x: 460,
+            x: 500,
             y: 370,
         },
         {
-            x: 760,
+            x: 840,
             y: 370,
         },
         {
-            x: 620,
-            y: 600,
+            x: 690,
+            y: 700,
         },
         {
             x: 310,
-            y: 600,
+            y: 700,
         },
     ],
 ];
@@ -595,6 +595,10 @@ window.addEventListener('DOMContentLoaded', () => {
                         break;
                 }
             }
+            //お見合い範囲初期表示
+            for (i = 0; i < 6; i++) {
+                area(i);
+            }
         }
     });
     xhr_area.send(formData_area);
@@ -746,7 +750,6 @@ let mousemove = function (e, type) {
                         mouseup(e);
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
-
                     }
                 }
                 //前衛の選手を超えた場合
@@ -763,7 +766,6 @@ let mousemove = function (e, type) {
                         mouseup(e);
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>前衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
-
                     }
                 }
                 //後衛の選手を超えた場合
@@ -780,9 +782,7 @@ let mousemove = function (e, type) {
                         mouseup(e);
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 1000)
-
                     }
-
                 }
                 //後衛の選手を超えた場合
                 function srear_const(dragkoma, counter, rear1_id, rear2_id) {
@@ -798,12 +798,27 @@ let mousemove = function (e, type) {
                         setTimeout(talk_bubble, 1000)
                     }
                 }
+                //セッターの座標計算
+                function setter(type, value, rear_id) {
+                    if (type == 0) {
+                        x = value;
+                    } else if (type == 1) {
+                        y = value;
+                    }
+                    let tempX = imagearray[counter][0].x - imagearray[counter][rear_id].x;
+                    let tempY = imagearray[counter][0].y - imagearray[counter][rear_id].y;
+                    imagearray[counter][0].x = x + tempX;
+                    imagearray[counter][0].y = y + tempY;
+                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
+                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
+                }
                 //コマの動きがルールに合ってるか確認し、ローテーション(counter)3~5のときはセッターを付随しているコマと一緒に動かす
                 switch (counter) {
                     case 0://1ローテーション目
                         switch (dragkoma) {
                             case 1://前衛真ん中
-                                right_const(dragkoma, counter, 2);
+                                right_const(dragkoma, counter, 2)
+                                left_const(dragkoma, counter, 0)
                                 rear_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 2://前衛右
@@ -830,7 +845,7 @@ let mousemove = function (e, type) {
                     case 1://2ローテーション目
                         switch (dragkoma) {
                             case 1://前衛右
-                                left_const(dragkoma, counter, 5)
+                                left_const(dragkoma, counter, 0)
                                 rear_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             case 2://後衛右
@@ -847,7 +862,7 @@ let mousemove = function (e, type) {
                                 van_const(dragkoma, counter, 0, 1, 5)
                                 break;
                             case 5://前衛左
-                                right_const(dragkoma, counter, 1)
+                                right_const(dragkoma, counter, 0)
                                 rear_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             default:
@@ -875,6 +890,7 @@ let mousemove = function (e, type) {
                                 break;
                             case 5://前衛真ん中
                                 left_const(dragkoma, counter, 4)
+                                right_const(dragkoma, counter, 0)
                                 rear_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             default:
@@ -885,6 +901,7 @@ let mousemove = function (e, type) {
                         switch (dragkoma) {
                             case 1://後衛真ん中
                                 left_const(dragkoma, counter, 2)
+                                right_const(dragkoma, counter, 0)
                                 van_const(dragkoma, counter, 3, 4, 5)
                                 break;
                             case 2://後衛左
@@ -904,10 +921,14 @@ let mousemove = function (e, type) {
                                 //左の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][4].x) {
                                     x = imagearray[counter][4].x + 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][5].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][5].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(0, x, dragkoma);
+                                    mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
+                                    //セッターが左の選手を超えた
+                                } else if (imagearray_center[counter][dragkoma].x + (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) < imagearray_center[counter][1].x) {
+                                    x = imagearray[counter][1].x - (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) + 10;
+                                    setter(0, x, dragkoma)
                                     mouseup(e);
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
@@ -917,19 +938,13 @@ let mousemove = function (e, type) {
                                         min = imagearray[counter][2].y;
                                     }
                                     y = min - 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][5].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][5].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(1, y, dragkoma);
                                     mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
                                     //セッターを一緒に動かす
                                 } else {
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][5].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][5].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
-                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
-                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
+                                    setter(2, 0, dragkoma);
                                 }
                                 break;
                             default:
@@ -939,7 +954,7 @@ let mousemove = function (e, type) {
                     case 4://5ローテーション目
                         switch (dragkoma) {
                             case 1://後衛左
-                                right_const(dragkoma, counter, 5)
+                                right_const(dragkoma, counter, 0)
                                 van_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             case 2://前衛左
@@ -950,18 +965,26 @@ let mousemove = function (e, type) {
                                 //左の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][2].x) {
                                     x = imagearray[counter][2].x + 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][3].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][3].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(0, x, dragkoma);
+                                    mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
+                                    //セッターが左の選手を超えた
+                                } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) < imagearray_center[counter][1].x) {
+                                    x = imagearray[counter][1].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) + 10;
+                                    setter(0, x, dragkoma);
                                     mouseup(e);
                                     //右の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
                                     x = imagearray[counter][4].x - 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][3].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][3].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(0, x, dragkoma);
+                                    mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
+                                    //セッターが右の選手を超えた
+                                } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) > imagearray_center[counter][5].x) {
+                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 10;
+                                    setter(0, x, dragkoma);
                                     mouseup(e);
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
@@ -971,19 +994,13 @@ let mousemove = function (e, type) {
                                         min = imagearray[counter][5].y;
                                     }
                                     y = min - 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][3].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][3].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(1, y, dragkoma);
                                     mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
                                     //セッターを一緒に動かす
                                 } else {
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][3].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][3].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
-                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
-                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
+                                    setter(2, 0, dragkoma);
                                 }
                                 break;
                             case 4://前衛右
@@ -991,7 +1008,7 @@ let mousemove = function (e, type) {
                                 srear_const(dragkoma, counter, 1, 5)
                                 break;
                             case 5://後衛右
-                                left_const(dragkoma, counter, 1)
+                                left_const(dragkoma, counter, 0)
                                 van_const(dragkoma, counter, 2, 3, 4)
                                 break;
                             default:
@@ -1004,10 +1021,14 @@ let mousemove = function (e, type) {
                                 //右の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][2].x) {
                                     x = imagearray[counter][2].x - 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][1].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][1].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(0, x, dragkoma);
+                                    mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
+                                    //セッターが右の選手を超えた
+                                } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) > imagearray_center[counter][5].x) {
+                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 10;
+                                    setter(0, x, dragkoma);
                                     mouseup(e);
                                     //後衛の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
@@ -1017,19 +1038,13 @@ let mousemove = function (e, type) {
                                         min = imagearray[counter][5].y;
                                     }
                                     y = min - 10;
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][1].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][1].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
+                                    setter(1, y, dragkoma);
                                     mouseup(e);
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
+                                    setTimeout(talk_bubble, 1000)
                                     //セッターを一緒に動かす
                                 } else {
-                                    let tempX = imagearray[counter][0].x - imagearray[counter][1].x;
-                                    let tempY = imagearray[counter][0].y - imagearray[counter][1].y;
-                                    imagearray[counter][0].x = x + tempX;
-                                    imagearray[counter][0].y = y + tempY;
-                                    imagearray_center[counter][0].x = imagearray[counter][0].x + koma_w / 2 * size;
-                                    imagearray_center[counter][0].y = imagearray[counter][0].y + koma_h / 2 * size;
+                                    setter(2, 0, dragkoma);
                                 }
                                 break;
                             case 2://前衛真ん中
@@ -1047,6 +1062,7 @@ let mousemove = function (e, type) {
                                 break;
                             case 5://後衛真ん中
                                 right_const(dragkoma, counter, 4)
+                                left_const(dragkoma, counter, 0)
                                 van_const(dragkoma, counter, 1, 2, 3)
                                 break;
                             default:
