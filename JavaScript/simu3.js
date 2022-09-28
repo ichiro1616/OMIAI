@@ -361,18 +361,21 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
 let message = [
-    '<b>けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
-    '<b>るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
-    '<b>ひなた</b><br><c> 63kg　169cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
-    '<b>けんと</b><br><c>76kg　176cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
-    ' <b>りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
-    '<b>けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
+    '<b>けんすけ</b><br><c>50kg　175cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
+    '<b>るい</b><br><c>60kg　180cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
+    '<b>ひなた</b><br><c> 55kg　175cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
+    '<b>けんと</b><br><c>60kg　180cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
+    ' <b>りく</b><br><c>60kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
+    '<b>けいすけ</b><br><c>55kg　175cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
 ];
+
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
 function talk_bubble() {
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
 }
+
+
 //画像
 let images = new Array(6);//要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
@@ -486,11 +489,11 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     //初期座標にコマを表示させる
-    for (let i = 0; i < 6; i++) {
+    for (let i = 5; i >= 0; i--) {
         images[0][i].addEventListener('load', () => {
-            context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size)
+            context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size);
         })
-        for (let j = 0; j < 6; j++) {
+        for (let j = 5; j >= 0; j--) {
             images[i][j].addEventListener('load', () => {
                 under_context[i].drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
             })
@@ -498,8 +501,8 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     //画像の読み込みが終わってからソース取得する
-    for (var i = 0; i < 6; i++) {
-        for (var j = 0; j < 6; j++) {
+    for (var i = 5; i >= 0; i--) {
+        for (var j = 5; j >= 0; j--) {
             images[i][j].src = img[i][j];
         }
     }
@@ -1428,9 +1431,8 @@ function calculation(data) {
 }
 
 //登録ボタンを押したときの処理
-let load_button = document.querySelector('span');
 document.getElementById("register_btn").onclick = function () {
-    load_button.innerHTML = `<div class="loading"></div>`;
+
     var json_str1 = JSON.stringify(imagearray);
     localStorage.setItem('key', json_str1);
     for (var i = 0; i <= 5; i++) {//ローテーション0~5
@@ -1463,17 +1465,13 @@ document.getElementById("register_btn").onclick = function () {
     xhr.open("POST", "../PHP/execute.php");
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
-            load_button.innerHTML = "SUCCESS!"
-            setTimeout(jump,500)
+            location.href = "../HTML/OMIAI.html";
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
         }
     });
     xhr.send(form);
-}
-function jump(){
-    location.href = "../HTML/OMIAI.html";    
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
