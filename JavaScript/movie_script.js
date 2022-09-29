@@ -90,7 +90,7 @@ function movie_time() {
       }
     }
     if (position == 2) {
-      Velement.playbackRate = 0.85;
+      Velement.playbackRate = 0.4;
       submit = videoElement.currentTime;
       if (stop_time - submit <= 0.05) {
         position = 1;
