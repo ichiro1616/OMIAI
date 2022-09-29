@@ -706,6 +706,8 @@ let mousemove = function (e, type) {
     //canvas外にドラッグした場合
         if (canvasX  >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
             mouseup(e);
+            document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
+            setTimeout(talk_bubble, 1000)
         }
     if (dragmode) {
         // canvas内を一旦クリア
