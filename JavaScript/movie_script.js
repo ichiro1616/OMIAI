@@ -58,14 +58,16 @@ function control(num) {
   var n = parseInt(num);
   if (n == 0) {
     if (data[0][counter]["start_time"] == 0) {
+      obj.playbackRate = 0.85;
       obj.play();
     } else {
       obj.currentTime = data[0][counter]["start_time"] / 60 + 2; //start_timeの位置から再生を開始する
+      obj.playbackRate = 0.85;
       obj.play();
     }
   } else {
-    document.querySelector('[id="0"]').value = "⇦";
-    document.querySelector('[id="1"]').value = "⇨";
+    document.querySelector('[id="0"]').innerHTML = `<img src="../Picture/矢印左.png" class="left_arrow" />`;
+    document.querySelector('[id="1"]').innerHTML = `<img src="../Picture/矢印右.png" class="right_arrow" />`;
     document.getElementById("buttons").style.display = "block"; //ボタンを表示させる
     obj.pause(); //動画を停止させる
     console.log("pause");
@@ -84,15 +86,14 @@ function movie_time() {
     if (position == 0) {
       submit = videoElement.currentTime;
       playing = 1;
-      if (stop_time - submit <= 0.33) {
+      if (stop_time - submit <= 0.4) {
         console.log("slow");
         position = 2;
       }
     }
     if (position == 2) {
-      Velement.playbackRate = 0.4;
       submit = videoElement.currentTime;
-      if (stop_time - submit <= 0.05) {
+      if (stop_time - submit <= 0.15) {
         position = 1;
         playing = 0;
         STOP = 0;
@@ -183,8 +184,10 @@ function percentage() {
       left_per = Math.round((left / per) * 100);
       right_per = Math.round((right / per) * 100);
       //パーセンテージの表示
-      document.getElementById("0").value = left_per + "%";
-      document.getElementById("1").value = right_per + "%";
+      document.getElementById("0").textContent = left_per + "%";
+      document.getElementById("1").textContent = right_per + "%";
+      // document.getElementById("0").value = left_per + "%";
+      // document.getElementById("1").value = right_per + "%";
       if (xhr.response === "error") {
         console.log("通信に失敗しました");
       }
@@ -195,7 +198,7 @@ function percentage() {
   counter = counter + 1;
   position = 0;
   STOP = 1;
-  setTimeout(movie_play, 1500);
+  setTimeout(movie_play, 2000);
 }
 
 // 選手の選択ボタンが押されたらボタンのidを取得し、dbに送信する
@@ -226,7 +229,7 @@ function choose(btn) {
     console.log("登録しました");
     answer += 1;
     answer_c.innerHTML = answer;
-    setTimeout(percentage, 50);
+    setTimeout(percentage, 100);
     //percentage();
   }
 }

@@ -46,7 +46,7 @@
         </div>
 
         <div class = "answer_c">
-          <c>現在の回答数：</c><c id="answer_c"></c><c>回 (全5回)</c>
+          <c>現在の回答数：</c><c id="answer_c"></c><c>回 (全3回)</c>
         </div>
 
           <!-- ビデオの再生 -->
@@ -57,8 +57,10 @@
             <form>
               <div id="buttons">
                 <div class="button-wrap">
-                  <input type="button" class="button-1" value="左選手" id="0" onclick="choose(this);" />
-                  <input type="button" class="button-2" value="右選手" id="1" onclick="choose(this);" />
+                  <button type="button" onclick="choose(this);" class="button-1" id="0"><img src="../Picture/矢印左.png" class="left_arrow" /></button>
+                  <button type="button" onclick="choose(this);" class="button-2" id="1"><img src="../Picture/矢印右.png" class="right_arrow" /></button>
+                  <!-- <input type="button" class="button-1" value="左選手" id="0" onclick="choose(this);" />
+                  <input type="button" class="button-2" value="右選手" id="1" onclick="choose(this);" /> -->
                 </div>
               </div>
             </form>
