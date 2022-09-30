@@ -278,7 +278,8 @@ body {
 
 #other,
 #other2,
-#other3 {
+#other3,
+#other4{
     position          : absolute;
     left              : 0;
     top               : 0;
@@ -299,6 +300,12 @@ body {
 #other {
     z-index           : 2;
 }
+#other4 {
+    z-index: 3;
+    background-image: url("");
+    background-size: cover;
+}
+
 * {
     box-sizing        : border-box;
 }

@@ -341,6 +341,8 @@ function canvas_draw() {
   //他の配置・集合知koma
   ot_can = document.getElementById('other');
   ot_ctx = ot_can.getContext('2d');
+  ot_can4 = document.getElementById('other4');
+  ot_ctx4 = ot_can4.getContext('2d');
   //自分と他の重ねた配置
   com_can = document.getElementById('comparison2');
   com_ctx = com_can.getContext('2d');
@@ -688,9 +690,7 @@ function ot_omiai(judge_area) {
 function collective() {
   let index = 100000;
   gene_level = Number(gene_level);
-  // document.getElementById('other3').style.backgroundImage = 'url("../Picture/バレーコート背景.png")'
-  // document.getElementById('other3').style.zIndex = 0;
-
+  document.getElementById('other4').style.backgroundImage = 'url("")'
   for (i = 0; i < genekeep[gene_level].length; i++) {
     if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter) {
       index = i;
@@ -725,9 +725,9 @@ function collective() {
 
   } else {
     // 世代がなかった時の処理
-    // console.log("SSSSS")
-    // document.getElementById('other3').style.backgroundImage = 'url("../Picture/バレーコート背景2.png")'
-    // document.getElementById('other3').style.zIndex = 100;
+    console.log("SSSSS")
+    document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景2.png")'
+    // document.getElementById('other4').style.zIndex = 1;
     
     ot_ctx2.globalAlpha = 0.7;
   }
