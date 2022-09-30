@@ -701,14 +701,14 @@ let mousemove = function (e, type) {
     let scaleWidth = canvas.clientWidth / canvas.width,
         scaleHeight = canvas.clientHeight / canvas.height;
     //調整後の座標
-    let canvasX = Math.floor(posX / scaleWidth) ,
-        canvasY = Math.floor(posY / scaleHeight) ;
+    let canvasX = Math.floor(posX / scaleWidth),
+        canvasY = Math.floor(posY / scaleHeight);
     //canvas外にドラッグした場合
-        if (canvasX  >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
-            mouseup(e);
-            document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
-            setTimeout(talk_bubble, 1000)
-        }
+    if (canvasX >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
+        mouseup(e);
+        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
+        setTimeout(talk_bubble, 1000)
+    }
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1242,11 +1242,11 @@ function area(rota) {
     //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
-    //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
+    //お見合い範囲judge_colorを渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = area_percentage / 2116 * 100;
+    area_percentage = area_percentage.toFixed(1);
     area_percentage = String(area_percentage);
-    area_percentage = parseInt(area_percentage, 10);
     area_percentage = area_percentage + '%';
     document.getElementById('area_percentage').innerHTML = area_percentage;
 }
@@ -1464,7 +1464,7 @@ document.getElementById("register_btn").onclick = function () {
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
             load_button.innerHTML = "SUCCESS!"
-            setTimeout(jump,500)
+            setTimeout(jump, 500)
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
@@ -1472,8 +1472,8 @@ document.getElementById("register_btn").onclick = function () {
     });
     xhr.send(form);
 }
-function jump(){
-    location.href = "../HTML/OMIAI.html";    
+function jump() {
+    location.href = "../HTML/OMIAI.html";
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
