@@ -701,17 +701,18 @@ let mousemove = function (e, type) {
     let scaleWidth = canvas.clientWidth / canvas.width,
         scaleHeight = canvas.clientHeight / canvas.height;
     //調整後の座標
-    let canvasX = Math.floor(posX / scaleWidth) ,
-        canvasY = Math.floor(posY / scaleHeight) ;
+    let canvasX = Math.floor(posX / scaleWidth),
+        canvasY = Math.floor(posY / scaleHeight);
     //canvas外にドラッグした場合
-        if (canvasX  >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
-            mouseup(e);
-            document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
-            setTimeout(talk_bubble, 1000)
-        }
+    if (canvasX >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
+        mouseup(e);
+        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
+        setTimeout(talk_bubble, 1000)
+    }
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
+        under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
         let x = 0;
         let y = 0;
         let w = koma_w * size;
@@ -1078,16 +1079,7 @@ let mousemove = function (e, type) {
 
             // 画像を描画
             context.drawImage(images[counter][i], x, y, w, h);
-            under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
-            for (let j = 5; j >= 0; j--) {
-                under_context[counter].drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-            }
-            if (counter == 0) {
-                under_context[0].clearRect(0, 0, under_canvas[0].width, under_canvas[0].height);
-                for (let j = 5; j >= 0; j--) {
-                    under_context[0].drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
-                }
-            }
+            under_context[counter].drawImage(images[counter][i], imagearray[counter][i].x * scale, imagearray[counter][i].y * scale, koma_w * size_under, koma_h * size_under);
         }
     }
 };
@@ -1187,23 +1179,19 @@ function omiai(judge_area, rota) {
     oriY = oriY - pisiY;
     enX = enX - pisiX;
 
-    for (let i = 0; i < 6; i++) {
-        if (rota == i) {
-            let tem = 0;
-            under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
-            for (j = 0; j < 46; j++) {
-                for (k = 0; k < 46; k++) {
-                    let judge_index = 10 - Math.round(judge_area[tem].judge);
-                    if (judge_index != 10) {
-                        let gra_g = gradation[judge_index][1];
-                        let gra_a = gradation[judge_index][3];
-                        under_context3[i].globalAlpha = gra_a;
-                        under_context3[i].fillStyle = 'rgb(0,' + gra_g + ',0)';
-                        under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                    }
-                    tem++;
-                }
+    let tem = 0;
+    under_context3[rota].clearRect(0, 0, under_canvas3[rota].width, under_canvas3[rota].height);
+    for (j = 0; j < 46; j++) {
+        for (k = 0; k < 46; k++) {
+            let judge_index = 10 - Math.round(judge_area[tem].judge);
+            if (judge_index != 10) {
+                let gra_g = gradation[judge_index][1];
+                let gra_a = gradation[judge_index][3];
+                under_context3[rota].globalAlpha = gra_a;
+                under_context3[rota].fillStyle = 'rgb(0,' + gra_g + ',0)';
+                under_context3[rota].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
             }
+            tem++;
         }
     }
     return percentage;
@@ -1242,11 +1230,11 @@ function area(rota) {
     //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
-    //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
+    //お見合い範囲judge_colorを渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = area_percentage / 2116 * 100;
+    area_percentage = area_percentage.toFixed(1);
     area_percentage = String(area_percentage);
-    area_percentage = parseInt(area_percentage, 10);
     area_percentage = area_percentage + '%';
     document.getElementById('area_percentage').innerHTML = area_percentage;
 }
@@ -1464,7 +1452,7 @@ document.getElementById("register_btn").onclick = function () {
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
             load_button.innerHTML = "SUCCESS!"
-            setTimeout(jump,500)
+            setTimeout(jump, 500)
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
@@ -1472,8 +1460,8 @@ document.getElementById("register_btn").onclick = function () {
     });
     xhr.send(form);
 }
-function jump(){
-    location.href = "../HTML/OMIAI.html";    
+function jump() {
+    location.href = "../HTML/OMIAI.html";
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
