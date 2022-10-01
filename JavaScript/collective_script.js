@@ -331,6 +331,7 @@ let koma_w = 100; //コマの横幅
 let koma_h = 100; //コマの高さ
 let scale = 610 / 1200; //my_canとcanvasの比
 let genekeep; // 世代 別で区切った配列
+let check = 0 //集合知があるかどうか
 
 window.onclick = canvas_draw();
 area(counter);
@@ -563,6 +564,7 @@ for (let i = 0; i < 6; i++) {
     ot_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
   })
 }
+
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
   red_koma[0][i].addEventListener('load', () => {
@@ -592,11 +594,18 @@ function draw(rota) {
     ot_ctx.drawImage(images[rota][i], x * scale, y * scale, w, h);
   }
 
+  if(check == 0){
   com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
-  for (var i in images) {
+  for (let i in images) {
     com_ctx.drawImage(red_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
     com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
   }
+}else{
+    com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
+    for(let i in images){
+      com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
+    }
+}
 
 }
 const rotation_images = [
@@ -644,7 +653,6 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
-let check = 0 //集合知があるかどうか
 
 function my_omiai(judge_area) {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
@@ -728,7 +736,7 @@ function collective() {
   } else {
     // 世代がなかった時の処理
     console.log("SSSSS")
-    document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景2.png")'
+    document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景3.png")'
     check = 1;
     draw(counter);
     area(counter);
@@ -934,7 +942,7 @@ function area() {
       if(check == 0){
       document.getElementById('ot_area_percentage').innerHTML = ot_percent;
       }else{
-        document.getElementById('ot_area_percentage').innerHTML = '0.0%'
+        document.getElementById('ot_area_percentage').innerHTML = "-"+ "－%";
       }
     }
   });
