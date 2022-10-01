@@ -1,305 +1,353 @@
 body {
-    position          :absolute;
-    overflow          : hidden;
-    width             : 100%;
-    height            : 100%;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
-.sentence{
-    position          : relative;
-    font-size         : 3rem;
-    font-weight       : bold;
-    text-align        : center;
+
+.sentence {
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
 }
+
 /* ================================================== */
 /* =======================ボタン====================== */
 /* ================================================== */
-.button{
-    position          : relative;
+.button {
+    position: relative;
 }
+
 #rotation_button {
-    border            : none;
-    border-radius     : 0.5rem;          /* 角丸       */
-    font-size         : 1.2rem;        /* 文字サイズ */
-    text-align        : center;      /* 文字位置   */
-    cursor            : pointer;     /* カーソル   */
-    padding           : 1.5% 1.8%;   /* 余白       */
-    background        : rgba(55, 0, 255);     /* 背景色     */
-    color             : #ffffff;     /* 文字色     */
-    line-height       : 100%;         /* 1行の高さ  */
-    transition        : .3s;         /* なめらか変化 */
-    font-weight       : bold;
-    letter-spacing    : 0.4rem;
-    width             : 17%;
-    max-width         : 17rem;
-    z-index           : 30;
-    padding           : 1rem;
-    position          : absolute;
-    right             : 0.7rem;
-    top               : 2rem;
-    box-shadow        : 0.15rem 0.15rem 0 0 rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 0.5rem;
+    /* 角丸       */
+    font-size: 1.2rem;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 1.5% 1.8%;
+    /* 余白       */
+    background: rgba(55, 0, 255);
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 100%;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    font-weight: bold;
+    letter-spacing: 0.4rem;
+    width: 17%;
+    max-width: 17rem;
+    z-index: 30;
+    padding: 1rem;
+    position: absolute;
+    right: 0.7rem;
+    top: 2rem;
+    box-shadow: 0.15rem 0.15rem 0 0 rgba(0, 0, 0, 0.5);
 }
+
 #rotation_button:active {
-    background-color  : rgb(75, 177, 245);
-    -webkit-transform : translateY(0.05rem);
-    transform         : translateY(0.05rem);
-    border-bottom     : none;
+    background-color: rgb(75, 177, 245);
+    -webkit-transform: translateY(0.05rem);
+    transform: translateY(0.05rem);
+    border-bottom: none;
 }
-#rotation_image{
-    width             : 50%;
+
+#rotation_image {
+    width: 50%;
 }
 
 /* ================================================== */
 /* =======================バー======================== */
 /* ================================================== */
-.bars{
-    position          : relative;
-    top               : 5rem;
+.bars {
+    position: relative;
+    top: 5rem;
 }
+
 #experience_change {
-    position          : relative;
+    position: relative;
     -webkit-appearance: none;
-    appearance        : none;
-    cursor            : pointer;
-    outline           : none;
-    height            : 1rem;
-    width             : 35%;
-    background        : #a6a6aa;
-    border-radius     : 1rem;
-    border            : solid 0.08rem black;
-    z-index           : 10;
-    left              : 2rem;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    height: 1rem;
+    width: 35%;
+    background: #a6a6aa;
+    border-radius: 1rem;
+    border: solid 0.08rem black;
+    z-index: 10;
+    left: 2rem;
 }
+
 #generation_change {
-    position          : relative;
+    position: relative;
     -webkit-appearance: none;
-    appearance        : none;
-    cursor            : pointer;
-    outline           : none;
-    height            : 1rem;
-    width             : 35%;
-    background        : #a6a6aa;
-    border-radius     : 1rem;
-    border            : solid 0.08rem black;
-    z-index           : 10;
-    left              : 6.5rem;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    height: 1rem;
+    width: 35%;
+    background: #a6a6aa;
+    border-radius: 1rem;
+    border: solid 0.08rem black;
+    z-index: 10;
+    left: 6.5rem;
 }
+
 /* ------------------目盛りなど-------------------- */
-.bar_scale{
-    width             : 100%;
+.bar_scale {
+    width: 100%;
 }
-.bar_wrap{
-    position          : relative;
-    top               : 5rem;
+
+.bar_wrap {
+    position: relative;
+    top: 5rem;
 }
+
 #wrap1 p {
-    clear             : both;
-    position          : absolute;
-    height            : 0rem;
-    width             : 100%;
-    color             : rgb(255, 255, 255);
-    letter-spacing    : 10.2rem;
-    box-sizing        : border-box;
-    font-size         : 0.7rem;
-    font-weight       : bold;
-    z-index           : 10;
+    clear: both;
+    position: absolute;
+    height: 0rem;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 10.2rem;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 10;
 }
+
 #wrap2 p {
-    position          : absolute;
-    height            : 0rem;
-    width             : 100%;
-    color             : rgb(255, 255, 255);
-    letter-spacing    : 10.5rem;
-    box-sizing        : border-box;
-    font-size         : 0.7rem;
-    font-weight       : bold;
-    z-index           : 10;
+    position: absolute;
+    height: 0rem;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 10.5rem;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 10;
 }
+
 #wrapping1 p {
-    clear             : both;
-    float             : none;
-    position          : relative;
-    left              :1rem;
-    top               :0.3rem;
-    width             : 5.7rem;
-    display           : inline-flex;
-    font-size         : 1rem;
-    font-weight       : bold;
-    text-align        : center;
-    margin            : 0rem;
+    clear: both;
+    float: none;
+    position: relative;
+    left: 1rem;
+    top: 0.3rem;
+    width: 5.7rem;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0rem;
 }
 
 #wrapping2 p {
-    float             : none;
-    position          : relative;
-    top               : -1.2rem;
-    left              : 31.1rem;
-    width             : 5.7rem;
-    display           : inline-flex;
-    font-size         : 1rem;
-    font-weight       : bold;
-    text-align        : center;
-    margin            : 0rem;
+    float: none;
+    position: relative;
+    top: -1.2rem;
+    left: 31.1rem;
+    width: 5.7rem;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0rem;
 }
+
 ::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background        : rgb(55, 0, 255);
-    width             : 1.5rem;
-    height            : 1.5rem;
-    border-radius     : 50%;
-    z-index           : 30;
+    background: rgb(55, 0, 255);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    z-index: 30;
 }
 
 
 /* ================================================== */
 /* =======================ラベル====================== */
 /* ================================================== */
-.bar_name{
-    position          : relative;
-    font-size         : 1rem;
+.bar_name {
+    position: relative;
+    font-size: 1rem;
 }
+
 #experience {
-    position          : absolute;
-    top               : 2.2rem;
-    left              : 8.5rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 8.5rem;
 
 }
+
 #generation {
-    position          : absolute;
-    top               : 2.2rem;
-    left              : 40rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 40rem;
 
 }
-#name{
-    display           : flex;
-    justify-content   : space-between;
-    clear             : both;
-    position          : relative;
-    font-size         : 2rem;
-    font-weight       : bold;
-    top               : 7rem;
+
+#name {
+    display: flex;
+    justify-content: space-between;
+    clear: both;
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    top: 7rem;
 }
-#my_data{
-    position          : relative;
-    left              : 6.5rem;
+
+#my_data {
+    background-color: #0270BF;
+    color: #ffffff;
+    position: relative;
+    left: 6.5rem;
 }
-#comparison_data{
-    position          : relative;
-    right             : 6rem;
+
+#other_data {
+    background-color: #ff3b38;
+    color: #ffffff;
 }
-#range{
-    clear             : both;
-    position          : relative;
-    display           : inline-flex;
-    width             : 32%;
-    font-size         : 2.5rem;
-    font-weight       : bold;
-    margin            : 0rem;
-    top               : 6.5rem;
+
+#comparison_data {
+    position: relative;
+    right: 6rem;
 }
-#my_area_percentage{
-    position          : relative;
-    left              : 0.5rem;
+
+#range {
+    clear: both;
+    position: relative;
+    display: inline-flex;
+    width: 32%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0rem;
+    top: 6.5rem;
 }
-#ot_area_percentage{
-    position          : absolute;
-    left              : 25rem;
+
+#my_area_percentage {
+    position: relative;
+    left: 0.5rem;
+    top: -3.2rem;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+#ot_area_percentage {
+    position: absolute;
+    left: 25rem;
+    top: -3.2rem;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* ================================================== */
 /* =======================集合知====================== */
 /* ================================================== */
-.all_canvas{
-    width             : 100%;
-    display           : flex;
-    justify-content   : space-between;
-    position          : relative;
-    top               : 6rem;
+.all_canvas {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 6rem;
 }
+
 #my_court {
-    clear             : both;
-    float             : left;
-    position          : relative;
-    border            : 0.1rem solid #ccc;
-    width             : 23.5rem;
-    height            : 23.5rem;
-    max-width         : 100%;
-    margin            : 0;
+    clear: both;
+    float: left;
+    position: relative;
+    border: 0.1rem solid #ccc;
+    width: 23.5rem;
+    height: 23.5rem;
+    max-width: 100%;
+    margin: 0;
 }
+
 #court:before {
-    content           : "";
-    display           : block;
+    content: "";
+    display: block;
 }
+
 #my,
 #my2,
 #my3 {
-    position          : absolute;
-    left              : 0;
-    top               : 0;
-    border            : 0;
-    max-width         : 100%;
-    box-sizing        : content-box;
-    padding           : 0;
-    margin            : 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
 }
 
 #my3 {
-    z-index           : 0;
-    background-image  : url("../Picture/バレーコート背景.png");
-    background-size   : cover;
+    z-index: 0;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: cover;
 }
 
 #my2 {
-    z-index           : 1;
+    z-index: 1;
 }
 
 #my {
-    z-index           : 2;
+    z-index: 2;
 }
 
 * {
-    box-sizing        : border-box;
+    box-sizing: border-box;
 }
 
 #other_court {
-    clear             : both;
-    position          : relative;
-    border            : 0.1rem solid #ccc;
-    width             : 23.5rem;
-    height            : 23.5rem;
-    max-width         : 100%;
-    margin            : 0;
+    clear: both;
+    position: relative;
+    border: 0.1rem solid #ccc;
+    width: 23.5rem;
+    height: 23.5rem;
+    max-width: 100%;
+    margin: 0;
 }
 
 #other_court:before {
-    content           : "";
-    display           : block;
+    content: "";
+    display: block;
     /* padding-top: 58%; */
 }
 
 #other,
 #other2,
 #other3,
-#other4{
-    position          : absolute;
-    left              : 0;
-    top               : 0;
-    border            : 0;
-    max-width         : 100%;
-    box-sizing        : content-box;
-    padding           : 0;
-    margin            : 0;
+#other4 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
 }
+
 #other3 {
-    z-index           : 0;
-    background-image  : url("../Picture/バレーコート背景.png");
-    background-size   : cover;
+    z-index: 0;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: cover;
 }
+
 #other2 {
-    z-index           : 1;
+    z-index: 1;
 }
+
 #other {
-    z-index           : 2;
+    z-index: 2;
 }
+
 #other4 {
     z-index: 3;
     background-image: url("");
@@ -307,121 +355,138 @@ body {
 }
 
 * {
-    box-sizing        : border-box;
+    box-sizing: border-box;
 }
 
 #comparison_court {
-    clear             : both;
-    position          : relative;
-    border            : 0.1rem solid #ccc;
-    width             : 23.5rem;
-    height            : 23.5rem;
-    max-width         : 100%;
-    margin            : 0;
+    clear: both;
+    position: relative;
+    border: 0.1rem solid #ccc;
+    width: 23.5rem;
+    height: 23.5rem;
+    max-width: 100%;
+    margin: 0;
 }
 
 #comparison_court:before {
-    content           : "";
-    display           : block;
+    content: "";
+    display: block;
 }
 
 #comparison1,
 #comparison2,
 #comparison3 {
-    position          : absolute;
-    left              : 0;
-    top               : 0;
-    border            : 0;
-    max-width         : 100%;
-    box-sizing        : content-box;
-    padding           : 0;
-    margin            : 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
 }
+
 #comparison3 {
-    z-index           : 0;
-    background-image  : url("../Picture/バレーコート背景.png");
-    background-size   : cover;
+    z-index: 0;
+    background-image: url("../Picture/バレーコート背景.png");
+    background-size: cover;
 }
+
 #comparison2 {
-    z-index           : 1;
+    z-index: 1;
 }
+
 #comparison {
-    z-index           : 2;
-    width             :15%;
+    z-index: 2;
+    width: 15%;
 }
+
 * {
-    box-sizing        : border-box;
+    box-sizing: border-box;
 }
 
 /* ================================================== */
 /* ====================チュートリアル================== */
 /* ================================================== */
-#tutorial{
-    position          : absolute;
-    z-index           : 20;
-    right             : 0rem;
-    top               : 0.5rem;
+#tutorial {
+    position: absolute;
+    z-index: 20;
+    right: 0rem;
+    top: 0.5rem;
 }
-.question_circle{
-    fill              : rgba(55, 0, 255, 1);
-    width             : 15%;
-    opacity           : 0.92;
-    filter            : drop-shadow(0.05rem 0.05rem 0 rgba(0,0,0,0.6));
-    height            : 3rem;
-    width             : 3rem;
+
+.question_circle {
+    fill: rgba(55, 0, 255, 1);
+    width: 15%;
+    opacity: 0.92;
+    filter: drop-shadow(0.05rem 0.05rem 0 rgba(0, 0, 0, 0.6));
+    height: 3rem;
+    width: 3rem;
     -webkit-text-stroke: 2rem #000;
-  }
-.question_circle:hover{
-    cursor            : pointer;
-    transition        : 0.3s;
 }
-.question_circle:active{
-    position          : relative;
-    fill              : rgb(75, 177, 245,0.92);
-    top               : 0.05rem;
-    transition        : 0.2s;
-  } 
+
+.question_circle:hover {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.question_circle:active {
+    position: relative;
+    fill: rgb(75, 177, 245, 0.92);
+    top: 0.05rem;
+    transition: 0.2s;
+}
+
 .open {
-    cursor            : pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
+    cursor: pointer;
+    /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
 }
+
 #pop-up {
-    display           : none; /* label でコントロールするので input は非表示に */
+    display: none;
+    /* label でコントロールするので input は非表示に */
 }
+
 .overlay {
-    display           : none; /* input にチェックが入るまでは非表示に */
+    display: none;
+    /* input にチェックが入るまでは非表示に */
 }
-#pop-up:checked + .overlay {
-    display           : block;
-    z-index           : 9999;
-    background-color  : #00000070;
-    position          : fixed;
-    width             : 100%;
-    height            : 100%;
-    top               : 0;
-    left              : 0;
-  }
-  .window {
-    width             : 40rem;
-    max-width         : 40rem;
-    height            : 30rem;
-    background-color  : #ffffff;
-    border-radius     : 1rem;
-    display           : flex;
-    justify-content   : center;
-    align-items       : center;
-    position          : fixed;
-    top               : 50%;
-    left              : 50%;
-    transform         : translate(-50%, -50%);
-  }
-  .text {
-    font-size         : 2rem;
-    margin            : 0;
-  }
-  .close {
-    cursor            : pointer;
-    position          : absolute;
-    top               : 1rem;
-    right             : 1rem;
-    font-size         : 1rem;
-  }
+
+#pop-up:checked+.overlay {
+    display: block;
+    z-index: 9999;
+    background-color: #00000070;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.window {
+    width: 40rem;
+    max-width: 40rem;
+    height: 30rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+}

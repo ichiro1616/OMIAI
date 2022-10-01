@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8" />
   <title>動画閲覧</title>
 </head>
+
 <body>
   <div id="container">
     <div id="back_cover">
-    <!-- 経験年数の回答 -->
+      <!-- 経験年数の回答 -->
       <div id="experience">
-        <div class="modalWindow"> 
+        <div class="modalWindow">
           <h1 id="ex">あなたの経験年数を選んでください</h1>
-          <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;"  class="slider">
-            <div id="wrap">
-            </div>
-            <div id="wrapping">
-              <p>未経験</p>
-              <p>1~2年</p>
-              <p>3~5年</p>
-              <p>6~9年</p>
-              <p>10年以上</p>
-            </div>
-            <br />
-          <button type="button" onclick="movie_db();" id="button-check"><img src="../Picture/checkbox-icon.png" class="check_box"/></button>
+          <input type="range" id="input-range" min="0" max="4" step="1" list="exlist" style="width: 75%;"
+            class="slider">
+          <div id="wrapping">
+            <p>未経験</p>
+            <p>1~2年</p>
+            <p>3~5年</p>
+            <p>6~9年</p>
+            <p>10年以上</p>
+          </div>
+          <br />
+          <button type="button" onclick="movie_db();" id="button-check"><img src="../Picture/checkbox-icon.png"
+              class="check_box" /></button>
         </div>
       </div>
 
       <div id="video_button">
         <div id="video_window">
-        <label class="open" for="pop-up">
-          <div id="tutorial" ontouchstart="">
-            <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-            </svg>
+          <label class="open" for="pop-up">
+            <div id="tutorial" ontouchstart="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="question_circle" viewBox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
+              </svg>
+            </div>
+          </label>
+          <input type="checkbox" id="pop-up">
+          <div class="overlay">
+            <div class="window">
+              <label class="close" for="pop-up">閉じる</label>
+              <p class="text">tutorial</p>
+              <iframe class="tutorial_movie" src="../movie/tutorial/watch_movie.mp4?mute=1" frameborder="0"></iframe>
+            </div>
           </div>
-        </label>
-        <input type="checkbox" id="pop-up">
-        <div class="overlay">
-	      <div class="window">
-		    <label class="close" for="pop-up">閉じる</label>
-		    <p class="text">tutorial</p>
-        <iframe class="tutorial_movie" src="../movie/tutorial/watch_movie.mp4?mute=1" frameborder="0"></iframe>
-	      </div>
-        </div>
 
-        <div class = "answer_c">
-          <c>現在の回答数：</c><c id="answer_c"></c><c>回 (全3回)</c>
-        </div>
+          <div class="answer_c">
+            <c>現在の回答数：</c>
+            <c id="answer_c"></c>
+            <c>回 (全3回)</c>
+          </div>
 
           <!-- ビデオの再生 -->
-            <video id="mv" autobuffer loop muted controls></video>
-              <source src="" id="video" preload controls muted playinline loop />
-            </video>
-            <!--ボタンの設置  -->
-            <form>
-              <div id="buttons">
-                <div class="button-wrap">
-                  <button type="button" onclick="choose(this);" class="button-1" id="0"><img src="../Picture/矢印左.png" class="left_arrow" /></button>
-                  <button type="button" onclick="choose(this);" class="button-2" id="1"><img src="../Picture/矢印右.png" class="right_arrow" /></button>
-                  <!-- <input type="button" class="button-1" value="左選手" id="0" onclick="choose(this);" />
+          <video id="mv" autobuffer loop muted controls></video>
+          <source src="" id="video" preload controls muted playinline loop />
+          </video>
+          <!--ボタンの設置  -->
+          <form>
+            <div id="buttons">
+              <div class="button-wrap">
+                <button type="button" onclick="choose(this);" class="button-1" id="0"><img src="../Picture/矢印左.png"
+                    class="left_arrow" /></button>
+                <button type="button" onclick="choose(this);" class="button-2" id="1"><img src="../Picture/矢印右.png"
+                    class="right_arrow" /></button>
+                <!-- <input type="button" class="button-1" value="左選手" id="0" onclick="choose(this);" />
                   <input type="button" class="button-2" value="右選手" id="1" onclick="choose(this);" /> -->
-                </div>
               </div>
-            </form>
+            </div>
+          </form>
         </div>
       </div>
       <!-- すべての動画に回答し終えたら -->
@@ -73,9 +80,10 @@
         </div>
       </div>
     </div>
-    </div>
-    <script type="text/javascript" src="../JavaScript/movie_script.js"></script>
-    <link rel="stylesheet" href="../CSS/watch_movie.css">
-    <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
-  </body>
+  </div>
+  <script type="text/javascript" src="../JavaScript/movie_script.js"></script>
+  <link rel="stylesheet" href="../CSS/watch_movie.css">
+  <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
+</body>
+
 </html>
