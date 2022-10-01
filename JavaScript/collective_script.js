@@ -518,13 +518,14 @@ xhr.addEventListener("loadend", function () {
     }
     for (let i = 0; i < data[1][0][0]; i++) {
       for (let j = 0; j < data[0].length; j++) {
-        if (data[0][j].generation == i) {
+        if (data[0][j].generation == i + 1) {
           gene[i].push(data[0][j])
         }
       }
     }
     genekeep = gene;
     max_gene = genekeep.length;
+    console.log(gene)
     if(max_gene != 1){
       document.getElementById('max_gene').innerHTML = max_gene + '世代目';
     }
@@ -698,6 +699,7 @@ function ot_omiai(judge_area) {
 
 function collective() {
   let index = 100000;
+  let k = 0;
   gene_level = Number(gene_level);
   document.getElementById('other4').style.backgroundImage = 'url("")'
   for (i = 0; i < genekeep[gene_level].length; i++) {
@@ -735,7 +737,6 @@ function collective() {
 
   } else {
     // 世代がなかった時の処理
-    console.log("SSSSS")
     document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景3.png")'
     check = 1;
     draw(counter);
@@ -942,7 +943,7 @@ function area() {
       if(check == 0){
       document.getElementById('ot_area_percentage').innerHTML = ot_percent;
       }else{
-        document.getElementById('ot_area_percentage').innerHTML = "-"+ "－%";
+        document.getElementById('ot_area_percentage').innerHTML ="－%";
       }
     }
   });
