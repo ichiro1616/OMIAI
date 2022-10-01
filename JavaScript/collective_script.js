@@ -644,6 +644,7 @@ let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　
 originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
+let check = 0 //集合知があるかどうか
 
 function my_omiai(judge_area) {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
@@ -720,20 +721,22 @@ function collective() {
     array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
     array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
     array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    check = 0;
     draw(counter);
-    area(counter)
+    area(counter);
 
   } else {
     // 世代がなかった時の処理
     console.log("SSSSS")
     document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景2.png")'
-    // document.getElementById('other4').style.zIndex = 1;
-    
+    check = 1;
+    draw(counter);
+    area(counter);
     ot_ctx2.globalAlpha = 0.7;
   }
 }
 
-function area(rota) {
+function area() {
   let subject_array = [];//主観的データ2550
   let object_array = [];//客観的データ2550
   //主観的のdata
@@ -922,13 +925,17 @@ function area(rota) {
           area_percentage = 0;
         }
         area_percentage = area_percentage / 2116 * 100;
+        area_percentage = area_percentage.toFixed(1)
         area_percentage = String(area_percentage);
-        area_percentage = parseInt(area_percentage, 10);
         area_percentage = area_percentage + '%';
         return area_percentage;
       }
       document.getElementById('my_area_percentage').innerHTML = my_percent;
+      if(check == 0){
       document.getElementById('ot_area_percentage').innerHTML = ot_percent;
+      }else{
+        document.getElementById('ot_area_percentage').innerHTML = '0.0%'
+      }
     }
   });
   xhr_area.send(formData_area);
