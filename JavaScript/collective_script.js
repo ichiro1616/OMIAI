@@ -334,7 +334,6 @@ let genekeep; // 世代 別で区切った配列
 let check = 0 //集合知があるかどうか
 
 window.onclick = canvas_draw();
-area(counter);
 function canvas_draw() {
   //自分の配置koma
   my_can = document.getElementById('my'); //キャンバスのidを取得
@@ -630,8 +629,6 @@ function rotation() {
   console.log("ローテーション", counter);
   draw(counter);
   collective();
-  area(counter)
-
 }
 
 const my_can2 = document.getElementById('my2');
@@ -677,6 +674,7 @@ function my_omiai(judge_area) {
 }
 
 function ot_omiai(judge_area) {
+  console.log("AAA")
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
   let percentage = 0;
