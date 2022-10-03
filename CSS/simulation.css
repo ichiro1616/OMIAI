@@ -505,9 +505,9 @@ input[type=range].slider::-webkit-slider-thumb {
 
 #face_img {
   position: absolute;
-  width: 6.5rem;
+  width: 7rem;
   left: 8rem;
-  top: 2.9rem;
+  top: 2.5rem;
 }
 
 .bubble {
@@ -518,19 +518,19 @@ input[type=range].slider::-webkit-slider-thumb {
 .talk_bubble {
   position: absolute;
   width: 22.5rem;
-  top: 2.5rem;
-  left: 15rem;
+  top: 0rem;
+  left: 15.5rem;
 }
 
 #message {
   position: absolute;
   font-size: 1rem;
-  top: 3rem;
-  left: 21rem;
+  top: 1.3rem;
+  left: 20.1rem;
 }
 
-b {
-  font-size: 1.1rem;
+#ms_name {
+  font-size: 1.3rem;
 }
 
 #attention {
