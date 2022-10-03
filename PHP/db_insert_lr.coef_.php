@@ -13,7 +13,7 @@ $dbname = explode(";", $sprit_dbname)[0];
 $mysqli = new mysqli($host, $user, $password, $dbname);
           
 
-ini_set("max_execution_time",600);
+ini_set("max_execution_time",10000);
 
 
 if (!$mysqli) {
