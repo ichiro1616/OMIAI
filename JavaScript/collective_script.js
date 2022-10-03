@@ -488,7 +488,6 @@ array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45
 inputSliderEle = document.getElementById('experience_change');
 inputSliderEle.addEventListener('change', function () {
   exp_level = inputSliderEle.value;
-  console.log(exp_level);
   collective();
 });
 
@@ -496,7 +495,6 @@ inputSliderEle.addEventListener('change', function () {
 inputSlideBarElement = document.getElementById('generation_change');
 inputSlideBarElement.addEventListener('change', function () {
   gene_level = inputSlideBarElement.value;
-  console.log(gene_level);
   collective();
 });
 
@@ -524,7 +522,6 @@ xhr.addEventListener("loadend", function () {
     }
     genekeep = gene;
     max_gene = genekeep.length;
-    console.log(gene)
     if(max_gene != 1){
       document.getElementById('max_gene').innerHTML = max_gene + '世代目';
     }
@@ -626,7 +623,6 @@ function rotation() {
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0,0,ot_can2.width,ot_can2.height);
   document.getElementById('rotation_image').src = rotation_images[counter];
-  console.log("ローテーション", counter);
   draw(counter);
   collective();
 }
@@ -674,7 +670,6 @@ function my_omiai(judge_area) {
 }
 
 function ot_omiai(judge_area) {
-  console.log("AAA")
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
   let percentage = 0;
@@ -708,7 +703,6 @@ function collective() {
   }
   if (index != 100000) {
     for (i = 0; i < 6; i++) {
-      console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
       array[counter][i].x = genekeep[gene_level][index + i]["x_coordinate"];
       array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
       array_center[counter][i].x = array[counter][i].x + koma_w / 2 * size;
@@ -1047,8 +1041,6 @@ function my_calculation(rota, data) {
     test_data[i].my_player2_ball_sabun_y = (test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
   }
 
-  // console.log(test_data);
-
   let blue = [];
   let red = [];
   let green = [];
@@ -1066,7 +1058,6 @@ function my_calculation(rota, data) {
       )
     );
   }
-  // console.log(answer);
   for (i = 0; i < answer.length; i++) {
     //lr.intercept_の値を足している
     let b = 0;
@@ -1218,7 +1209,6 @@ function ot_calculation(rota, data) {
       )
     );
   }
-  // console.log(answer);
   for (i = 0; i < answer.length; i++) {
     //lr.intercept_の値を足している
     let b = 0;
