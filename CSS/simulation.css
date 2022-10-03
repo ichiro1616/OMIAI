@@ -535,18 +535,29 @@ input[type=range].slider::-webkit-slider-thumb {
 
 #attention {
   position: absolute;
-  font-size: 1.2rem;
+  color:white;
+  font-size: 1.5rem;
   font-weight: bold;
-  top: 2rem;
-  left: 1.1rem;
+  top: 3.5rem;
+  left: -0.48rem;
 }
 
 #attention_2 {
   position: absolute;
-  font-size: 1.2rem;
+  color:white;
+  font-size: 1.4rem;
   font-weight: bold;
-  top: 2rem;
-  left: 0.5rem;
+  top: 3.5rem;
+  left: -0.55rem;
+}
+
+#attention_3 {
+  position: absolute;
+  color:white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  top: 3.5rem;
+  left: -0.52rem;
 }
 
 /* ================================================ */

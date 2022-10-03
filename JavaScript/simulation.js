@@ -361,16 +361,17 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
 let message = [
-    '<b>けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
-    '<b>るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
-    '<b>ひなた</b><br><c> 63kg　169cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
-    '<b>けんと</b><br><c>76kg　176cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
-    ' <b>りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
-    '<b>けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
+    '<b id="ms_name">けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!<br><br>判断力：<b id="rank">C</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!<br><br>判断力：<b id="rank">A</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">S</b></c>',
+    '<b id="ms_name">ひなた</b><br><c>63kg　169cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!<br><br>判断力：<b id="rank">B</b>　瞬発力：<b id="rank">S</b>　積極性：<b id="rank">C</b></c>',
+    '<b id="ms_name">けんと</b><br><c>76kg　176cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!<br><br>判断力：<b id="rank">S</b>　瞬発力：<b id="rank">C</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!<br><br>判断力：<b id="rank">A</b>　瞬発力：<b id="rank">A</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！<br><br>判断力：<b id="rank">B</b>　瞬発力：<b id="rank">S</b>　積極性：<b id="rank">B</b></c>',
 ];
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
 function talk_bubble() {
+    document.getElementById("bubble").src="../Picture/talk_bubble3.png";
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
 }
 //画像
@@ -706,7 +707,8 @@ let mousemove = function (e, type) {
     //canvas外にドラッグした場合
     if (canvasX >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
         mouseup(e);
-        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>コートの外には出られないよ！</nobr></p>'
+        document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
+        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_3"><nobr>コートの外には出られないよ！</nobr></p>'
         setTimeout(talk_bubble, 2000)
     }
     if (dragmode) {
@@ -737,6 +739,7 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
                         x = imagearray[counter][right_id].x - 80;
                         mouseup(e);
+                        document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 2000)
                     }
@@ -746,6 +749,7 @@ let mousemove = function (e, type) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
                         x = imagearray[counter][left_id].x + 80;
                         mouseup(e);
+                        document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 2000)
                     }
@@ -758,6 +762,7 @@ let mousemove = function (e, type) {
                         } 
                         y = min + 80;
                         mouseup(e);
+                        document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>前衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 2000)
                     }
@@ -770,6 +775,7 @@ let mousemove = function (e, type) {
                         }
                         y = min - 80;
                         mouseup(e);
+                        document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
                         setTimeout(talk_bubble, 2000)
                     }
@@ -899,6 +905,7 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][4].x + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
                                     setTimeout(talk_bubble, 2000)
                                     //セッターが左の選手を超えた
@@ -930,6 +937,7 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][2].x + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
                                     setTimeout(talk_bubble, 2000)
                                     //セッターが左の選手を超えた
@@ -942,6 +950,7 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][4].x - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
                                     setTimeout(talk_bubble, 2000)
                                     //セッターが右の選手を超えた
@@ -973,6 +982,7 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][2].x - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
                                     setTimeout(talk_bubble, 2000)
                                     //セッターが右の選手を超えた
