@@ -234,15 +234,15 @@ body {
 
 #my_area_percentage {
     position: relative;
-    left: 0.5rem;
-    top: -3.2rem;
+    left: 16rem;
+    top: -4rem;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 #ot_area_percentage {
     position: absolute;
-    left: 25rem;
-    top: -3.2rem;
+    left: 40.3rem;
+    top: -4rem;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
