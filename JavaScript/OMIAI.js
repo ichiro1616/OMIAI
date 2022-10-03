@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
     total();
     setInterval(() => {
         total();
+        preview();
     }, 3000);
 });
 function total() {
@@ -27,7 +28,7 @@ function total() {
 let judge = 1;
 function preview() {
     if (judge == 0) {
-        document.getElementById('answer').innerHTML = "客観的クイズ";
+        document.getElementById('answer').innerHTML = "観客クイズ";
         document.getElementById('simu').innerHTML = "配置シュミレーション";
         document.getElementById('colle').innerHTML = "集合知との比較";
         judge = 1;
