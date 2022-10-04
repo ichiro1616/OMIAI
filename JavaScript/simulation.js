@@ -371,8 +371,9 @@ let message = [
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
 function talk_bubble() {
-    document.getElementById("bubble").src="../Picture/talk_bubble3.png";
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
+    document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
+
 }
 //画像
 let images = new Array(6);//要素数6の配列imagesを作成
@@ -666,10 +667,12 @@ let mousedown = function (e, type) {
             dragmode = true;
             for (let i = 0; i < 6; i++) {
                 if (dragkoma == i) {
-                    document.getElementById("face_img").src = img[counter][dragkoma];
+                    document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
+                    document.getElementById(player_id[i]).innerHTML = message[i];
+                    document.getElementById("face_img").src = img[counter][i];
                     let new_name = name;
-                    name[dragkoma].style.display = "block";
-                    new_name = name.filter(n => n !== name[dragkoma]);
+                    name[i].style.display = "block";
+                    new_name = name.filter(n => n !== name[i]);
                     for (let j = 0; j < new_name.length; j++) {
                         new_name[j].style.display = "none";
                     }
@@ -734,15 +737,7 @@ let mousemove = function (e, type) {
                         x = imagearray[counter][right_id].x - 80;
                         mouseup(e);
                         document.getElementById("bubble").src="../Picture/talk_bubble_red.png";
-                        val = 1;
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
-                        // if(val == 1){
-                        // for(let j = 0; j < 6;j++){
-                        //     if(dragkoma!=i){
-                        //         document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
-                        //     }
-                        // }
-                        // }
                         setTimeout(talk_bubble, 1500)
                     }
                 }
