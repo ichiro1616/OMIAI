@@ -817,7 +817,6 @@ function my_omiai(judge_area) {
 }
 
 function ot_omiai(judge_area) {
-  console.log(judge_area);
   // canvasをクリア
   contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
@@ -833,7 +832,6 @@ function ot_omiai(judge_area) {
         //Rの情報を操作s
         ary_u8Bit[base] = 0;
         //Gの情報を操作
-        console.log(judge_index);
         ary_u8Bit[base + 1] = gradation[judge_index][1];
         //Bの情報を操作
         ary_u8Bit[base + 2] = 0;
@@ -904,7 +902,6 @@ function collective() {
     check = 1;
     draw(counter);
     area(counter);
-    ot_ctx2.globalAlpha = 0.7;
   }
 }
 function area() {
@@ -957,7 +954,6 @@ function area() {
   let ot_judge_color_ob_9 = ot_calculation(counter, data_array_ob_9);
 
 
-  console.log('calu', my_judge_color_sub_9[254].judge);
 
   //10パターンの重なってるところ 10+結果用の+1
   let my_judge_color_sub = color_sub(my_judge_color_sub_0, my_judge_color_sub_1, my_judge_color_sub_2, my_judge_color_sub_3, my_judge_color_sub_4, my_judge_color_sub_5, my_judge_color_sub_6, my_judge_color_sub_7, my_judge_color_sub_8, my_judge_color_sub_9, my_judge_color_sub_0);
@@ -966,7 +962,6 @@ function area() {
   let ot_judge_color_sub = color_sub(ot_judge_color_sub_0, ot_judge_color_sub_1, ot_judge_color_sub_2, ot_judge_color_sub_3, ot_judge_color_sub_4, ot_judge_color_sub_5, ot_judge_color_sub_6, ot_judge_color_sub_7, ot_judge_color_sub_8, ot_judge_color_sub_9, ot_judge_color_sub_0);
   let ot_judge_color_ob = color_sub(ot_judge_color_ob_0, ot_judge_color_ob_1, ot_judge_color_ob_2, ot_judge_color_ob_3, ot_judge_color_ob_4, ot_judge_color_ob_5, ot_judge_color_ob_6, ot_judge_color_ob_7, ot_judge_color_ob_8, ot_judge_color_ob_9, ot_judge_color_ob_0);
 
-  console.log('merge', ot_judge_color_sub[2115].judge);
 
 
   //主観的・客観的で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
@@ -1160,13 +1155,10 @@ function my_calculation(rota, data) {
       coun1++;
     }
   }
-  console.log('my', judge_color[0].judge);
   return judge_color;
 }
 
 function ot_calculation(rota, data) {
-  console.log('------------------------')
-  console.log('otdata', data[0]);
   let color_array = [];
   let test_data = [];
   let judge_color = [];
@@ -1186,7 +1178,6 @@ function ot_calculation(rota, data) {
     }
   }
 
-  console.log('center', array_center[rota][data[0].left_player - 1].x);
 
   //左の選手
   let ot_player1_x = (array_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
@@ -1312,7 +1303,6 @@ function ot_calculation(rota, data) {
       coun1++;
     }
   }
-  console.log('ot', judge_color[0].judge);
   return judge_color;
 }
 function sum(x1, x2, x3, x4, x5, x6) {
