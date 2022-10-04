@@ -161,7 +161,7 @@ let array_center = [
 ];
 //コマの座標（左上基準）
 let array = [
- 
+
   [
     {
       x: 50,
@@ -377,8 +377,8 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[2], path[3], path[5], path[7], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
-const blue_img = [path[11],path[12],path[13],path[14],path[15],path[16]];
-const red_img = [path[17],path[18],path[19],path[20],path[21],path[22]];
+const blue_img = [path[11], path[12], path[13], path[14], path[15], path[16]];
+const red_img = [path[17], path[18], path[19], path[20], path[21], path[22]];
 
 //グラデーション用配列
 let gradation = new Array(10);
@@ -488,7 +488,6 @@ array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45
 inputSliderEle = document.getElementById('experience_change');
 inputSliderEle.addEventListener('change', function () {
   exp_level = inputSliderEle.value;
-  console.log(exp_level);
   collective();
 });
 
@@ -496,7 +495,6 @@ inputSliderEle.addEventListener('change', function () {
 inputSlideBarElement = document.getElementById('generation_change');
 inputSlideBarElement.addEventListener('change', function () {
   gene_level = inputSlideBarElement.value;
-  console.log(gene_level);
   collective();
 });
 
@@ -524,8 +522,7 @@ xhr.addEventListener("loadend", function () {
     }
     genekeep = gene;
     max_gene = genekeep.length;
-    console.log(gene)
-    if(max_gene != 1){
+    if (max_gene != 1) {
       document.getElementById('max_gene').innerHTML = max_gene + '世代目';
     }
     document.getElementById("generation_change").max = genekeep.length - 1;
@@ -594,18 +591,18 @@ function draw(rota) {
     ot_ctx.drawImage(images[rota][i], x * scale, y * scale, w, h);
   }
 
-  if(check == 0){
-  com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
-  for (let i in images) {
-    com_ctx.drawImage(red_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
-    com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
-  }
-}else{
+  if (check == 0) {
     com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
-    for(let i in images){
+    for (let i in images) {
+      com_ctx.drawImage(red_koma[rota][i], array[rota][i].x * scale, array[rota][i].y * scale, koma_w * size, koma_h * size);
       com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
     }
-}
+  } else {
+    com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
+    for (let i in images) {
+      com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
+    }
+  }
 
 }
 const rotation_images = [
@@ -624,9 +621,8 @@ function rotation() {
     counter = 0;
   }
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
-  ot_ctx2.clearRect(0,0,ot_can2.width,ot_can2.height);
+  ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   document.getElementById('rotation_image').src = rotation_images[counter];
-  console.log("ローテーション", counter);
   draw(counter);
   collective();
 }
@@ -652,29 +648,64 @@ originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
 
+//bitmap用のHTMLCanvasElementオブジェクトを作成する
+let canvasBit = document.createElement('canvas');
+canvasBit.width = my_can2.width;
+canvasBit.height = my_can2.height;
+//CanvasRenderingContext2Dオブジェクトを取得する
+let contextBit = canvasBit.getContext('2d');
+//ImageDataオブジェクトを作成する
+let image_dataBit = contextBit.createImageData(46, 46);
+//Uint8ClampedArrayオブジェクトを取得する
+let ary_u8Bit = image_dataBit.data;
+
+let wBit = image_dataBit.width;
+let hBit = image_dataBit.height;
+
 function my_omiai(judge_area) {
+  // canvasをクリア
+  contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   let k_sum = 0;
   let percentage = 0
-  for (let i = 0; i < 46; i++) {//x
-    for (let j = 0; j < 46; j++) {//y
+  for (xBit = 0; xBit < wBit; ++xBit) {
+    for (yBit = hBit; yBit > 0; --yBit) {
+      //RGBAのRを取得
+      let base = (xBit + yBit * wBit) * 4;
+      //9~0のindexを取得
       let judge_index = 10 - Math.round(judge_area[k_sum].judge);
       if (judge_index != 10) {
-        let gra_g = gradation[judge_index][1];
-        let gra_a = gradation[judge_index][3];
-        my_ctx2.globalAlpha = gra_a;
-        my_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
-        my_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        percentage += gra_a;
+        //Rの情報を操作
+        ary_u8Bit[base] = 0;
+        //Gの情報を操作
+        ary_u8Bit[base + 1] = gradation[judge_index][1];
+        //Bの情報を操作
+        ary_u8Bit[base + 2] = 0;
+        //Aの情報を操作
+        ary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
+        percentage += gradation[judge_index][3];
+      } else {
+        //Rの情報を操作
+        ary_u8Bit[base] = 0;
+        //Gの情報を操作
+        ary_u8Bit[base + 1] = 0;
+        //Bの情報を操作
+        ary_u8Bit[base + 2] = 0;
+        //Aの情報を操作
+        ary_u8Bit[base + 3] = 0;
       }
       k_sum++;
     }
   }
+  //BitMapで描画
+  contextBit.putImageData(image_dataBit, 0, 0);
+  //コートに描画
+  my_ctx2.drawImage(canvasBit, originX, originY, 1000, 1000);
+
   return percentage;
 }
 
 function ot_omiai(judge_area) {
-  console.log("AAA")
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
   let percentage = 0;
@@ -708,12 +739,11 @@ function collective() {
   }
   if (index != 100000) {
     for (i = 0; i < 6; i++) {
-      console.log(genekeep[gene_level][index + i]["x_coordinate"], genekeep[gene_level][index + i]["y_coordinate"]);
       array[counter][i].x = genekeep[gene_level][index + i]["x_coordinate"];
       array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
       array_center[counter][i].x = array[counter][i].x + koma_w / 2 * size;
       array_center[counter][i].y = array[counter][i].y + koma_h / 2 * size;
-    }    
+    }
     //セッターの座標を修正
     array_center[3][0].x = array_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
     array_center[3][0].y = array_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
@@ -928,7 +958,7 @@ function area() {
       let my_percent = percent(my_area_percentage);
       let ot_percent = percent(ot_area_percentage);
       function percent(area_percentage) {
-        if(isNaN(area_percentage)){
+        if (isNaN(area_percentage)) {
           area_percentage = 0;
         }
         area_percentage = area_percentage / 2116 * 100;
@@ -938,10 +968,10 @@ function area() {
         return area_percentage;
       }
       document.getElementById('my_area_percentage').innerHTML = my_percent;
-      if(check == 0){
-      document.getElementById('ot_area_percentage').innerHTML = ot_percent;
-      }else{
-        document.getElementById('ot_area_percentage').innerHTML ="－%";
+      if (check == 0) {
+        document.getElementById('ot_area_percentage').innerHTML = ot_percent;
+      } else {
+        document.getElementById('ot_area_percentage').innerHTML = "－%";
       }
     }
   });
@@ -1047,8 +1077,6 @@ function my_calculation(rota, data) {
     test_data[i].my_player2_ball_sabun_y = (test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
   }
 
-  // console.log(test_data);
-
   let blue = [];
   let red = [];
   let green = [];
@@ -1066,7 +1094,6 @@ function my_calculation(rota, data) {
       )
     );
   }
-  // console.log(answer);
   for (i = 0; i < answer.length; i++) {
     //lr.intercept_の値を足している
     let b = 0;
@@ -1218,7 +1245,6 @@ function ot_calculation(rota, data) {
       )
     );
   }
-  // console.log(answer);
   for (i = 0; i < answer.length; i++) {
     //lr.intercept_の値を足している
     let b = 0;
@@ -1252,7 +1278,7 @@ function ot_calculation(rota, data) {
     judge.length = 0;
   }
   let coun1 = 0;
-  let coun2 = 45;  
+  let coun2 = 45;
   if (reverce == 1) {
     for (i = 0; i < judge_color.length / 2; i++) {
       if (coun1 == 46) {
