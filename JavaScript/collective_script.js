@@ -483,6 +483,123 @@ array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.
 array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
 array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
 
+let subject_array = [];//主観的データ2550
+let object_array = [];//客観的データ2550
+//主観的のdata
+let data_array_sub_0 = [];//2-3
+let data_array_sub_1 = [];//2-4
+let data_array_sub_2 = [];//2-5
+let data_array_sub_3 = [];//2-6
+let data_array_sub_4 = [];//3-4
+let data_array_sub_5 = [];//3-5
+let data_array_sub_6 = [];//3-6
+let data_array_sub_7 = [];//4-5
+let data_array_sub_8 = [];//4-6
+let data_array_sub_9 = [];//5-6
+//客観的のdata
+let data_array_ob_0 = [];//2-3
+let data_array_ob_1 = [];//2-4
+let data_array_ob_2 = [];//2-5
+let data_array_ob_3 = [];//2-6
+let data_array_ob_4 = [];//3-4
+let data_array_ob_5 = [];//3-5
+let data_array_ob_6 = [];//3-6
+let data_array_ob_7 = [];//4-5
+let data_array_ob_8 = [];//4-6
+let data_array_ob_9 = [];//5-6
+
+//lr.coef_の値取得、テストデータ作成、特徴量として変換、
+let formData_area = new FormData();
+let xhr_area = new XMLHttpRequest();
+xhr_area.open("POST", "../PHP/simulation.php");
+xhr_area.addEventListener("loadend", function () {
+  if (xhr_area.status === 200) {
+    let data = JSON.parse(xhr_area.response);
+    for (i = 0; i < data.length; i++) {
+      if (data[i].type == 0) {
+        //主観的
+        subject_array.push(data[i]);
+      } else if (data[i].type == 1) {
+        //客観的
+        object_array.push(data[i]);
+      }
+    }
+    //主観的データをペアごとに分ける各255
+    for (i = 0; i < subject_array.length; i++) {
+      switch (subject_array[i].left_player * subject_array[i].right_player) {
+        case 6://2-3
+          data_array_sub_0.push(subject_array[i]);
+          break;
+        case 8://2-4
+          data_array_sub_1.push(subject_array[i]);
+          break;
+        case 10://2-5
+          data_array_sub_2.push(subject_array[i]);
+          break;
+        case 12://2-6 3-4
+          if (subject_array[i].left_player == 2 || subject_array[i].right_player == 2) {
+            data_array_sub_3.push(subject_array[i]);
+          } else {
+            data_array_sub_4.push(subject_array[i]);
+          }
+          break;
+        case 15://3-5
+          data_array_sub_5.push(subject_array[i]);
+          break;
+        case 18://3-6
+          data_array_sub_6.push(subject_array[i]);
+          break;
+        case 20://4-5
+          data_array_sub_7.push(subject_array[i]);
+          break;
+        case 24://4-6
+          data_array_sub_8.push(subject_array[i]);
+          break;
+        case 30://5-6
+          data_array_sub_9.push(subject_array[i]);
+          break;
+      }
+    }
+    //客観的データをペアごとに分ける各255
+    for (i = 0; i < object_array.length; i++) {
+      switch (object_array[i].left_player * object_array[i].right_player) {
+        case 6://2-3
+          data_array_ob_0.push(object_array[i]);
+          break;
+        case 8://2-4
+          data_array_ob_1.push(object_array[i]);
+          break;
+        case 10://2-5
+          data_array_ob_2.push(object_array[i]);
+          break;
+        case 12://2-6 3-4
+          if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
+            data_array_ob_3.push(object_array[i]);
+          } else {
+            data_array_ob_4.push(object_array[i]);
+          }
+          break;
+        case 15://3-5
+          data_array_ob_5.push(object_array[i]);
+          break;
+        case 18://3-6
+          data_array_ob_6.push(object_array[i]);
+          break;
+        case 20://4-5
+          data_array_ob_7.push(object_array[i]);
+          break;
+        case 24://4-6
+          data_array_ob_8.push(object_array[i]);
+          break;
+        case 30://5-6
+          data_array_ob_9.push(object_array[i]);
+          break;
+      }
+    }
+    collective();
+  }
+});
+xhr_area.send(formData_area);
 
 //経験年数
 inputSliderEle = document.getElementById('experience_change');
@@ -502,7 +619,7 @@ let datakeep = [];
 let max_gene //最大世代数
 formData = new FormData();
 xhr = new XMLHttpRequest();
-xhr.open("GET", "/PHP/collective.php");
+xhr.open("GET", "../PHP/collective.php");
 xhr.addEventListener("loadend", function () {
   if (xhr.status === 200) {
     let data = JSON.parse(xhr.response);
@@ -526,9 +643,7 @@ xhr.addEventListener("loadend", function () {
       document.getElementById('max_gene').innerHTML = max_gene + '世代目';
     }
     document.getElementById("generation_change").max = genekeep.length - 1;
-
   }
-  collective();
 });
 xhr.send(formData)
 
@@ -632,12 +747,8 @@ const my_ctx2 = my_can2.getContext('2d');
 const ot_can2 = document.getElementById('other2');
 const ot_ctx2 = ot_can2.getContext('2d');
 const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-// const red = '';
-// const blue = '';
 my_ctx2.fillStyle = omiai_color;//色
 ot_ctx2.fillStyle = omiai_color;
-my_ctx2.globalAlpha = 0.4;//不透明度 0.7
-ot_ctx2.globalAlpha = 0.4;
 let originX = 39;
 let originY = 571.5;
 let endX = 571.5;
@@ -700,29 +811,53 @@ function my_omiai(judge_area) {
   //BitMapで描画
   contextBit.putImageData(image_dataBit, 0, 0);
   //コートに描画
-  my_ctx2.drawImage(canvasBit, originX, originY, 1000, 1000);
+  my_ctx2.drawImage(canvasBit, 40, 25, 7070, 7260);
 
   return percentage;
 }
 
 function ot_omiai(judge_area) {
+  console.log(judge_area);
+  // canvasをクリア
+  contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
-  let percentage = 0;
-  for (let i = 0; i < 46; i++) {//x
-    for (let j = 0; j < 46; j++) {//y
+  let percentage = 0
+  for (xBit = 0; xBit < wBit; ++xBit) {
+    for (yBit = hBit; yBit > 0; --yBit) {
+      //RGBAのRを取得
+      let base = (xBit + yBit * wBit) * 4;
+      //9~0のindexを取得
       let judge_index = 10 - Math.round(judge_area[k_sum].judge);
       if (judge_index != 10) {
-        let gra_g = gradation[judge_index][1];
-        let gra_a = gradation[judge_index][3];
-        ot_ctx2.globalAlpha = gra_a;
-        ot_ctx2.fillStyle = 'rgb(0,' + gra_g + ',0)';
-        ot_ctx2.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-        percentage += gra_a;
+        //Rの情報を操作s
+        ary_u8Bit[base] = 0;
+        //Gの情報を操作
+        console.log(judge_index);
+        ary_u8Bit[base + 1] = gradation[judge_index][1];
+        //Bの情報を操作
+        ary_u8Bit[base + 2] = 0;
+        //Aの情報を操作
+        ary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
+        percentage += gradation[judge_index][3];
+      } else {
+        //Rの情報を操作
+        ary_u8Bit[base] = 0;
+        //Gの情報を操作
+        ary_u8Bit[base + 1] = 0;
+        //Bの情報を操作
+        ary_u8Bit[base + 2] = 0;
+        //Aの情報を操作
+        ary_u8Bit[base + 3] = 0;
       }
       k_sum++;
     }
   }
+  //BitMapで描画
+  contextBit.putImageData(image_dataBit, 0, 0);
+  //コートに描画
+  ot_ctx2.drawImage(canvasBit, 40, 25, 7070, 7260);
+
   return percentage;
 }
 
@@ -772,210 +907,94 @@ function collective() {
     ot_ctx2.globalAlpha = 0.7;
   }
 }
-
 function area() {
-  let subject_array = [];//主観的データ2550
-  let object_array = [];//客観的データ2550
-  //主観的のdata
-  let data_array_sub_0 = [];//2-3
-  let data_array_sub_1 = [];//2-4
-  let data_array_sub_2 = [];//2-5
-  let data_array_sub_3 = [];//2-6
-  let data_array_sub_4 = [];//3-4
-  let data_array_sub_5 = [];//3-5
-  let data_array_sub_6 = [];//3-6
-  let data_array_sub_7 = [];//4-5
-  let data_array_sub_8 = [];//4-6
-  let data_array_sub_9 = [];//5-6
-  //客観的のdata
-  let data_array_ob_0 = [];//2-3
-  let data_array_ob_1 = [];//2-4
-  let data_array_ob_2 = [];//2-5
-  let data_array_ob_3 = [];//2-6
-  let data_array_ob_4 = [];//3-4
-  let data_array_ob_5 = [];//3-5
-  let data_array_ob_6 = [];//3-6
-  let data_array_ob_7 = [];//4-5
-  let data_array_ob_8 = [];//4-6
-  let data_array_ob_9 = [];//5-6
+  //あなたの配置
+  //主観的お見合い範囲
+  let my_judge_color_sub_0 = my_calculation(counter, data_array_sub_0);
+  let my_judge_color_sub_1 = my_calculation(counter, data_array_sub_1);
+  let my_judge_color_sub_2 = my_calculation(counter, data_array_sub_2);
+  let my_judge_color_sub_3 = my_calculation(counter, data_array_sub_3);
+  let my_judge_color_sub_4 = my_calculation(counter, data_array_sub_4);
+  let my_judge_color_sub_5 = my_calculation(counter, data_array_sub_5);
+  let my_judge_color_sub_6 = my_calculation(counter, data_array_sub_6);
+  let my_judge_color_sub_7 = my_calculation(counter, data_array_sub_7);
+  let my_judge_color_sub_8 = my_calculation(counter, data_array_sub_8);
+  let my_judge_color_sub_9 = my_calculation(counter, data_array_sub_9);
+  //客観的お見合い範囲
+  let my_judge_color_ob_0 = my_calculation(counter, data_array_ob_0);
+  let my_judge_color_ob_1 = my_calculation(counter, data_array_ob_1);
+  let my_judge_color_ob_2 = my_calculation(counter, data_array_ob_2);
+  let my_judge_color_ob_3 = my_calculation(counter, data_array_ob_3);
+  let my_judge_color_ob_4 = my_calculation(counter, data_array_ob_4);
+  let my_judge_color_ob_5 = my_calculation(counter, data_array_ob_5);
+  let my_judge_color_ob_6 = my_calculation(counter, data_array_ob_6);
+  let my_judge_color_ob_7 = my_calculation(counter, data_array_ob_7);
+  let my_judge_color_ob_8 = my_calculation(counter, data_array_ob_8);
+  let my_judge_color_ob_9 = my_calculation(counter, data_array_ob_9);
 
-  //lr.coef_の値取得、テストデータ作成、特徴量として変換、
-  let formData_area = new FormData();
-  let xhr_area = new XMLHttpRequest();
-  xhr_area.open("POST", "../PHP/simulation.php");
-  xhr_area.addEventListener("loadend", function () {
-    if (xhr_area.status === 200) {
-      let data = JSON.parse(xhr_area.response);
-      for (i = 0; i < data.length; i++) {
-        if (data[i].type == 0) {
-          //主観的
-          subject_array.push(data[i]);
-        } else if (data[i].type == 1) {
-          //客観的
-          object_array.push(data[i]);
-        }
-      }
-      //主観的データをペアごとに分ける各255
-      for (i = 0; i < subject_array.length; i++) {
-        switch (subject_array[i].left_player * subject_array[i].right_player) {
-          case 6://2-3
-            data_array_sub_0.push(subject_array[i]);
-            break;
-          case 8://2-4
-            data_array_sub_1.push(subject_array[i]);
-            break;
-          case 10://2-5
-            data_array_sub_2.push(subject_array[i]);
-            break;
-          case 12://2-6 3-4
-            if (subject_array[i].left_player == 2 || subject_array[i].right_player == 2) {
-              data_array_sub_3.push(subject_array[i]);
-            } else {
-              data_array_sub_4.push(subject_array[i]);
-            }
-            break;
-          case 15://3-5
-            data_array_sub_5.push(subject_array[i]);
-            break;
-          case 18://3-6
-            data_array_sub_6.push(subject_array[i]);
-            break;
-          case 20://4-5
-            data_array_sub_7.push(subject_array[i]);
-            break;
-          case 24://4-6
-            data_array_sub_8.push(subject_array[i]);
-            break;
-          case 30://5-6
-            data_array_sub_9.push(subject_array[i]);
-            break;
-        }
-      }
-
-      //客観的データをペアごとに分ける各255
-      for (i = 0; i < object_array.length; i++) {
-        switch (object_array[i].left_player * object_array[i].right_player) {
-          case 6://2-3
-            data_array_ob_0.push(object_array[i]);
-            break;
-          case 8://2-4
-            data_array_ob_1.push(object_array[i]);
-            break;
-          case 10://2-5
-            data_array_ob_2.push(object_array[i]);
-            break;
-          case 12://2-6 3-4
-            if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
-              data_array_ob_3.push(object_array[i]);
-            } else {
-              data_array_ob_4.push(object_array[i]);
-            }
-            break;
-          case 15://3-5
-            data_array_ob_5.push(object_array[i]);
-            break;
-          case 18://3-6
-            data_array_ob_6.push(object_array[i]);
-            break;
-          case 20://4-5
-            data_array_ob_7.push(object_array[i]);
-            break;
-          case 24://4-6
-            data_array_ob_8.push(object_array[i]);
-            break;
-          case 30://5-6
-            data_array_ob_9.push(object_array[i]);
-            break;
-        }
-      }
+  //集合知の配置
+  //主観的お見合い範囲
+  let ot_judge_color_sub_0 = ot_calculation(counter, data_array_sub_0);
+  let ot_judge_color_sub_1 = ot_calculation(counter, data_array_sub_1);
+  let ot_judge_color_sub_2 = ot_calculation(counter, data_array_sub_2);
+  let ot_judge_color_sub_3 = ot_calculation(counter, data_array_sub_3);
+  let ot_judge_color_sub_4 = ot_calculation(counter, data_array_sub_4);
+  let ot_judge_color_sub_5 = ot_calculation(counter, data_array_sub_5);
+  let ot_judge_color_sub_6 = ot_calculation(counter, data_array_sub_6);
+  let ot_judge_color_sub_7 = ot_calculation(counter, data_array_sub_7);
+  let ot_judge_color_sub_8 = ot_calculation(counter, data_array_sub_8);
+  let ot_judge_color_sub_9 = ot_calculation(counter, data_array_sub_9);
+  //客観的お見合い範囲
+  let ot_judge_color_ob_0 = ot_calculation(counter, data_array_ob_0);
+  let ot_judge_color_ob_1 = ot_calculation(counter, data_array_ob_1);
+  let ot_judge_color_ob_2 = ot_calculation(counter, data_array_ob_2);
+  let ot_judge_color_ob_3 = ot_calculation(counter, data_array_ob_3);
+  let ot_judge_color_ob_4 = ot_calculation(counter, data_array_ob_4);
+  let ot_judge_color_ob_5 = ot_calculation(counter, data_array_ob_5);
+  let ot_judge_color_ob_6 = ot_calculation(counter, data_array_ob_6);
+  let ot_judge_color_ob_7 = ot_calculation(counter, data_array_ob_7);
+  let ot_judge_color_ob_8 = ot_calculation(counter, data_array_ob_8);
+  let ot_judge_color_ob_9 = ot_calculation(counter, data_array_ob_9);
 
 
-      //あなたの配置
-      //主観的お見合い範囲
-      let my_judge_color_sub_0 = my_calculation(counter, data_array_sub_0);
-      let my_judge_color_sub_1 = my_calculation(counter, data_array_sub_1);
-      let my_judge_color_sub_2 = my_calculation(counter, data_array_sub_2);
-      let my_judge_color_sub_3 = my_calculation(counter, data_array_sub_3);
-      let my_judge_color_sub_4 = my_calculation(counter, data_array_sub_4);
-      let my_judge_color_sub_5 = my_calculation(counter, data_array_sub_5);
-      let my_judge_color_sub_6 = my_calculation(counter, data_array_sub_6);
-      let my_judge_color_sub_7 = my_calculation(counter, data_array_sub_7);
-      let my_judge_color_sub_8 = my_calculation(counter, data_array_sub_8);
-      let my_judge_color_sub_9 = my_calculation(counter, data_array_sub_9);
-      //客観的お見合い範囲
-      let my_judge_color_ob_0 = my_calculation(counter, data_array_ob_0);
-      let my_judge_color_ob_1 = my_calculation(counter, data_array_ob_1);
-      let my_judge_color_ob_2 = my_calculation(counter, data_array_ob_2);
-      let my_judge_color_ob_3 = my_calculation(counter, data_array_ob_3);
-      let my_judge_color_ob_4 = my_calculation(counter, data_array_ob_4);
-      let my_judge_color_ob_5 = my_calculation(counter, data_array_ob_5);
-      let my_judge_color_ob_6 = my_calculation(counter, data_array_ob_6);
-      let my_judge_color_ob_7 = my_calculation(counter, data_array_ob_7);
-      let my_judge_color_ob_8 = my_calculation(counter, data_array_ob_8);
-      let my_judge_color_ob_9 = my_calculation(counter, data_array_ob_9);
+  console.log('calu', my_judge_color_sub_9[254].judge);
 
-      //集合知の配置
-      //主観的お見合い範囲
-      let ot_judge_color_sub_0 = ot_calculation(counter, data_array_sub_0);
-      let ot_judge_color_sub_1 = ot_calculation(counter, data_array_sub_1);
-      let ot_judge_color_sub_2 = ot_calculation(counter, data_array_sub_2);
-      let ot_judge_color_sub_3 = ot_calculation(counter, data_array_sub_3);
-      let ot_judge_color_sub_4 = ot_calculation(counter, data_array_sub_4);
-      let ot_judge_color_sub_5 = ot_calculation(counter, data_array_sub_5);
-      let ot_judge_color_sub_6 = ot_calculation(counter, data_array_sub_6);
-      let ot_judge_color_sub_7 = ot_calculation(counter, data_array_sub_7);
-      let ot_judge_color_sub_8 = ot_calculation(counter, data_array_sub_8);
-      let ot_judge_color_sub_9 = ot_calculation(counter, data_array_sub_9);
-      //客観的お見合い範囲
-      let ot_judge_color_ob_0 = ot_calculation(counter, data_array_ob_0);
-      let ot_judge_color_ob_1 = ot_calculation(counter, data_array_ob_1);
-      let ot_judge_color_ob_2 = ot_calculation(counter, data_array_ob_2);
-      let ot_judge_color_ob_3 = ot_calculation(counter, data_array_ob_3);
-      let ot_judge_color_ob_4 = ot_calculation(counter, data_array_ob_4);
-      let ot_judge_color_ob_5 = ot_calculation(counter, data_array_ob_5);
-      let ot_judge_color_ob_6 = ot_calculation(counter, data_array_ob_6);
-      let ot_judge_color_ob_7 = ot_calculation(counter, data_array_ob_7);
-      let ot_judge_color_ob_8 = ot_calculation(counter, data_array_ob_8);
-      let ot_judge_color_ob_9 = ot_calculation(counter, data_array_ob_9);
+  //10パターンの重なってるところ 10+結果用の+1
+  let my_judge_color_sub = color_sub(my_judge_color_sub_0, my_judge_color_sub_1, my_judge_color_sub_2, my_judge_color_sub_3, my_judge_color_sub_4, my_judge_color_sub_5, my_judge_color_sub_6, my_judge_color_sub_7, my_judge_color_sub_8, my_judge_color_sub_9, my_judge_color_sub_0);
+  let my_judge_color_ob = color_sub(my_judge_color_ob_0, my_judge_color_ob_1, my_judge_color_ob_2, my_judge_color_ob_3, my_judge_color_ob_4, my_judge_color_ob_5, my_judge_color_ob_6, my_judge_color_ob_7, my_judge_color_ob_8, my_judge_color_ob_9, my_judge_color_ob_0);
+
+  let ot_judge_color_sub = color_sub(ot_judge_color_sub_0, ot_judge_color_sub_1, ot_judge_color_sub_2, ot_judge_color_sub_3, ot_judge_color_sub_4, ot_judge_color_sub_5, ot_judge_color_sub_6, ot_judge_color_sub_7, ot_judge_color_sub_8, ot_judge_color_sub_9, ot_judge_color_sub_0);
+  let ot_judge_color_ob = color_sub(ot_judge_color_ob_0, ot_judge_color_ob_1, ot_judge_color_ob_2, ot_judge_color_ob_3, ot_judge_color_ob_4, ot_judge_color_ob_5, ot_judge_color_ob_6, ot_judge_color_ob_7, ot_judge_color_ob_8, ot_judge_color_ob_9, ot_judge_color_ob_0);
+
+  console.log('merge', ot_judge_color_sub[2115].judge);
 
 
+  //主観的・客観的で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
+  let my_judge_color_merge = merge(my_judge_color_sub, my_judge_color_ob);
+  let ot_judge_color_merge = merge(ot_judge_color_sub, ot_judge_color_ob);
 
-      //10パターンの重なってるところ 10+結果用の+1
-      let my_judge_color_sub = color_sub(my_judge_color_sub_0, my_judge_color_sub_1, my_judge_color_sub_2, my_judge_color_sub_3, my_judge_color_sub_4, my_judge_color_sub_5, my_judge_color_sub_6, my_judge_color_sub_7, my_judge_color_sub_8, my_judge_color_sub_9, my_judge_color_sub_0);
-      let my_judge_color_ob = color_sub(my_judge_color_ob_0, my_judge_color_ob_1, my_judge_color_ob_2, my_judge_color_ob_3, my_judge_color_ob_4, my_judge_color_ob_5, my_judge_color_ob_6, my_judge_color_ob_7, my_judge_color_ob_8, my_judge_color_ob_9, my_judge_color_ob_0);
-
-      let ot_judge_color_sub = color_sub(ot_judge_color_sub_0, ot_judge_color_sub_1, ot_judge_color_sub_2, ot_judge_color_sub_3, ot_judge_color_sub_4, ot_judge_color_sub_5, ot_judge_color_sub_6, ot_judge_color_sub_7, ot_judge_color_sub_8, ot_judge_color_sub_9, ot_judge_color_sub_0);
-      let ot_judge_color_ob = color_sub(ot_judge_color_ob_0, ot_judge_color_ob_1, ot_judge_color_ob_2, ot_judge_color_ob_3, ot_judge_color_ob_4, ot_judge_color_ob_5, ot_judge_color_ob_6, ot_judge_color_ob_7, ot_judge_color_ob_8, ot_judge_color_ob_9, ot_judge_color_ob_0);
-
-      //主観的・客観的で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
-      let my_judge_color_merge = merge(my_judge_color_sub, my_judge_color_ob);
-      let ot_judge_color_merge = merge(ot_judge_color_sub, ot_judge_color_ob);
-
-      let my_area_percentage = my_omiai(my_judge_color_merge);
-      let ot_area_percentage = ot_omiai(ot_judge_color_merge);
-      //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-      // let area_percentage = omiai(judge_color_sub_1, rota)
-      let my_percent = percent(my_area_percentage);
-      let ot_percent = percent(ot_area_percentage);
-      function percent(area_percentage) {
-        if (isNaN(area_percentage)) {
-          area_percentage = 0;
-        }
-        area_percentage = area_percentage / 2116 * 100;
-        area_percentage = area_percentage.toFixed(1)
-        area_percentage = String(area_percentage);
-        area_percentage = area_percentage + '%';
-        return area_percentage;
-      }
-      document.getElementById('my_area_percentage').innerHTML = my_percent;
-      if (check == 0) {
-        document.getElementById('ot_area_percentage').innerHTML = ot_percent;
-      } else {
-        document.getElementById('ot_area_percentage').innerHTML = "－%";
-      }
+  let my_area_percentage = my_omiai(my_judge_color_merge);
+  let ot_area_percentage = ot_omiai(ot_judge_color_merge);
+  //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
+  // let area_percentage = omiai(judge_color_sub_1, rota)
+  let my_percent = percent(my_area_percentage);
+  let ot_percent = percent(ot_area_percentage);
+  function percent(area_percentage) {
+    if (isNaN(area_percentage)) {
+      area_percentage = 0;
     }
-  });
-  xhr_area.send(formData_area);
+    area_percentage = area_percentage / 2116 * 100;
+    area_percentage = area_percentage.toFixed(1)
+    area_percentage = String(area_percentage);
+    area_percentage = area_percentage + '%';
+    return area_percentage;
+  }
+  document.getElementById('my_area_percentage').innerHTML = my_percent;
+  if (check == 0) {
+    document.getElementById('ot_area_percentage').innerHTML = ot_percent;
+  } else {
+    document.getElementById('ot_area_percentage').innerHTML = "－%";
+  }
 }
 
 function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
@@ -1141,10 +1160,13 @@ function my_calculation(rota, data) {
       coun1++;
     }
   }
+  console.log('my', judge_color[0].judge);
   return judge_color;
 }
 
 function ot_calculation(rota, data) {
+  console.log('------------------------')
+  console.log('otdata', data[0]);
   let color_array = [];
   let test_data = [];
   let judge_color = [];
@@ -1163,6 +1185,8 @@ function ot_calculation(rota, data) {
       color_array[i][j] = Number(color_array[i][j]);
     }
   }
+
+  console.log('center', array_center[rota][data[0].left_player - 1].x);
 
   //左の選手
   let ot_player1_x = (array_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
@@ -1226,8 +1250,6 @@ function ot_calculation(rota, data) {
     test_data[i].ot_player2_ball_sabun_y = (test_data[i].ot_player2_ball_sabun_y - mean[5]) / std[5];
   }
 
-  // console.log(test_data);
-
   let blue = [];
   let red = [];
   let green = [];
@@ -1268,7 +1290,6 @@ function ot_calculation(rota, data) {
     red.push(bb);
     green.push(cc);
   }
-
   judge_array = [0, 0, 0];
   for (i = 0; i < blue.length; i++) {
     //どの色になるかの判断
@@ -1291,6 +1312,7 @@ function ot_calculation(rota, data) {
       coun1++;
     }
   }
+  console.log('ot', judge_color[0].judge);
   return judge_color;
 }
 function sum(x1, x2, x3, x4, x5, x6) {
