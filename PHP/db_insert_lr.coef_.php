@@ -20,7 +20,7 @@ if (!$mysqli) {
   die("データベースの接続に失敗しました．");
 }
 
-$command="python ../Python/objectivity_predict.py"; //客観的データを使ってお見合い範囲を計算をするコードに飛ぶ
+$command="python ../Python/objectivity_predict.py"; //観客データを使ってお見合い範囲を計算をするコードに飛ぶ
 exec($command,$output);
 $output = str_replace("'", '"', $output);
 

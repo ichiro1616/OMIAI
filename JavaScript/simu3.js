@@ -361,21 +361,19 @@ const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
 [path[0], path[1], path[3], path[5], path[8], path[10]]];
 
 let message = [
-    '<b>けんすけ</b><br><c>50kg　175cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!</c>',
-    '<b>るい</b><br><c>60kg　180cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!</c>',
-    '<b>ひなた</b><br><c> 55kg　175cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!</c>',
-    '<b>けんと</b><br><c>60kg　180cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!</c>',
-    ' <b>りく</b><br><c>60kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!</c>',
-    '<b>けいすけ</b><br><c>55kg　175cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！</c>',
+    '<b id="ms_name">けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!<br><br>判断力：<b id="rank">C</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!<br><br>判断力：<b id="rank">A</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">S</b></c>',
+    '<b id="ms_name">ひなた</b><br><c>63kg　169cm<br><nobr>誰も怒った姿を見たことがないお兄さん！</nobr><br>まるで仏のようだ!!<br><br>判断力：<b id="rank">B</b>　瞬発力：<b id="rank">S</b>　積極性：<b id="rank">C</b></c>',
+    '<b id="ms_name">けんと</b><br><c>76kg　176cm<br>ご飯大好き食いしん坊！<br>パワー満点のスパイクを放つぞ!!<br><br>判断力：<b id="rank">S</b>　瞬発力：<b id="rank">C</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">りく</b><br><c>64kg　180cm<br>ゲーム大好きの高身長男！<br>ゲームばかりせずに勉強しよう!!<br><br>判断力：<b id="rank">A</b>　瞬発力：<b id="rank">A</b>　積極性：<b id="rank">A</b></c>',
+    '<b id="ms_name">けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！<br><br>判断力：<b id="rank">B</b>　瞬発力：<b id="rank">S</b>　積極性：<b id="rank">B</b></c>',
 ];
-
 let player_id = ['kensuke', 'rui', 'hinata', 'kento', 'riku', 'keisuke'];
 
 function talk_bubble() {
+    document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
 }
-
-
 //画像
 let images = new Array(6);//要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
@@ -489,11 +487,11 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     //初期座標にコマを表示させる
-    for (let i = 5; i >= 0; i--) {
+    for (let i = 0; i < 6; i++) {
         images[0][i].addEventListener('load', () => {
-            context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size);
+            context.drawImage(images[0][i], imagearray[0][i].x, imagearray[0][i].y, koma_w * size, koma_h * size)
         })
-        for (let j = 5; j >= 0; j--) {
+        for (let j = 0; j < 6; j++) {
             images[i][j].addEventListener('load', () => {
                 under_context[i].drawImage(images[i][j], imagearray[i][j].x * scale, imagearray[i][j].y * scale, koma_w * size_under, koma_h * size_under);
             })
@@ -501,8 +499,8 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     //画像の読み込みが終わってからソース取得する
-    for (var i = 5; i >= 0; i--) {
-        for (var j = 5; j >= 0; j--) {
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 6; j++) {
             images[i][j].src = img[i][j];
         }
     }
@@ -596,7 +594,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
             //お見合い範囲初期表示
-            for (i = 0; i < 6; i++) {
+            for (i = 5; i >= 0; i--) {
                 area(i);
             }
         }
@@ -707,14 +705,16 @@ let mousemove = function (e, type) {
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
     //canvas外にドラッグした場合
-    if (type == 1) {
-        if (canvasX >= canvas.width || canvasX <= 0 || canvasY >= canvas.height || canvasY <= 0) {
-            mouseup(e);
-        }
+    if (canvasX >= 1100 || canvasX <= 100 || canvasY >= 1100 || canvasY <= 100) {
+        mouseup(e);
+        document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
+        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_3"><nobr>コートの外には出られないよ！</nobr></p>'
+        setTimeout(talk_bubble, 2000)
     }
     if (dragmode) {
         // canvas内を一旦クリア
         context.clearRect(0, 0, canvas.width, canvas.height);
+        under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
         let x = 0;
         let y = 0;
         let w = koma_w * size;
@@ -722,7 +722,7 @@ let mousemove = function (e, type) {
         //コマが重ならないように
         for (i = 0; i < 6; i++) {
             if (i != dragkoma) {
-                if (Math.abs(canvasX - imagearray_center[counter][i].x) <= koma_w / 2 * size && Math.abs(canvasY - imagearray_center[counter][i].y) <= koma_h / 2 * size) {
+                if (Math.abs(canvasX - imagearray_center[counter][i].x) <= koma_w / 2 * size + 20 && Math.abs(canvasY - imagearray_center[counter][i].y) <= koma_h / 2 * size + 20) {
                     mouseup(e);
                 }
             }
@@ -737,65 +737,47 @@ let mousemove = function (e, type) {
                 //右の選手を超えた場合
                 function right_const(dragkoma, counter, right_id) {
                     if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][right_id].x) {
-                        x = imagearray[counter][right_id].x - 10;
+                        x = imagearray[counter][right_id].x - 80;
                         mouseup(e);
+                        document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
-                        setTimeout(talk_bubble, 1000)
+                        setTimeout(talk_bubble, 2000)
                     }
                 }
                 //左の選手を超えた場合
                 function left_const(dragkoma, counter, left_id) {
                     if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][left_id].x) {
-                        x = imagearray[counter][left_id].x + 10;
+                        x = imagearray[counter][left_id].x + 80;
                         mouseup(e);
+                        document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
-                        setTimeout(talk_bubble, 1000)
+                        setTimeout(talk_bubble, 2000)
                     }
                 }
                 //前衛の選手を超えた場合
-                function van_const(dragkoma, counter, van1_id, van2_id, van3_id) {
-                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y || imagearray_center[counter][dragkoma].y < imagearray_center[counter][van3_id].y) {
-                        if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van1_id].y) {
-                            min = imagearray[counter][van1_id].y;
-                        } else if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van2_id].y) {
-                            min = imagearray[counter][van2_id].y;
-                        } else {
-                            min = imagearray[counter][van3_id].y;
+                function van_const(dragkoma, counter, van_id) {
+                    if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van_id].y) {
+                        if (imagearray_center[counter][dragkoma].y < imagearray_center[counter][van_id].y) {
+                            min = imagearray[counter][van_id].y;
                         }
-                        y = min + 10;
+                        y = min + 80;
                         mouseup(e);
+                        document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>前衛の選手は超えられないよ！</nobr></p>'
-                        setTimeout(talk_bubble, 1000)
+                        setTimeout(talk_bubble, 2000)
                     }
                 }
                 //後衛の選手を超えた場合
-                function rear_const(dragkoma, counter, rear1_id, rear2_id, rear3_id) {
-                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear3_id].y) {
-                        if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
-                            min = imagearray[counter][rear1_id].y;
-                        } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
-                            min = imagearray[counter][rear2_id].y;
-                        } else {
-                            min = imagearray[counter][rear3_id].y;
+                function rear_const(dragkoma, counter, rear_id) {
+                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear_id].y) {
+                        if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear_id].y) {
+                            min = imagearray[counter][rear_id].y;
                         }
-                        y = min - 10;
+                        y = min - 80;
                         mouseup(e);
+                        document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                         document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
-                        setTimeout(talk_bubble, 1000)
-                    }
-                }
-                //後衛の選手を超えた場合
-                function srear_const(dragkoma, counter, rear1_id, rear2_id) {
-                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear2_id].y) {
-                        if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][rear1_id].y) {
-                            min = imagearray[counter][rear1_id].y;
-                        } else {
-                            min = imagearray[counter][rear2_id].y;
-                        }
-                        y = min - 10;
-                        mouseup(e);
-                        document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
-                        setTimeout(talk_bubble, 1000)
+                        setTimeout(talk_bubble, 2000)
                     }
                 }
                 //セッターの座標計算
@@ -819,24 +801,24 @@ let mousemove = function (e, type) {
                             case 1://前衛真ん中
                                 right_const(dragkoma, counter, 2)
                                 left_const(dragkoma, counter, 0)
-                                rear_const(dragkoma, counter, 3, 4, 5)
+                                rear_const(dragkoma, counter, 4)
                                 break;
                             case 2://前衛右
                                 left_const(dragkoma, counter, 1)
-                                rear_const(dragkoma, counter, 3, 4, 5)
+                                rear_const(dragkoma, counter, 3)
                                 break;
                             case 3://後衛右
                                 left_const(dragkoma, counter, 4)
-                                van_const(dragkoma, counter, 0, 1, 2)
+                                van_const(dragkoma, counter, 2)
                                 break;
                             case 4://後衛真ん中
                                 right_const(dragkoma, counter, 3)
                                 left_const(dragkoma, counter, 5)
-                                van_const(dragkoma, counter, 0, 1, 2)
+                                van_const(dragkoma, counter, 1)
                                 break;
                             case 5://後衛左
                                 right_const(dragkoma, counter, 4)
-                                van_const(dragkoma, counter, 0, 1, 2)
+                                van_const(dragkoma, counter, 0)
                                 break;
                             default:
                                 break;
@@ -846,24 +828,24 @@ let mousemove = function (e, type) {
                         switch (dragkoma) {
                             case 1://前衛右
                                 left_const(dragkoma, counter, 0)
-                                rear_const(dragkoma, counter, 2, 3, 4)
+                                rear_const(dragkoma, counter, 2)
                                 break;
                             case 2://後衛右
                                 left_const(dragkoma, counter, 3)
-                                van_const(dragkoma, counter, 0, 1, 5)
+                                van_const(dragkoma, counter, 1)
                                 break;
                             case 3://後衛真ん中
                                 right_const(dragkoma, counter, 2)
                                 left_const(dragkoma, counter, 4)
-                                van_const(dragkoma, counter, 0, 1, 5)
+                                van_const(dragkoma, counter, 0)
                                 break;
                             case 4://後衛左
                                 right_const(dragkoma, counter, 3)
-                                van_const(dragkoma, counter, 0, 1, 5)
+                                van_const(dragkoma, counter, 5)
                                 break;
                             case 5://前衛左
                                 right_const(dragkoma, counter, 0)
-                                rear_const(dragkoma, counter, 2, 3, 4)
+                                rear_const(dragkoma, counter, 4)
                                 break;
                             default:
                                 break;
@@ -873,25 +855,25 @@ let mousemove = function (e, type) {
                         switch (dragkoma) {
                             case 1://後衛右
                                 left_const(dragkoma, counter, 2)
-                                van_const(dragkoma, counter, 0, 4, 5)
+                                van_const(dragkoma, counter, 0)
                                 break;
                             case 2://後衛真ん中
                                 right_const(dragkoma, counter, 1)
                                 left_const(dragkoma, counter, 3)
-                                van_const(dragkoma, counter, 0, 4, 5)
+                                van_const(dragkoma, counter, 5)
                                 break;
                             case 3://後衛左
                                 right_const(dragkoma, counter, 2)
-                                van_const(dragkoma, counter, 0, 4, 5)
+                                van_const(dragkoma, counter, 4)
                                 break;
                             case 4://前衛左
                                 right_const(dragkoma, counter, 5)
-                                rear_const(dragkoma, counter, 1, 2, 3)
+                                rear_const(dragkoma, counter, 3)
                                 break;
                             case 5://前衛真ん中
                                 left_const(dragkoma, counter, 4)
                                 right_const(dragkoma, counter, 0)
-                                rear_const(dragkoma, counter, 1, 2, 3)
+                                rear_const(dragkoma, counter, 2)
                                 break;
                             default:
                                 break;
@@ -902,47 +884,35 @@ let mousemove = function (e, type) {
                             case 1://後衛真ん中
                                 left_const(dragkoma, counter, 2)
                                 right_const(dragkoma, counter, 0)
-                                van_const(dragkoma, counter, 3, 4, 5)
+                                van_const(dragkoma, counter, 4)
                                 break;
                             case 2://後衛左
                                 right_const(dragkoma, counter, 1)
-                                van_const(dragkoma, counter, 3, 4, 5)
+                                van_const(dragkoma, counter, 3)
                                 break;
                             case 3://前衛左
                                 right_const(dragkoma, counter, 4)
-                                srear_const(dragkoma, counter, 1, 2)
+                                rear_const(dragkoma, counter, 2)
                                 break;
                             case 4://前衛真ん中
                                 right_const(dragkoma, counter, 5)
                                 left_const(dragkoma, counter, 3)
-                                srear_const(dragkoma, counter, 1, 2,)
+                                rear_const(dragkoma, counter, 2)
                                 break;
                             case 5://前衛右
                                 //左の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x + 10;
+                                    x = imagearray[counter][4].x + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
+                                    setTimeout(talk_bubble, 2000)
                                     //セッターが左の選手を超えた
                                 } else if (imagearray_center[counter][dragkoma].x + (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) < imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x - (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) + 10;
+                                    x = imagearray[counter][1].x - (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) + 80;
                                     setter(0, x, dragkoma)
                                     mouseup(e);
-                                    //後衛の選手を超えようとした
-                                } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][2].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][2].y;
-                                    }
-                                    y = min - 10;
-                                    setter(1, y, dragkoma);
-                                    mouseup(e);
-                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
-                                    //セッターを一緒に動かす
                                 } else {
                                     setter(2, 0, dragkoma);
                                 }
@@ -955,61 +925,50 @@ let mousemove = function (e, type) {
                         switch (dragkoma) {
                             case 1://後衛左
                                 right_const(dragkoma, counter, 0)
-                                van_const(dragkoma, counter, 2, 3, 4)
+                                van_const(dragkoma, counter, 2)
                                 break;
                             case 2://前衛左
                                 right_const(dragkoma, counter, 3)
-                                srear_const(dragkoma, counter, 1, 5)
+                                rear_const(dragkoma, counter, 1)
                                 break;
                             case 3://前衛真ん中
                                 //左の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x < imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x + 10;
+                                    x = imagearray[counter][2].x + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
+                                    setTimeout(talk_bubble, 2000)
                                     //セッターが左の選手を超えた
                                 } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) < imagearray_center[counter][1].x) {
-                                    x = imagearray[counter][1].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) + 10;
+                                    x = imagearray[counter][1].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
                                     //右の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
-                                    x = imagearray[counter][4].x - 10;
+                                    x = imagearray[counter][4].x - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
+                                    setTimeout(talk_bubble, 2000)
                                     //セッターが右の選手を超えた
                                 } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) > imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 10;
+                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
-                                    //後衛の選手を超えようとした
-                                } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][1].y) {
-                                        min = imagearray[counter][1].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    setter(1, y, dragkoma);
-                                    mouseup(e);
-                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
-                                    //セッターを一緒に動かす
                                 } else {
                                     setter(2, 0, dragkoma);
                                 }
                                 break;
                             case 4://前衛右
                                 left_const(dragkoma, counter, 3)
-                                srear_const(dragkoma, counter, 1, 5)
+                                rear_const(dragkoma, counter, 5)
                                 break;
                             case 5://後衛右
                                 left_const(dragkoma, counter, 0)
-                                van_const(dragkoma, counter, 2, 3, 4)
+                                van_const(dragkoma, counter, 4)
                                 break;
                             default:
                                 break;
@@ -1020,29 +979,17 @@ let mousemove = function (e, type) {
                             case 1://前衛左
                                 //右の選手を超えようとした
                                 if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][2].x) {
-                                    x = imagearray[counter][2].x - 10;
+                                    x = imagearray[counter][2].x - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
                                     document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
+                                    setTimeout(talk_bubble, 2000)
                                     //セッターが右の選手を超えた
                                 } else if (imagearray_center[counter][dragkoma].x - (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) > imagearray_center[counter][5].x) {
-                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 10;
+                                    x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
-                                    //後衛の選手を超えようとした
-                                } else if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y || imagearray_center[counter][dragkoma].y > imagearray_center[counter][5].y) {
-                                    if (imagearray_center[counter][dragkoma].y > imagearray_center[counter][4].y) {
-                                        min = imagearray[counter][4].y;
-                                    } else {
-                                        min = imagearray[counter][5].y;
-                                    }
-                                    y = min - 10;
-                                    setter(1, y, dragkoma);
-                                    mouseup(e);
-                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention_2"><nobr>後衛の選手は超えられないよ！</nobr></p>'
-                                    setTimeout(talk_bubble, 1000)
-                                    //セッターを一緒に動かす
                                 } else {
                                     setter(2, 0, dragkoma);
                                 }
@@ -1050,20 +997,20 @@ let mousemove = function (e, type) {
                             case 2://前衛真ん中
                                 right_const(dragkoma, counter, 3)
                                 left_const(dragkoma, counter, 1)
-                                srear_const(dragkoma, counter, 4, 5)
+                                rear_const(dragkoma, counter, 5)
                                 break;
                             case 3://前衛右
                                 left_const(dragkoma, counter, 2)
-                                srear_const(dragkoma, counter, 4, 5)
+                                rear_const(dragkoma, counter, 4)
                                 break;
                             case 4://後衛右
                                 left_const(dragkoma, counter, 5)
-                                van_const(dragkoma, counter, 1, 2, 3)
+                                van_const(dragkoma, counter, 3)
                                 break;
                             case 5://後衛真ん中
                                 right_const(dragkoma, counter, 4)
                                 left_const(dragkoma, counter, 0)
-                                van_const(dragkoma, counter, 1, 2, 3)
+                                van_const(dragkoma, counter, 2)
                                 break;
                             default:
                                 break;
@@ -1081,16 +1028,7 @@ let mousemove = function (e, type) {
 
             // 画像を描画
             context.drawImage(images[counter][i], x, y, w, h);
-            under_context[counter].clearRect(0, 0, under_canvas[counter].width, under_canvas[counter].height);
-            for (let j = 5; j >= 0; j--) {
-                under_context[counter].drawImage(images[counter][j], imagearray[counter][j].x * scale, imagearray[counter][j].y * scale, koma_w * size_under, koma_h * size_under);
-            }
-            if (counter == 0) {
-                under_context[0].clearRect(0, 0, under_canvas[0].width, under_canvas[0].height);
-                for (let j = 5; j >= 0; j--) {
-                    under_context[0].drawImage(images[0][j], imagearray[0][j].x * scale, imagearray[0][j].y * scale, koma_w * size_under, koma_h * size_under);
-                }
-            }
+            under_context[counter].drawImage(images[counter][i], imagearray[counter][i].x * scale, imagearray[counter][i].y * scale, koma_w * size_under, koma_h * size_under);
         }
     }
 };
@@ -1149,7 +1087,7 @@ for (let i = 0; i < 6; i++) {
 
 let originX = 76.1;//コート原点左下）x
 let originY = 1124.3;//コート原点（左下）y
-let endY = 76.1;//コート上端y
+let endY = 55.0;//コート上端y
 let endX = 1124.3;//コート右端x
 let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
 let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
@@ -1157,58 +1095,123 @@ originY = originY - pixel_sizeY;//1ドットの大きさ分引く
 endX = endX - pixel_sizeX;//1ドットの大きさ分引く
 let overlap = 3;
 
+let ad = under_canvas3[0].width / canvas_omiai.width;
+let oriX = 76.1 * ad;
+let oriY = 1124.3 * ad;
+let enY = 55.0 * ad;
+let enX = 1124.3 * ad;
+let pisiX = (enX - oriX) / 46;
+let pisiY = (oriY - enY) / 46;
+oriY = oriY - pisiY;
+enX = enX - pisiX;
+
+//bitmap用のHTMLCanvasElementオブジェクトを作成する
+let canvasBit = document.createElement('canvas');
+canvasBit.width = canvas_omiai.width;
+canvasBit.height = canvas_omiai.height;
+//CanvasRenderingContext2Dオブジェクトを取得する
+let contextBit = canvasBit.getContext('2d');
+//ImageDataオブジェクトを作成する
+let image_dataBit = contextBit.createImageData(46, 46);
+//Uint8ClampedArrayオブジェクトを取得する
+let ary_u8Bit = image_dataBit.data;
+
+let wBit = image_dataBit.width;
+let hBit = image_dataBit.height;
+
 //お見合い範囲表示関数
 function omiai(judge_area, rota) {
-    // canvas4内を一旦クリア
+    // canvasをクリア
+    contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
     context_omiai.clearRect(0, 0, canvas_omiai.width, canvas_omiai.height);
+    under_context3[rota].clearRect(0, 0, under_canvas3[rota].width, under_canvas3[rota].height);
+
     let k_sum = 0;
     let percentage = 0;
-    //お見合い範囲表示
-    for (let i = 0; i < 46; i++) {//x
-        for (let j = 0; j < 46; j++) {//y
+
+    for (xBit = 0; xBit < wBit; ++xBit) {
+        for (yBit = hBit; yBit > 0; --yBit) {
+            //RGBAのRを取得
+            let base = (xBit + yBit * wBit) * 4;
+            //9~0のindexを取得
             let judge_index = 10 - Math.round(judge_area[k_sum].judge);
             if (judge_index != 10) {
-                let gra_g = gradation[judge_index][1];
-                let gra_a = gradation[judge_index][3];
-                context_omiai.globalAlpha = gra_a;
-                context_omiai.fillStyle = 'rgb(0,' + gra_g + ',0)';
-                context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                percentage += gra_a;
+                //Rの情報を操作
+                ary_u8Bit[base] = 0;
+                //Gの情報を操作
+                ary_u8Bit[base + 1] = gradation[judge_index][1];
+                //Bの情報を操作
+                ary_u8Bit[base + 2] = 0;
+                //Aの情報を操作
+                ary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
+                percentage += gradation[judge_index][3];
+            } else {
+                //Rの情報を操作
+                ary_u8Bit[base] = 0;
+                //Gの情報を操作
+                ary_u8Bit[base + 1] = 0;
+                //Bの情報を操作
+                ary_u8Bit[base + 2] = 0;
+                //Aの情報を操作
+                ary_u8Bit[base + 3] = 0;
             }
             k_sum++;
         }
     }
 
-    // under_canvas
-    let ad = under_canvas3[0].width / canvas_omiai.width;
-    let oriX = 76.1 * ad;
-    let oriY = 1124.3 * ad;
-    let enY = 76.1 * ad;
-    let enX = 1124.3 * ad;
-    let pisiX = (enX - oriX) / 46;
-    let pisiY = (oriY - enY) / 46;
-    oriY = oriY - pisiY;
-    enX = enX - pisiX;
+    //BitMapで描画
+    contextBit.putImageData(image_dataBit, 0, 0);
+    //コートに描画
+    context_omiai.drawImage(canvasBit, originX, endY, 27400, 27900);
+    under_context3[rota].drawImage(canvasBit, oriX, enY, 4550, 4670);
 
-    for (let i = 0; i < 6; i++) {
-        if (rota == i) {
-            let tem = 0;
-            under_context3[i].clearRect(0, 0, under_canvas3[i].width, under_canvas3[i].height);
-            for (j = 0; j < 46; j++) {
-                for (k = 0; k < 46; k++) {
-                    let judge_index = 10 - Math.round(judge_area[tem].judge);
-                    if (judge_index != 10) {
-                        let gra_g = gradation[judge_index][1];
-                        let gra_a = gradation[judge_index][3];
-                        under_context3[i].globalAlpha = gra_a;
-                        under_context3[i].fillStyle = 'rgb(0,' + gra_g + ',0)';
-                        under_context3[i].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
-                    }
-                    tem++;
-                }
-            }
-        }
-    }
+
+
+    // let k_sum = 0;
+    // let percentage = 0;
+    // //お見合い範囲表示
+    // for (let i = 0; i < 46; i++) {//x
+    //     for (let j = 0; j < 46; j++) {//y
+    //         let judge_index = 10 - Math.round(judge_area[k_sum].judge);
+    //         if (judge_index != 10) {
+    //             let gra_g = gradation[judge_index][1];
+    //             let gra_a = gradation[judge_index][3];
+    //             context_omiai.globalAlpha = gra_a;
+    //             context_omiai.fillStyle = 'rgb(0,' + gra_g + ',0)';
+    //             context_omiai.fillRect(originX + i * pixel_sizeX, originY - j * pixel_sizeY, pixel_sizeX, pixel_sizeY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //             percentage += gra_a;
+    //         }
+    //         k_sum++;
+    //     }
+    // }
+
+    // under_canvas
+
+    // let ad = under_canvas3[0].width / canvas_omiai.width;
+    // let oriX = 76.1 * ad;
+    // let oriY = 1124.3 * ad;
+    // let enY = 76.1 * ad;
+    // let enX = 1124.3 * ad;
+    // let pisiX = (enX - oriX) / 46;
+    // let pisiY = (oriY - enY) / 46;
+    // oriY = oriY - pisiY;
+    // enX = enX - pisiX;
+
+    // let tem = 0;
+    // under_context3[rota].clearRect(0, 0, under_canvas3[rota].width, under_canvas3[rota].height);
+    // for (j = 0; j < 46; j++) {
+    //     for (k = 0; k < 46; k++) {
+    //         let judge_index = 10 - Math.round(judge_area[tem].judge);
+    //         if (judge_index != 10) {
+    //             let gra_g = gradation[judge_index][1];
+    //             let gra_a = gradation[judge_index][3];
+    //             under_context3[rota].globalAlpha = gra_a;
+    //             under_context3[rota].fillStyle = 'rgb(0,' + gra_g + ',0)';
+    //             under_context3[rota].fillRect(oriX + j * pisiX, oriY - k * pisiY, pisiX, pisiY);//塗る範囲(x,y,塗る幅,塗る高さ)
+    //         }
+    //         tem++;
+    //     }
+    // }
     return percentage;
 }
 
@@ -1245,11 +1248,11 @@ function area(rota) {
     //主観的・客観的で割合変化 judge_color_sub, judge_color_ob, subject_object_level
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
-    //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
+    //お見合い範囲judge_colorを渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = area_percentage / 2116 * 100;
+    area_percentage = area_percentage.toFixed(1);
     area_percentage = String(area_percentage);
-    area_percentage = parseInt(area_percentage, 10);
     area_percentage = area_percentage + '%';
     document.getElementById('area_percentage').innerHTML = area_percentage;
 }
@@ -1431,8 +1434,9 @@ function calculation(data) {
 }
 
 //登録ボタンを押したときの処理
+let load_button = document.querySelector('span');
 document.getElementById("register_btn").onclick = function () {
-
+    load_button.innerHTML = `<div class="loading"></div>`;
     var json_str1 = JSON.stringify(imagearray);
     localStorage.setItem('key', json_str1);
     for (var i = 0; i <= 5; i++) {//ローテーション0~5
@@ -1465,13 +1469,17 @@ document.getElementById("register_btn").onclick = function () {
     xhr.open("POST", "../PHP/execute.php");
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
-            location.href = "../HTML/OMIAI.html";
+            load_button.innerHTML = "SUCCESS!"
+            setTimeout(jump, 500)
             if (xhr.response == 'error') {
                 console.log("通信に失敗しました")
             }
         }
     });
     xhr.send(form);
+}
+function jump() {
+    location.href = "../HTML/OMIAI.html";
 }
 
 function sum(x1, x2, x3, x4, x5, x6) {
