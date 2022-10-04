@@ -79,21 +79,8 @@ body {
 
 
 .ans_front {
-    animation: fadeIn 1.5s linear 0s infinite alternate both;
     color: #ffffff;
     font-weight: bold;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-5rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 /* 配置シミュレーション */
@@ -126,23 +113,9 @@ body {
 }
 
 .simu_front {
-    animation: fadeIn 1.5s linear 0s infinite alternate both;
     color: #ffffff;
     font-weight: bold;
 }
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-5rem);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 /* 集合知との比較 */
 .btn3 {
     border: none;
@@ -174,25 +147,8 @@ body {
 }
 
 .colle_front {
-    animation: fadeIn 1.5s linear 0s infinite alternate both;
     color: #ffffff;
     font-weight: bold;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translate(-20px);
-    }
-
-    20% {
-        opacity: 0.85;
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
 }
 
 .btn1:active {
