@@ -1,14 +1,9 @@
-#主観的データからお見合い範囲を計算するための式を導出する
-
-from itertools import count
-from unittest.main import MAIN_EXAMPLES
+#選手データからお見合い範囲を計算するための式を導出する
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LogisticRegressionCV
 from sklearn.preprocessing import PolynomialFeatures
 import locale
-from sklearn.preprocessing import StandardScaler
 import joblib
 import sklearn
 from sklearn.linear_model import LogisticRegression
@@ -25,31 +20,30 @@ hinata_riku = ['../Python/0/hinata_riku/trans_hinata_riku_220614_01.csv ', '../P
 keisuke_kento = ['../Python/0/keisuke_kento/trans_keisuke_kento_220614_01.csv ', '../Python/0/keisuke_kento/trans_keisuke_kento_220617_03.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220620_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220627_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_01.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_02.csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03(2).csv', '../Python/0/keisuke_kento/trans_keisuke_kento_220707_03.csv']#けいすけ-けんと
 keisuke_riku = ['../Python/0/keisuke_riku/trans_keisuke_riku_220614_01.csv ', '../Python/0/keisuke_riku/trans_keisuke_riku_220617_03.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220620_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220627_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_01.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_02.csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03(2).csv', '../Python/0/keisuke_riku/trans_keisuke_riku_220707_03.csv']#けいすけ-りく
 riku_kento = ['../Python/0/riku_kento/trans_riku_kento_220614_01.csv ', '../Python/0/riku_kento/trans_riku_kento_220617_03.csv', '../Python/0/riku_kento/trans_riku_kento_220620_02.csv', '../Python/0/riku_kento/trans_riku_kento_220628_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_01.csv', '../Python/0/riku_kento/trans_riku_kento_220705_02(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_02.csv', '../Python/0/riku_kento/trans_riku_kento_220705_03(2).csv', '../Python/0/riku_kento/trans_riku_kento_220705_03.csv']#けんと-りく
-# pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
-pattern = [anzai_hinata]
+pattern = [anzai_hinata, anzai_keisuke, anzai_kento, anzai_riku, hinata_keisuke, hinata_kento, hinata_riku, keisuke_kento, keisuke_riku, riku_kento]
 
 
 for j,csvname in enumerate(pattern):
 
 
-    #figure()でグラフを表示する領域をつくり，figというオブジェクトにする．
-    fig = plt.figure()
-    ax1 = fig.add_subplot(3, 4, 1)
-    ax2 = fig.add_subplot(3, 4, 2)
-    ax3 = fig.add_subplot(3, 4, 3)
-    ax4 = fig.add_subplot(3, 4, 4)
-    # ax5 = fig.add_subplot(3, 4, 5)
-    ax6 = fig.add_subplot(3, 4, 5)
-    ax7 = fig.add_subplot(3, 4, 6)
-    ax8 = fig.add_subplot(3, 4, 7)
-    ax9 = fig.add_subplot(3, 4, 8)
-    # ax10 = fig.add_subplot(3, 4, 10)
-    ax11 = fig.add_subplot(3, 4, 9)
-    ax12 = fig.add_subplot(3, 4, 10)
-    ax13 = fig.add_subplot(3, 4, 11)
-    ax14 = fig.add_subplot(3, 4, 12)
-    # ax15 = fig.add_subplot(3, 4, 15)
-    axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
+    #figure()でグラフを表示する領域をつくり，figというオブジェクトにする．デバッグ用
+    # fig = plt.figure()
+    # ax1 = fig.add_subplot(3, 4, 1)
+    # ax2 = fig.add_subplot(3, 4, 2)
+    # ax3 = fig.add_subplot(3, 4, 3)
+    # ax4 = fig.add_subplot(3, 4, 4)
+    # # ax5 = fig.add_subplot(3, 4, 5)
+    # ax6 = fig.add_subplot(3, 4, 5)
+    # ax7 = fig.add_subplot(3, 4, 6)
+    # ax8 = fig.add_subplot(3, 4, 7)
+    # ax9 = fig.add_subplot(3, 4, 8)
+    # # ax10 = fig.add_subplot(3, 4, 10)
+    # ax11 = fig.add_subplot(3, 4, 9)
+    # ax12 = fig.add_subplot(3, 4, 10)
+    # ax13 = fig.add_subplot(3, 4, 11)
+    # ax14 = fig.add_subplot(3, 4, 12)
+    # # ax15 = fig.add_subplot(3, 4, 15)
+    # axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
 
 
 
@@ -110,8 +104,7 @@ for j,csvname in enumerate(pattern):
     df_train['player2_ball_sabun_x'] = df_train['player2_x'] - df_train['ball_x']
     df_train['player2_ball_sabun_y'] = df_train['player2_y'] - df_train['ball_y']
 
-    # df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
-    df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv"]
+    df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
     
     for k,link in enumerate(df_test_pattern):
         df_test = pd.read_csv(link, encoding="utf_8")
@@ -125,7 +118,7 @@ for j,csvname in enumerate(pattern):
         df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
 
 
-        #dbに代入するときはコメントアウトする
+        #ラベルに色をつける
         # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
         # df_train.loc[df_train['target'] == 1, 'target'] = "red"
         # df_train.loc[df_train['target'] == 2, 'target'] = "green"
@@ -151,55 +144,42 @@ for j,csvname in enumerate(pattern):
 
         X_train = train
         y_train = y
+        
 
-
-        #グリッドサーチ
-        np.random.seed(0)
-
-        def main():
-
-            xtrain = train
-            ttrain = y
-            # 2. standarization of data
-            scaler=sklearn.preprocessing.StandardScaler()
-            scaler.fit(xtrain)
-            xtrain=scaler.transform(xtrain)
-            joblib.dump(scaler,"scaler_lr.pkl",compress=True)
+        # np.random.seed(0) デバッグ用
+        # def main():
+        #     xtrain = train
+        #     ttrain = y
+        #     scaler=sklearn.preprocessing.StandardScaler()
+        #     scaler.fit(xtrain)
+        #     xtrain=scaler.transform(xtrain)
+        #     joblib.dump(scaler,"scaler_lr.pkl",compress=True)
             
-            # 3. learning, cross-validation
-            diparameter={"C":[10**i for i in range(-2,4)],"random_state":[123],}
-            licv=sklearn.model_selection.GridSearchCV(LogisticRegression(),param_grid=diparameter,cv=5)
-            licv.fit(xtrain,ttrain)
-            predictor=licv.best_estimator_
-            joblib.dump(predictor,"predictor_lr.pkl",compress=True)
+        #     # 3. learning, cross-validation
+        #     diparameter={"C":[10**i for i in range(-2,4)],"random_state":[123],}
+        #     licv=sklearn.model_selection.GridSearchCV(LogisticRegression(),param_grid=diparameter,cv=5)
+        #     licv.fit(xtrain,ttrain)
+        #     predictor=licv.best_estimator_
+        #     joblib.dump(predictor,"predictor_lr.pkl",compress=True)
             
-            # 4. evaluating the performance of the predictor
-            liprediction=predictor.predict(xtrain)
-            table=sklearn.metrics.confusion_matrix(ttrain,liprediction)
-            tn,fp,fn,tp=table[0][0],table[0][1],table[1][0],table[1][1]
-            print("TPR\t{0:.3f}".format(tp/(tp+fn)))
-            print("SPC\t{0:.3f}".format(tn/(tn+fp)))
-            print("PPV\t{0:.3f}".format(tp/(tp+fp)))
-            print("ACC\t{0:.3f}".format((tp+tn)/(tp+fp+fn+tn)))
-            print("MCC\t{0:.3f}".format((tp*tn-fp*fn)/((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))**(1/2)))
-            print("F1\t{0:.3f}".format((2*tp)/(2*tp+fp+fn)))
+        #     # 4. evaluating the performance of the predictor
+        #     liprediction=predictor.predict(xtrain)
+        #     table=sklearn.metrics.confusion_matrix(ttrain,liprediction)
+        #     tn,fp,fn,tp=table[0][0],table[0][1],table[1][0],table[1][1]
+        #     print("TPR\t{0:.3f}".format(tp/(tp+fn)))
+        #     print("SPC\t{0:.3f}".format(tn/(tn+fp)))
+        #     print("PPV\t{0:.3f}".format(tp/(tp+fp)))
+        #     print("ACC\t{0:.3f}".format((tp+tn)/(tp+fp+fn+tn)))
+        #     print("MCC\t{0:.3f}".format((tp*tn-fp*fn)/((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))**(1/2)))
+        #     print("F1\t{0:.3f}".format((2*tp)/(2*tp+fp+fn)))
             
-            # 5. printing parameters of the predictor
-            print(sorted(predictor.get_params(True).items()))
-            print(predictor.coef_)
-            print(predictor.intercept_)
+        #     # 5. printing parameters of the predictor
+        #     print(sorted(predictor.get_params(True).items()))
+        #     print(predictor.coef_)
+        #     print(predictor.intercept_)
             
-        if __name__ == '__main__':
-            main()
-
-
-
-
-
-
-
-
-
+        # if __name__ == '__main__':
+        #     main()
 
 
         # # ロジスティック回帰で学習
@@ -213,7 +193,6 @@ for j,csvname in enumerate(pattern):
         array_red = []
         array_green = []
 
-     
 
         for b in lr.coef_[0]:
             array_blue.append(b)
@@ -224,9 +203,6 @@ for j,csvname in enumerate(pattern):
         for g in lr.coef_[2]:
             array_green.append(g)
 
-       
-
-
         array_blue.append(lr.intercept_[0])
         array_red.append(lr.intercept_[1])
         array_green.append(lr.intercept_[2])
@@ -235,12 +211,8 @@ for j,csvname in enumerate(pattern):
         x = [0,filename.split('_')[2],filename.split('_')[3],array_blue,array_red,array_green, mean['players_sabun_x'], mean['players_sabun_y'], mean['player1_ball_sabun_x'], mean['player1_ball_sabun_y'], mean['player2_ball_sabun_x'], mean['player2_ball_sabun_y'], std['players_sabun_x'], std['players_sabun_y'], std['player1_ball_sabun_x'], std['player1_ball_sabun_y'], std['player2_ball_sabun_x'], std['player2_ball_sabun_y']]
         print(x) #DBに送るデータ
 
-
-
-
-    #  検証　DBに値を送らず、お見合い範囲のプロットを見る場合はアンコメント
-
-        print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
+    #  検証　デバッグ用
+        # print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
     #     # y_pred = lr.predict(test)
     #     y_pred= lr.predict_proba(test)
     #     # y_pred= lr.decision_function(test)
@@ -266,3 +238,11 @@ for j,csvname in enumerate(pattern):
     #     # axarray[k].legend(loc = 'best') #凡例
     # fig.tight_layout()         #レイアウトの設定
     # plt.show()
+
+
+
+
+
+
+
+
