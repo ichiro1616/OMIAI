@@ -36,9 +36,6 @@ function preview() {
     let answernum = Math.floor(answer / 100);
     let simunum = Math.floor(simu / 6);
     let collenum = Math.floor(colle) * 5;
-    collenum = 600;
-    answernum = 400;
-    simunum = 500;
     if (answernum > 300) {
       answernum = 300;
     }
