@@ -1672,7 +1672,7 @@ document.getElementById("register_btn").onclick = function () {
     xhr.open("POST", "../PHP/execute.php");
     xhr.addEventListener("loadend", function () {
         if (xhr.status == 200) {
-            load_button.innerHTML = "SUCCESS!";
+            load_button.innerHTML = "登録完了!";
             setTimeout(jump, 500);
             if (xhr.response == "error") {
                 console.log("通信に失敗しました");
