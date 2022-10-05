@@ -1,10 +1,48 @@
 # OMIAI
 
-JavaScriptの各ファイルの機能
+JavaScript,Pythonの各ファイルの機能
 
-# SEN-KEN
+- ### OMIAI.js
+  観客クイズの回答総数、配置シミュレーションの登録総数、集合知の最大世代数を取得し表示します。
 
-pythonの各ファイルの機能
+- ### movie_script.js
+  概要を記述
+
+- ### simulation.js
+  概要を記述
+
+- ### collective_script.js
+  概要を記述
+
+- ### objectivity_insert.js
+  概要を記述
+  
+- ### collecitve copy.py
+  概要を記述
+  
+- ### collective.py
+  概要を記述
+  
+- ### coord_transformation.py
+  概要を記述
+  
+- ### db_config.py
+  概要を記述
+  
+- ### db_insert.py
+  概要を記述
+  
+- ### objectivity_predict.py
+  概要を記述
+  
+- ### subjectivity_predict.py
+  概要を記述
+
+
+
+
+
+# SENKEN
 
 - ### upload.py  
 　新しくフォルダに追加された動画のPATHをDBに挿入します。  
