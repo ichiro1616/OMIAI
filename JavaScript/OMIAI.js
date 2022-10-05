@@ -33,9 +33,25 @@ function preview() {
     document.getElementById("colle").innerHTML = "集合知との比較";
     judge = 1;
   } else {
-    document.getElementById("answer").innerHTML = "<font size=" + 1000 + ">" + Math.floor(answer / 100) + "</font>" + "人が回答！";
-    document.getElementById("simu").innerHTML = Math.floor(simu / 6) + "人が配置！";
-    document.getElementById("colle").innerHTML = Math.floor(colle) * 5 + "人の集合知！";
+    let answernum = Math.floor(answer / 100);
+    let simunum = Math.floor(simu / 6);
+    let collenum = Math.floor(colle) * 5;
+    collenum = 600;
+    answernum = 400;
+    simunum = 500;
+    if (answernum > 300) {
+      answernum = 300;
+    }
+    if (simunum > 300) {
+      simunum = 300;
+    }
+    if (collenum > 300) {
+      collenum = 300;
+    }
+    document.getElementById("answer").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (answernum / 150 + 1) + "em;'>" + Math.floor(answer / 100) + "</span>" + "人が回答！</div>";
+    document.getElementById("simu").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (simunum / 150 + 1) + "em;'>" + Math.floor(simu / 6) + "</span>人が配置！</div>";//Math.floor(simu / 6)
+    document.getElementById("colle").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (collenum / 150 + 1) + "em;'>" + Math.floor(colle) * 5 + "</span>人の集合知！</div>";//Math.floor(colle)*5
+
     judge = 0;
   }
 }
