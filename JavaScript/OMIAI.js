@@ -33,9 +33,9 @@ function preview() {
     document.getElementById("colle").innerHTML = "集合知との比較";
     judge = 1;
   } else {
-    document.getElementById("answer").innerHTML = "判断回答数:" + answer;
-    document.getElementById("simu").innerHTML = "配置登録数:" + Math.floor(simu);
-    document.getElementById("colle").innerHTML = "最大世代数:" + Math.floor(colle);
+    document.getElementById("answer").innerHTML = "<font size=" + 1000 + ">" + Math.floor(answer / 100) + "</font>" + "人が回答！";
+    document.getElementById("simu").innerHTML = Math.floor(simu / 6) + "人が配置！";
+    document.getElementById("colle").innerHTML = Math.floor(colle) * 5 + "人の集合知！";
     judge = 0;
   }
 }
