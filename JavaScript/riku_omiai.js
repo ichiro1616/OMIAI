@@ -1,4 +1,4 @@
-let answer; //観客クイズ回答総数
+let answer; //客観的クイズ回答総数
 let simu = 0; //配置登録総数
 let colle = 0; //最大世代数
 window.addEventListener("DOMContentLoaded", () => {
