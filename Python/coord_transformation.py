@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
-
+    #コートを上から見たときのボール座標を取得するために、2台のカメラで撮った画像から変換式を連立させ、スクリーン座標からワールド座標へ変換します。
 def main():
-    #ワールド座標からスクリーン座標に変換したいペアのcsvを表示させる
+    #スクリーン座標からワールド座標に変換したいペアのcsvを表示させる
 
     csvname = ['anzai_hinata/anzai_hinata_220614_01.csv', 'anzai_hinata/anzai_hinata_220617_03.csv', 'anzai_hinata/anzai_hinata_220620_02.csv', 'anzai_hinata/anzai_hinata_220627_01(2).csv', 'anzai_hinata/anzai_hinata_220627_01.csv', 'anzai_hinata/anzai_hinata_220627_02(2).csv', 'anzai_hinata/anzai_hinata_220627_02.csv', 'anzai_hinata/anzai_hinata_220628_03(2).csv', 'anzai_hinata/anzai_hinata_220628_03.csv'] #安西-西根
     # csvname = ['anzai_keisuke/anzai_keisuke_220614_01.csv', 'anzai_keisuke/anzai_keisuke_220617_03.csv', 'anzai_keisuke/anzai_keisuke_220620_02.csv', 'anzai_keisuke/anzai_keisuke_220627_01(2).csv', 'anzai_keisuke/anzai_keisuke_220627_01.csv', 'anzai_keisuke/anzai_keisuke_220627_02.csv', 'anzai_keisuke/anzai_keisuke_220628_02.csv', 'anzai_keisuke/anzai_keisuke_220628_03(2).csv', 'anzai_keisuke/anzai_keisuke_220628_03.csv'] #安西-けいすけ
