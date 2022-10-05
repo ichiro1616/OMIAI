@@ -157,7 +157,6 @@ let imagearray_center = [
         },
     ],
 ];
-
 //コマの座標（左上基準）
 let imagearray = [
     [
@@ -317,11 +316,10 @@ let imagearray = [
         },
     ],
 ];
-
-//canvasに描画する準備
+//コマを描画するcanvasの準備
 const canvas = document.getElementById("canvas3");
 const context = canvas.getContext("2d");
-//under_canvasに描画する準備
+//コマを描画するunder_canvasの準備
 const canvas_id = ["under_canvas1", "under_canvas2", "under_canvas3", "under_canvas4", "under_canvas5", "under_canvas6"];
 const under_canvas = [];
 const under_context = [];
@@ -329,15 +327,12 @@ for (let i = 0; i < 6; i++) {
     under_canvas[i] = document.getElementById(canvas_id[i]);
     under_context[i] = under_canvas[i].getContext("2d");
 }
-const button_id = ["rota0", "rota1", "rota2", "rota3", "rota4", "rota5"];
-
 //スライダーバー
 //経験年数選択バー
 const SlideBar_experience = document.getElementById("input-range");
-//お見合い割合変化バー
+//お見合い判断基準バー
 const SlideBar_subject_object = document.getElementById("subject_object");
-
-//画像パス
+//コマ画像パス
 const path = [
     "../Picture/koma/0/2-1.png", //けんすけ
     "../Picture/koma/1/front/2-2.png",
@@ -351,7 +346,6 @@ const path = [
     "../Picture/koma/5/front/2-6.png",
     "../Picture/koma/5/back/2-6.png", //けいすけ
 ];
-const rotation_images = ["../Picture/サイクル_1.png", "../Picture/サイクル_2.png", "../Picture/サイクル_3.png", "../Picture/サイクル_4.png", "../Picture/サイクル_5.png", "../Picture/サイクル_6.png"];
 const img = [
     [path[0], path[1], path[3], path[6], path[8], path[10]],
     [path[0], path[1], path[4], path[6], path[8], path[9]],
@@ -360,7 +354,9 @@ const img = [
     [path[0], path[2], path[3], path[5], path[7], path[10]],
     [path[0], path[1], path[3], path[5], path[8], path[10]],
 ];
-
+//ローテーションボタン画像パス
+const rotation_images = ["../Picture/サイクル_1.png", "../Picture/サイクル_2.png", "../Picture/サイクル_3.png", "../Picture/サイクル_4.png", "../Picture/サイクル_5.png", "../Picture/サイクル_6.png"];
+//コマのメッセージ
 const message = [
     '<b id="ms_name">けんすけ</b><br><c>60kg　178cm<br>なぜかあだ名が「けんぴ」な男！<br>スマブラが上手いぞ!!<br><br>判断力：<b id="rank">C</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">A</b></c>',
     '<b id="ms_name">るい</b><br><c>68kg　173cm<br>信頼感溢れる優しいキャプテン！<br>皆にご飯を奢ってくれるぞ!!<br><br>判断力：<b id="rank">A</b>　瞬発力：<b id="rank">B</b>　積極性：<b id="rank">S</b></c>',
@@ -370,24 +366,16 @@ const message = [
     '<b id="ms_name">けいすけ</b><br><c>80kg　165cm<br>安心感抜群の圧倒的お父さん感！<br>レシーブがもの凄く上手いぞ！<br><br>判断力：<b id="rank">B</b>　瞬発力：<b id="rank">S</b>　積極性：<b id="rank">B</b></c>',
 ];
 const player_id = ["kensuke", "rui", "hinata", "kento", "riku", "keisuke"];
-
-function talk_bubble() {
-    document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
-    document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
-}
-//画像
-let images = new Array(6); //要素数6の配列imagesを作成
+//Imageを作成
+let images = new Array(6);
 for (let i = 0; i < 6; i++) {
-    images[i] = new Array(6).fill(0); //imagesの多次元配列を作成し0で初期化
+    images[i] = new Array(6).fill(0);
 }
 for (let i = 0; i < 6; i++) {
-    //ローテーション
     for (let j = 0; j < 6; j++) {
-        //コマ番号
         images[i][j] = new Image();
     }
 }
-
 //グラデーション用配列
 let gradation = new Array(10);
 let G_gra = 120;
@@ -409,21 +397,29 @@ for (let i = 0; i < gradation.length; i++) {
     }
     //変化量120から255
     G_gra += (255 - 120) / (gradation.length - 1);
-    //変化量0から1
+    //変化量0.0から1.0
     A_gra -= 0.1;
 }
-
-let scale = under_canvas[0].width / canvas.width; //canvasとunder_canvasの比
-let dragmode = false; //ドラッグモード
-let dragkoma = null; //ドラッグするコマの添え字
-let size = 2.0; //メイン画面のコマの大きさの倍率
-let size_under = scale * size; //サブ画面のコマの大きさの倍率
-let koma_w = 100; //コマの横幅
-let koma_h = 100; //コマの高さ
-let counter = 0; //ローテーションカウント用
-let experience_years = 0; //バレーボールの経験年数　初期値0
-let subject_object_level = 2; //選手・観客レベル　初期値2(中央)
-
+//canvasとunder_canvasの比
+let scale = under_canvas[0].width / canvas.width;
+//ドラッグモード
+let dragmode = false;
+//ドラッグするコマの添え字
+let dragkoma = null;
+//メインコートのコマの大きさの倍率
+let size = 2.0;
+//サブコートのコマの大きさの倍率
+let size_under = scale * size;
+//コマの横幅
+let koma_w = 100;
+//コマの高さ
+let koma_h = 100;
+//ローテーションカウント
+let counter = 0;
+//バレーボールの経験年数
+let experience_years = 0;
+//選手・観客レベル
+let subject_object_level = 2;
 //コマの中心の座標を用意
 for (let i in imagearray) {
     for (let j in imagearray[i]) {
@@ -431,52 +427,49 @@ for (let i in imagearray) {
         imagearray_center[i][j].y += (koma_h / 2) * size;
     }
 }
-
 //セッターの座標を修正
 imagearray[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray_center[3][0].x = imagearray[3][0].x + (koma_w / 2) * size; //45°
 imagearray_center[3][0].y = imagearray[3][0].y + (koma_h / 2) * size; //45°
-
 imagearray[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray_center[4][0].x = imagearray[4][0].x + (koma_w / 2) * size; //45°
 imagearray_center[4][0].y = imagearray[4][0].y + (koma_h / 2) * size; //45°
-
 imagearray[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 imagearray_center[5][0].x = imagearray[5][0].x + (koma_w / 2) * size; //45°
 imagearray_center[5][0].y = imagearray[5][0].y + (koma_h / 2) * size; //45°
-
-let subject_array = []; //選手データ2550
-let object_array = []; //観客データ2550
+//選手データ2550
+let subject_array = [];
+//観客データ2550
+let object_array = [];
 //選手のdata
-let data_array_sub_0 = []; //2-3
-let data_array_sub_1 = []; //2-4
-let data_array_sub_2 = []; //2-5
-let data_array_sub_3 = []; //2-6
-let data_array_sub_4 = []; //3-4
-let data_array_sub_5 = []; //3-5
-let data_array_sub_6 = []; //3-6
-let data_array_sub_7 = []; //4-5
-let data_array_sub_8 = []; //4-6
-let data_array_sub_9 = []; //5-6
+let data_array_sub_0 = [];
+let data_array_sub_1 = [];
+let data_array_sub_2 = [];
+let data_array_sub_3 = [];
+let data_array_sub_4 = [];
+let data_array_sub_5 = [];
+let data_array_sub_6 = [];
+let data_array_sub_7 = [];
+let data_array_sub_8 = [];
+let data_array_sub_9 = [];
 //観客のdata
-let data_array_ob_0 = []; //2-3
-let data_array_ob_1 = []; //2-4
-let data_array_ob_2 = []; //2-5
-let data_array_ob_3 = []; //2-6
-let data_array_ob_4 = []; //3-4
-let data_array_ob_5 = []; //3-5
-let data_array_ob_6 = []; //3-6
-let data_array_ob_7 = []; //4-5
-let data_array_ob_8 = []; //4-6
-let data_array_ob_9 = []; //5-6
-
-const canvas_omiai = document.getElementById("canvas1"); //お見合い範囲用
+let data_array_ob_0 = [];
+let data_array_ob_1 = [];
+let data_array_ob_2 = [];
+let data_array_ob_3 = [];
+let data_array_ob_4 = [];
+let data_array_ob_5 = [];
+let data_array_ob_6 = [];
+let data_array_ob_7 = [];
+let data_array_ob_8 = [];
+let data_array_ob_9 = [];
+//お見合い範囲を描画するcanvasの準備
+const canvas_omiai = document.getElementById("canvas1");
 const context_omiai = canvas_omiai.getContext("2d");
-
-//under_canvasに描画する準備
+//お見合い範囲を描画するunder_canvasの準備
 const omi_canvas_id = ["under_canvas1-3", "under_canvas2-3", "under_canvas3-3", "under_canvas4-3", "under_canvas5-3", "under_canvas6-3"];
 const under_canvas3 = [];
 const under_context3 = [];
@@ -484,27 +477,16 @@ for (let i = 0; i < 6; i++) {
     under_canvas3[i] = document.getElementById(omi_canvas_id[i]);
     under_context3[i] = under_canvas3[i].getContext("2d");
 }
-
-let originX = 76.1; //コート原点左下）x
-let originY = 1124.3; //コート原点（左下）y
-let endY = 55.0; //コート上端y
-let endX = 1124.3; //コート右端x
-let pixel_sizeX = (endX - originX) / 46; //1ドットの大きさ（単位[m]）　横幅
-let pixel_sizeY = (originY - endY) / 46; //1ドットの大きさ（単位[m])　縦幅
-originY = originY - pixel_sizeY; //1ドットの大きさ分引く
-endX = endX - pixel_sizeX; //1ドットの大きさ分引く
-let overlap = 3;
-
+//コート左側枠線のx座標
+let originX = 76.1;
+//コート上側枠線のy座標 
+let endY = 55.0;
+//メインのコートとサブコートのサイズ比
 let ad = under_canvas3[0].width / canvas_omiai.width;
+//サブコート左側枠線のx座標
 let oriX = 76.1 * ad;
-let oriY = 1124.3 * ad;
+//サブコート上側枠線のy座標
 let enY = 55.0 * ad;
-let enX = 1124.3 * ad;
-let pisiX = (enX - oriX) / 46;
-let pisiY = (oriY - enY) / 46;
-oriY = oriY - pisiY;
-enX = enX - pisiX;
-
 //bitmap用のHTMLCanvasElementオブジェクトを作成する
 const canvasBit = document.createElement("canvas");
 canvasBit.width = canvas_omiai.width;
@@ -515,25 +497,26 @@ const contextBit = canvasBit.getContext("2d");
 let image_dataBit = contextBit.createImageData(46, 46);
 //Uint8ClampedArrayオブジェクトを取得する
 let ary_u8Bit = image_dataBit.data;
-
+//ImageDataオブジェクトのサイズを取得
 let wBit = image_dataBit.width;
 let hBit = image_dataBit.height;
 
+//DOMの構築を待つ
 window.addEventListener("DOMContentLoaded", () => {
-    simulation_area.style.display = "none"; //配置シミュレーションを非表示
+    //配置シミュレーションを非表示
+    simulation_area.style.display = "none";
     under.style.display = "none";
-    document.getElementById("experience").className = "modalBg modalBgOpen"; //モーダルディスプレイで経験年数の質問を表示
-    experience_years = 2; //経験年数の初期値は2
-
+    //モーダルディスプレイで経験年数の質問を表示
+    document.getElementById("experience").className = "modalBg modalBgOpen";
+    experience_years = 2;
+    //スライダーバーが変化したら
     SlideBar_experience.addEventListener("change", () => {
         experience_years = SlideBar_experience.value;
     });
-
     SlideBar_subject_object.addEventListener("change", () => {
         subject_object_level = SlideBar_subject_object.value;
         area(counter);
     });
-
     //初期座標にコマを表示させる
     for (let i = 0; i < 6; i++) {
         images[0][i].addEventListener("load", () => {
@@ -545,14 +528,12 @@ window.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-
     //画像の読み込みが終わってからソース取得する
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 6; j++) {
             images[i][j].src = img[i][j];
         }
     }
-
     //lr.coef_の値取得、テストデータ作成、特徴量として変換、
     let formData_area = new FormData();
     let xhr_area = new XMLHttpRequest();
@@ -676,6 +657,12 @@ function draw(rota) {
         let h = koma_h * size;
         context.drawImage(images[rota][i], x, y, w, h);
     }
+}
+
+//コマのメッセージを戻す
+function talk_bubble() {
+    document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
+    document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
 }
 
 //ドラッグ開始処理
@@ -1250,10 +1237,13 @@ canvas.addEventListener(
     },
     false
 );
-canvas.addEventListener("mouseout", function (e) {
-    mouseout(e);
-    false;
-});
+canvas.addEventListener(
+    "mouseout",
+    function (e) {
+        mouseout(e);
+    },
+    false
+);
 canvas.addEventListener(
     "touchstart",
     function (e) {
@@ -1275,10 +1265,13 @@ canvas.addEventListener(
     },
     false
 );
-canvas.addEventListener("touchcancel", function (e) {
-    mouseout(e);
-    false;
-});
+canvas.addEventListener(
+    "touchcancel",
+    function (e) {
+        mouseout(e);
+    },
+    false
+);
 
 //ローテーション
 function rotation(value) {
@@ -1336,7 +1329,6 @@ function omiai(judge_area, rota) {
             k_sum++;
         }
     }
-
     //BitMapで描画
     contextBit.putImageData(image_dataBit, 0, 0);
     //コートに描画
@@ -1400,10 +1392,10 @@ function area(rota) {
         judge_color_ob_0
     );
 
-    //選手・観客で割合変化 judge_color_sub, judge_color_ob, subject_object_level
+    //選手・観客で割合変化
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
 
-    //お見合い範囲judge_colorを渡す
+    //お見合い範囲judge_color_mergeを渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = (area_percentage / 2116) * 100;
     area_percentage = area_percentage.toFixed(1);
@@ -1420,7 +1412,7 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
     return judge_sum;
 }
 
-//お見合い範囲割合変化
+//お見合い範囲変化
 function merge(sub, ob, level) {
     let sum_judge = sub;
     //選手
@@ -1440,14 +1432,14 @@ function merge(sub, ob, level) {
     return sum_judge;
 }
 
-//お見合い範囲の計算をしている
+//お見合い範囲を計算
 function calculation(data) {
     let color_array = [];
     let test_data = [];
     let judge_color = [];
     let color = ["blue", "red", "green"];
     for (let i = 0; i < 3; i++) {
-        color_array_data = [];
+        let color_array_data = [];
         for (j = 0; j < data.length; j++) {
             if (data[j]["color"] == color[i]) {
                 color_array_data.push(data[j]["data"]);
@@ -1636,8 +1628,8 @@ function sum(x1, x2, x3, x4, x5, x6) {
 }
 
 //登録ボタンを押したときの処理
-let load_button = document.querySelector("span");
 document.getElementById("register_btn").onclick = function () {
+    let load_button = document.querySelector("span");
     load_button.innerHTML = `<div class="loading"></div>`;
     let json_str1 = JSON.stringify(imagearray);
     localStorage.setItem("key", json_str1);
