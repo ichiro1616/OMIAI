@@ -3,7 +3,7 @@
 HTML/CSSの各ファイルの機能
 
 - ### OMIAI.html/OMIAI.css
-  ホーム画面を表示します。
+  ホーム画面を表示します。ホーム画面からのボタンで遷移します。
 
 - ### watch_movie.html/watch_movie.css
   観客クイズページを表示します。
