@@ -40,8 +40,7 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
 - ### objectivity_insert.js
   db_inesrt_lr.coef_.phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
   
-  
-Pythonの各ファイルの機能
+## Pythonの各ファイルの機能
 
 - ### collective.py
   配置シミュレーションで登録された選手のx,y座標をDBから取り出し、5人で1世代として座標の平均値の計算を行います。計算が完了したら、結果をDBへ挿入します。
@@ -61,8 +60,7 @@ Pythonの各ファイルの機能
 - ### subjectivity_predict.py
   選手データからお見合い範囲を計算するための式を導出します。phpでこのコードを呼び出し、DBへ挿入します。
 
-
-SQLの各ファイルの機能
+## SQLの各ファイルの機能
 
 - ### omiai_db.sql
   以下の6つのテーブルがあるDBです。
