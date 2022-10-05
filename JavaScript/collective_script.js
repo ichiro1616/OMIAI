@@ -1,4 +1,4 @@
-let str = localStorage.getItem('key');
+let str = localStorage.getItem("key");
 let imagearray = JSON.parse(str);
 let my_imagearray_center = JSON.parse(str);
 let array_center = [
@@ -161,7 +161,6 @@ let array_center = [
 ];
 //コマの座標（左上基準）
 let array = [
-
   [
     {
       x: 50,
@@ -331,51 +330,67 @@ let koma_w = 100; //コマの横幅
 let koma_h = 100; //コマの高さ
 let scale = 610 / 1200; //my_canとcanvasの比
 let genekeep; // 世代 別で区切った配列
-let check = 0 //集合知があるかどうか
+let check = 0; //集合知があるかどうか
 
 window.onclick = canvas_draw();
 function canvas_draw() {
   //自分の配置koma
-  my_can = document.getElementById('my'); //キャンバスのidを取得
-  my_ctx = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
+  my_can = document.getElementById("my"); //キャンバスのidを取得
+  my_ctx = my_can.getContext("2d"); //キャンバスの2Dコンテキストを取得
   //他の配置・集合知koma
-  ot_can = document.getElementById('other');
-  ot_ctx = ot_can.getContext('2d');
-  ot_can4 = document.getElementById('other4');
-  ot_ctx4 = ot_can4.getContext('2d');
+  ot_can = document.getElementById("other");
+  ot_ctx = ot_can.getContext("2d");
+  ot_can4 = document.getElementById("other4");
+  ot_ctx4 = ot_can4.getContext("2d");
   //自分と他の重ねた配置
-  com_can = document.getElementById('comparison2');
-  com_ctx = com_can.getContext('2d');
+  com_can = document.getElementById("comparison2");
+  com_ctx = com_can.getContext("2d");
 }
 //自分の配置canvas
-let my_can3 = document.getElementById('my3'); //キャンバスのidを取得
-my_ctx3 = my_can.getContext('2d');//キャンバスの2Dコンテキストを取得
+let my_can3 = document.getElementById("my3"); //キャンバスのidを取得
+my_ctx3 = my_can.getContext("2d"); //キャンバスの2Dコンテキストを取得
 //他の配置・集合知canvas
-let ot_can3 = document.getElementById('other3');
-ot_ctx3 = ot_can.getContext('2d');
+let ot_can3 = document.getElementById("other3");
+ot_ctx3 = ot_can.getContext("2d");
 my_ctx3.globalAlpha = 1;
 ot_ctx3.globalAlpha = 1;
 com_ctx.globalAlpha = 0.8;
 
 //画像パス
-const path = ['../Picture/koma/0/2-1.png', //けんすけ
-  '../Picture/koma/1/front/2-2.png', '../Picture/koma/1/back/2-2.png', //るい
-  '../Picture/koma/2/front/2-3.png', '../Picture/koma/2/back/2-3.png', //ひなた
-  '../Picture/koma/3/front/2-4.png', '../Picture/koma/3/back/2-4.png', //けんと
-  '../Picture/koma/4/front/2-5.png', '../Picture/koma/4/back/2-5.png', //りく
-  '../Picture/koma/5/front/2-6.png', '../Picture/koma/5/back/2-6.png', //けいすけ
-  '../Picture/koma/blue_1.png', '../Picture/koma/blue_2.png', '../Picture/koma/blue_3.png',
-  '../Picture/koma/blue_4.png', '../Picture/koma/blue_5.png', '../Picture/koma/blue_6.png',
-  '../Picture/koma/red_1.png', '../Picture/koma/red_2.png', '../Picture/koma/red_3.png',
-  '../Picture/koma/red_4.png', '../Picture/koma/red_5.png', '../Picture/koma/red_6.png',
+const path = [
+  "../Picture/koma/0/2-1.png", //けんすけ
+  "../Picture/koma/1/front/2-2.png",
+  "../Picture/koma/1/back/2-2.png", //るい
+  "../Picture/koma/2/front/2-3.png",
+  "../Picture/koma/2/back/2-3.png", //ひなた
+  "../Picture/koma/3/front/2-4.png",
+  "../Picture/koma/3/back/2-4.png", //けんと
+  "../Picture/koma/4/front/2-5.png",
+  "../Picture/koma/4/back/2-5.png", //りく
+  "../Picture/koma/5/front/2-6.png",
+  "../Picture/koma/5/back/2-6.png", //けいすけ
+  "../Picture/koma/blue_1.png",
+  "../Picture/koma/blue_2.png",
+  "../Picture/koma/blue_3.png",
+  "../Picture/koma/blue_4.png",
+  "../Picture/koma/blue_5.png",
+  "../Picture/koma/blue_6.png",
+  "../Picture/koma/red_1.png",
+  "../Picture/koma/red_2.png",
+  "../Picture/koma/red_3.png",
+  "../Picture/koma/red_4.png",
+  "../Picture/koma/red_5.png",
+  "../Picture/koma/red_6.png",
 ];
 
-const img = [[path[0], path[1], path[3], path[6], path[8], path[10]],
-[path[0], path[1], path[4], path[6], path[8], path[9]],
-[path[0], path[2], path[4], path[6], path[7], path[9]],
-[path[0], path[2], path[4], path[5], path[7], path[9]],
-[path[0], path[2], path[3], path[5], path[7], path[10]],
-[path[0], path[1], path[3], path[5], path[8], path[10]]];
+const img = [
+  [path[0], path[1], path[3], path[6], path[8], path[10]],
+  [path[0], path[1], path[4], path[6], path[8], path[9]],
+  [path[0], path[2], path[4], path[6], path[7], path[9]],
+  [path[0], path[2], path[4], path[5], path[7], path[9]],
+  [path[0], path[2], path[3], path[5], path[7], path[10]],
+  [path[0], path[1], path[3], path[5], path[8], path[10]],
+];
 
 const blue_img = [path[11], path[12], path[13], path[14], path[15], path[16]];
 const red_img = [path[17], path[18], path[19], path[20], path[21], path[22]];
@@ -408,34 +423,35 @@ for (i = 0; i < gradation.length; i++) {
 //コマの中心の座標を用意
 for (var i in imagearray) {
   for (var j in imagearray[i]) {
-    my_imagearray_center[i][j].x += koma_w / 2 * size;
-    my_imagearray_center[i][j].y += koma_h / 2 * size;
+    my_imagearray_center[i][j].x += (koma_w / 2) * size;
+    my_imagearray_center[i][j].y += (koma_h / 2) * size;
   }
 }
 
 //セッターの座標を修正
-my_imagearray_center[3][0].x = my_imagearray_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-my_imagearray_center[3][0].y = my_imagearray_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+my_imagearray_center[3][0].x = my_imagearray_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[3][0].y = my_imagearray_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-my_imagearray_center[4][0].x = my_imagearray_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
-my_imagearray_center[4][0].y = my_imagearray_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
-imagearray[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+my_imagearray_center[4][0].x = my_imagearray_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
+my_imagearray_center[4][0].y = my_imagearray_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
+imagearray[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-my_imagearray_center[5][0].x = my_imagearray_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-my_imagearray_center[5][0].y = my_imagearray_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-imagearray[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-
+my_imagearray_center[5][0].x = my_imagearray_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[5][0].y = my_imagearray_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
 let images = new Array(6); //要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
   images[i] = new Array(6).fill(0);
 }
-for (var i = 0; i < 6; i++) { //ローテーション
-  for (var j = 0; j < 6; j++) { //コマ番号
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
     images[i][j] = new Image();
   }
 }
@@ -444,8 +460,10 @@ let blue_koma = new Array(6); //要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
   blue_koma[i] = new Array(6).fill(0);
 }
-for (var i = 0; i < 6; i++) { //ローテーション
-  for (var j = 0; j < 6; j++) { //コマ番号
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
     blue_koma[i][j] = new Image();
   }
 }
@@ -453,8 +471,10 @@ let red_koma = new Array(6); //要素数6の配列imagesを作成
 for (var i = 0; i < 6; i++) {
   red_koma[i] = new Array(6).fill(0);
 }
-for (var i = 0; i < 6; i++) { //ローテーション
-  for (var j = 0; j < 6; j++) { //コマ番号
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
     red_koma[i][j] = new Image();
   }
 }
@@ -462,51 +482,51 @@ for (var i = 0; i < 6; i++) { //ローテーション
 //コマの中心の座標を用意
 for (var i in array_center) {
   for (var j in array_center[i]) {
-    array_center[i][j].x += koma_w / 2 * size;
-    array_center[i][j].y += koma_h / 2 * size;
+    array_center[i][j].x += (koma_w / 2) * size;
+    array_center[i][j].y += (koma_h / 2) * size;
   }
 }
 
 //セッターの座標を修正
-array_center[3][0].x = array_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-array_center[3][0].y = array_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-array[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-array[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+array_center[3][0].x = array_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+array_center[3][0].y = array_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+array[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+array[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-array_center[4][0].x = array_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
-array_center[4][0].y = array_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
-array[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-array[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+array_center[4][0].x = array_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
+array_center[4][0].y = array_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
+array[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+array[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-array_center[5][0].x = array_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+array_center[5][0].x = array_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+array_center[5][0].y = array_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+array[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+array[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-let subject_array = [];//主観的データ2550
-let object_array = [];//客観的データ2550
-//主観的のdata
-let data_array_sub_0 = [];//2-3
-let data_array_sub_1 = [];//2-4
-let data_array_sub_2 = [];//2-5
-let data_array_sub_3 = [];//2-6
-let data_array_sub_4 = [];//3-4
-let data_array_sub_5 = [];//3-5
-let data_array_sub_6 = [];//3-6
-let data_array_sub_7 = [];//4-5
-let data_array_sub_8 = [];//4-6
-let data_array_sub_9 = [];//5-6
-//客観的のdata
-let data_array_ob_0 = [];//2-3
-let data_array_ob_1 = [];//2-4
-let data_array_ob_2 = [];//2-5
-let data_array_ob_3 = [];//2-6
-let data_array_ob_4 = [];//3-4
-let data_array_ob_5 = [];//3-5
-let data_array_ob_6 = [];//3-6
-let data_array_ob_7 = [];//4-5
-let data_array_ob_8 = [];//4-6
-let data_array_ob_9 = [];//5-6
+let subject_array = []; //選手データ2550
+let object_array = []; //観客データ2550
+//選手のdata
+let data_array_sub_0 = []; //2-3
+let data_array_sub_1 = []; //2-4
+let data_array_sub_2 = []; //2-5
+let data_array_sub_3 = []; //2-6
+let data_array_sub_4 = []; //3-4
+let data_array_sub_5 = []; //3-5
+let data_array_sub_6 = []; //3-6
+let data_array_sub_7 = []; //4-5
+let data_array_sub_8 = []; //4-6
+let data_array_sub_9 = []; //5-6
+//観客のdata
+let data_array_ob_0 = []; //2-3
+let data_array_ob_1 = []; //2-4
+let data_array_ob_2 = []; //2-5
+let data_array_ob_3 = []; //2-6
+let data_array_ob_4 = []; //3-4
+let data_array_ob_5 = []; //3-5
+let data_array_ob_6 = []; //3-6
+let data_array_ob_7 = []; //4-5
+let data_array_ob_8 = []; //4-6
+let data_array_ob_9 = []; //5-6
 
 //lr.coef_の値取得、テストデータ作成、特徴量として変換、
 let formData_area = new FormData();
@@ -517,81 +537,81 @@ xhr_area.addEventListener("loadend", function () {
     let data = JSON.parse(xhr_area.response);
     for (i = 0; i < data.length; i++) {
       if (data[i].type == 0) {
-        //主観的
+        //選手
         subject_array.push(data[i]);
       } else if (data[i].type == 1) {
-        //客観的
+        //観客
         object_array.push(data[i]);
       }
     }
-    //主観的データをペアごとに分ける各255
+    //選手データをペアごとに分ける各255
     for (i = 0; i < subject_array.length; i++) {
       switch (subject_array[i].left_player * subject_array[i].right_player) {
-        case 6://2-3
+        case 6: //2-3
           data_array_sub_0.push(subject_array[i]);
           break;
-        case 8://2-4
+        case 8: //2-4
           data_array_sub_1.push(subject_array[i]);
           break;
-        case 10://2-5
+        case 10: //2-5
           data_array_sub_2.push(subject_array[i]);
           break;
-        case 12://2-6 3-4
+        case 12: //2-6 3-4
           if (subject_array[i].left_player == 2 || subject_array[i].right_player == 2) {
             data_array_sub_3.push(subject_array[i]);
           } else {
             data_array_sub_4.push(subject_array[i]);
           }
           break;
-        case 15://3-5
+        case 15: //3-5
           data_array_sub_5.push(subject_array[i]);
           break;
-        case 18://3-6
+        case 18: //3-6
           data_array_sub_6.push(subject_array[i]);
           break;
-        case 20://4-5
+        case 20: //4-5
           data_array_sub_7.push(subject_array[i]);
           break;
-        case 24://4-6
+        case 24: //4-6
           data_array_sub_8.push(subject_array[i]);
           break;
-        case 30://5-6
+        case 30: //5-6
           data_array_sub_9.push(subject_array[i]);
           break;
       }
     }
-    //客観的データをペアごとに分ける各255
+    //観客データをペアごとに分ける各255
     for (i = 0; i < object_array.length; i++) {
       switch (object_array[i].left_player * object_array[i].right_player) {
-        case 6://2-3
+        case 6: //2-3
           data_array_ob_0.push(object_array[i]);
           break;
-        case 8://2-4
+        case 8: //2-4
           data_array_ob_1.push(object_array[i]);
           break;
-        case 10://2-5
+        case 10: //2-5
           data_array_ob_2.push(object_array[i]);
           break;
-        case 12://2-6 3-4
+        case 12: //2-6 3-4
           if (object_array[i].left_player == 2 || object_array[i].right_player == 2) {
             data_array_ob_3.push(object_array[i]);
           } else {
             data_array_ob_4.push(object_array[i]);
           }
           break;
-        case 15://3-5
+        case 15: //3-5
           data_array_ob_5.push(object_array[i]);
           break;
-        case 18://3-6
+        case 18: //3-6
           data_array_ob_6.push(object_array[i]);
           break;
-        case 20://4-5
+        case 20: //4-5
           data_array_ob_7.push(object_array[i]);
           break;
-        case 24://4-6
+        case 24: //4-6
           data_array_ob_8.push(object_array[i]);
           break;
-        case 30://5-6
+        case 30: //5-6
           data_array_ob_9.push(object_array[i]);
           break;
       }
@@ -602,21 +622,21 @@ xhr_area.addEventListener("loadend", function () {
 xhr_area.send(formData_area);
 
 //経験年数
-inputSliderEle = document.getElementById('experience_change');
-inputSliderEle.addEventListener('change', function () {
+inputSliderEle = document.getElementById("experience_change");
+inputSliderEle.addEventListener("change", function () {
   exp_level = inputSliderEle.value;
   collective();
 });
 
 //世代別表示
-inputSlideBarElement = document.getElementById('generation_change');
-inputSlideBarElement.addEventListener('change', function () {
+inputSlideBarElement = document.getElementById("generation_change");
+inputSlideBarElement.addEventListener("change", function () {
   gene_level = inputSlideBarElement.value;
   collective();
 });
 
 let datakeep = [];
-let max_gene //最大世代数
+let max_gene; //最大世代数
 formData = new FormData();
 xhr = new XMLHttpRequest();
 xhr.open("GET", "../PHP/collective.php");
@@ -633,55 +653,51 @@ xhr.addEventListener("loadend", function () {
     for (let i = 0; i < data[1][0][0]; i++) {
       for (let j = 0; j < data[0].length; j++) {
         if (data[0][j].generation == i + 1) {
-          gene[i].push(data[0][j])
+          gene[i].push(data[0][j]);
         }
       }
     }
     genekeep = gene;
     max_gene = genekeep.length;
     if (max_gene != 1) {
-      document.getElementById('max_gene').innerHTML = max_gene + '世代目';
+      document.getElementById("max_gene").innerHTML = max_gene + "世代目";
     }
     document.getElementById("generation_change").max = genekeep.length - 1;
   }
 });
-xhr.send(formData)
-
+xhr.send(formData);
 
 // 画像を読み込み終わってからソースを取得する
 for (var i = 0; i < 6; i++) {
-  for (var j = 0; j < 6; j++)
-    images[i][j].src = img[i][j];
+  for (var j = 0; j < 6; j++) images[i][j].src = img[i][j];
 }
 for (var i = 0; i < 6; i++) {
-  for (var j = 0; j < 6; j++)
-    blue_koma[i][j].src = blue_img[j];
+  for (var j = 0; j < 6; j++) blue_koma[i][j].src = blue_img[j];
 }
 for (var i = 0; i < 6; i++) {
-  for (var j = 0; j < 6; j++)
-    red_koma[i][j].src = red_img[j];
+  for (var j = 0; j < 6; j++) red_koma[i][j].src = red_img[j];
 }
 
 //初期配置
 // あなたの配置
 for (let i = 0; i < 6; i++) {
-  images[0][i].addEventListener('load', () => {
-    my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
-  })
+  images[0][i].addEventListener("load", () => {
+    my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size);
+  });
 }
 
 // 集合知
 for (let i = 0; i < 6; i++) {
-  images[0][i].addEventListener('load', () => {
-    ot_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
-  })
+  images[0][i].addEventListener("load", () => {
+    ot_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size);
+  });
 }
 
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
-  red_koma[0][i].addEventListener('load', () => {
-    com_ctx.drawImage(red_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size)
-    com_ctx.drawImage(blue_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size)
+  red_koma[0][i].addEventListener("load", () => {
+    com_ctx.drawImage(red_koma[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size);
+    com_ctx.drawImage(blue_koma[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size);
   });
 }
 
@@ -718,16 +734,8 @@ function draw(rota) {
       com_ctx.drawImage(blue_koma[rota][i], imagearray[rota][i].x * scale, imagearray[rota][i].y * scale, koma_w * size, koma_h * size);
     }
   }
-
 }
-const rotation_images = [
-  '../Picture/サイクル_1.png',
-  '../Picture/サイクル_2.png',
-  '../Picture/サイクル_3.png',
-  '../Picture/サイクル_4.png',
-  '../Picture/サイクル_5.png',
-  '../Picture/サイクル_6.png',
-];
+const rotation_images = ["../Picture/サイクル_1.png", "../Picture/サイクル_2.png", "../Picture/サイクル_3.png", "../Picture/サイクル_4.png", "../Picture/サイクル_5.png", "../Picture/サイクル_6.png"];
 //ローテーションボタンを押されたら
 function rotation() {
   counter++;
@@ -737,34 +745,34 @@ function rotation() {
   }
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
-  document.getElementById('rotation_image').src = rotation_images[counter];
+  document.getElementById("rotation_image").src = rotation_images[counter];
   draw(counter);
   collective();
 }
 
-const my_can2 = document.getElementById('my2');
-const my_ctx2 = my_can2.getContext('2d');
-const ot_can2 = document.getElementById('other2');
-const ot_ctx2 = ot_can2.getContext('2d');
-const omiai_color = '#00EA5F';//お見合い範囲の色 #00EA5F
-my_ctx2.fillStyle = omiai_color;//色
+const my_can2 = document.getElementById("my2");
+const my_ctx2 = my_can2.getContext("2d");
+const ot_can2 = document.getElementById("other2");
+const ot_ctx2 = ot_can2.getContext("2d");
+const omiai_color = "#00EA5F"; //お見合い範囲の色 #00EA5F
+my_ctx2.fillStyle = omiai_color; //色
 ot_ctx2.fillStyle = omiai_color;
 let originX = 39;
 let originY = 571.5;
 let endX = 571.5;
 let endY = 39;
-let pixel_sizeX = (endX - originX) / 46;//1ドットの大きさ（単位[m]）　横幅
-let pixel_sizeY = (originY - endY) / 46;//1ドットの大きさ（単位[m])　縦幅
-originY = originY - pixel_sizeY;//1ドットの大きさ分引く
-endX = endX - pixel_sizeX;//1ドットの大きさ分引く
+let pixel_sizeX = (endX - originX) / 46; //1ドットの大きさ（単位[m]）　横幅
+let pixel_sizeY = (originY - endY) / 46; //1ドットの大きさ（単位[m])　縦幅
+originY = originY - pixel_sizeY; //1ドットの大きさ分引く
+endX = endX - pixel_sizeX; //1ドットの大きさ分引く
 let overlap = 3;
 
 //bitmap用のHTMLCanvasElementオブジェクトを作成する
-let canvasBit = document.createElement('canvas');
+let canvasBit = document.createElement("canvas");
 canvasBit.width = my_can2.width;
 canvasBit.height = my_can2.height;
 //CanvasRenderingContext2Dオブジェクトを取得する
-let contextBit = canvasBit.getContext('2d');
+let contextBit = canvasBit.getContext("2d");
 //ImageDataオブジェクトを作成する
 let image_dataBit = contextBit.createImageData(46, 46);
 //Uint8ClampedArrayオブジェクトを取得する
@@ -778,7 +786,7 @@ function my_omiai(judge_area) {
   contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   let k_sum = 0;
-  let percentage = 0
+  let percentage = 0;
   for (xBit = 0; xBit < wBit; ++xBit) {
     for (yBit = hBit; yBit > 0; --yBit) {
       //RGBAのRを取得
@@ -821,7 +829,7 @@ function ot_omiai(judge_area) {
   contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
-  let percentage = 0
+  let percentage = 0;
   for (xBit = 0; xBit < wBit; ++xBit) {
     for (yBit = hBit; yBit > 0; --yBit) {
       //RGBAのRを取得
@@ -863,7 +871,7 @@ function collective() {
   let index = 100000;
   let k = 0;
   gene_level = Number(gene_level);
-  document.getElementById('other4').style.backgroundImage = 'url("")'
+  document.getElementById("other4").style.backgroundImage = 'url("")';
   for (i = 0; i < genekeep[gene_level].length; i++) {
     if (genekeep[gene_level][i]["experience_years"] == exp_level && genekeep[gene_level][i]["rotation"] == counter) {
       index = i;
@@ -874,31 +882,30 @@ function collective() {
     for (i = 0; i < 6; i++) {
       array[counter][i].x = genekeep[gene_level][index + i]["x_coordinate"];
       array[counter][i].y = genekeep[gene_level][index + i]["y_coordinate"];
-      array_center[counter][i].x = array[counter][i].x + koma_w / 2 * size;
-      array_center[counter][i].y = array[counter][i].y + koma_h / 2 * size;
+      array_center[counter][i].x = array[counter][i].x + (koma_w / 2) * size;
+      array_center[counter][i].y = array[counter][i].y + (koma_h / 2) * size;
     }
     //セッターの座標を修正
-    array_center[3][0].x = array_center[3][5].x + koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-    array_center[3][0].y = array_center[3][5].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-    array[3][0].x += koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-    array[3][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    array_center[3][0].x = array_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+    array_center[3][0].y = array_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+    array[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+    array[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-    array_center[4][0].x = array_center[4][3].x - koma_w / 2 * size * Math.cos(Math.PI / 4) + 50 - 10 * size;//45°
-    array_center[4][0].y = array_center[4][3].y + koma_h / 2 * size * Math.sin(Math.PI / 4) + 50 - 10 * size;//45°
-    array[4][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-    array[4][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    array_center[4][0].x = array_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
+    array_center[4][0].y = array_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
+    array[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+    array[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 
-    array_center[5][0].x = array_center[5][1].x - koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-    array_center[5][0].y = array_center[5][1].y + koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
-    array[5][0].x -= koma_w / 2 * size * Math.cos(Math.PI / 4) - 50 + 10 * size;//45°
-    array[5][0].y += koma_h / 2 * size * Math.sin(Math.PI / 4) - 50 + 10 * size;//45°
+    array_center[5][0].x = array_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+    array_center[5][0].y = array_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+    array[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+    array[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
     check = 0;
     draw(counter);
     area(counter);
-
   } else {
     // 世代がなかった時の処理
-    document.getElementById('other4').style.backgroundImage = 'url("../Picture/バレーコート背景3.png")'
+    document.getElementById("other4").style.backgroundImage = 'url("../Picture/バレーコート背景3.png")';
     check = 1;
     draw(counter);
     area(counter);
@@ -906,7 +913,7 @@ function collective() {
 }
 function area() {
   //あなたの配置
-  //主観的お見合い範囲
+  //選手お見合い範囲
   let my_judge_color_sub_0 = my_calculation(counter, data_array_sub_0);
   let my_judge_color_sub_1 = my_calculation(counter, data_array_sub_1);
   let my_judge_color_sub_2 = my_calculation(counter, data_array_sub_2);
@@ -917,7 +924,7 @@ function area() {
   let my_judge_color_sub_7 = my_calculation(counter, data_array_sub_7);
   let my_judge_color_sub_8 = my_calculation(counter, data_array_sub_8);
   let my_judge_color_sub_9 = my_calculation(counter, data_array_sub_9);
-  //客観的お見合い範囲
+  //観客お見合い範囲
   let my_judge_color_ob_0 = my_calculation(counter, data_array_ob_0);
   let my_judge_color_ob_1 = my_calculation(counter, data_array_ob_1);
   let my_judge_color_ob_2 = my_calculation(counter, data_array_ob_2);
@@ -930,7 +937,7 @@ function area() {
   let my_judge_color_ob_9 = my_calculation(counter, data_array_ob_9);
 
   //集合知の配置
-  //主観的お見合い範囲
+  //選手お見合い範囲
   let ot_judge_color_sub_0 = ot_calculation(counter, data_array_sub_0);
   let ot_judge_color_sub_1 = ot_calculation(counter, data_array_sub_1);
   let ot_judge_color_sub_2 = ot_calculation(counter, data_array_sub_2);
@@ -941,7 +948,7 @@ function area() {
   let ot_judge_color_sub_7 = ot_calculation(counter, data_array_sub_7);
   let ot_judge_color_sub_8 = ot_calculation(counter, data_array_sub_8);
   let ot_judge_color_sub_9 = ot_calculation(counter, data_array_sub_9);
-  //客観的お見合い範囲
+  //観客お見合い範囲
   let ot_judge_color_ob_0 = ot_calculation(counter, data_array_ob_0);
   let ot_judge_color_ob_1 = ot_calculation(counter, data_array_ob_1);
   let ot_judge_color_ob_2 = ot_calculation(counter, data_array_ob_2);
@@ -953,18 +960,62 @@ function area() {
   let ot_judge_color_ob_8 = ot_calculation(counter, data_array_ob_8);
   let ot_judge_color_ob_9 = ot_calculation(counter, data_array_ob_9);
 
-
-
   //10パターンの重なってるところ 10+結果用の+1
-  let my_judge_color_sub = color_sub(my_judge_color_sub_0, my_judge_color_sub_1, my_judge_color_sub_2, my_judge_color_sub_3, my_judge_color_sub_4, my_judge_color_sub_5, my_judge_color_sub_6, my_judge_color_sub_7, my_judge_color_sub_8, my_judge_color_sub_9, my_judge_color_sub_0);
-  let my_judge_color_ob = color_sub(my_judge_color_ob_0, my_judge_color_ob_1, my_judge_color_ob_2, my_judge_color_ob_3, my_judge_color_ob_4, my_judge_color_ob_5, my_judge_color_ob_6, my_judge_color_ob_7, my_judge_color_ob_8, my_judge_color_ob_9, my_judge_color_ob_0);
+  let my_judge_color_sub = color_sub(
+    my_judge_color_sub_0,
+    my_judge_color_sub_1,
+    my_judge_color_sub_2,
+    my_judge_color_sub_3,
+    my_judge_color_sub_4,
+    my_judge_color_sub_5,
+    my_judge_color_sub_6,
+    my_judge_color_sub_7,
+    my_judge_color_sub_8,
+    my_judge_color_sub_9,
+    my_judge_color_sub_0
+  );
+  let my_judge_color_ob = color_sub(
+    my_judge_color_ob_0,
+    my_judge_color_ob_1,
+    my_judge_color_ob_2,
+    my_judge_color_ob_3,
+    my_judge_color_ob_4,
+    my_judge_color_ob_5,
+    my_judge_color_ob_6,
+    my_judge_color_ob_7,
+    my_judge_color_ob_8,
+    my_judge_color_ob_9,
+    my_judge_color_ob_0
+  );
 
-  let ot_judge_color_sub = color_sub(ot_judge_color_sub_0, ot_judge_color_sub_1, ot_judge_color_sub_2, ot_judge_color_sub_3, ot_judge_color_sub_4, ot_judge_color_sub_5, ot_judge_color_sub_6, ot_judge_color_sub_7, ot_judge_color_sub_8, ot_judge_color_sub_9, ot_judge_color_sub_0);
-  let ot_judge_color_ob = color_sub(ot_judge_color_ob_0, ot_judge_color_ob_1, ot_judge_color_ob_2, ot_judge_color_ob_3, ot_judge_color_ob_4, ot_judge_color_ob_5, ot_judge_color_ob_6, ot_judge_color_ob_7, ot_judge_color_ob_8, ot_judge_color_ob_9, ot_judge_color_ob_0);
+  let ot_judge_color_sub = color_sub(
+    ot_judge_color_sub_0,
+    ot_judge_color_sub_1,
+    ot_judge_color_sub_2,
+    ot_judge_color_sub_3,
+    ot_judge_color_sub_4,
+    ot_judge_color_sub_5,
+    ot_judge_color_sub_6,
+    ot_judge_color_sub_7,
+    ot_judge_color_sub_8,
+    ot_judge_color_sub_9,
+    ot_judge_color_sub_0
+  );
+  let ot_judge_color_ob = color_sub(
+    ot_judge_color_ob_0,
+    ot_judge_color_ob_1,
+    ot_judge_color_ob_2,
+    ot_judge_color_ob_3,
+    ot_judge_color_ob_4,
+    ot_judge_color_ob_5,
+    ot_judge_color_ob_6,
+    ot_judge_color_ob_7,
+    ot_judge_color_ob_8,
+    ot_judge_color_ob_9,
+    ot_judge_color_ob_0
+  );
 
-
-
-  //主観的・客観的で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
+  //選手・観客で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
   let my_judge_color_merge = merge(my_judge_color_sub, my_judge_color_ob);
   let ot_judge_color_merge = merge(ot_judge_color_sub, ot_judge_color_ob);
 
@@ -978,17 +1029,17 @@ function area() {
     if (isNaN(area_percentage)) {
       area_percentage = 0;
     }
-    area_percentage = area_percentage / 2116 * 100;
-    area_percentage = area_percentage.toFixed(1)
+    area_percentage = (area_percentage / 2116) * 100;
+    area_percentage = area_percentage.toFixed(1);
     area_percentage = String(area_percentage);
-    area_percentage = area_percentage + '%';
+    area_percentage = area_percentage + "%";
     return area_percentage;
   }
-  document.getElementById('my_area_percentage').innerHTML = my_percent;
+  document.getElementById("my_area_percentage").innerHTML = my_percent;
   if (check == 0) {
-    document.getElementById('ot_area_percentage').innerHTML = ot_percent;
+    document.getElementById("ot_area_percentage").innerHTML = ot_percent;
   } else {
-    document.getElementById('ot_area_percentage').innerHTML = "－%";
+    document.getElementById("ot_area_percentage").innerHTML = "－%";
   }
 }
 
@@ -1007,8 +1058,7 @@ function merge(sub, ob) {
   return sum_judge;
 }
 
-
-
+//お見合い範囲の計算をしている
 function my_calculation(rota, data) {
   let color_array = [];
   let test_data = [];
@@ -1041,7 +1091,6 @@ function my_calculation(rota, data) {
 
   let reverce = 0;
   if (my_player1_x > my_player2_x) {
-    // idでの条件を描く
     my_player1_x = 9 - my_player1_x;
     my_player2_x = 9 - my_player2_x;
     reverce = 1;
@@ -1065,7 +1114,6 @@ function my_calculation(rota, data) {
     }
   }
 
-  // 標準化 meanとstdに代入するdataのindex番号はdataに入っている量によって変えないといけない
   let mean = [
     data[0]["mean_players_sabun_x"],
     data[0]["mean_players_sabun_y"],
@@ -1178,7 +1226,6 @@ function ot_calculation(rota, data) {
     }
   }
 
-
   //左の選手
   let ot_player1_x = (array_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
   let ot_player1_y = (array_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
@@ -1191,7 +1238,6 @@ function ot_calculation(rota, data) {
 
   let reverce = 0;
   if (ot_player1_x > ot_player2_x) {
-    // idでの条件を描く
     ot_player1_x = 9 - ot_player1_x;
     ot_player2_x = 9 - ot_player2_x;
     reverce = 1;
@@ -1215,7 +1261,6 @@ function ot_calculation(rota, data) {
     }
   }
 
-  // 標準化 meanとstdに代入するdataのindex番号はdataに入っている量によって変えないといけない
   let mean = [
     data[0]["mean_players_sabun_x"],
     data[0]["mean_players_sabun_y"],
@@ -1353,4 +1398,4 @@ function sum(x1, x2, x3, x4, x5, x6) {
     counter_k = -1;
   }
   return answer;
-};
+}

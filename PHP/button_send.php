@@ -10,7 +10,6 @@ include 'db_config.php';
 //dbとの接続試行・データ送信
 try{
     $dbh = new PDO($dsn, $user, $password);
-    // print('接続に成功しました。<br>');
     $sql = "INSERT INTO `answer`(`movie_id`, `movie_categorize`, `experience_years`,`left_or_right`) VALUES ($movie_id,$movie_categorize,$experience_years,$left_or_right)";
     $dbh -> query($sql);
     print("登録しました！");

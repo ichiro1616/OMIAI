@@ -1,8 +1,4 @@
 <?php
-// $id = $_POST['player_id'];
-// $dsn = 'mysql:dbname=omiai_db;host=localhost';
-// $user = 'root';
-// $password = 'Pa22wadoh';
 include 'db_config.php';
 
 $result = array();
@@ -18,7 +14,7 @@ try {
     $result = $stmt->fetchAll();
 
 
-// 指定したid以外で、指定したball_idと同じball_idのid、名前などの値をランダムで取得
+// 指定したid以外で、指定したball_idと同じball_idのid、名前などの値をランダムで取得　デバッグ用
 // $sql2 = "SELECT * FROM `users` WHERE NOT (`id` = $id) AND `ball_id` = {$result[0]["ball_id"]} ORDER BY RAND() LIMIT 4";
 // $stmt2 = $dbh->prepare($sql2);
 // $stmt2->execute();
