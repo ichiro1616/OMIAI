@@ -1,6 +1,23 @@
 # OMIAI
 
-JavaScript,Pythonの各ファイルの機能
+HTML/CSSの各ファイルの機能
+
+- ### OMIAI.html/OMIAI.css
+  ホーム画面を表示します。
+
+- ### watch_movie.html/watch_movie.css
+  観客クイズページを表示します。
+
+- ### simulation.html/simulation.css
+  配置シミュレーションページを表示します。ホーム画面からのボタンで遷移します。
+
+- ### collective.html/collective.css
+  集合知表示ページを表示します。ホーム画面からのボタンで遷移します。
+
+- ### objectivity_insert.html
+  裏側で動かす用のページです。db_insert_lr.coef_phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
+
+JavaScriptの各ファイルの機能
 
 - ### OMIAI.js
   観客クイズの回答総数、配置シミュレーションの登録総数、集合知の最大世代数を取得し表示します。
@@ -19,9 +36,10 @@ JavaScript,Pythonの各ファイルの機能
 - ### objectivity_insert.js
   db_inesrt_lr.coef_.phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
   
+Pythonの各ファイルの機能
+
 - ### collective.py
   配置シミュレーションで登録された選手のx,y座標をDBから取り出し、5人で1世代として座標の平均値の計算を行います。計算が完了したら、結果をDBへ挿入します。
-  
   
 - ### coord_transformation.py
   2台のカメラで撮った動画から取得される座標を使って変換式を連立させ、スクリーン座標からワールド座標へ変換します。
@@ -37,3 +55,14 @@ JavaScript,Pythonの各ファイルの機能
   
 - ### subjectivity_predict.py
   選手データからお見合い範囲を計算するための式を導出します。phpでこのコードを呼び出し、DBへ挿入します。
+
+SQLの各ファイルの機能
+
+- ### omiai_db.sql
+  - 動画の回答結果が入っているanswer_table
+  - 集合知の情報が入っているcollective_table
+  - お見合い範囲計算の式の係数が入っているlr.coef_table
+  - 動画のパスが入っているmovie_table
+  - 選手の情報が入っているplayer_table
+  - 選手の配置データが入っているregister_table
+  以上の6つのテーブルがあるDBです。
