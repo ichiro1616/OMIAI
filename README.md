@@ -17,9 +17,6 @@ JavaScript,Pythonの各ファイルの機能
 - ### objectivity_insert.js
   db_inesrt_lr.coef_.phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
   
-- ### collecitve copy.py
-  概要を記述
-  
 - ### collective.py
   概要を記述
   
