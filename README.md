@@ -59,10 +59,10 @@ Pythonの各ファイルの機能
 SQLの各ファイルの機能
 
 - ### omiai_db.sql
+  以下の6つのテーブルがあるDBです。
   - 動画の回答結果が入っているanswer_table
   - 集合知の情報が入っているcollective_table
   - お見合い範囲計算の式の係数が入っているlr.coef_table
   - 動画のパスが入っているmovie_table
   - 選手の情報が入っているplayer_table
   - 選手の配置データが入っているregister_table
-  以上の6つのテーブルがあるDBです。
