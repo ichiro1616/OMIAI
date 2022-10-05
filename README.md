@@ -15,7 +15,7 @@ JavaScript,Pythonの各ファイルの機能
   概要を記述
 
 - ### objectivity_insert.js
-  概要を記述
+  db_inesrt_lr.coef_.phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
   
 - ### collecitve copy.py
   概要を記述
@@ -24,19 +24,19 @@ JavaScript,Pythonの各ファイルの機能
   概要を記述
   
 - ### coord_transformation.py
-  概要を記述
+  2台のカメラで撮った動画から取得される座標を使って変換式を連立させ、スクリーン座標からワールド座標へ変換します。
   
 - ### db_config.py
-  概要を記述
+  DBへ接続するためのホスト名、ユーザー名、パスワード、DB名をローカル用とロリポップ用で切り替えます。
   
 - ### db_insert.py
-  概要を記述
+  csvファイルから動画のパスを取得し、DBへ挿入します。
   
 - ### objectivity_predict.py
-  概要を記述
+  観客データからお見合い範囲を計算するための式を導出します。phpでこのコードを呼び出し、DBへ挿入します。
   
 - ### subjectivity_predict.py
-  概要を記述
+  選手データからお見合い範囲を計算するための式を導出します。phpでこのコードを呼び出し、DBへ挿入します。
 
 
 
