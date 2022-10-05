@@ -17,8 +17,6 @@ HTML/CSSの各ファイルの機能
 - ### objectivity_insert.html
   裏側で動かす用のページです。db_insert_lr.coef_phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
 
-
-
 JavaScriptの各ファイルの機能
 
 - ### OMIAI.js
