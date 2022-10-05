@@ -1,5 +1,5 @@
 setInterval(insert, 300000);
-//5分に1回実行
+//5分に1回実行する
 function insert() {
   form = new FormData();
   xhr = new XMLHttpRequest();
