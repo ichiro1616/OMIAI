@@ -1,6 +1,6 @@
 # OMIAI
 
-HTML/CSSの各ファイルの機能
+## HTML/CSSの各ファイルの機能
 
 - ### OMIAI.html/OMIAI.css
   ホーム画面を表示します。
@@ -17,7 +17,7 @@ HTML/CSSの各ファイルの機能
 - ### objectivity_insert.html
   裏側で動かす用のページです。db_insert_lr.coef_phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
 
-JavaScriptの各ファイルの機能
+## JavaScriptの各ファイルの機能
 
 - ### OMIAI.js
   観客クイズの回答総数、配置シミュレーションの登録総数、集合知の最大世代数を取得し表示します。
