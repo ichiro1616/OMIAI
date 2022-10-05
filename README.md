@@ -9,7 +9,7 @@ JavaScript,Pythonの各ファイルの機能
   概要を記述
 
 - ### simulation.js
-  概要を記述
+  コート上に配置された選手コマの座標からお見合い範囲を計算し、ビットマップで表示します。登録ボタンが押されると、選手コマの座標をlocalStorageとDBに登録します。
 
 - ### collective_script.js
   概要を記述
@@ -42,7 +42,7 @@ JavaScript,Pythonの各ファイルの機能
 
 
 
-# SENKEN
+# SENKEN　参考用
 
 - ### upload.py  
 　新しくフォルダに追加された動画のPATHをDBに挿入します。  
