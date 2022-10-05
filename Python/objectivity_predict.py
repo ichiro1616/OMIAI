@@ -1,11 +1,8 @@
-#客観的データからお見合い範囲を計算するための式を導出する
-from datetime import datetime
-from itertools import count
+#観客データからお見合い範囲を計算するための式を導出する
 import db_config as dbc
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LogisticRegressionCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
@@ -44,24 +41,24 @@ cur.execute(sql)
 answer_array = cur.fetchall()
 for o,csvname in enumerate(pattern):
 
-     #figure()でグラフを表示する領域をつくり，figというオブジェクトにする．
-    fig = plt.figure()
-    ax1 = fig.add_subplot(3, 4, 1)
-    ax2 = fig.add_subplot(3, 4, 2)
-    ax3 = fig.add_subplot(3, 4, 3)
-    ax4 = fig.add_subplot(3, 4, 4)
-    # ax5 = fig.add_subplot(3, 4, 5)
-    ax6 = fig.add_subplot(3, 4, 5)
-    ax7 = fig.add_subplot(3, 4, 6)
-    ax8 = fig.add_subplot(3, 4, 7)
-    ax9 = fig.add_subplot(3, 4, 8)
-    # ax10 = fig.add_subplot(3, 4, 10)
-    ax11 = fig.add_subplot(3, 4, 9)
-    ax12 = fig.add_subplot(3, 4, 10)
-    ax13 = fig.add_subplot(3, 4, 11)
-    ax14 = fig.add_subplot(3, 4, 12)
-    # ax15 = fig.add_subplot(3, 4, 15)
-    axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
+    #  #figure()でグラフを表示する領域をつくり，figというオブジェクトにする．デバッグ用
+    # fig = plt.figure()
+    # ax1 = fig.add_subplot(3, 4, 1)
+    # ax2 = fig.add_subplot(3, 4, 2)
+    # ax3 = fig.add_subplot(3, 4, 3)
+    # ax4 = fig.add_subplot(3, 4, 4)
+    # # ax5 = fig.add_subplot(3, 4, 5)
+    # ax6 = fig.add_subplot(3, 4, 5)
+    # ax7 = fig.add_subplot(3, 4, 6)
+    # ax8 = fig.add_subplot(3, 4, 7)
+    # ax9 = fig.add_subplot(3, 4, 8)
+    # # ax10 = fig.add_subplot(3, 4, 10)
+    # ax11 = fig.add_subplot(3, 4, 9)
+    # ax12 = fig.add_subplot(3, 4, 10)
+    # ax13 = fig.add_subplot(3, 4, 11)
+    # ax14 = fig.add_subplot(3, 4, 12)
+    # # ax15 = fig.add_subplot(3, 4, 15)
+    # axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
 
     movie_id_array = [] #動画のパスから特定の20個のmovie_idをとってくる処理をかく
     target_array = []
@@ -97,7 +94,6 @@ for o,csvname in enumerate(pattern):
         for i in movie_id_array:  #targetを決めている。
             judge_array = []
             for row in gain_array: #経験年数に応じて増やしたデータ
-            # for row in answer_array: #経験年数に応じて増やしてないデータ
                 if row[1] == i:
                     judge_array.append(row[4])
             zero_count = judge_array.count(0)
@@ -136,7 +132,6 @@ for o,csvname in enumerate(pattern):
                     df_train["player2_x"] = 9 - df_train["player2_x"]
                     df_train["court_x"] = 9 - df_train["court_x"]
                     for k in range(len(df_train)):
-                    # # print(df_train["target"][i])
                         if(df_train.loc[k, "target"]  == 0):
                             df_train.loc[k, "target"] = 1
                         elif (df_train.loc[k, "target"]  == 1):
@@ -176,19 +171,12 @@ for o,csvname in enumerate(pattern):
     df_train['player2_ball_sabun_x'] = df_train['player2_x'] - df_train['ball_x']
     df_train['player2_ball_sabun_y'] = df_train['player2_y'] - df_train['ball_y']
    
+   #テストデータ　デバッグ用
     # df_test_pattern = ["../Python/pattern/pattern_1.csv", "../Python/pattern/pattern_2.csv", "../Python/pattern/pattern_3.csv", "../Python/pattern/pattern_4.csv", "../Python/pattern/pattern_6.csv", "../Python/pattern/pattern_7.csv", "../Python/pattern/pattern_8.csv", "../Python/pattern/pattern_9.csv","../Python/pattern/pattern_11.csv", "../Python/pattern/pattern_12.csv", "../Python/pattern/pattern_13.csv", "../Python/pattern/pattern_14.csv"]
-    
     # for k,link in enumerate(df_test_pattern):
     #     df_test = pd.read_csv(link, encoding="utf_8")
        
 
-    #     # df_test = pd.read_csv("../Python/test_data.csv", encoding="utf_8")
-    #     df_test['players_sabun_x'] = df_test['player1_x'] - df_test['player2_x']
-    #     df_test['players_sabun_y'] = df_test['player1_y'] - df_test['player2_y']
-    #     df_test['player1_ball_sabun_x'] = df_test['player1_x'] - df_test['ball_x']
-    #     df_test['player1_ball_sabun_y'] = df_test['player1_y'] - df_test['ball_y']
-    #     df_test['player2_ball_sabun_x'] = df_test['player2_x'] - df_test['ball_x']
-    #     df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
 
 
     train = df_train[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
@@ -197,20 +185,27 @@ for o,csvname in enumerate(pattern):
     train = (train-mean)/std
 
 
-
+   #テストデータ　デバッグ用
+    #     # df_test = pd.read_csv("../Python/test_data.csv", encoding="utf_8")
+    #     df_test['players_sabun_x'] = df_test['player1_x'] - df_test['player2_x']
+    #     df_test['players_sabun_y'] = df_test['player1_y'] - df_test['player2_y']
+    #     df_test['player1_ball_sabun_x'] = df_test['player1_x'] - df_test['ball_x']
+    #     df_test['player1_ball_sabun_y'] = df_test['player1_y'] - df_test['ball_y']
+    #     df_test['player2_ball_sabun_x'] = df_test['player2_x'] - df_test['ball_x']
+    #     df_test['player2_ball_sabun_y'] = df_test['player2_y'] - df_test['ball_y']
     # df_train.loc[df_train['target'] == 0, 'target'] = "blue"
     # df_train.loc[df_train['target'] == 1, 'target'] = "red"
     # df_train.loc[df_train['target'] == 2, 'target'] = "green"
-
-
-    y = df_train['target']
     # test = df_test[['players_sabun_x', 'players_sabun_y', 'player1_ball_sabun_x', 'player1_ball_sabun_y', 'player2_ball_sabun_x', 'player2_ball_sabun_y']]
     # test = (test-mean)/std
 
 
+    y = df_train['target']
+
+
     poly3d = PolynomialFeatures(degree=3, interaction_only=False, include_bias=True, order='C')
     train =  poly3d.fit_transform(train)
-    # test =  poly3d.fit_transform(test)
+    # test =  poly3d.fit_transform(test)　テストデータ　デバッグ用
     np.set_printoptions(threshold=np.inf)
 
     
@@ -248,7 +243,7 @@ for o,csvname in enumerate(pattern):
     print(x) #DBに送るデータ
 
 
-#  検証　DBに値を送らず、お見合い範囲のプロットを見る場合はアンコメント　
+# デバッグ用
 
 # #     print('Train score: {:.3f}'.format(lr.score(X_train, y_train)))
 #     # y_pred = lr.predict(test)
