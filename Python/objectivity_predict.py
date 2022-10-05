@@ -62,7 +62,7 @@ for o,csvname in enumerate(pattern):
     # # ax15 = fig.add_subplot(3, 4, 15)
     # axarray = [ax1, ax2, ax3, ax4, ax6, ax7, ax8, ax9, ax11, ax12, ax13, ax14]
 
-    movie_id_array = [] #動画のパスから特定の20個のmovie_idをとってくる処理をかく
+    movie_id_array = []
     target_array = []
     counter = 0
     for p,filename in enumerate(csvname):
@@ -100,7 +100,7 @@ for o,csvname in enumerate(pattern):
                     judge_array.append(row[4])
             zero_count = judge_array.count(0)
             one_count = judge_array.count(1)
-            if zero_count / (len(judge_array)) > 0.6:  ##answerテーブルに値がないとエラーが起きてしまうので、あらかじめ、動画閲覧ページでanswerテーブルに全動画の値を入れておく
+            if zero_count / (len(judge_array)) > 0.6:  
                 target_array.append(0)
             elif one_count /  (len(judge_array)) > 0.6:
                 target_array.append(1)
@@ -109,6 +109,7 @@ for o,csvname in enumerate(pattern):
 
        
 
+        #csv読み込み
         if(p != 0):
             a = pd.read_csv(filename, encoding="utf_8")
             a['target'] = target_array[counter:counter+20]
@@ -141,14 +142,12 @@ for o,csvname in enumerate(pattern):
             counter += 20
     pd.set_option('display.max_rows', None)
 
-    df_train_add_omiai = pd.read_csv("../Python/dummy_data/omiai_data.csv", encoding="utf_8")  #データ数311
-    df_train_add_player = pd.read_csv("../Python/dummy_data/player_data.csv", encoding="utf_8")  #データ数1405
+    df_train_add_omiai = pd.read_csv("../Python/dummy_data/omiai_data.csv", encoding="utf_8")  #データ数1063
+    df_train_add_player = pd.read_csv("../Python/dummy_data/player_data.csv", encoding="utf_8")  #データ数2639
 
     for row in range(len(df_train.index)):
         if(row != 0):
                     df_train = df_train.append(df_train.iloc[row])
-
-
 
     for row in range(len(df_train.index)):
         if(row != 0):

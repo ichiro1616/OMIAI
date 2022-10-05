@@ -48,6 +48,7 @@ for j,csvname in enumerate(pattern):
 
 
     for i,filename in enumerate(csvname):
+        #csv読み込み
         if(i != 0):
             a = pd.read_csv(filename, encoding="utf_8")
             if(a["judge"][0] == 1):
