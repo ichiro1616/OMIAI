@@ -48,7 +48,7 @@
   font-weight: bold;
   width: 20%;
   position: relative;
-  top: 6rem;
+  top: 7.5rem;
   box-shadow: 0.1rem 0.1rem 0 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -978,9 +978,9 @@ input[type="range"].slider::-webkit-slider-thumb {
   /* input にチェックが入るまでは非表示に */
 }
 
-#pop-up:checked + .overlay {
+#pop-up:checked+.overlay {
   display: block;
-  z-index: 9999;
+  z-index: 1000;
   background-color: #00000070;
   position: fixed;
   width: 100%;
@@ -990,10 +990,9 @@ input[type="range"].slider::-webkit-slider-thumb {
 }
 
 .window {
-  width: 40rem;
-  max-width: 40rem;
+  width: 40.8rem;
   height: 30rem;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -1012,7 +1011,21 @@ input[type="range"].slider::-webkit-slider-thumb {
 .close {
   cursor: pointer;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1rem;
+  text-align: center;
+  padding: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgba(228, 224, 224, 0.7);
+  top: 0.06rem;
+  right: 0rem;
+  font-size: 1.1rem;
+  z-index: 1010;
+  border-radius: 0.1rem 0.1rem 0rem 0rem;
+}
+
+.tutorial_movie {
+  position: absolute;
+  width: 40.8rem;
+  height: 23rem;
+  z-index: 1005;
 }

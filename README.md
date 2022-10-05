@@ -13,7 +13,7 @@ JavaScript,Pythonの各ファイルの機能
   コート上に配置された選手コマの座標とお見合い判断基準スライダーバーからお見合い範囲を計算し、ビットマップで表示します。登録ボタンが押されると、選手コマの座標をlocalStorageとDBに挿入します。
 
 - ### collective_script.js
-  概要を記述
+  localStorageとDBから選手の座標を取得し、表示させます。またその座標をもとにお見合い範囲を計算し、ビットマップで表示します。
 
 - ### objectivity_insert.js
   db_inesrt_lr.coef_.phpを通じてobjectivity_predict.pyを定期実行し、観客データから導出したお見合い範囲を計算するための式の係数をDBへ挿入します。
