@@ -76,7 +76,6 @@ for($i = 0; $i < count($color_array); $i++){
 }
 }
 }
-
 mysqli_close($mysqli);
 
 // JSON形式で出力する
