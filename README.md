@@ -6,16 +6,16 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
 
 ## HTML/CSSの各ファイルの機能
 
-- ### OMIAI.html/OMIAI.css
+- ### OMIAI.html,OMIAI.css
   ホーム画面を表示します。
 
-- ### watch_movie.html/watch_movie.css
+- ### watch_movie.html,watch_movie.css
   観客クイズページを表示します。ホーム画面からのボタンで遷移します。
 
-- ### simulation.html/simulation.css
+- ### simulation.html,simulation.css
   配置シミュレーションページを表示します。ホーム画面からのボタンで遷移します。
 
-- ### collective.html/collective.css
+- ### collective.html,collective.css
   集合知表示ページを表示します。ホーム画面からのボタンで遷移します。
 
 - ### objectivity_insert.html
@@ -43,8 +43,15 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
   
 ## Pythonの各ファイルの機能
 
+システム動作に使用
+
+- ### objectivity_predict.py
+  観客データからお見合い範囲を計算するための式を導出します。db_insert_lr.coef_.phpでこのコードを呼び出し、DBへ挿入します。
+
 - ### collective.py
   配置シミュレーションで登録された選手のx,y座標をDBから取り出し、5人で1世代として座標の平均値の計算を行います。計算が完了したら、結果をDBへ挿入します。
+  
+システム動作に不使用
   
 - ### coord_transformation.py
   2台のカメラで撮った動画から取得される座標を使って変換式を連立させ、スクリーン座標からワールド座標へ変換します。
@@ -54,9 +61,6 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
   
 - ### db_insert.py
   csvファイルから動画のパスを取得し、DBへ挿入します。
-  
-- ### objectivity_predict.py
-  観客データからお見合い範囲を計算するための式を導出します。db_insert_lr.coef_.phpでこのコードを呼び出し、DBへ挿入します。
   
 - ### subjectivity_predict.py
   選手データからお見合い範囲を計算するための式を導出します。db_insert_lr.coef_.phpでこのコードを呼び出し、DBへ挿入します。
