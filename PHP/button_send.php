@@ -13,8 +13,8 @@ try{
     $sql = "INSERT INTO `answer`(`movie_id`, `movie_categorize`, `experience_years`,`left_or_right`) VALUES ($movie_id,$movie_categorize,$experience_years,$left_or_right)";
     $dbh -> query($sql);
     print("登録しました！");
-    
-    $dbh = null; //DBとの接続を解除
+    //DBとの接続を解除
+    $dbh = null;
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();

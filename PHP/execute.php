@@ -14,5 +14,4 @@ if(!$mysqli){
 $comand = "python ../Python/collective.py";
 exec($comand);
 
-
 mysqli_close($mysqli);

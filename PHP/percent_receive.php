@@ -9,18 +9,16 @@ try{
     // print('接続に成功しました。<br>');
     $stmt = $dbh->query("SELECT `left_or_right` FROM `answer` WHERE `movie_id` = {$movie_id} AND NOT `left_or_right` = -1");
     $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     foreach($_data as $d){
         $tmp = $d['left_or_right'];
         $data[]=$tmp;
     }
-
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
 }
-
-$dbh = null; //DBとの接続を解除
+//DBとの接続を解除
+$dbh = null;
 header('Content-type: application/json');
 echo json_encode($data,JSON_UNESCAPED_UNICODE);
 ?>

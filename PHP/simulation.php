@@ -13,7 +13,6 @@ try {
     $stmt->execute();
     $result = $stmt->fetchAll();
 
-
 // 指定したid以外で、指定したball_idと同じball_idのid、名前などの値をランダムで取得　デバッグ用
 // $sql2 = "SELECT * FROM `users` WHERE NOT (`id` = $id) AND `ball_id` = {$result[0]["ball_id"]} ORDER BY RAND() LIMIT 4";
 // $stmt2 = $dbh->prepare($sql2);
@@ -24,7 +23,6 @@ try {
     echo$e->getMessage();
     exit();
 }
-
 header('Content-type: application/json');
 echo json_encode($result,JSON_UNESCAPED_UNICODE);
 ?>

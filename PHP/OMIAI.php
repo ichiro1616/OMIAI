@@ -8,12 +8,12 @@ try{
     $data2 = $stmt2->fetchAll();
     $stmt3 = $dbh->query("SELECT MAX(`generation`)  FROM `collective`");
     $data3 = $stmt3->fetchAll();
-
     $result = [$data1[0][0],$data2[0][0]/6,$data3[0][0]];
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
 }
+//DBとの接続を解除
 $dbh = null;
 header('Content-type: application/json');
 echo json_encode($result,JSON_UNESCAPED_UNICODE);

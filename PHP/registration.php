@@ -8,7 +8,6 @@ $player0_y = $_POST['player0_y'];
 
 include 'db_config.php';
 
-
 // dbとの接続試行・データ送信
 try{
     $dbh = new PDO($dsn, $user, $password);
@@ -19,6 +18,6 @@ catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
 }
-// 
-$dbh = null; //DBとの接続を解除
+//DBとの接続を解除
+$dbh = null;
 ?>

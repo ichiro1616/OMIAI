@@ -30,13 +30,11 @@ try{
     EOS;
     $STMT = $dbh->query($sql);
     $all = $STMT->fetchAll(PDO::FETCH_ASSOC);
-
 //--------------------------------------------left_or_right = -1 のmovie_idの取り出し----------------------------------------------------------
     //left_or_right = -1のmovie_idを動画をすべて取り出す
     foreach($all as $a){
         $ALL[] = $a["movie_id"];
     }
-
     //left_or_right = -1の動画それぞれの回答数
     for($a=0;$a<$id_num;$a++){
         $sql = sprintf("SELECT COUNT(movie_id) FROM `answer` WHERE movie_id = '%s';", $ALL[$a]);
@@ -51,13 +49,11 @@ try{
         $c[] = array_search(min($count),$count);
         $count[$c[$i]] = 100000;
     }
-
     //$count[]に入っているmovie_idを使って動画データを取り出す
     for($i=0;$i<$id;$i++){
         $sql = sprintf("SELECT `movie_id`,`movie_categorize`, `stop_time`, `movie_path` FROM `movie` WHERE movie_id = '%s';", $ALL[$c[$i]]);
         $stmt = $dbh->query($sql);
         $_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         foreach($_data as $d){
             $tmp = array(
                 "movie_id" => $d['movie_id'],
@@ -73,7 +69,6 @@ try{
         $temp = $ALL[$c[$j]];
         $prev[] = $temp - 1;
     }
-
     for($k=0;$k<$id;$k++){
         //もし1つ前のmovie_idが0ならテーブルから取り出したデータがnullになってしまうのでここで値を入れる
         if($prev[$k] == 0){
@@ -100,7 +95,6 @@ try{
         }
         $Data[]=$tmp;
     }
-
 for($m=0;$m<$id;$m++){
         if($prev[$m] == 0){
             $TMP = array(
@@ -130,13 +124,12 @@ for($m=0;$m<$id;$m++){
         }
     $sendDATA[0] = $DATA;
     $sendDATA[1] = $data;
-    
 }catch(PDOException $e){
     print('Error:' .$e->getMessage());
     die();
 }
-
-$dbh = null; //DBとの接続を解除
+//DBとの接続を解除
+$dbh = null;
 header('Content-type: application/json');
 echo json_encode($sendDATA,JSON_UNESCAPED_UNICODE);
 ?>
