@@ -384,7 +384,6 @@ let mywBit = myimage_dataBit.width;
 let myhBit = myimage_dataBit.height;
 let otwBit = otimage_dataBit.width;
 let othBit = otimage_dataBit.height;
-
 //画像パス
 const path = [
   "../Picture/koma/0/2-1.png", //けんすけ
@@ -636,23 +635,22 @@ xhr_area.addEventListener("loadend", function () {
   }
 });
 xhr_area.send(formData_area);
-
 //経験年数
 inputSliderEle = document.getElementById("experience_change");
 inputSliderEle.addEventListener("change", function () {
   exp_level = inputSliderEle.value;
   collective();
 });
-
 //世代別表示
 inputSlideBarElement = document.getElementById("generation_change");
 inputSlideBarElement.addEventListener("change", function () {
   gene_level = inputSlideBarElement.value;
   collective();
 });
-
+//世代データ
 let datakeep = [];
-let max_gene; //最大世代数
+//最大世代数
+let max_gene;
 formData = new FormData();
 xhr = new XMLHttpRequest();
 xhr.open("GET", "../PHP/collective.php");
@@ -682,7 +680,6 @@ xhr.addEventListener("loadend", function () {
   }
 });
 xhr.send(formData);
-
 // 画像を読み込み終わってからソースを取得する
 for (var i = 0; i < 6; i++) {
   for (var j = 0; j < 6; j++) images[i][j].src = img[i][j];
@@ -693,7 +690,6 @@ for (var i = 0; i < 6; i++) {
 for (var i = 0; i < 6; i++) {
   for (var j = 0; j < 6; j++) red_koma[i][j].src = red_img[j];
 }
-
 //初期配置
 // あなたの配置
 for (let i = 0; i < 6; i++) {
@@ -748,13 +744,14 @@ function draw(rota) {
   }
 }
 
-//ローテーションボタンを押されたら
+//ローテーションボタンが押されたら
 function rotation() {
   counter++;
   //6回目なら最初に戻す
   if (counter == 6) {
     counter = 0;
   }
+  //コマとお見合い範囲を描画し直す
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   document.getElementById("rotation_image").src = rotation_images[counter];
@@ -802,7 +799,6 @@ function my_omiai(judge_area) {
   mycontextBit.putImageData(myimage_dataBit, 0, 0);
   //コートに描画
   my_ctx2.drawImage(mycanvasBit, 40, 25, 7070, 7260);
-
   return percentage;
 }
 function ot_omiai(judge_area) {
@@ -844,7 +840,6 @@ function ot_omiai(judge_area) {
   otcontextBit.putImageData(otimage_dataBit, 0, 0);
   //コートに描画
   ot_ctx2.drawImage(otcanvasBit, 40, 25, 7070, 7260);
-
   return percentage;
 }
 
@@ -1058,17 +1053,14 @@ function my_calculation(rota, data) {
       color_array[i][j] = Number(color_array[i][j]);
     }
   }
-
   //左の選手
   let my_player1_x = (my_imagearray_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
   let my_player1_y = (my_imagearray_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
   my_player1_y = Math.abs(my_player1_y);
-
   //右の選手
   let my_player2_x = (my_imagearray_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
   let my_player2_y = (my_imagearray_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
   my_player2_y = Math.abs(my_player2_y);
-
   let reverce = 0;
   if (my_player1_x > my_player2_x) {
     my_player1_x = 9 - my_player1_x;
@@ -1093,7 +1085,6 @@ function my_calculation(rota, data) {
       judge_color.push(data_view);
     }
   }
-
   let mean = [
     data[0]["mean_players_sabun_x"],
     data[0]["mean_players_sabun_y"],
@@ -1118,12 +1109,10 @@ function my_calculation(rota, data) {
     test_data[i].my_player2_ball_sabun_x = (test_data[i].my_player2_ball_sabun_x - mean[4]) / std[4];
     test_data[i].my_player2_ball_sabun_y = (test_data[i].my_player2_ball_sabun_y - mean[5]) / std[5];
   }
-
   let blue = [];
   let red = [];
   let green = [];
   let answer = [];
-
   for (o = 0; o < test_data.length; o++) {
     answer.push(
       sum(
@@ -1141,7 +1130,6 @@ function my_calculation(rota, data) {
     let b = 0;
     let r = 0;
     let g = 0;
-
     //lr.coef_の値とpolynomialの値をかける
     for (j = 0; j < color_array[0].length - 1; j++) {
       b = b + answer[i][j] * color_array[0][j];
@@ -1151,16 +1139,13 @@ function my_calculation(rota, data) {
     b = b + color_array[0][color_array[0].length - 1];
     r = r + color_array[1][color_array[0].length - 1];
     g = g + color_array[2][color_array[0].length - 1];
-
     aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
     bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
     cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
-
     blue.push(aa);
     red.push(bb);
     green.push(cc);
   }
-
   judge_array = [0, 0, 0];
   for (i = 0; i < blue.length; i++) {
     //どの色になるかの判断
@@ -1204,17 +1189,14 @@ function ot_calculation(rota, data) {
       color_array[i][j] = Number(color_array[i][j]);
     }
   }
-
   //左の選手
   let ot_player1_x = (array_center[rota][data[0].left_player - 1].x + 50) / (1200 / 9);
   let ot_player1_y = (array_center[rota][data[0].left_player - 1].y + 50) / (1200 / 9) - 9;
   ot_player1_y = Math.abs(ot_player1_y);
-
   //右の選手
   let ot_player2_x = (array_center[rota][data[0].right_player - 1].x + 50) / (1200 / 9);
   let ot_player2_y = (array_center[rota][data[0].right_player - 1].y + 50) / (1200 / 9) - 9;
   ot_player2_y = Math.abs(ot_player2_y);
-
   let reverce = 0;
   if (ot_player1_x > ot_player2_x) {
     ot_player1_x = 9 - ot_player1_x;
@@ -1264,12 +1246,10 @@ function ot_calculation(rota, data) {
     test_data[i].ot_player2_ball_sabun_x = (test_data[i].ot_player2_ball_sabun_x - mean[4]) / std[4];
     test_data[i].ot_player2_ball_sabun_y = (test_data[i].ot_player2_ball_sabun_y - mean[5]) / std[5];
   }
-
   let blue = [];
   let red = [];
   let green = [];
   let answer = [];
-
   for (o = 0; o < test_data.length; o++) {
     answer.push(
       sum(
@@ -1287,7 +1267,6 @@ function ot_calculation(rota, data) {
     let b = 0;
     let r = 0;
     let g = 0;
-
     //lr.coef_の値とpolynomialの値をかける
     for (j = 0; j < color_array[0].length - 1; j++) {
       b = b + answer[i][j] * color_array[0][j];
@@ -1297,7 +1276,6 @@ function ot_calculation(rota, data) {
     b = b + color_array[0][color_array[0].length - 1];
     r = r + color_array[1][color_array[0].length - 1];
     g = g + color_array[2][color_array[0].length - 1];
-
     aa = Math.exp(b) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
     bb = Math.exp(r) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
     cc = Math.exp(g) / (Math.exp(b) + Math.exp(r) + Math.exp(g));
