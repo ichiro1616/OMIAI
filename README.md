@@ -6,16 +6,16 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
 
 ## HTML/CSSの各ファイルの機能
 
-- ### OMIAI.html,OMIAI.css
+- ### OMIAI.html, OMIAI.css
   ホーム画面を表示します。
 
-- ### watch_movie.html,watch_movie.css
+- ### watch_movie.html, watch_movie.css
   観客クイズページを表示します。ホーム画面からのボタンで遷移します。
 
-- ### simulation.html,simulation.css
+- ### simulation.html, simulation.css
   配置シミュレーションページを表示します。ホーム画面からのボタンで遷移します。
 
-- ### collective.html,collective.css
+- ### collective.html, collective.css
   集合知表示ページを表示します。ホーム画面からのボタンで遷移します。
 
 - ### objectivity_insert.html
