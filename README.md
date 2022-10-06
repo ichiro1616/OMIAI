@@ -78,7 +78,7 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
 - ### execute.php
   collective.pyを実行し、集合知計算を行いDBへ挿入します。
 
-- ### movie_recieve.php
+- ### movie_receive.php
   DBから回答数の少ない動画を優先的に取得します。
 
 - ### OMIAI.php
