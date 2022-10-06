@@ -1406,7 +1406,7 @@ function area(rota) {
     );
     //選手・観客で割合変化
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
-    //お見合い範囲を渡す
+    //お見合い範囲計算結果を渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = (area_percentage / 2116) * 100;
     area_percentage = area_percentage.toFixed(1);
