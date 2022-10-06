@@ -60,6 +60,38 @@ OMIAI（オミアイ）はバレーボールで”お見合い”をなくすシ
 - ### subjectivity_predict.py
   選手データからお見合い範囲を計算するための式を導出します。phpでこのコードを呼び出し、DBへ挿入します。
 
+## PHPの各ファイルの機能
+
+- ### button_send.php
+  answer_tableへ観客の判断結果を挿入します。
+
+- ### button_send.php
+  collect_tableから集合知の情報を取得します。
+
+- ### db_config.php
+  DBへ接続するためのホスト名、ユーザー名、パスワード、DB名をローカル用とロリポップ用で切り替えます。
+
+- ### db_insert_lr.coef_.php
+  objectivity_predict.pyを実行し、観客データからお見合い範囲を計算するための式の係数をDBへ挿入します。
+
+- ### execute.php
+  collective.pyを実行し、集合知計算を行いDBへ挿入します。
+
+- ### movie_recieve.php
+  DBから回答数の少ない動画を優先的に取得します。
+
+- ### OMIAI.php
+  DBから観客クイズの回答総数、配置シミュレーションの登録総数、集合知の最大世代数を取得します。
+
+- ### percent_receive.php
+  DBから現在回答した動画の左右回答数を取得します。
+
+- ### registration.php
+  DBへ選手の配置データを挿入します。
+
+- ### simulation.php
+  DBからお見合い範囲を計算するための係数を取得します。
+
 ## SQLの各ファイルの機能
 
 - ### omiai_db.sql
