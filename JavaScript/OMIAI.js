@@ -1,6 +1,9 @@
 let answer; //観客クイズ回答総数
 let simu = 0; //配置登録総数
 let colle = 0; //最大世代数
+let judge = 1; //ボタンメッセージ交互表示判別用
+
+//DOMの構築を待つ
 window.addEventListener("DOMContentLoaded", () => {
   total();
   setInterval(() => {
@@ -8,6 +11,8 @@ window.addEventListener("DOMContentLoaded", () => {
     preview();
   }, 3000);
 });
+
+//観客クイズ回答数、配置シミュレーションの配置数、集合知の人数を取得
 function total() {
   form = new FormData();
   xhr = new XMLHttpRequest();
@@ -25,7 +30,8 @@ function total() {
   });
   xhr.send(form);
 }
-let judge = 1;
+
+//ボタンメッセージを表示
 function preview() {
   if (judge == 0) {
     document.getElementById("answer").innerHTML = "観客クイズ";
@@ -36,6 +42,7 @@ function preview() {
     let answernum = Math.floor(answer / 100);
     let simunum = Math.floor(simu / 6);
     let collenum = Math.floor(colle) * 5;
+    //300人以上は変化させない
     if (answernum > 300) {
       answernum = 300;
     }
@@ -46,9 +53,8 @@ function preview() {
       collenum = 300;
     }
     document.getElementById("answer").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (answernum / 150 + 1) + "em;'>" + Math.floor(answer / 100) + "</span>" + "人が回答！</div>";
-    document.getElementById("simu").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (simunum / 150 + 1) + "em;'>" + Math.floor(simu / 6) + "</span>人が配置！</div>";//Math.floor(simu / 6)
-    document.getElementById("colle").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (collenum / 150 + 1) + "em;'>" + Math.floor(colle) * 5 + "</span>人の集合知！</div>";//Math.floor(colle)*5
-
+    document.getElementById("simu").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (simunum / 150 + 1) + "em;'>" + Math.floor(simu / 6) + "</span>人が配置！</div>";
+    document.getElementById("colle").innerHTML = "<div style ='white-space:nowrap;'><span style='font-size:" + (collenum / 150 + 1) + "em;'>" + Math.floor(colle) * 5 + "</span>人の集合知！</div>";
     judge = 0;
   }
 }
