@@ -171,7 +171,6 @@ body {
     z-index: 30;
 }
 
-
 /* ================================================== */
 /* =======================ラベル====================== */
 /* ================================================== */
@@ -184,14 +183,12 @@ body {
     position: absolute;
     top: 2.2rem;
     left: 8.5rem;
-
 }
 
 #generation {
     position: absolute;
     top: 2.2rem;
     left: 40rem;
-
 }
 
 #name {
@@ -440,19 +437,19 @@ body {
 .open {
     cursor: pointer;
     /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
-  }
-  
-  #pop-up {
+}
+
+#pop-up {
     display: none;
     /* label でコントロールするので input は非表示に */
-  }
-  
-  .overlay {
+}
+
+.overlay {
     display: none;
     /* input にチェックが入るまでは非表示に */
-  }
-  
-  #pop-up:checked+.overlay {
+}
+
+#pop-up:checked+.overlay {
     display: block;
     z-index: 1000;
     background-color: #00000070;
@@ -461,9 +458,9 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-  }
-  
-  .window {
+}
+
+.window {
     width: 40.8rem;
     height: 30rem;
     background-color: rgba(255, 255, 255, 0);
@@ -475,14 +472,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-  
-  .text {
+}
+
+.text {
     font-size: 2rem;
     margin: 0;
-  }
-  
-  .close {
+}
+
+.close {
     cursor: pointer;
     position: absolute;
     text-align: center;
@@ -495,11 +492,11 @@ body {
     font-size: 1.1rem;
     z-index: 1010;
     border-radius: 0.1rem 0.1rem 0rem 0rem;
-  }
-  
-  .tutorial_movie {
+}
+
+.tutorial_movie {
     position: absolute;
     width: 40.8rem;
     height: 23rem;
     z-index: 1005;
-  }
+}
