@@ -663,6 +663,7 @@ function draw(rota) {
 function talk_bubble() {
     document.getElementById(player_id[dragkoma]).innerHTML = message[dragkoma];
     document.getElementById("bubble").src = "../Picture/talk_bubble3.png";
+    document.getElementById("face_img").src = img[counter][dragkoma];
 }
 
 //ドラッグ開始処理
@@ -687,7 +688,6 @@ let mousedown = function (e, type) {
     //調整後の座標
     let canvasX = Math.floor(posX / scaleWidth),
         canvasY = Math.floor(posY / scaleHeight);
-    //コマ0（セッター）は計算しない
     for (let i = images.length - 1; i >= 0; i--) {
         //コマの中心座標
         let centerX = imagearray_center[counter][i].x;
@@ -749,7 +749,6 @@ let mousemove = function (e, type) {
         let y = 0;
         let w = koma_w * size;
         let h = koma_h * size;
-        let val = document.getElementById("bubble").value;
         //コマが重ならないように
         for (let i = 0; i < 6; i++) {
             if (i != dragkoma) {
@@ -991,6 +990,10 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][1].x - (imagearray_center[counter][0].x - imagearray_center[counter][dragkoma].x) + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("face_img").src = img[counter][0];
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>';
+                                    setTimeout(talk_bubble, 1500);
                                 } else if (imagearray_center[counter][dragkoma].x < 100) {
                                     x = 100;
                                     setter(0, x, dragkoma);
@@ -1053,6 +1056,10 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][1].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) + 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("face_img").src = img[counter][0];
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>左の選手は超えられないよ！</nobr></p>';
+                                    setTimeout(talk_bubble, 1500);
                                     //右の選手を超えようとした
                                 } else if (imagearray_center[counter][dragkoma].x > imagearray_center[counter][4].x) {
                                     x = imagearray[counter][4].x - 80;
@@ -1066,6 +1073,10 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("face_img").src = img[counter][0];
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>';
+                                    setTimeout(talk_bubble, 1500);
                                 } else if (imagearray_center[counter][dragkoma].x < 100) {
                                     x = 100;
                                     setter(0, x, dragkoma);
@@ -1128,6 +1139,10 @@ let mousemove = function (e, type) {
                                     x = imagearray[counter][5].x + (imagearray_center[counter][dragkoma].x - imagearray_center[counter][0].x) - 80;
                                     setter(0, x, dragkoma);
                                     mouseup(e);
+                                    document.getElementById("face_img").src = img[counter][0];
+                                    document.getElementById("bubble").src = "../Picture/talk_bubble_red.png";
+                                    document.getElementById(player_id[dragkoma]).innerHTML = '<p id = "attention"><nobr>右の選手は超えられないよ！</nobr></p>';
+                                    setTimeout(talk_bubble, 1500);
                                 } else if (imagearray_center[counter][dragkoma].x < 100) {
                                     x = 100;
                                     setter(0, x, dragkoma);
@@ -1195,7 +1210,6 @@ let mousemove = function (e, type) {
                 x = imagearray[counter][i].x;
                 y = imagearray[counter][i].y;
             }
-
             // 画像を描画
             context.drawImage(images[counter][i], x, y, w, h);
             under_context[counter].drawImage(images[counter][i], imagearray[counter][i].x * scale, imagearray[counter][i].y * scale, koma_w * size_under, koma_h * size_under);
@@ -1208,6 +1222,7 @@ let mouseup = function (e) {
     if (dragmode) {
         area(counter);
     }
+    //ドラッグモードをオフにする
     dragmode = false;
 };
 
@@ -1351,7 +1366,6 @@ function area(rota) {
     let judge_color_sub_7 = calculation(data_array_sub_7);
     let judge_color_sub_8 = calculation(data_array_sub_8);
     let judge_color_sub_9 = calculation(data_array_sub_9);
-
     //観客お見合い範囲
     let judge_color_ob_0 = calculation(data_array_ob_0);
     let judge_color_ob_1 = calculation(data_array_ob_1);
@@ -1363,8 +1377,7 @@ function area(rota) {
     let judge_color_ob_7 = calculation(data_array_ob_7);
     let judge_color_ob_8 = calculation(data_array_ob_8);
     let judge_color_ob_9 = calculation(data_array_ob_9);
-
-    //10パターンの重なってるところ 10+結果用の+1
+    //10パターンを足し合わせる
     let judge_color_sub = color_sub(
         judge_color_sub_0,
         judge_color_sub_1,
@@ -1391,11 +1404,9 @@ function area(rota) {
         judge_color_ob_9,
         judge_color_ob_0
     );
-
     //選手・観客で割合変化
     let judge_color_merge = merge(judge_color_sub, judge_color_ob, subject_object_level);
-
-    //お見合い範囲judge_color_mergeを渡す
+    //お見合い範囲を渡す
     let area_percentage = omiai(judge_color_merge, rota);
     area_percentage = (area_percentage / 2116) * 100;
     area_percentage = area_percentage.toFixed(1);
@@ -1419,7 +1430,7 @@ function merge(sub, ob, level) {
     if (level == 0) {
         sum_judge = sub;
     }
-    //普通
+    //混ぜる
     else if (level == 2) {
         for (let i = 0; i < sub.length; i++) {
             sum_judge[i].judge = (sub[i].judge + ob[i].judge) / 2;
