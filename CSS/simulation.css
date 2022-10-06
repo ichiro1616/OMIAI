@@ -81,6 +81,7 @@
 }
 
 @keyframes bgOpenAnime {
+
   /* フェードイン */
   0% {
     opacity: 0;
