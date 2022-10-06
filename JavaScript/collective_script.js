@@ -321,9 +321,8 @@ let array = [
 let my_can; //自分の配置を表示するキャンバス
 let ot_can; //選択した配置を表示するキャンバス
 let com_can; //コマを重ねて表示するキャンバス
-let data = 0;
-let gene_level = 0;
-let exp_level = 0;
+let gene_level = 0; //世代選択バー
+let exp_level = 0; //経験年数選択バー
 let counter = 0;
 let size = 1; //メイン画面のコマの大きさの倍率
 let koma_w = 100; //コマの横幅
@@ -355,6 +354,36 @@ ot_ctx3 = ot_can.getContext("2d");
 my_ctx3.globalAlpha = 1;
 ot_ctx3.globalAlpha = 1;
 com_ctx.globalAlpha = 0.8;
+//お見合い範囲を描画するcanvasの準備
+const my_can2 = document.getElementById("my2");
+const my_ctx2 = my_can2.getContext("2d");
+const ot_can2 = document.getElementById("other2");
+const ot_ctx2 = ot_can2.getContext("2d");
+//コート左側枠線のx座標
+let originX = 39;
+//コート上側枠線のy座標
+let endY = 39;
+//bitmap用のHTMLCanvasElementオブジェクトを作成する
+let mycanvasBit = document.createElement("canvas");
+let otcanvasBit = document.createElement("canvas");
+mycanvasBit.width = my_can2.width;
+mycanvasBit.height = my_can2.height;
+otcanvasBit.width = my_can2.width;
+otcanvasBit.height = my_can2.height;
+//CanvasRenderingContext2Dオブジェクトを取得する
+let mycontextBit = mycanvasBit.getContext("2d");
+let otcontextBit = otcanvasBit.getContext("2d");
+//ImageDataオブジェクトを作成する
+let myimage_dataBit = mycontextBit.createImageData(46, 46);
+let otimage_dataBit = otcontextBit.createImageData(46, 46);
+//Uint8ClampedArrayオブジェクトを取得する
+let myary_u8Bit = myimage_dataBit.data;
+let otary_u8Bit = otimage_dataBit.data;
+//ImageDataオブジェクトのサイズを取得
+let mywBit = myimage_dataBit.width;
+let myhBit = myimage_dataBit.height;
+let otwBit = otimage_dataBit.width;
+let othBit = otimage_dataBit.height;
 
 //画像パス
 const path = [
@@ -382,7 +411,6 @@ const path = [
   "../Picture/koma/red_5.png",
   "../Picture/koma/red_6.png",
 ];
-
 const img = [
   [path[0], path[1], path[3], path[6], path[8], path[10]],
   [path[0], path[1], path[4], path[6], path[8], path[9]],
@@ -391,10 +419,43 @@ const img = [
   [path[0], path[2], path[3], path[5], path[7], path[10]],
   [path[0], path[1], path[3], path[5], path[8], path[10]],
 ];
-
+const rotation_images = ["../Picture/サイクル_1.png", "../Picture/サイクル_2.png", "../Picture/サイクル_3.png", "../Picture/サイクル_4.png", "../Picture/サイクル_5.png", "../Picture/サイクル_6.png"];
 const blue_img = [path[11], path[12], path[13], path[14], path[15], path[16]];
 const red_img = [path[17], path[18], path[19], path[20], path[21], path[22]];
-
+//Imageを作成
+let images = new Array(6);
+for (var i = 0; i < 6; i++) {
+  images[i] = new Array(6).fill(0);
+}
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
+    images[i][j] = new Image();
+  }
+}
+let blue_koma = new Array(6);
+for (var i = 0; i < 6; i++) {
+  blue_koma[i] = new Array(6).fill(0);
+}
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
+    blue_koma[i][j] = new Image();
+  }
+}
+let red_koma = new Array(6);
+for (var i = 0; i < 6; i++) {
+  red_koma[i] = new Array(6).fill(0);
+}
+for (var i = 0; i < 6; i++) {
+  //ローテーション
+  for (var j = 0; j < 6; j++) {
+    //コマ番号
+    red_koma[i][j] = new Image();
+  }
+}
 //グラデーション用配列
 let gradation = new Array(10);
 let G_gra = 120;
@@ -419,7 +480,6 @@ for (i = 0; i < gradation.length; i++) {
   //変化量0から1
   A_gra -= 0.1;
 }
-
 //コマの中心の座標を用意
 for (var i in imagearray) {
   for (var j in imagearray[i]) {
@@ -427,107 +487,63 @@ for (var i in imagearray) {
     my_imagearray_center[i][j].y += (koma_h / 2) * size;
   }
 }
-
-//セッターの座標を修正
-my_imagearray_center[3][0].x = my_imagearray_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
-my_imagearray_center[3][0].y = my_imagearray_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-imagearray[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
-imagearray[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
-my_imagearray_center[4][0].x = my_imagearray_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
-my_imagearray_center[4][0].y = my_imagearray_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
-imagearray[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
-imagearray[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
-my_imagearray_center[5][0].x = my_imagearray_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
-my_imagearray_center[5][0].y = my_imagearray_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-imagearray[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
-imagearray[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
-let images = new Array(6); //要素数6の配列imagesを作成
-for (var i = 0; i < 6; i++) {
-  images[i] = new Array(6).fill(0);
-}
-for (var i = 0; i < 6; i++) {
-  //ローテーション
-  for (var j = 0; j < 6; j++) {
-    //コマ番号
-    images[i][j] = new Image();
-  }
-}
-
-let blue_koma = new Array(6); //要素数6の配列imagesを作成
-for (var i = 0; i < 6; i++) {
-  blue_koma[i] = new Array(6).fill(0);
-}
-for (var i = 0; i < 6; i++) {
-  //ローテーション
-  for (var j = 0; j < 6; j++) {
-    //コマ番号
-    blue_koma[i][j] = new Image();
-  }
-}
-let red_koma = new Array(6); //要素数6の配列imagesを作成
-for (var i = 0; i < 6; i++) {
-  red_koma[i] = new Array(6).fill(0);
-}
-for (var i = 0; i < 6; i++) {
-  //ローテーション
-  for (var j = 0; j < 6; j++) {
-    //コマ番号
-    red_koma[i][j] = new Image();
-  }
-}
-
-//コマの中心の座標を用意
 for (var i in array_center) {
   for (var j in array_center[i]) {
     array_center[i][j].x += (koma_w / 2) * size;
     array_center[i][j].y += (koma_h / 2) * size;
   }
 }
-
 //セッターの座標を修正
+my_imagearray_center[3][0].x = my_imagearray_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[3][0].y = my_imagearray_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[4][0].x = my_imagearray_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
+my_imagearray_center[4][0].y = my_imagearray_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
+imagearray[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[5][0].x = my_imagearray_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+my_imagearray_center[5][0].y = my_imagearray_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
+imagearray[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 array_center[3][0].x = array_center[3][5].x + (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 array_center[3][0].y = array_center[3][5].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 array[3][0].x += (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 array[3][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
 array_center[4][0].x = array_center[4][3].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) + 50 - 10 * size; //45°
 array_center[4][0].y = array_center[4][3].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) + 50 - 10 * size; //45°
 array[4][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 array[4][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
 array_center[5][0].x = array_center[5][1].x - (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 array_center[5][0].y = array_center[5][1].y + (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
 array[5][0].x -= (koma_w / 2) * size * Math.cos(Math.PI / 4) - 50 + 10 * size; //45°
 array[5][0].y += (koma_h / 2) * size * Math.sin(Math.PI / 4) - 50 + 10 * size; //45°
-
-let subject_array = []; //選手データ2550
-let object_array = []; //観客データ2550
+//選手データ2550
+let subject_array = [];
+//観客データ2550
+let object_array = [];
 //選手のdata
-let data_array_sub_0 = []; //2-3
-let data_array_sub_1 = []; //2-4
-let data_array_sub_2 = []; //2-5
-let data_array_sub_3 = []; //2-6
-let data_array_sub_4 = []; //3-4
-let data_array_sub_5 = []; //3-5
-let data_array_sub_6 = []; //3-6
-let data_array_sub_7 = []; //4-5
-let data_array_sub_8 = []; //4-6
-let data_array_sub_9 = []; //5-6
+let data_array_sub_0 = [];
+let data_array_sub_1 = [];
+let data_array_sub_2 = [];
+let data_array_sub_3 = [];
+let data_array_sub_4 = [];
+let data_array_sub_5 = [];
+let data_array_sub_6 = [];
+let data_array_sub_7 = [];
+let data_array_sub_8 = [];
+let data_array_sub_9 = [];
 //観客のdata
-let data_array_ob_0 = []; //2-3
-let data_array_ob_1 = []; //2-4
-let data_array_ob_2 = []; //2-5
-let data_array_ob_3 = []; //2-6
-let data_array_ob_4 = []; //3-4
-let data_array_ob_5 = []; //3-5
-let data_array_ob_6 = []; //3-6
-let data_array_ob_7 = []; //4-5
-let data_array_ob_8 = []; //4-6
-let data_array_ob_9 = []; //5-6
-
+let data_array_ob_0 = [];
+let data_array_ob_1 = [];
+let data_array_ob_2 = [];
+let data_array_ob_3 = [];
+let data_array_ob_4 = [];
+let data_array_ob_5 = [];
+let data_array_ob_6 = [];
+let data_array_ob_7 = [];
+let data_array_ob_8 = [];
+let data_array_ob_9 = [];
 //lr.coef_の値取得、テストデータ作成、特徴量として変換、
 let formData_area = new FormData();
 let xhr_area = new XMLHttpRequest();
@@ -685,14 +701,12 @@ for (let i = 0; i < 6; i++) {
     my_ctx.drawImage(images[0][i], imagearray[0][i].x * scale, imagearray[0][i].y * scale, koma_w * size, koma_h * size);
   });
 }
-
 // 集合知
 for (let i = 0; i < 6; i++) {
   images[0][i].addEventListener("load", () => {
     ot_ctx.drawImage(images[0][i], array[0][i].x * scale, array[0][i].y * scale, koma_w * size, koma_h * size);
   });
 }
-
 // 選手配置比較
 for (let i = 0; i < 6; i++) {
   red_koma[0][i].addEventListener("load", () => {
@@ -701,7 +715,7 @@ for (let i = 0; i < 6; i++) {
   });
 }
 
-//画像を表示する
+//コマを表示する
 function draw(rota) {
   // canvas内を一旦クリア
   my_ctx.clearRect(0, 0, my_can.width, my_can.height);
@@ -712,7 +726,6 @@ function draw(rota) {
     let h = koma_h * size;
     my_ctx.drawImage(images[rota][i], x, y, w, h);
   }
-
   ot_ctx.clearRect(0, 0, ot_can.width, ot_can.height);
   for (var i in images) {
     let x = array[rota][i].x;
@@ -721,7 +734,6 @@ function draw(rota) {
     let h = koma_h * size;
     ot_ctx.drawImage(images[rota][i], x * scale, y * scale, w, h);
   }
-
   if (check == 0) {
     com_ctx.clearRect(0, 0, com_can.width, ot_can.height);
     for (let i in images) {
@@ -735,7 +747,7 @@ function draw(rota) {
     }
   }
 }
-const rotation_images = ["../Picture/サイクル_1.png", "../Picture/サイクル_2.png", "../Picture/サイクル_3.png", "../Picture/サイクル_4.png", "../Picture/サイクル_5.png", "../Picture/サイクル_6.png"];
+
 //ローテーションボタンを押されたら
 function rotation() {
   counter++;
@@ -750,123 +762,93 @@ function rotation() {
   collective();
 }
 
-const my_can2 = document.getElementById("my2");
-const my_ctx2 = my_can2.getContext("2d");
-const ot_can2 = document.getElementById("other2");
-const ot_ctx2 = ot_can2.getContext("2d");
-const omiai_color = "#00EA5F"; //お見合い範囲の色 #00EA5F
-my_ctx2.fillStyle = omiai_color; //色
-ot_ctx2.fillStyle = omiai_color;
-let originX = 39;
-let originY = 571.5;
-let endX = 571.5;
-let endY = 39;
-let pixel_sizeX = (endX - originX) / 46; //1ドットの大きさ（単位[m]）　横幅
-let pixel_sizeY = (originY - endY) / 46; //1ドットの大きさ（単位[m])　縦幅
-originY = originY - pixel_sizeY; //1ドットの大きさ分引く
-endX = endX - pixel_sizeX; //1ドットの大きさ分引く
-let overlap = 3;
-
-//bitmap用のHTMLCanvasElementオブジェクトを作成する
-let canvasBit = document.createElement("canvas");
-canvasBit.width = my_can2.width;
-canvasBit.height = my_can2.height;
-//CanvasRenderingContext2Dオブジェクトを取得する
-let contextBit = canvasBit.getContext("2d");
-//ImageDataオブジェクトを作成する
-let image_dataBit = contextBit.createImageData(46, 46);
-//Uint8ClampedArrayオブジェクトを取得する
-let ary_u8Bit = image_dataBit.data;
-
-let wBit = image_dataBit.width;
-let hBit = image_dataBit.height;
-
+//お見合い範囲表示関数
 function my_omiai(judge_area) {
   // canvasをクリア
-  contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
+  mycontextBit.clearRect(0, 0, mycontextBit.width, mycontextBit.height);
   my_ctx2.clearRect(0, 0, my_can2.width, my_can2.height);
   let k_sum = 0;
   let percentage = 0;
-  for (xBit = 0; xBit < wBit; ++xBit) {
-    for (yBit = hBit; yBit > 0; --yBit) {
+  for (xBit = 0; xBit < mywBit; ++xBit) {
+    for (yBit = myhBit; yBit > 0; --yBit) {
       //RGBAのRを取得
-      let base = (xBit + yBit * wBit) * 4;
+      let base = (xBit + yBit * mywBit) * 4;
       //9~0のindexを取得
       let judge_index = 10 - Math.round(judge_area[k_sum].judge);
       if (judge_index != 10) {
         //Rの情報を操作
-        ary_u8Bit[base] = 0;
+        myary_u8Bit[base] = 0;
         //Gの情報を操作
-        ary_u8Bit[base + 1] = gradation[judge_index][1];
+        myary_u8Bit[base + 1] = gradation[judge_index][1];
         //Bの情報を操作
-        ary_u8Bit[base + 2] = 0;
+        myary_u8Bit[base + 2] = 0;
         //Aの情報を操作
-        ary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
+        myary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
         percentage += gradation[judge_index][3];
       } else {
         //Rの情報を操作
-        ary_u8Bit[base] = 0;
+        myary_u8Bit[base] = 0;
         //Gの情報を操作
-        ary_u8Bit[base + 1] = 0;
+        myary_u8Bit[base + 1] = 0;
         //Bの情報を操作
-        ary_u8Bit[base + 2] = 0;
+        myary_u8Bit[base + 2] = 0;
         //Aの情報を操作
-        ary_u8Bit[base + 3] = 0;
+        myary_u8Bit[base + 3] = 0;
       }
       k_sum++;
     }
   }
   //BitMapで描画
-  contextBit.putImageData(image_dataBit, 0, 0);
+  mycontextBit.putImageData(myimage_dataBit, 0, 0);
   //コートに描画
-  my_ctx2.drawImage(canvasBit, 40, 25, 7070, 7260);
+  my_ctx2.drawImage(mycanvasBit, 40, 25, 7070, 7260);
 
   return percentage;
 }
-
 function ot_omiai(judge_area) {
   // canvasをクリア
-  contextBit.clearRect(0, 0, contextBit.width, contextBit.height);
+  otcontextBit.clearRect(0, 0, otcontextBit.width, otcontextBit.height);
   ot_ctx2.clearRect(0, 0, ot_can2.width, ot_can2.height);
   let k_sum = 0;
   let percentage = 0;
-  for (xBit = 0; xBit < wBit; ++xBit) {
-    for (yBit = hBit; yBit > 0; --yBit) {
+  for (xBit = 0; xBit < otwBit; ++xBit) {
+    for (yBit = othBit; yBit > 0; --yBit) {
       //RGBAのRを取得
-      let base = (xBit + yBit * wBit) * 4;
+      let base = (xBit + yBit * otwBit) * 4;
       //9~0のindexを取得
       let judge_index = 10 - Math.round(judge_area[k_sum].judge);
       if (judge_index != 10) {
         //Rの情報を操作s
-        ary_u8Bit[base] = 0;
+        otary_u8Bit[base] = 0;
         //Gの情報を操作
-        ary_u8Bit[base + 1] = gradation[judge_index][1];
+        otary_u8Bit[base + 1] = gradation[judge_index][1];
         //Bの情報を操作
-        ary_u8Bit[base + 2] = 0;
+        otary_u8Bit[base + 2] = 0;
         //Aの情報を操作
-        ary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
+        otary_u8Bit[base + 3] = gradation[judge_index][3] * 255;
         percentage += gradation[judge_index][3];
       } else {
         //Rの情報を操作
-        ary_u8Bit[base] = 0;
+        otary_u8Bit[base] = 0;
         //Gの情報を操作
-        ary_u8Bit[base + 1] = 0;
+        otary_u8Bit[base + 1] = 0;
         //Bの情報を操作
-        ary_u8Bit[base + 2] = 0;
+        otary_u8Bit[base + 2] = 0;
         //Aの情報を操作
-        ary_u8Bit[base + 3] = 0;
+        otary_u8Bit[base + 3] = 0;
       }
       k_sum++;
     }
   }
   //BitMapで描画
-  contextBit.putImageData(image_dataBit, 0, 0);
+  otcontextBit.putImageData(otimage_dataBit, 0, 0);
   //コートに描画
-  ot_ctx2.drawImage(canvasBit, 40, 25, 7070, 7260);
+  ot_ctx2.drawImage(otcanvasBit, 40, 25, 7070, 7260);
 
   return percentage;
 }
 
+//条件に合わせてarea()を呼び出す
 function collective() {
   let index = 100000;
   let k = 0;
@@ -911,6 +893,8 @@ function collective() {
     area(counter);
   }
 }
+
+//お見合い範囲関数
 function area() {
   //あなたの配置
   //選手お見合い範囲
@@ -935,7 +919,6 @@ function area() {
   let my_judge_color_ob_7 = my_calculation(counter, data_array_ob_7);
   let my_judge_color_ob_8 = my_calculation(counter, data_array_ob_8);
   let my_judge_color_ob_9 = my_calculation(counter, data_array_ob_9);
-
   //集合知の配置
   //選手お見合い範囲
   let ot_judge_color_sub_0 = ot_calculation(counter, data_array_sub_0);
@@ -959,8 +942,7 @@ function area() {
   let ot_judge_color_ob_7 = ot_calculation(counter, data_array_ob_7);
   let ot_judge_color_ob_8 = ot_calculation(counter, data_array_ob_8);
   let ot_judge_color_ob_9 = ot_calculation(counter, data_array_ob_9);
-
-  //10パターンの重なってるところ 10+結果用の+1
+  //10パターンを足し合わせる
   let my_judge_color_sub = color_sub(
     my_judge_color_sub_0,
     my_judge_color_sub_1,
@@ -987,7 +969,6 @@ function area() {
     my_judge_color_ob_9,
     my_judge_color_ob_0
   );
-
   let ot_judge_color_sub = color_sub(
     ot_judge_color_sub_0,
     ot_judge_color_sub_1,
@@ -1014,15 +995,12 @@ function area() {
     ot_judge_color_ob_9,
     ot_judge_color_ob_0
   );
-
-  //選手・観客で割合変化 my_judge_color_sub, judge_color_ob, subject_object_level
+  //選手・観客で割合変化
   let my_judge_color_merge = merge(my_judge_color_sub, my_judge_color_ob);
   let ot_judge_color_merge = merge(ot_judge_color_sub, ot_judge_color_ob);
-
+  //お見合い範囲計算結果を渡す
   let my_area_percentage = my_omiai(my_judge_color_merge);
   let ot_area_percentage = ot_omiai(ot_judge_color_merge);
-  //お見合い範囲judge_colorを渡す 今はテストでjudge_color_subを渡しているが本来は変化割合調整バーで重みづけして１つにしたもの
-  // let area_percentage = omiai(judge_color_sub_1, rota)
   let my_percent = percent(my_area_percentage);
   let ot_percent = percent(ot_area_percentage);
   function percent(area_percentage) {
@@ -1043,6 +1021,7 @@ function area() {
   }
 }
 
+//judgeのアナログ値を足し合わせる
 function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
   for (i = 0; i < j0.length; i++) {
     judge_sum[i].judge = j0[i].judge + j1[i].judge + j2[i].judge + j3[i].judge + j4[i].judge + j5[i].judge + j6[i].judge + j7[i].judge + j8[i].judge + j9[i].judge;
@@ -1050,6 +1029,7 @@ function color_sub(j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, judge_sum) {
   return judge_sum;
 }
 
+//お見合い範囲変化
 function merge(sub, ob) {
   let sum_judge = sub;
   for (i = 0; i < sub.length; i++) {
@@ -1058,7 +1038,7 @@ function merge(sub, ob) {
   return sum_judge;
 }
 
-//お見合い範囲の計算をしている
+//お見合い範囲を計算
 function my_calculation(rota, data) {
   let color_array = [];
   let test_data = [];
@@ -1205,7 +1185,6 @@ function my_calculation(rota, data) {
   }
   return judge_color;
 }
-
 function ot_calculation(rota, data) {
   let color_array = [];
   let test_data = [];
