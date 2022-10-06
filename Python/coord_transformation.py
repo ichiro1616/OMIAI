@@ -5,7 +5,6 @@ import pandas as pd
 
 def main():
     # スクリーン座標からワールド座標に変換したいペアのcsvを表示させる
-
     csvname = ['anzai_hinata/anzai_hinata_220614_01.csv', 'anzai_hinata/anzai_hinata_220617_03.csv', 'anzai_hinata/anzai_hinata_220620_02.csv',
                'anzai_hinata/anzai_hinata_220627_01(2).csv', 'anzai_hinata/anzai_hinata_220627_01.csv', 'anzai_hinata/anzai_hinata_220627_02(2).csv', 'anzai_hinata/anzai_hinata_220627_02.csv', 'anzai_hinata/anzai_hinata_220628_03(2).csv', 'anzai_hinata/anzai_hinata_220628_03.csv']  # 安西-西根
     # csvname = ['anzai_keisuke/anzai_keisuke_220614_01.csv', 'anzai_keisuke/anzai_keisuke_220617_03.csv', 'anzai_keisuke/anzai_keisuke_220620_02.csv', 'anzai_keisuke/anzai_keisuke_220627_01(2).csv', 'anzai_keisuke/anzai_keisuke_220627_01.csv', 'anzai_keisuke/anzai_keisuke_220627_02.csv', 'anzai_keisuke/anzai_keisuke_220628_02.csv', 'anzai_keisuke/anzai_keisuke_220628_03(2).csv', 'anzai_keisuke/anzai_keisuke_220628_03.csv'] #安西-けいすけ
@@ -28,7 +27,6 @@ def main():
 
 
 def transformation(csv, filename, path):
-
     fx1 = 1731.0472651876423
     fy1 = 1727.3655573277219
     fx2 = 1735.4867255002316
@@ -53,7 +51,6 @@ def transformation(csv, filename, path):
     offset_z = 0
 
     for index, row in csv.iterrows():
-
         if index == 0:
             A = np.array([[-fx1, 0., -Cx1 + row['offset_usiro_x']],
                           [Cy2 - row['offset_yoko_y'], fy1 +
