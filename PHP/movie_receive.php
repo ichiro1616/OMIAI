@@ -24,7 +24,6 @@ $sendDATA = array(); //dataとDATAをまとめた配列
 
 try{
     $dbh = new PDO($dsn, $user, $password);
-    $dbh = new PDO($dsn, $user, $password);
     $sql = <<<EOS
     SELECT `movie_id` FROM `answer` WHERE `left_or_right` = -1;
     EOS;
