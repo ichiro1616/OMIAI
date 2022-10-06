@@ -645,7 +645,7 @@ function simulation() {
     document.getElementById("face_img").src = img[0][0];
 }
 
-//画像を表示する
+//コマを表示する
 function draw(rota) {
     // canvas内を一旦クリア
     context.clearRect(0, 0, canvas.width, canvas.height);
