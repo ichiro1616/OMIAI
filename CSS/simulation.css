@@ -1017,7 +1017,7 @@ input[type="range"].slider::-webkit-slider-thumb {
   padding-left: 1rem;
   padding-right: 1rem;
   background-color: rgba(228, 224, 224, 0.7);
-  top: 0.06rem;
+  top: -1.9rem;
   right: 0rem;
   font-size: 1.1rem;
   z-index: 1010;
@@ -1027,6 +1027,5 @@ input[type="range"].slider::-webkit-slider-thumb {
 .tutorial_movie {
   position: absolute;
   width: 40.8rem;
-  height: 23rem;
   z-index: 1005;
 }
