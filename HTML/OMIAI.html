@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>OMIAI</title>
+    <link rel="stylesheet" href="../CSS/OMIAI.css" />
+    <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>OMIAI</title>
-  <link rel="stylesheet" href="../CSS/OMIAI.css" />
-  <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
-</head>
-
-<body>
-  <div id="container">
-    <div class="bg_image">
-      <img src="../Picture/背景.png" alt="背景" title="予選資料タイトル" class="back">
+  <body>
+    <div id="container">
+      <div class="bg_image">
+        <img src="../Picture/背景.png" alt="背景" title="予選資料タイトル" class="back" />
+      </div>
+      <div class="box">
+        <img src="../Picture/タイトルロゴ小.png" alt="ロゴ" title="O-MIAI" class="rogo" />
+      </div>
+      <div class="buttons">
+        <button type="button" onclick="location.href = 'watch_movie.html' " class="btn1">
+          <b id="answer" class="ans_front">観客クイズ</b>
+        </button>
+        <button type="button" onclick="location.href = 'simulation.html' " class="btn2">
+          <b id="simu" class="simu_front">配置シミュレーション</b>
+        </button>
+        <button type="button" onclick="location.href = 'collective.html' " class="btn3">
+          <b id="colle" class="colle_front">集合知との比較</b>
+        </button>
+      </div>
     </div>
-    <div class="box">
-      <img src="../Picture/タイトルロゴ小.png" alt="ロゴ" title="O-MIAI" class="rogo">
-    </div>
-    <div class="buttons">
-      <button type="button" onclick="location.href = 'watch_movie.html' " class="btn1">
-        <b id="answer" class="ans_front">観客クイズ</b>
-      </button>
-      <button type="button" onclick="location.href = 'simulation.html' " class="btn2">
-        <b id="simu" class="simu_front">配置シミュレーション</b>
-      </button>
-      <button type="button" onclick="location.href = 'collective.html' " class="btn3">
-        <b id="colle" class="colle_front">集合知との比較</b>
-    </div>
-  </div>
-  <script src="../JavaScript/OMIAI.js"></script>
-</body>
-
+    <script src="../JavaScript/OMIAI.js"></script>
+  </body>
 </html>
